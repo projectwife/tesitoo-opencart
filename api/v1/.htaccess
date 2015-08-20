@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # php-cgi under Apache does not pass HTTP Basic user/pass to PHP by default
+    # For this workaround to work, this line is added.
+	RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_URI} !.*\.(ico|gif|jpg|jpeg|png|js|css)
+	RewriteRule ^([^?]*) index.php?route=$1 [L,QSA]
+</IfModule>	
