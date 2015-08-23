@@ -6,15 +6,15 @@ How to set up server & corresponding database from this repo from scratch
 Environment
 -----------
 
-- apache !!!version?!!!
+- apache 2.4
 - mod_rewrite enabled
 - apache config file
     for /var/www (or wherever content directory is), ensure the following are set:
     Options Indexes FollowSymLinks
-    AllowOverride All
-- php 5 !!!version?!!!
-- mysqli (php extension) !!!what other modules?!!!
-- mysql !!!version?!!!
+    AllowOverride All!!!version?!!!
+- php 5.x
+- mysqli (php extension) !!! any other modules required? !!!
+- mysql 5.6
 - phpMyAdmin (recommended)
 
 Procedure
@@ -33,11 +33,11 @@ Opencart source
     DB_USERNAME, DB_PASSWORD and DB_DATABASE should be set according to the database & user you created above
 
 File permissions - make the following writable by www-data (apache default user)
-  - vqmod/checked.cache
-  - system/logs/* 
-  - system/cache
-  - system/cache/*
-  - image/cache/catalog/demo
+- vqmod/checked.cache
+- system/logs/* 
+- system/cache
+- system/cache/*
+- image/cache/catalog/demo
 !!!FIXME need to find way to handle permissions / users programmatically!!!
 
 Database set-up (phpMyAdmin)
