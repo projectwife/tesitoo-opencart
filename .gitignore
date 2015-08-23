@@ -1,0 +1,16 @@
+# Created by https://www.gitignore.io/api/opencart
+
+### OpenCart ###
+
+# actually maybe not including the config files is a sensible idea?
+#  /config.php
+#  admin/config.php
+
+!index.html
+
+download/
+image/data/
+image/cache/
+system/cache/
+system/logs/
+
