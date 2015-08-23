@@ -38,6 +38,7 @@ File permissions - make the following writable by www-data (apache default user)
 - system/cache
 - system/cache/*
 - image/cache/catalog/demo
+- download/   (may not exist)
 !!!FIXME need to find way to handle permissions / users programmatically!!!
 
 Database set-up (phpMyAdmin)
