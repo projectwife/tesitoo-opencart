@@ -3,14 +3,18 @@
 ### OpenCart ###
 
 # actually maybe not including the config files is a sensible idea?
-#  /config.php
-#  admin/config.php
+#   /config.php
+#   admin/config.php
 
 !index.html
 
-download/
-image/data/
-image/cache/
-system/cache/
-system/logs/
+# no download dir???
+#   download/
+
+# sound like sensible ideas, but I get errors when I start removing these
+# - are the caches not regenerated? Or is it a permission problem?
+#   image/data/
+#   image/cache/
+#   system/cache/
+#   system/logs/
 
