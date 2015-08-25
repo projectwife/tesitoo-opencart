@@ -11,11 +11,9 @@
 # no download dir???
 #   download/
 
-# sound like sensible ideas, but I get errors when I start removing these
-# - are the caches not regenerated? Or is it a permission problem?
-#   image/data/
-#   system/logs/
+# what is image/data?
+#   image/data/ 
 
 image/cache/
 system/cache/
-
+system/logs/
