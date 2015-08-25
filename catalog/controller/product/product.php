@@ -269,6 +269,11 @@ class ControllerProductProduct extends Controller {
 			$data['reward'] = $product_info['reward'];
 			$data['points'] = $product_info['points'];
 
+			//CHANGED: tesitoo - david - 2015-08-25
+			//  add vendor id & name to get product api
+			$data['vendor_id'] = $product_info['vendor_id'];
+			$data['vendor_name'] = $product_info['vendor_name'];
+
 			if ($product_info['quantity'] <= 0) {
 				$data['stock'] = $product_info['stock_status'];
 			} elseif ($this->config->get('config_stock_display')) {
