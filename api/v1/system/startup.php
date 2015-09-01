@@ -8,7 +8,7 @@ require_once(DIR_API_SYSTEM . 'library/url.php');
 require_once(DIR_API_SYSTEM . 'library/errorcodes.php');
 require_once(DIR_API_SYSTEM . 'library/payment.php');
 require_once(DIR_API_SYSTEM . 'library/override.php');
-require_once(DIR_API_SYSTEM . 'library/override_model.php');
+require_once(DIR_API_SYSTEM . 'library/override_tree.php');
 
 require_once(DIR_API_SYSTEM . 'engine/action.php');
 require_once(DIR_API_SYSTEM . 'engine/apiexception.php');

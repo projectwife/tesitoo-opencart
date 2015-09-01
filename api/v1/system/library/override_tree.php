@@ -1,6 +1,6 @@
 <?php
 
-class OverrideModel extends Override
+class OverrideTree extends Override
 {
 
 	/**
@@ -15,16 +15,18 @@ class OverrideModel extends Override
 	 * example: catalog/{model}
 	 * @var string
 	 */
-	protected $base = 'model';
+	protected $base = '';
 
 	/**
 	 * Create with an optional set of directories searched by order
 	 *
+	 * @param string $base
 	 * @param array $searchDirectories
 	 * @param array $overrides ex: [ 'catalog/product' => DIR_APPLICATION.'../admin' ]
 	 */
-	public function __construct($searchDirectories = array(), $overrides)
-	{
+	public function __construct($base, $searchDirectories = array(), $overrides)
+	{	
+		$this->base = $base;
 	    $this->searchDirectories = array_merge($this->searchDirectories, $searchDirectories);
 
 		if(is_array($overrides)) {
