@@ -25,6 +25,17 @@ $registry = new Registry();
 $loader = new ApiLoader($registry);
 $registry->set('load', $loader);
 
+// Overrides
+$overrideModel = new OverrideModel([
+	DIR_APPLICATION,
+	DIR_APPLICATION.'/../admin/'
+	],
+	[
+		//Override Models Here
+	]
+);
+$registry->set('api_override_model', $overrideModel);
+
 // Config
 $config = new Config();
 $registry->set('config', $config);
