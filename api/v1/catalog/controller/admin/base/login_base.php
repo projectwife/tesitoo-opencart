@@ -18,12 +18,12 @@ class ControllerAdminLoginBaseAPI extends ApiController {
 	 */
 
 	public function post() {
-        $user = new User($this->registry);
-       
+        $user = $this->user;
+
         $data = array();
 
         if(isset($this->request->post['username']) && isset($this->request->post['username']) && $user->login($this->request->post['username'], $this->request->post['password'])) {
-            $data['user'] = array('username' => $user->getUserName(), 'user_id' => $user->getId(), 'user_group_id' => $user->getGroupId());
+            $data['user'] = array('username' => $user->getUserName(), 'user_id' => $user->getId(), 'user_group_id' => $user->getGroupId(), 'vendor_id' => $user->getVP());
         } else {
             // Need to keep the static messages in a separate file (Keep it in API end ?) 
             $data['errors'] = array('code' => "error_warning", 'message' => "Warning: No match for Username and/or Password.");    
