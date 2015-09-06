@@ -13,6 +13,7 @@ class ErrorCodes {
 	const ERRORCODE_MANUFACTURER_NOT_FOUND 			= 'manufacturer_not_found';
 	const ERRORCODE_PRODUCT_NOT_FOUND 				= 'product_not_found';
 	const ERRORCODE_RECURRING_DESCRIPTION_NOT_FOUND = 'recurring_description_not_found';
+	const ERRORCODE_VENDOR_NOT_FOUND				= 'vendor_not_found';
 
 	// account
 	const ERRORCODE_USER_NOT_LOGGED_IN 				= 'user_not_logged_in';
