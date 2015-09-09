@@ -1,7 +1,7 @@
 <?php
 // Version
 define('VERSION', '2.0.2.0');
-define('APIVERSION', '1.3.1'); 
+define('APIVERSION', '1.3.1');
 
 // Configuration
 if (is_file('config.php')) {
@@ -14,8 +14,12 @@ if (!defined('DIR_APPLICATION')) {
 	exit;
 }
 
-// Startup
-require_once(DIR_SYSTEM . 'startup.php');
+// VirtualQMOD
+require_once(DIR_SYSTEM.'/../vqmod/vqmod.php');
+VQMod::bootup();
+// VQMODDED Startup
+require_once(VQMod::modCheck(DIR_SYSTEM . 'startup.php'));
+//API Startup
 require_once(DIR_API_SYSTEM . 'startup.php');
 
 // Registry
@@ -29,14 +33,14 @@ $registry->set('load', $loader);
 // Overrides
 
 $overrideModel = new OverrideTree(
-    'model',
-    [
-        DIR_APPLICATION,
-        DIR_APPLICATION.'/../admin/'
-    ],
-    [
-        //Override Models Here
-    ]
+	'model',
+	[
+		DIR_APPLICATION,
+		DIR_APPLICATION.'/../admin/'
+	],
+	[
+		//Override Models Here
+	]
 );
 $registry->set('api_override_model', $overrideModel);
 
@@ -224,6 +228,9 @@ $registry->set('length', new Length($registry));
 
 // Cart
 $registry->set('cart', new Cart($registry));
+
+//User
+$registry->set('user', new User($registry));
 
 // Encryption
 $registry->set('encryption', new Encryption($config->get('config_encryption')));
