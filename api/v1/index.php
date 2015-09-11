@@ -255,7 +255,7 @@ $controller = new Front($registry);
 $controller->addPreAction(new ApiAction('common/maintenance'));
 
 // OAuth access token
-$controller->addPreAction(new ApiAction('oauth2/oauth'));
+//$controller->addPreAction(new ApiAction('oauth2/oauth'));
 
 // Router
 if (isset($request->get['route'])) {

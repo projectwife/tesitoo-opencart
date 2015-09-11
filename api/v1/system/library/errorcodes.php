@@ -14,6 +14,7 @@ class ErrorCodes {
 	const ERRORCODE_PRODUCT_NOT_FOUND 				= 'product_not_found';
 	const ERRORCODE_RECURRING_DESCRIPTION_NOT_FOUND = 'recurring_description_not_found';
 	const ERRORCODE_VENDOR_NOT_FOUND				= 'vendor_not_found';
+	const ERRORCODE_VENDORS_NOT_FOUND				= 'vendors_not_found';
 
 	// account
 	const ERRORCODE_USER_NOT_LOGGED_IN 				= 'user_not_logged_in';
@@ -53,7 +54,9 @@ class ErrorCodes {
 		self::ERRORCODE_USER_IS_LOGGED_IN_GUEST_CHECKOUT_NOT_ALLOWED 	=> 'User is logged in or guest checkout is not allowed.',
 		self::ERRORCODE_PRODUCT_NOT_FOUND 								=> 'The product could not be found.',
 		self::ERRORCODE_CUSTOM_FIELD_LOCATION_INVALID 					=> 'The given custom field location is invalid.',
-		self::ERRORCODE_RECURRING_DESCRIPTION_NOT_FOUND 				=> 'The recurring description could not be found.'
+		self::ERRORCODE_RECURRING_DESCRIPTION_NOT_FOUND 				=> 'The recurring description could not be found.',
+		self::ERRORCODE_VENDOR_NOT_FOUND 								=> 'The Vendor could not be found.',
+		self::ERRORCODE_VENDORS_NOT_FOUND 								=> 'No Vendors could not be found.'
 	);
 
 	public static function getMessage($errorCode) {
