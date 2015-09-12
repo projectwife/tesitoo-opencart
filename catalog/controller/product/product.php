@@ -747,4 +747,51 @@ class ControllerProductProduct extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
+
+	public function addNew()
+	{
+		$this->load->language('product/product');
+		$json = array();
+
+		if ($this->request->server['REQUEST_METHOD'] == 'POST')
+		{
+			//// input validation ////
+
+			if(!$this->user->isLogged())
+			{
+                $json['error'] = $this->language->get('error_not_logged_in');
+			}
+
+			if ((utf8_strlen($this->request->post['name']) < 3) ||
+                (utf8_strlen($this->request->post['name']) > 65))
+            {
+				$json['error'] = $this->language->get('error_prodname');
+			}
+
+            if (($this->request->post['price']) <= 0)
+            {
+                $json['error'] = $this->language->get('error_price');
+            }
+
+            if (($this->request->post['quantity']) < 0)
+            {
+                $json['error'] = $this->language->get('error_quantity');
+            }
+
+            if (!isset($json['error']))
+            {
+                $this->load->model('catalog/vdi_product');
+
+                $product_id = $this->model_catalog_vdi_product
+                                ->addProduct($this->request->post);
+
+                $json['success'] = $this->language->get('text_success_new');
+
+                $json['product_id'] = $product_id;
+            }
+        }
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
 }
