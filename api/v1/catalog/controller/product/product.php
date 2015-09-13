@@ -30,14 +30,14 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		'status' => 5,    //5 for 'pending approval'
 		'product_store' => [0],
 		'product_description' => [
-            1 => [   //1 for English
-            'name' => '',
-            'description' => '',
-            'tag' => '',
-            'meta_title' => '',
-            'meta_description' => '',
-            'meta_keyword' => ''
-            ]
+			1 => [   //1 for English
+			'name' => '',
+			'description' => '',
+			'tag' => '',
+			'meta_title' => '',
+			'meta_description' => '',
+			'meta_keyword' => ''
+			]
 		],
 		'model' => ''
 
@@ -68,8 +68,8 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 
 		if ($this->user->isLogged())
 		{
-            $this->request->post['vendor'] = $this->user->getVP();
-        }
+			$this->request->post['vendor'] = $this->user->getVP();
+		}
 
 		$this->request->post['product_description'][1]['name'] = $this->request->post['name'];
 		$this->request->post['product_description'][1]['description'] = $this->request->post['description'];
@@ -78,8 +78,8 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$this->request->post['quantity'] = (int)$this->request->post['quantity'];
 		if ('' === $this->request->post['model'])
 		{
-            $this->request->post['model'] = $this->request->post['name'];
-        }
+			$this->request->post['model'] = $this->request->post['name'];
+		}
 
 		$data = parent::getInternalRouteData('product/product/addNew', true);
 
