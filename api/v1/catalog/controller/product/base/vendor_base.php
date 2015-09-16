@@ -66,8 +66,11 @@ class ControllerProductVendorBaseAPI extends ApiController
 	protected function getVendor($id)
 	{
 		$this->load->model('catalog/vendor');
-
 		$vendor = $this->model_catalog_vendor->getVendor($id);
+
+		if( empty($vendor) ) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_VENDOR_NOT_FOUND, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_VENDOR_NOT_FOUND));
+		}
 
 		return $this->processVendor($vendor);
 	}
@@ -77,6 +80,10 @@ class ControllerProductVendorBaseAPI extends ApiController
 
 		$vendors_info = $this->model_catalog_vendor->getVendors();
 		$vendors = array();
+
+		if( empty($vendors_info) ) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_VENDORS_NOT_FOUND, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_VENDORS_NOT_FOUND));
+		}
 
 		foreach ($vendors_info as $data) {
 			$vendors[] = $this->processVendor($data);
