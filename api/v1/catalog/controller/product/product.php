@@ -29,6 +29,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		'sort_order' => 1,
 		'status' => 5,    //5 for 'pending approval'
 		'product_store' => [0],
+		'product_category' => [],
 		'product_description' => [
 			1 => [   //1 for English
 			'name' => '',
@@ -76,6 +77,10 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$this->request->post['product_description'][1]['meta_title'] = $this->request->post['meta_title'];
 		$this->request->post['price'] = (float)$this->request->post['price'];
 		$this->request->post['quantity'] = (int)$this->request->post['quantity'];
+
+		$category_ids = explode(",",$this->request->post['category_ids']);
+		$this->request->post['product_category'] = $category_ids;
+
 		if ('' === $this->request->post['model'])
 		{
 			$this->request->post['model'] = $this->request->post['name'];
