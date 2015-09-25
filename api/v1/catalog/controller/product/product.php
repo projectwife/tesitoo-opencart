@@ -56,6 +56,9 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		else if ($this->request->isPostRequest()) {
 			$this->postNew($id);
 		}
+		else if ($this->request->isDeleteRequest() && $id != null) {
+			$this->deleteProduct($id);
+		}
 		else {
 			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_METHOD_NOT_FOUND, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_METHOD_NOT_FOUND));
 		}
@@ -67,8 +70,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 
 		$this->request->setDefaultParameters($this->defaultParameters);
 
-		if ($this->user->isLogged())
-		{
+		if ($this->user->isLogged()) {
 			$this->request->post['vendor'] = $this->user->getVP();
 		}
 
@@ -81,8 +83,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$category_ids = explode(",",$this->request->post['category_ids']);
 		$this->request->post['product_category'] = $category_ids;
 
-		if ('' === $this->request->post['model'])
-		{
+		if ('' === $this->request->post['model']) {
 			$this->request->post['model'] = $this->request->post['name'];
 		}
 
@@ -96,6 +97,27 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$this->response->setOutput(json_encode($json));
 	}
 
+
+	public function deleteProduct($id = NULL)
+	{
+		if ($this->user->isLogged()) {
+			$this->request->post['vendor'] = $this->user->getVP();
+		}
+
+		$productIds = explode(',', $id);
+
+		foreach($productIds as $productId) {
+			if (is_numeric($productId)) {
+				$this->request->post['key'] = $productId;
+
+				$data = parent::getInternalRouteData('product/product/delete', true);
+				ApiException::evaluateErrors($data);
+			}
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput($data);
+	}
 
 
 	//ADDED: tesitoo - david - 2015-08-25 - override to add vendor id & name
