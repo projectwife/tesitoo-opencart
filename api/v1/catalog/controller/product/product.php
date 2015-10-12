@@ -64,8 +64,18 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		}
 	}
 
-	public function postNew($id = NULL)
-	{
+	public function image($args = array()) {
+		$id = isset($args['id']) ? $args['id'] : null;
+
+		if($this->request->isPostRequest() && $id != null) {
+			$this->uploadImage($id);
+		}
+		else {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_METHOD_NOT_FOUND, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_METHOD_NOT_FOUND));
+		}
+	}
+
+	public function postNew($id = NULL) {
 		$json = array();
 
 		$this->request->setDefaultParameters($this->defaultParameters);
@@ -98,8 +108,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 	}
 
 
-	public function deleteProduct($id = NULL)
-	{
+	public function deleteProduct($id = NULL) {
 		if ($this->user->isLogged()) {
 			$this->request->post['vendor'] = $this->user->getVP();
 		}
@@ -119,6 +128,82 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$this->response->setOutput($data);
 	}
 
+	public function uploadImage($id) {
+		if ($this->user->isLogged()) {
+			$this->request->post['vendor'] = $this->user->getVP();
+		}
+		else {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED, ErrorCodes::ERRORCODE_USER_NOT_LOGGED_IN, "not allowed");
+		}
+
+		$userName = $this->user->getUserName();
+		$tmpFileName = $this->request->files['file']['tmp_name'];
+		$srcFileName = urldecode($this->request->files['file']['name']);
+		$tmpfilesize = filesize($this->request->files['file']['tmp_name']);
+
+		//echo "size = " . $this->request->files['file']['size'] . "\n";
+
+		$this->request->get['product_id'] = (int)$id;
+		$data = parent::getInternalRouteData('product/product');
+		if(isset($data['text_error'])) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_PRODUCT_NOT_FOUND, $data['text_error']);
+		}
+		$product = array('product' => $this->getProduct($id, $data));
+		if ($this->user->getVP() != (int)($product['product']['vendor_id'])) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED, ErrorCodes::ERRORCODE_VENDOR_NOT_ALLOWED, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_VENDOR_NOT_ALLOWED));
+		}
+
+		//file name must not be null
+		if (NULL == $srcFileName) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_FILE_ERROR, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_FILE_ERROR));
+		}
+
+		//file type must be acceptable
+		if (NULL == exif_imagetype($this->request->files['file']['tmp_name'])) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_FILE_ERROR, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_FILE_ERROR));
+		}
+
+		//file size must be >0
+		if (0 >= $tmpfilesize) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_FILE_ERROR, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_FILE_ERROR));
+		}
+
+		//append timestamp to all uploaded image filenames to ensure uniqueness
+		$path_parts = pathinfo($srcFileName);
+		$destination = "catalog/" . $userName . "/" . $path_parts['filename']
+			. "_" . time() . "." . $path_parts['extension'];
+
+		//$destination (eg. catalog/vendor1/Barley.jpg) is the string to put in the db
+
+		//move tmpfile to proper location
+		if (!rename($tmpFileName, DIR_IMAGE . $destination)) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_FILE_ERROR, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_FILE_ERROR));
+		}
+
+		//default to using image as auxiliary product image
+		$useImageAsMain = false;
+		$sortOrder = 1;
+		//unless specifically set to true
+		if (isset($this->request->post['main_product_image']) &&
+			('true' === $this->request->post['main_product_image'])) {
+			$useImageAsMain = true;
+		}
+		else {
+			if (isset($this->request->post['sort_order'])) {
+				$sortOrder = $this->request->post['sort_order'];
+			}
+		}
+
+		$this->load->model('catalog/vdi_product');
+		if ($useImageAsMain) {
+			$this->model_catalog_vdi_product
+							->setMainProductImage($id, $destination);
+		}
+		else {
+			$this->model_catalog_vdi_product
+							->addAuxProductImage($id, $sortOrder, $destination);
+		}
+	}
 
 	//ADDED: tesitoo - david - 2015-08-25 - override to add vendor id & name
 	protected function getProduct($id, $data) {

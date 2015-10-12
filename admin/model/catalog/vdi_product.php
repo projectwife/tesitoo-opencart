@@ -323,6 +323,21 @@ class ModelCatalogVDIProduct extends Model {
 		$this->event->trigger('post.admin.edit.product', $product_id);
 	}
 
+	public function setMainProductImage($product_id, $imgFile) {
+		if (isset($imgFile)) {
+			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '"
+			. $this->db->escape($imgFile) . "' WHERE product_id = '" . (int)$product_id . "'");
+		}
+	}
+
+	public function addAuxProductImage($product_id, $sort_order, $imgFile) {
+		if (isset($imgFile)) {
+			$this->db->query("INSERT INTO " . DB_PREFIX . "product_image SET product_id = '"
+			. (int)$product_id . "', image = '" . $this->db->escape($imgFile) .
+			"', sort_order = '" . (int)$sort_order . "'");
+		}
+	}
+
 	public function copyProduct($product_id) {
 		$query = $this->db->query("SELECT DISTINCT *,p.sort_order as psort_order FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "vendor vd ON (pd.product_id = vd.vproduct_id) LEFT JOIN " . DB_PREFIX . "vendors vds ON (vd.vendor = vds.vendor_id) WHERE p.product_id = '" . (int)$product_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 		
