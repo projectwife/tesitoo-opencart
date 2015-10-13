@@ -143,13 +143,11 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 
 		//echo "size = " . $this->request->files['file']['size'] . "\n";
 
-		$this->request->get['product_id'] = (int)$id;
-		$data = parent::getInternalRouteData('product/product');
-		if(isset($data['text_error'])) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_PRODUCT_NOT_FOUND, $data['text_error']);
-		}
-		$product = array('product' => $this->getProduct($id, $data));
-		if ($this->user->getVP() != (int)($product['product']['vendor_id'])) {
+		$this->load->model('catalog/vdi_product');
+		$product = $this->model_catalog_vdi_product->getProduct((int)$id);
+
+		if ((!array_key_exists('vendor_id', $product)) ||
+			($this->user->getVP() != (int)($product['vendor_id']))) {
 			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED, ErrorCodes::ERRORCODE_VENDOR_NOT_ALLOWED, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_VENDOR_NOT_ALLOWED));
 		}
 
