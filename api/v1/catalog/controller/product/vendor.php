@@ -12,5 +12,14 @@ class ControllerProductVendorAPI extends ControllerProductVendorBaseAPI {
 	{
 	    return $this->response->setOutput($this->getVendorProducts($this->getIdFromArgs($args)));
 	}
+    
+    public function orders() {
+        if ($this->user->isLogged()) {
+            return $this->response->setOutput($this->getVendorOrders());
+		}
+		else {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED, ErrorCodes::ERRORCODE_USER_NOT_LOGGED_IN, "not allowed");
+		}
+    }
 
 }
