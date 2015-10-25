@@ -17,3 +17,6 @@
 image/cache/
 system/cache/
 system/logs/
+
+/vqmod/mods.cache
+/vqmod/vqcache/*
