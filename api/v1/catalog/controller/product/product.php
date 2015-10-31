@@ -67,8 +67,6 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 	public function image($args = array()) {
 		$id = isset($args['id']) ? $args['id'] : null;
 
-		var_dump($args);
-
 		if ($this->request->isPostRequest() && $id != null) {
 			$this->uploadImage($id);
 		}
@@ -217,10 +215,10 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		}
 
 		$userName = $this->user->getUserName();
-		var_dump ($userName);
 
 		$imageFile = urldecode($this->request->get['file']);
-		var_dump ($imageFile);
+		//to make it easier for caller, we accept the 500x500 cached filename too
+		$imageFile = preg_replace('/-500x500.jpg$/', '.jpg', $imageFile);
 
 		//check this vendor owns specified product
 		$this->load->model('catalog/vdi_product');
@@ -230,15 +228,28 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 			($this->user->getVP() != (int)($product['vendor_id']))) {
 			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED, ErrorCodes::ERRORCODE_VENDOR_NOT_ALLOWED, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_VENDOR_NOT_ALLOWED));
 		}
+
 		//if $imageFile is main image, then set property to default ("" / null ?)
+		if (array_key_exists('image', $product)) {
+			$mainImageBaseName = pathinfo($product['image'])['basename'];
+			if ($mainImageBaseName === $imageFile) {
+				$this->model_catalog_vdi_product
+							->setMainProductImage($id, "");
+			}
+		}
 
-		//else search for $imageFile in aux images
-		//if exists, delete
+		//remove any instance of $imageFile in aux images for this product
+		$userFile = 'catalog/' . $userName . '/' . $imageFile;
+		$this->model_catalog_vdi_product->removeAuxProductImage($id, $userFile);
 
-		//remove file from image catalog
+		//check image is not used for any other product
+		if (!$this->model_catalog_vdi_product->isImageInUse($userFile)) {
 
-		//do we need to do anything to clear up the image cache?
+			//remove file from image catalog
+			unlink(DIR_IMAGE . $userFile);
 
+			//don't clean up image cache - assume cleared periodically by routine maintenance
+		}
 	}
 
 	//ADDED: tesitoo - david - 2015-08-25 - override to add vendor id & name
