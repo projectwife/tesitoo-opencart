@@ -338,6 +338,32 @@ class ModelCatalogVDIProduct extends Model {
 		}
 	}
 
+	public function removeAuxProductImage($product_id, $imgFile) {
+		if (isset($imgFile)) {
+			$res = $this->db->query("DELETE FROM `" . DB_PREFIX . "product_image` WHERE product_id ='" . (int)$product_id . "' AND image = '" . $imgFile . "'");
+		}
+	}
+
+	public function isImageInUse($imgFile) {
+		if (isset($imgFile)) {
+			//search in main - if find any, return true
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX .
+				"product WHERE image = '" . $imgFile . "'");
+			if (0 < count($query->rows)) {
+				return true;
+			}
+
+			//search in aux - if find any, return true
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX .
+				"product_image WHERE image = '" . $imgFile . "'");
+			if (0 < count($query->rows)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public function copyProduct($product_id) {
 		$query = $this->db->query("SELECT DISTINCT *,p.sort_order as psort_order FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "vendor vd ON (pd.product_id = vd.vproduct_id) LEFT JOIN " . DB_PREFIX . "vendors vds ON (vd.vendor = vds.vendor_id) WHERE p.product_id = '" . (int)$product_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 		

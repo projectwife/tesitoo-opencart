@@ -67,8 +67,11 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 	public function image($args = array()) {
 		$id = isset($args['id']) ? $args['id'] : null;
 
-		if($this->request->isPostRequest() && $id != null) {
+		if ($this->request->isPostRequest() && $id != null) {
 			$this->uploadImage($id);
+		}
+		else if ($this->request->isDeleteRequest() && $id != null) {
+			$this->deleteImage($id);
 		}
 		else {
 			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_METHOD_NOT_FOUND, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_METHOD_NOT_FOUND));
@@ -200,6 +203,52 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		else {
 			$this->model_catalog_vdi_product
 							->addAuxProductImage($id, $sortOrder, $destination);
+		}
+	}
+
+	public function deleteImage($id) {
+		if ($this->user->isLogged()) {
+			$this->request->post['vendor'] = $this->user->getVP();
+		}
+		else {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED, ErrorCodes::ERRORCODE_USER_NOT_LOGGED_IN, "not allowed");
+		}
+
+		$userName = $this->user->getUserName();
+
+		$imageFile = urldecode($this->request->get['file']);
+		//to make it easier for caller, we accept the 500x500 cached filename too
+		$imageFile = preg_replace('/-500x500.jpg$/', '.jpg', $imageFile);
+
+		//check this vendor owns specified product
+		$this->load->model('catalog/vdi_product');
+		$product = $this->model_catalog_vdi_product->getProduct((int)$id);
+
+		if ((!array_key_exists('vendor_id', $product)) ||
+			($this->user->getVP() != (int)($product['vendor_id']))) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED, ErrorCodes::ERRORCODE_VENDOR_NOT_ALLOWED, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_VENDOR_NOT_ALLOWED));
+		}
+
+		//if $imageFile is main image, then set property to default ("" / null ?)
+		if (array_key_exists('image', $product)) {
+			$mainImageBaseName = pathinfo($product['image'])['basename'];
+			if ($mainImageBaseName === $imageFile) {
+				$this->model_catalog_vdi_product
+							->setMainProductImage($id, "");
+			}
+		}
+
+		//remove any instance of $imageFile in aux images for this product
+		$userFile = 'catalog/' . $userName . '/' . $imageFile;
+		$this->model_catalog_vdi_product->removeAuxProductImage($id, $userFile);
+
+		//check image is not used for any other product
+		if (!$this->model_catalog_vdi_product->isImageInUse($userFile)) {
+
+			//remove file from image catalog
+			unlink(DIR_IMAGE . $userFile);
+
+			//don't clean up image cache - assume cleared periodically by routine maintenance
 		}
 	}
 
