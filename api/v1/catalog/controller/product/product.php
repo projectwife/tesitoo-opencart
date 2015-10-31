@@ -246,8 +246,9 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		if (!$this->model_catalog_vdi_product->isImageInUse($userFile)) {
 
 			//remove file from image catalog
-			unlink(DIR_IMAGE . $userFile);
-
+			if (file_exists(DIR_IMAGE . $userFile)) {
+				unlink(DIR_IMAGE . $userFile);
+			}
 			//don't clean up image cache - assume cleared periodically by routine maintenance
 		}
 	}
