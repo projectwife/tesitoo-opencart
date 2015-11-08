@@ -214,9 +214,19 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED, ErrorCodes::ERRORCODE_USER_NOT_LOGGED_IN, "not allowed");
 		}
 
-		$userName = $this->user->getUserName();
+		if (!array_key_exists('files', $this->request->get)) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_BAD_PARAMETER, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_BAD_PARAMETER));
+		}
 
-		$imageFile = urldecode($this->request->get['file']);
+		$imageFiles = explode(',', $this->request->get['files']);
+
+		foreach($imageFiles as $imageFile) {
+			$this->deleteSingleImage($id, urldecode($imageFile), $this->user->getUserName());
+		}
+	}
+
+	public function deleteSingleImage($id, $imageFile, $userName) {
+
 		//to make it easier for caller, we accept the 500x500 cached filename too
 		$imageFile = preg_replace('/-500x500.jpg$/', '.jpg', $imageFile);
 

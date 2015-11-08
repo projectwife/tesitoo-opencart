@@ -38,6 +38,8 @@ class ErrorCodes {
 	const ERRORCODE_FILE_ERROR						= 'file_error';
 	const ERRORCODE_VENDOR_NOT_ALLOWED				= 'vendor_not_allowed';
 
+	const ERRORCODE_BAD_PARAMETER					= 'parameter_error';
+
 	private static $errorMessages = array(
 		self::ERRORCODE_INVALID_CLIENT 									=> 'Client authentication failed (e.g., unknown client, no client authentication included, or unsupported authentication method).',
 		self::ERRORCODE_INVALID_ACCESS_TOKEN 							=> 'Invalid or expired access token',
@@ -61,7 +63,8 @@ class ErrorCodes {
 		self::ERRORCODE_VENDOR_NOT_FOUND 								=> 'The Vendor could not be found.',
 		self::ERRORCODE_VENDORS_NOT_FOUND 								=> 'No Vendors could not be found.',
 		self::ERRORCODE_FILE_ERROR										=> 'Uploaded file is incorrect.',
-		self::ERRORCODE_VENDOR_NOT_ALLOWED								=> 'Vendor permission error.'
+		self::ERRORCODE_VENDOR_NOT_ALLOWED								=> 'Vendor permission error.',
+		self::ERRORCODE_BAD_PARAMETER									=> 'Incorrect parameter.'
 	);
 
 	public static function getMessage($errorCode) {
