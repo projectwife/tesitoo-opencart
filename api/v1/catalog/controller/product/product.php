@@ -183,7 +183,10 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		}
 
 		//file type must be acceptable
-		if (NULL == exif_imagetype($this->request->files['file']['tmp_name'])) {
+		$imageType = exif_imagetype($this->request->files['file']['tmp_name']);
+		if ((IMAGETYPE_GIF != $imageType)
+			&& (IMAGETYPE_JPEG != $imageType)
+			&& (IMAGETYPE_PNG != $imageType)) {
 			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_FILE_ERROR, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_FILE_ERROR));
 		}
 
