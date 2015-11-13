@@ -54,7 +54,12 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 			$this->get($id);
 		}
 		else if ($this->request->isPostRequest()) {
-			$this->postNew($id);
+			if (null == $id) {
+				$this->postNew();
+			}
+			else {
+				$this->edit($id);
+			}
 		}
 		else if ($this->request->isDeleteRequest() && $id != null) {
 			$this->deleteProduct($id);
@@ -78,7 +83,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		}
 	}
 
-	public function postNew($id = NULL) {
+	public function postNew() {
 		$json = array();
 
 		$this->request->setDefaultParameters($this->defaultParameters);
@@ -110,6 +115,24 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$this->response->setOutput(json_encode($json));
 	}
 
+	public function edit($id) {
+		if ($this->user->isLogged()) {
+			$this->request->post['vendor'] = $this->user->getVP();
+		}
+		else {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED, ErrorCodes::ERRORCODE_USER_NOT_LOGGED_IN, "not allowed");
+		}
+
+		//check if logged in vendor is owner of product with $id
+
+		//load product
+
+		//deal with fields from specified parameters (check validity)
+
+		//apply parameters
+
+		//save product
+	}
 
 	public function deleteProduct($id = NULL) {
 		if ($this->user->isLogged()) {
