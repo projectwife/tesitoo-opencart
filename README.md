@@ -21,8 +21,8 @@ Procedure
 -----------------
 
 Using phpMyAdmin
-- create a new database (suggest utf_general_ci)
-- create a database user (for API to access) !!!specify name, pw etc. requirements here!!!
+- create a new database (suggest utf8mb4_general_ci)
+- create a database user (for API to access)
 - give new user all permissions except grant to new db
 
 Opencart source
