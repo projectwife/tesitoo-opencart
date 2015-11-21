@@ -92,6 +92,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 			$this->request->post['vendor'] = $this->user->getVP();
 		}
 
+		//array index 1 means English
 		$this->request->post['product_description'][1]['name'] = $this->request->post['name'];
 		$this->request->post['product_description'][1]['description'] = $this->request->post['description'];
 		$this->request->post['product_description'][1]['meta_title'] = $this->request->post['meta_title'];
@@ -150,6 +151,38 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 
 		//save product
 		$this->model_catalog_vdi_product->editProductCoreDetails((int)$id, $product);
+
+		//load product description
+		$descriptions = $this->model_catalog_vdi_product->getProductDescriptions((int)$id);
+
+		$description = $descriptions[1];
+
+		if (($description['meta_title'] == $description['name'])
+							&& (isset($this->request->post['name']))) {
+			//update to same as name
+			$description['meta_title'] = $this->request->post['name'];
+		}
+		if (isset($this->request->post['meta_title'])) {
+			$description['meta_title'] = $this->request->post['meta_title'];
+		}
+		if (isset($this->request->post['name'])) {
+			$description['name'] = $this->request->post['name'];
+		}
+		if (isset($this->request->post['description'])) {
+			$description['description'] = $this->request->post['description'];
+		}
+		if (isset($this->request->post['tag'])) {
+			$description['tag'] = $this->request->post['tag'];
+		}
+		if (isset($this->request->post['meta_description'])) {
+			$description['meta_description'] = $this->request->post['meta_description'];
+		}
+		if (isset($this->request->post['meta_keyword'])) {
+			$description['meta_keyword'] = $this->request->post['meta_keyword'];
+		}
+
+		//1 in the arguments means English
+		$this->model_catalog_vdi_product->editProductDescription((int)$id, 1, $description);
 	}
 
 	public function deleteProduct($id = NULL) {

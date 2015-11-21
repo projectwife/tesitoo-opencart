@@ -328,6 +328,19 @@ class ModelCatalogVDIProduct extends Model {
 		}
 	}
 
+	public function editProductDescription($product_id, $language_id, $data) {
+
+		$res = $this->db->query("UPDATE " . DB_PREFIX . "product_description "
+		. "SET name = '" . $this->db->escape($data['name'])
+		. "', description = '" . $this->db->escape($data['description'])
+		. "', tag = '" . $this->db->escape($data['tag'])
+		. "', meta_title = '" . $this->db->escape($data['meta_title'])
+		. "', meta_description = '" . $this->db->escape($data['meta_description'])
+		. "', meta_keyword = '" . $this->db->escape($data['meta_keyword'])
+		. "' WHERE product_id = '" . (int)$product_id
+		. "' AND language_id = '" . (int)$language_id . "'");
+	}
+
 	public function setMainProductImage($product_id, $imgFile) {
 		if (isset($imgFile)) {
 			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '"
