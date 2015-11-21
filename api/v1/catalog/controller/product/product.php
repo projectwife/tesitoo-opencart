@@ -123,15 +123,33 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED, ErrorCodes::ERRORCODE_USER_NOT_LOGGED_IN, "not allowed");
 		}
 
-		//check if logged in vendor is owner of product with $id
-
 		//load product
+		$this->load->model('catalog/vdi_product');
+		$product = $this->model_catalog_vdi_product->getProduct((int)$id);
+
+		//check if logged in vendor is owner of product with $id
+		if ((!array_key_exists('vendor_id', $product)) ||
+			($this->user->getVP() != (int)($product['vendor_id']))) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED, ErrorCodes::ERRORCODE_VENDOR_NOT_ALLOWED, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_VENDOR_NOT_ALLOWED));
+		}
 
 		//deal with fields from specified parameters (check validity)
 
-		//apply parameters
+		if (isset($this->request->post['price'])) {
+			$product['price'] = (float)$this->request->post['price'];
+		}
+		if (isset($this->request->post['quantity'])) {
+			$product['quantity'] = (int)$this->request->post['quantity'];
+		}
+		if (isset($this->request->post['minimum'])) {
+			$product['minimum'] = (int)$this->request->post['minimum'];
+		}
+		if (isset($this->request->post['model'])) {
+			$product['model'] = $this->request->post['model'];
+		}
 
 		//save product
+		$this->model_catalog_vdi_product->editProductCoreDetails((int)$id, $product);
 	}
 
 	public function deleteProduct($id = NULL) {
