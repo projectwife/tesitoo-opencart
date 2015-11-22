@@ -148,6 +148,30 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		if (isset($this->request->post['model'])) {
 			$product['model'] = $this->request->post['model'];
 		}
+		if (isset($this->request->post['quantity'])) {
+			$product['quantity'] = (int)$this->request->post['quantity'];
+		}
+		if (isset($this->request->post['stock_status_id'])) {
+			$product['stock_status_id'] = (int)$this->request->post['stock_status_id'];
+		}
+		if (isset($this->request->post['weight_class_id'])) {
+			$product['weight_class_id'] = (int)$this->request->post['weight_class_id'];
+		}
+		if (isset($this->request->post['weight'])) {
+			$product['weight'] = (float)$this->request->post['weight'];
+		}
+		if (isset($this->request->post['length_class_id'])) {
+			$product['length_class_id'] = (int)$this->request->post['length_class_id'];
+		}
+		if (isset($this->request->post['length'])) {
+			$product['length'] = (float)$this->request->post['length'];
+		}
+		if (isset($this->request->post['width'])) {
+			$product['width'] = (float)$this->request->post['width'];
+		}
+		if (isset($this->request->post['height'])) {
+			$product['height'] = (float)$this->request->post['height'];
+		}
 
 		//save product
 		$this->model_catalog_vdi_product->editProductCoreDetails((int)$id, $product);
