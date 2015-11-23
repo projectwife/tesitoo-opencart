@@ -9,9 +9,11 @@ Environment
 - apache 2.4
 - mod_rewrite enabled
 - apache config file
-    for /var/www (or wherever content directory is), ensure the following are set:
-    Options Indexes FollowSymLinks
-    AllowOverride All
+  - for /var/www (or wherever content directory is), ensure the following are set:
+
+        Options Indexes FollowSymLinks
+        AllowOverride All
+
 - php 5.x
 - mysqli (php extension) !!! any other modules required? !!!
 - mysql 5.6
