@@ -11,8 +11,8 @@ Environment
 - apache config file
   - for /var/www (or wherever content directory is), ensure the following are set:
 
-        Options Indexes FollowSymLinks
-        AllowOverride All
+          Options Indexes FollowSymLinks
+          AllowOverride All
 
 - php 5.x
 - mysqli (php extension) !!! any other modules required? !!!
