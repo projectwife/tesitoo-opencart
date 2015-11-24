@@ -35,12 +35,14 @@ Opencart source
     DB_USERNAME, DB_PASSWORD and DB_DATABASE should be set according to the database & user you created above
 
 File permissions - make the following writable by www-data (apache default user)
-- vqmod/checked.cache
+- vqmod/*
 - system/logs/* 
 - system/cache
 - system/cache/*
-- image/cache/catalog/demo
+- image/cache/*
+- image/catalog/*
 - download/   (may not exist)
+
 !!!FIXME need to find way to handle permissions / users programmatically!!!
 
 Database set-up (phpMyAdmin)
