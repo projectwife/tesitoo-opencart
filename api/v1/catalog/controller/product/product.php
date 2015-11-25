@@ -54,7 +54,12 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 			$this->get($id);
 		}
 		else if ($this->request->isPostRequest()) {
-			$this->postNew($id);
+			if (null == $id) {
+				$this->postNew();
+			}
+			else {
+				$this->edit($id);
+			}
 		}
 		else if ($this->request->isDeleteRequest() && $id != null) {
 			$this->deleteProduct($id);
@@ -78,7 +83,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		}
 	}
 
-	public function postNew($id = NULL) {
+	public function postNew() {
 		$json = array();
 
 		$this->request->setDefaultParameters($this->defaultParameters);
@@ -87,6 +92,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 			$this->request->post['vendor'] = $this->user->getVP();
 		}
 
+		//array index 1 means English
 		$this->request->post['product_description'][1]['name'] = $this->request->post['name'];
 		$this->request->post['product_description'][1]['description'] = $this->request->post['description'];
 		$this->request->post['product_description'][1]['meta_title'] = $this->request->post['meta_title'];
@@ -110,6 +116,101 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$this->response->setOutput(json_encode($json));
 	}
 
+	public function edit($id) {
+		if ($this->user->isLogged()) {
+			$this->request->post['vendor'] = $this->user->getVP();
+		}
+		else {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED, ErrorCodes::ERRORCODE_USER_NOT_LOGGED_IN, "not allowed");
+		}
+
+		//load product
+		$this->load->model('catalog/vdi_product');
+		$product = $this->model_catalog_vdi_product->getProduct((int)$id);
+
+		//check if logged in vendor is owner of product with $id
+		if ((!array_key_exists('vendor_id', $product)) ||
+			($this->user->getVP() != (int)($product['vendor_id']))) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED, ErrorCodes::ERRORCODE_VENDOR_NOT_ALLOWED, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_VENDOR_NOT_ALLOWED));
+		}
+
+		//deal with fields from specified parameters (check validity)
+
+		if (isset($this->request->post['price'])) {
+			$product['price'] = (float)$this->request->post['price'];
+		}
+		if (isset($this->request->post['quantity'])) {
+			$product['quantity'] = (int)$this->request->post['quantity'];
+		}
+		if (isset($this->request->post['minimum'])) {
+			$product['minimum'] = (int)$this->request->post['minimum'];
+		}
+		if (isset($this->request->post['model'])) {
+			$product['model'] = $this->request->post['model'];
+		}
+		if (isset($this->request->post['stock_status_id'])) {
+			$product['stock_status_id'] = (int)$this->request->post['stock_status_id'];
+		}
+		if (isset($this->request->post['weight_class_id'])) {
+			$product['weight_class_id'] = (int)$this->request->post['weight_class_id'];
+		}
+		if (isset($this->request->post['weight'])) {
+			$product['weight'] = (float)$this->request->post['weight'];
+		}
+		if (isset($this->request->post['length_class_id'])) {
+			$product['length_class_id'] = (int)$this->request->post['length_class_id'];
+		}
+		if (isset($this->request->post['length'])) {
+			$product['length'] = (float)$this->request->post['length'];
+		}
+		if (isset($this->request->post['width'])) {
+			$product['width'] = (float)$this->request->post['width'];
+		}
+		if (isset($this->request->post['height'])) {
+			$product['height'] = (float)$this->request->post['height'];
+		}
+
+		//save product
+		$this->model_catalog_vdi_product->editProductCoreDetails((int)$id, $product);
+
+		//load product description
+		$descriptions = $this->model_catalog_vdi_product->getProductDescriptions((int)$id);
+
+		$description = $descriptions[1];
+
+		if (($description['meta_title'] == $description['name'])
+							&& (isset($this->request->post['name']))) {
+			//update to same as name
+			$description['meta_title'] = $this->request->post['name'];
+		}
+		if (isset($this->request->post['meta_title'])) {
+			$description['meta_title'] = $this->request->post['meta_title'];
+		}
+		if (isset($this->request->post['name'])) {
+			$description['name'] = $this->request->post['name'];
+		}
+		if (isset($this->request->post['description'])) {
+			$description['description'] = $this->request->post['description'];
+		}
+		if (isset($this->request->post['tag'])) {
+			$description['tag'] = $this->request->post['tag'];
+		}
+		if (isset($this->request->post['meta_description'])) {
+			$description['meta_description'] = $this->request->post['meta_description'];
+		}
+		if (isset($this->request->post['meta_keyword'])) {
+			$description['meta_keyword'] = $this->request->post['meta_keyword'];
+		}
+
+		//1 in the arguments means English
+		$this->model_catalog_vdi_product->editProductDescription((int)$id, 1, $description);
+
+		if (isset($this->request->post['category_ids'])) {
+			$catData = array();
+			$catData['product_category'] = explode(",",$this->request->post['category_ids']);
+			$this->model_catalog_vdi_product->editProductCategories((int)$id, $catData);
+		}
+	}
 
 	public function deleteProduct($id = NULL) {
 		if ($this->user->isLogged()) {
