@@ -207,7 +207,8 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 
 		if (isset($this->request->post['category_ids'])) {
 			$catData = array();
-			$catData['product_category'] = explode(",",$this->request->post['category_ids']);
+			$inputCatIds = explode(",",$this->request->post['category_ids']);
+			$catData['product_category'] = array_filter(array_unique($inputCatIds), "is_numeric");
 			$this->model_catalog_vdi_product->editProductCategories((int)$id, $catData);
 		}
 	}
