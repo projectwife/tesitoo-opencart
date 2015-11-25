@@ -207,6 +207,12 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 
 		//1 in the arguments means English
 		$this->model_catalog_vdi_product->editProductDescription((int)$id, 1, $description);
+
+		if (isset($this->request->post['category_ids'])) {
+			$catData = array();
+			$catData['product_category'] = explode(",",$this->request->post['category_ids']);
+			$this->model_catalog_vdi_product->editProductCategories((int)$id, $catData);
+		}
 	}
 
 	public function deleteProduct($id = NULL) {
