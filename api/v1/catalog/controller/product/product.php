@@ -148,9 +148,6 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		if (isset($this->request->post['model'])) {
 			$product['model'] = $this->request->post['model'];
 		}
-		if (isset($this->request->post['quantity'])) {
-			$product['quantity'] = (int)$this->request->post['quantity'];
-		}
 		if (isset($this->request->post['stock_status_id'])) {
 			$product['stock_status_id'] = (int)$this->request->post['stock_status_id'];
 		}
