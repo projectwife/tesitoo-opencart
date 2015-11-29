@@ -30,7 +30,8 @@ Using phpMyAdmin
 Opencart source
 - clone this repository (https://github.com/projectwife/tesitoo-opencart)
 - install in desired location within web-server content directory
-- edit config.php
+- edit config.php :
+
     all the paths should be changed to correspond to your opencart location
     DB_USERNAME, DB_PASSWORD and DB_DATABASE should be set according to the database & user you created above
 
