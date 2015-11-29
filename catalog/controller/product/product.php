@@ -311,6 +311,8 @@ class ControllerProductProduct extends Controller {
 			$data['vendor_id'] = $product_info['vendor_id'];
 			$data['vendor_name'] = $product_info['vendor_name'];
 
+			$data['weight_class'] = $product_info['weight_class'];
+
 			if ($product_info['quantity'] <= 0) {
 				$data['stock'] = $product_info['stock_status'];
 			} elseif ($this->config->get('config_stock_display')) {
