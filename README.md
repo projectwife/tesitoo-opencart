@@ -14,7 +14,7 @@ Environment
           Options Indexes FollowSymLinks
           AllowOverride All
 
-- php 5.x
+- php 5.x (5.6 recommended)
 - mysqli (php extension) !!! any other modules required? !!!
 - mysql 5.6
 - phpMyAdmin (recommended)
