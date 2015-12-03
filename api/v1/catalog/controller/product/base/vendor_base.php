@@ -110,17 +110,6 @@ class ControllerProductVendorBaseAPI extends ApiController
 
 		return $products;
 	}
-    
-    protected function getVendorOrders() {
-        // Get open order list of logged in vendor. The id of the logged in vendor is fetched in sale/vdi_order model.  
-        $this->load->model('sale/vdi_order');
-        
-        $data = array();
-        $data['filter_order_status'] = "1"; // Status code of orders with 'Pending' status
-        $orders = $this->model_sale_vdi_order->getOrder($data);
-        
-        return $orders;
-    }
 
 	protected function processVendor($data) {
 
