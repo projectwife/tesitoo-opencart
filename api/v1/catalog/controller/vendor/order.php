@@ -11,8 +11,6 @@ class ControllerVendorOrderAPI extends ApiController {
 			if (isset($args['id'])) {
 				if ($this->request->isGetRequest()) {
 					return $this->response->setOutput($this->getVendorOrderProducts($args['id']));
-				} elseif ($this->request->isPostRequest()) {
-					return $this->response->setOutput($this->editVendorOrderProducts($args['id']));
 				}
 			}
 			else {
@@ -44,12 +42,5 @@ class ControllerVendorOrderAPI extends ApiController {
 		$orders = $this->model_sale_vdi_order->getOrderProducts($id);
 
 		return $orders;
-	}
-
-	protected function editVendorOrderProducts($id) {
-
-		$this->load->model('sale/vdi_order');
-
-		return null;
 	}
 }
