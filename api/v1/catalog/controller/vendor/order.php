@@ -4,14 +4,18 @@
 class ControllerVendorOrderAPI extends ApiController {
 
 	public function index($args = array()) {
-		if (isset($args['id'])) {
-			if ($this->request->isGetRequest()) {
-				return $this->response->setOutput($this->getVendorOrderProducts($args['id']));
-			}
-		}
 
+		//must be logged in to see list of orders - probably still not tight enough security here
 		if ($this->user->isLogged()) {
-			return $this->response->setOutput($this->getVendorOrders());
+
+			if (isset($args['id'])) {
+				if ($this->request->isGetRequest()) {
+					return $this->response->setOutput($this->getVendorOrderProducts($args['id']));
+				}
+			}
+			else {
+				return $this->response->setOutput($this->getVendorOrders());
+			}
 		}
 		else {
 			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED, ErrorCodes::ERRORCODE_USER_NOT_LOGGED_IN, "not allowed");
