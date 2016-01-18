@@ -40,6 +40,20 @@ class ErrorCodes {
 
 	const ERRORCODE_BAD_PARAMETER					= 'parameter_error';
 
+	//vendor registration
+	const ERRORCODE_INVALID_USERNAME				= 'invalid_username';
+	const ERRORCODE_INVALID_PASSWORD				= 'invalid_password';
+	const ERRORCODE_INVALID_FIRSTNAME				= 'invalid_firstname';
+	const ERRORCODE_INVALID_LASTNAME				= 'invalid_lastname';
+	const ERRORCODE_INVALID_EMAIL					= 'invalid_email';
+	const ERRORCODE_INVALID_TELEPHONE				= 'invalid_telephone';
+	const ERRORCODE_INVALID_ADDRESS					= 'invalid_address';
+	const ERRORCODE_INVALID_CITY					= 'invalid_city';
+	const ERRORCODE_INVALID_POSTCODE				= 'invalid_postcode';
+	const ERRORCODE_INVALID_COUNTRY					= 'invalid_country';
+	const ERRORCODE_INVALID_ZONE					= 'invalid_zone';
+	const ERRORCODE_INVALID_COMPANY					= 'invalid_company';
+
 	private static $errorMessages = array(
 		self::ERRORCODE_INVALID_CLIENT 									=> 'Client authentication failed (e.g., unknown client, no client authentication included, or unsupported authentication method).',
 		self::ERRORCODE_INVALID_ACCESS_TOKEN 							=> 'Invalid or expired access token',
@@ -64,7 +78,21 @@ class ErrorCodes {
 		self::ERRORCODE_VENDORS_NOT_FOUND 								=> 'No Vendors could not be found.',
 		self::ERRORCODE_FILE_ERROR										=> 'Uploaded file is incorrect.',
 		self::ERRORCODE_VENDOR_NOT_ALLOWED								=> 'Vendor permission error.',
-		self::ERRORCODE_BAD_PARAMETER									=> 'Incorrect parameter.'
+		self::ERRORCODE_BAD_PARAMETER									=> 'Incorrect parameter.',
+
+		self::ERRORCODE_INVALID_USERNAME				=> 'Invalid username.',
+		self::ERRORCODE_INVALID_PASSWORD				=> 'Invalid password.',
+		self::ERRORCODE_INVALID_FIRSTNAME				=> 'Invalid firstname.',
+		self::ERRORCODE_INVALID_LASTNAME				=> 'Invalid lastname.',
+		self::ERRORCODE_INVALID_EMAIL					=> 'Invalid email.',
+		self::ERRORCODE_INVALID_TELEPHONE				=> 'Invalid telephone.',
+		self::ERRORCODE_INVALID_ADDRESS					=> 'Invalid address.',
+		self::ERRORCODE_INVALID_CITY					=> 'Invalid city.',
+		self::ERRORCODE_INVALID_POSTCODE				=> 'Invalid postcode.',
+		self::ERRORCODE_INVALID_COUNTRY					=> 'Invalid country.',
+		self::ERRORCODE_INVALID_ZONE					=> 'Invalid zone.',
+		self::ERRORCODE_INVALID_COMPANY					=> 'Invalid company.',
+
 	);
 
 	public static function getMessage($errorCode) {
