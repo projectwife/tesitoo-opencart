@@ -6,7 +6,7 @@ class ControllerVendorRegisterAPI extends ApiController {
 
 	public function index($args = array()) {
 
-		if ($this->request->isPostRequest() && $this->validate()) {
+		if ($this->request->isPostRequest()) {
 			$this->handleRegistration();
 		}
 	}
@@ -30,92 +30,95 @@ class ControllerVendorRegisterAPI extends ApiController {
 		$data['zone_id'] = $this->request->post['zone_id'];
 		$data['company'] = $this->request->post['company'];
 
-		$this->request->post['singup_plan'] /*sic*/ = '1::1:';
-		$data['iban'] = '';
-		$data['swift_bic'] = '';
-		$data['bank_name'] = '';
-		$data['bank_address'] = '';
-		$data['fax'] = '';
-		$data['paypal'] = '';
-		$data['tax_id'] = '';
-		$data['store_url'] = '';
-		$data['company_id'] = '';
-		$data['store_description'] = '';
-		$this->request->post['hsignup_plan'] = '';
+		if (!isset($data['confirm'])) {
+			//we expect to handle password confirmation check on the client side
+			$this->request->post['confirm'] = $this->request->post['password'];
+		}
+		if (!isset($this->request->post['singup_plan'])) {
+			$this->request->post['singup_plan'] /*sic*/ = '1::1:';
+		}
+		if (!isset($this->request->post['iban'])) {
+			$this->request->post['iban'] = '';
+		}
+		if (!isset($this->request->post['swift_bic'])) {
+			$this->request->post['swift_bic'] = '';
+		}
+		if (!isset($this->request->post['bank_name'])) {
+			$this->request->post['bank_name'] = '';
+		}
+		if (!isset($this->request->post['bank_address'])) {
+			$this->request->post['bank_address'] = '';
+		}
+		if (!isset($this->request->post['fax'])) {
+			$this->request->post['fax'] = '';
+		}
+		if (!isset($this->request->post['paypal'])) {
+			$this->request->post['paypal'] = '';
+		}
+		if (!isset($this->request->post['tax_id'])) {
+			$this->request->post['tax_id'] = '';
+		}
+		if (!isset($this->request->post['store_url'])) {
+			$this->request->post['store_url'] = '';
+		}
+		if (!isset($this->request->post['company_id'])) {
+			$this->request->post['company_id'] = '';
+		}
+		if (!isset($this->request->post['store_description'])) {
+			$this->request->post['store_description'] = '';
+		}
+		if (!isset($this->request->post['hsignup_plan'])) {
+			$this->request->post['hsignup_plan'] = '';
+		}
 
-		//echo($this->model_account_signup);
-		//echo("----------------------");
+		$data = parent::getInternalRouteData('account/signup/index');
 
-		$this->model_account_signup->addVendorSignUp($data);
+		if ('' != ($data['error_warning'])) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_VENDOR_NOT_FOUND, $data['error_warning']);
+		}
+		if ('' != ($data['error_username'])) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_VENDOR_NOT_FOUND, $data['error_username']);
+		}
+		if ('' != ($data['error_firstname'])) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_VENDOR_NOT_FOUND, $data['error_firstname']);
+		}
+		if ('' != ($data['error_lastname'])) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_VENDOR_NOT_FOUND, $data['error_lastname']);
+		}
+		if ('' != ($data['error_email'])) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_VENDOR_NOT_FOUND, $data['error_email']);
+		}
+		if ('' != ($data['error_paypal'])) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_VENDOR_NOT_FOUND, $data['error_paypal']);
+		}
+		if ('' != ($data['error_telephone'])) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_VENDOR_NOT_FOUND, $data['error_telephone']);
+		}
+		if ('' != ($data['error_password'])) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_VENDOR_NOT_FOUND, $data['error_password']);
+		}
+		if ('' != ($data['error_address_1'])) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_VENDOR_NOT_FOUND, $data['error_address_1']);
+		}
+		if ('' != ($data['error_city'])) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_VENDOR_NOT_FOUND, $data['error_city']);
+		}
+		if ('' != ($data['error_company'])) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_VENDOR_NOT_FOUND, $data['error_company']);
+		}
+		if ('' != ($data['error_postcode'])) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_VENDOR_NOT_FOUND, $data['error_postcode']);
+		}
+		if ('' != ($data['error_country'])) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_VENDOR_NOT_FOUND, $data['error_country']);
+		}
+		if ('' != ($data['error_zone'])) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_VENDOR_NOT_FOUND, $data['error_zone']);
+		}
+
 	}
 
 
-	public function validate() {
 
-		//TODO define error_username
-		//TODO define error_company
-
-		//TODO how to avoid duplicate sign-ups: username, email, company?
-
-		if ((utf8_strlen($this->request->post['username']) < 1) || (utf8_strlen($this->request->post['username']) > 32)) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_INVALID_USERNAME, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_INVALID_USERNAME));
-		}
-
-		if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_INVALID_PASSWORD, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_INVALID_PASSWORD));
-		}
-
-		if ((utf8_strlen(trim($this->request->post['firstname'])) < 1) || (utf8_strlen(trim($this->request->post['firstname'])) > 32)) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_INVALID_FIRSTNAME, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_INVALID_FIRSTNAME));
-		}
-
-		if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_INVALID_LASTNAME, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_INVALID_LASTNAME));
-		}
-
-		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_INVALID_EMAIL, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_INVALID_EMAIL));
-		}
-
-		/*
-		if ($this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
-			$data['error_warning'] = $this->language->get('error_exists');
-		}
-		*/
-
-		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_INVALID_TELEPHONE, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_INVALID_TELEPHONE));
-		}
-
-		if ((utf8_strlen(trim($this->request->post['address_1'])) < 3) || (utf8_strlen(trim($this->request->post['address_1'])) > 128)) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_INVALID_ADDRESS, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_INVALID_ADDRESS));
-		}
-
-		if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 128)) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_INVALID_CITY, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_INVALID_CITY));
-		}
-
-		if ((utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_INVALID_POSTCODE, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_INVALID_POSTCODE));
-		}
-
-		if ($this->request->post['country_id'] == '') {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_INVALID_COUNTRY, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_INVALID_COUNTRY));
-		}
-
-		$this->load->model('localisation/country');
-
-		$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
-
-		if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '') {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_INVALID_ZONE, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_INVALID_ZONE));
-		}
-
-		if ((utf8_strlen($this->request->post['company']) < 1) || (utf8_strlen($this->request->post['company']) > 32)) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_INVALID_COMPANY, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_INVALID_COMPANY));
-		}
-
-		return true;
-	}
 
 }
