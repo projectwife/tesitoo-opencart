@@ -64,7 +64,7 @@ class ErrorCodes {
 		self::ERRORCODE_VENDORS_NOT_FOUND 								=> 'No Vendors could not be found.',
 		self::ERRORCODE_FILE_ERROR										=> 'Uploaded file is incorrect.',
 		self::ERRORCODE_VENDOR_NOT_ALLOWED								=> 'Vendor permission error.',
-		self::ERRORCODE_BAD_PARAMETER									=> 'Incorrect parameter.'
+		self::ERRORCODE_BAD_PARAMETER									=> 'Incorrect parameter.',
 	);
 
 	public static function getMessage($errorCode) {
