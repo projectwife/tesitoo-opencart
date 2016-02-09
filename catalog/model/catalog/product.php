@@ -55,9 +55,7 @@ class ModelCatalogProduct extends Model {
                 //CHANGED: tesitoo - david - 2015-08-25
                 //  add vendor id & name to get product api
 				'vendor_id'        => $query->row['vendor'],
-				'vendor_name'      => $query->row['vendor_name'],
-				'weight_class'     => $query->row['weight_class'],
-
+				'vendor_name'      => $query->row['vendor_name']
 
 			);
 		} else {
