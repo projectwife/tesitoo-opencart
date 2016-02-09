@@ -143,7 +143,6 @@
             <li><?php echo $text_reward; ?> <?php echo $reward; ?></li>
             <?php } ?>
             <li><?php echo $text_stock; ?> <?php echo $stock; ?></li>
-            <li><?php echo $text_vendor_name; ?> <?php echo $vendor_name; ?></li>
           </ul>
           <?php if ($price) { ?>
           <ul class="list-unstyled">
