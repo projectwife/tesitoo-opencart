@@ -103,42 +103,6 @@ class ControllerProductProduct extends Controller {
 			}
 		}
 
-		$this->load->model('catalog/vendor');
-
-		if (isset($this->request->get['vendor_id'])) {
-			$data['breadcrumbs'][] = array(
-				'text' => $this->language->get('text_vendor'),
-				'href' => $this->url->link('product/vendor')
-			);
-
-			$url = '';
-
-			if (isset($this->request->get['sort'])) {
-				$url .= '&sort=' . $this->request->get['sort'];
-			}
-
-			if (isset($this->request->get['order'])) {
-				$url .= '&order=' . $this->request->get['order'];
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
-			if (isset($this->request->get['limit'])) {
-				$url .= '&limit=' . $this->request->get['limit'];
-			}
-
-			$vendor_info = $this->model_catalog_vendor->getVendor($this->request->get['vendor_id']);
-
-			if ($vendor_info) {
-				$data['breadcrumbs'][] = array(
-					'text' => $vendor_info['vendor_name'],
-					'href' => $this->url->link('product/vendor/info', 'vendor_id=' . $this->request->get['vendor_id'] . $url)
-				);
-			}
-		}
-
 		if (isset($this->request->get['search']) || isset($this->request->get['tag'])) {
 			$url = '';
 
@@ -304,11 +268,6 @@ class ControllerProductProduct extends Controller {
 			$data['model'] = $product_info['model'];
 			$data['reward'] = $product_info['reward'];
 			$data['points'] = $product_info['points'];
-
-			//CHANGED: tesitoo - david - 2015-08-25
-			//  add vendor id & name to get product api
-			$data['vendor_id'] = $product_info['vendor_id'];
-			$data['vendor_name'] = $product_info['vendor_name'];
 
 			if ($product_info['quantity'] <= 0) {
 				$data['stock'] = $product_info['stock_status'];
