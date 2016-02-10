@@ -2,7 +2,6 @@
 // Text
 $_['text_search']              = 'Search';
 $_['text_brand']               = 'Brand';
-$_['text_vendor']              = 'Vendor';
 $_['text_manufacturer']        = 'Brand:';
 $_['text_model']               = 'Product Code:';
 $_['text_reward']              = 'Reward Points:';
@@ -19,7 +18,6 @@ $_['text_login']               = 'Please <a href="%s">login</a> or <a href="%s">
 $_['text_no_reviews']          = 'There are no reviews for this product.';
 $_['text_note']                = '<span class="text-danger">Note:</span> HTML is not translated!';
 $_['text_success']             = 'Thank you for your review. It has been submitted to the webmaster for approval.';
-$_['text_success_new']         = 'New product added. It has been submitted to the webmaster for approval.';
 $_['text_related']             = 'Related Products';
 $_['text_tags']                = 'Tags:';
 $_['text_error']               = 'Product not found!';
@@ -32,7 +30,6 @@ $_['text_week']                = 'week';
 $_['text_semi_month']          = 'half-month';
 $_['text_month']               = 'month';
 $_['text_year']                = 'year';
-$_['text_vendor_name']         = 'Vendor:';
 
 // Entry
 $_['entry_qty']                = 'Qty';
@@ -52,8 +49,3 @@ $_['error_name']               = 'Warning: Review Name must be between 3 and 25 
 $_['error_text']               = 'Warning: Review Text must be between 25 and 1000 characters!';
 $_['error_rating']             = 'Warning: Please select a review rating!';
 $_['error_captcha']            = 'Warning: Verification code does not match the image!';
-
-$_['error_prodname']           = 'Warning: Product name must be between 3 and 65 characters!';
-$_['error_price']              = 'Warning: Price must be a number greater than 0.';
-$_['error_quantity']           = 'Warning: Quantity must be a number greater than or equal to 0.';
-$_['error_not_logged_in']      = 'Warning: User not logged in!';

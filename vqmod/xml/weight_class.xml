@@ -1,0 +1,32 @@
+<modification>
+	<id><![CDATA[Show Weight Class on product page]]></id>
+	<version><![CDATA[0.1]]></version>
+	<vqmver><![CDATA[2.5.1]]></vqmver>
+	<author><![CDATA[]]></author>
+	<file path="catalog/view/theme/default/template/product/" name="product.tpl">
+		<operation>
+			<search position="before"><![CDATA[<input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />]]></search>
+			<add><![CDATA[
+			<div><?php echo $weight_class; ?></div>]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/product/" name="product.php">
+		<operation>
+			<search position="before"><![CDATA[if ($product_info['quantity'] <= 0) {]]></search>
+			<add><![CDATA[
+
+			$data['weight_class'] = $product_info['weight_class'];
+
+
+                ]]></add>
+		</operation>
+	</file>
+	<file path="catalog/model/catalog/" name="product.php">
+		<operation>
+			<search position="after"><![CDATA['viewed'           => $query->row['viewed'],]]></search>
+			<add><![CDATA[
+				'weight_class'     => $query->row['weight_class'],
+                ]]></add>
+		</operation>
+	</file>
+</modification>

@@ -1,0 +1,96 @@
+<modification>
+	<id><![CDATA[Vendor View]]></id>
+	<version><![CDATA[0.1]]></version>
+	<vqmver><![CDATA[2.5.1]]></vqmver>
+	<author><![CDATA[]]></author>
+	<file path="catalog/controller/product/" name="product.php">
+		<operation>
+			<search position="before"><![CDATA[		if (isset($this->request->get['search']) || isset($this->request->get['tag'])) {]]></search>
+			<add><![CDATA[
+		$this->load->model('catalog/vendor');
+
+		if (isset($this->request->get['vendor_id'])) {
+			$data['breadcrumbs'][] = array(
+				'text' => $this->language->get('text_vendor'),
+				'href' => $this->url->link('product/vendor')
+			);
+
+			$url = '';
+
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
+			if (isset($this->request->get['limit'])) {
+				$url .= '&limit=' . $this->request->get['limit'];
+			}
+
+			$vendor_info = $this->model_catalog_vendor->getVendor($this->request->get['vendor_id']);
+
+			if ($vendor_info) {
+				$data['breadcrumbs'][] = array(
+					'text' => $vendor_info['vendor_name'],
+					'href' => $this->url->link('product/vendor/info', 'vendor_id=' . $this->request->get['vendor_id'] . $url)
+				);
+			}
+		}
+]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/product/" name="product.php">
+		<operation>
+			<search position="after"><![CDATA[			$data['points'] = $product_info['points'];]]></search>
+			<add><![CDATA[
+			$data['vendor_id'] = $product_info['vendor_id'];
+			$data['vendor_name'] = $product_info['vendor_name'];
+]]></add>
+		</operation>
+	</file>
+	<file path="catalog/model/catalog/" name="product.php">
+		<operation>
+			<search position="replace"><![CDATA[product_to_store p2s ON (p.product_id = p2s.product_id) LEFT JOIN " . DB_PREFIX . "manufacturer m ON (p.manufacturer_id]]></search>
+			<add><![CDATA[product_to_store p2s ON (p.product_id = p2s.product_id) LEFT JOIN " . DB_PREFIX . "vendor v ON (p.product_id = v.vproduct_id) LEFT JOIN " . DB_PREFIX . "vendors vs ON (v.vendor = vs.vendor_id) LEFT JOIN " . DB_PREFIX . "manufacturer m ON (p.manufacturer_id]]></add>
+		</operation>
+	</file>
+	<file path="catalog/model/catalog/" name="product.php">
+		<operation>
+			<search position="replace"><![CDATA['viewed'           => $query->row['viewed']]]></search>
+			<add><![CDATA['viewed'           => $query->row['viewed'],
+				'vendor_id'        => $query->row['vendor'],
+				'vendor_name'      => $query->row['vendor_name']
+]]></add>
+		</operation>
+	</file>
+	<file path="catalog/model/catalog/" name="product.php">
+		<operation>
+			<search position="before"><![CDATA[		$sql .= " LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id]]></search>
+			<add><![CDATA[
+        if ( !empty($data['filter_vendor_id']) || !empty($data['filter_vendor_name']) ) {
+            $sql .= " LEFT JOIN " . DB_PREFIX . "vendor vd on (p.product_id = vd.vproduct_id) LEFT JOIN " . DB_PREFIX . "vendors vds ON (vd.vendor = vds.vendor_id)";
+        }
+]]></add>
+		</operation>
+	</file>
+	<file path="catalog/model/catalog/" name="product.php">
+		<operation>
+			<search position="before"><![CDATA[		if (!empty($data['filter_name']) || !empty($data['filter_tag'])) {]]></search>
+			<add><![CDATA[
+        if ( !empty($data['filter_vendor_id']) ) {
+            $sql .= " AND vd.vendor = '" . (int)$data['filter_vendor_id'] . "'";
+        }
+
+        if ( !empty($data['filter_vendor_name']) ) {
+            $sql .= " AND vds.vendor_name = '" . $data['filter_vendor_name'] . "'";
+        }
+]]></add>
+		</operation>
+	</file>
+</modification>

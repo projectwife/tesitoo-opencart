@@ -1,0 +1,25 @@
+<modification>
+	<id><![CDATA[Show Vendor Name on product page]]></id>
+	<version><![CDATA[0.1]]></version>
+	<vqmver><![CDATA[2.5.1]]></vqmver>
+	<author><![CDATA[]]></author>
+	<file path="catalog/view/theme/default/template/product/" name="product.tpl">
+		<operation>
+			<search position="after"><![CDATA[<li><?php echo $text_stock; ?> <?php echo $stock; ?></li>]]></search>
+			<add><![CDATA[            <li><?php echo $text_vendor_name; ?> <?php echo $vendor_name; ?></li>]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/product/" name="product.php">
+		<operation>
+			<search position="after"><![CDATA[$data['text_loading'] = $this->language->get('text_loading');]]></search>
+			<add><![CDATA[
+			$data['text_vendor_name'] = $this->language->get('text_vendor_name');]]></add>
+		</operation>
+	</file>
+	<file path="catalog/language/english/product/" name="product.php">
+		<operation>
+			<search position="after"><![CDATA[$_['text_year']                = 'year';]]></search>
+			<add><![CDATA[$_['text_vendor_name']         = 'Vendor:';]]></add>
+		</operation>
+	</file>
+</modification>

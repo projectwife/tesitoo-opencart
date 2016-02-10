@@ -103,42 +103,6 @@ class ControllerProductProduct extends Controller {
 			}
 		}
 
-		$this->load->model('catalog/vendor');
-
-		if (isset($this->request->get['vendor_id'])) {
-			$data['breadcrumbs'][] = array(
-				'text' => $this->language->get('text_vendor'),
-				'href' => $this->url->link('product/vendor')
-			);
-
-			$url = '';
-
-			if (isset($this->request->get['sort'])) {
-				$url .= '&sort=' . $this->request->get['sort'];
-			}
-
-			if (isset($this->request->get['order'])) {
-				$url .= '&order=' . $this->request->get['order'];
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
-			if (isset($this->request->get['limit'])) {
-				$url .= '&limit=' . $this->request->get['limit'];
-			}
-
-			$vendor_info = $this->model_catalog_vendor->getVendor($this->request->get['vendor_id']);
-
-			if ($vendor_info) {
-				$data['breadcrumbs'][] = array(
-					'text' => $vendor_info['vendor_name'],
-					'href' => $this->url->link('product/vendor/info', 'vendor_id=' . $this->request->get['vendor_id'] . $url)
-				);
-			}
-		}
-
 		if (isset($this->request->get['search']) || isset($this->request->get['tag'])) {
 			$url = '';
 
@@ -278,7 +242,6 @@ class ControllerProductProduct extends Controller {
 			$data['text_tags'] = $this->language->get('text_tags');
 			$data['text_related'] = $this->language->get('text_related');
 			$data['text_loading'] = $this->language->get('text_loading');
-			$data['text_vendor_name'] = $this->language->get('text_vendor_name');
 
 			$data['entry_qty'] = $this->language->get('entry_qty');
 			$data['entry_name'] = $this->language->get('entry_name');
@@ -305,13 +268,6 @@ class ControllerProductProduct extends Controller {
 			$data['model'] = $product_info['model'];
 			$data['reward'] = $product_info['reward'];
 			$data['points'] = $product_info['points'];
-
-			//CHANGED: tesitoo - david - 2015-08-25
-			//  add vendor id & name to get product api
-			$data['vendor_id'] = $product_info['vendor_id'];
-			$data['vendor_name'] = $product_info['vendor_name'];
-
-			$data['weight_class'] = $product_info['weight_class'];
 
 			if ($product_info['quantity'] <= 0) {
 				$data['stock'] = $product_info['stock_status'];
@@ -744,71 +700,6 @@ class ControllerProductProduct extends Controller {
 				}
 
 				$json['success'] = $text;
-			}
-		}
-
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
-
-	public function addNew()
-	{
-		$this->load->language('product/product');
-		$json = array();
-
-		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
-			//// input validation ////
-
-			if(!$this->user->isLogged()) {
-				$json['error'] = $this->language->get('error_not_logged_in');
-			}
-
-			if ((utf8_strlen($this->request->post['name']) < 3) ||
-				(utf8_strlen($this->request->post['name']) > 65)) {
-				$json['error'] = $this->language->get('error_prodname');
-			}
-
-			if (($this->request->post['price']) <= 0) {
-				$json['error'] = $this->language->get('error_price');
-			}
-
-			if (($this->request->post['quantity']) < 0) {
-				$json['error'] = $this->language->get('error_quantity');
-			}
-
-			if (!isset($json['error'])) {
-				$this->load->model('catalog/vdi_product');
-
-				$product_id = $this->model_catalog_vdi_product
-								->addProduct($this->request->post);
-
-				$json['success'] = $this->language->get('text_success_new');
-
-				$json['product_id'] = $product_id;
-			}
-		}
-
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
-
-	public function delete()
-	{
-		$this->load->language('product/product');
-		$json = array();
-
-		if ($this->request->server['REQUEST_METHOD'] == 'DELETE') {
-			if(!$this->user->isLogged()) {
-				$json['error'] = $this->language->get('error_not_logged_in');
-			}
-
-			if (!isset($json['error'])) {
-				$this->load->model('catalog/vdi_product');
-
-				$product_id = $this->model_catalog_vdi_product
-								->deleteProduct($this->request->post['key']);
-
-				$json['success'] = true;
 			}
 		}
 

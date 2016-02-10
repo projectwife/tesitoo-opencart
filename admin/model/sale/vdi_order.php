@@ -257,25 +257,6 @@ class ModelSaleVDIOrder extends Model {
 		return $query->rows;
 	}
 
-	public function getOrderProduct($order_product_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_product_id = '" . (int)$order_product_id . "' AND vendor_id = '" . (int)$this->user->getVP() . "'");
-
-		return $query->row;
-	}
-
-	public function editOrderProduct($order_product_id, $data) {
-		$this->db->query("UPDATE `" . DB_PREFIX . "order_product` SET order_status_id = '" . (int)$data['order_status_id'] . "' WHERE order_product_id = '" . (int)$order_product_id . "' AND vendor_id = '" . (int)$this->user->getVP() . "'");
-
-		$query = $this->db->query("SELECT COUNT(*) FROM " . DB_PREFIX . "order o LEFT JOIN " . DB_PREFIX . "order_product op ON (o.order_id = op.order_id) WHERE o.order_id = (SELECT order_id FROM " . DB_PREFIX . "order_product WHERE order_product_id = '" . (int)$order_product_id . "')");
-
-		//if there's only one product in the order, update the status for the main order too
-		if (1 == (int)$query->row["COUNT(*)"]) {
-			$this->db->query("UPDATE `" . DB_PREFIX . "order` SET order_status_id = '" . (int)
-				$data['order_status_id'] . "' WHERE order_id = (SELECT order_id FROM " . DB_PREFIX .
-				"order_product WHERE order_product_id = '" . (int)$order_product_id . "')");
-		}
-	}
-
 	public function getOrderOption($order_id, $order_option_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_option WHERE order_id = '" . (int)$order_id . "' AND order_option_id = '" . (int)$order_option_id . "'");
 
