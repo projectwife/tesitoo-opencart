@@ -34,6 +34,7 @@ class ControllerApiVDIOrder extends Controller {
 			$order_info = $this->model_checkout_order->getOrder($order_id);
 
 			if ($order_info) {
+			
 				if (isset($this->request->post['vendor_id'])) {
 					$this->db->query("UPDATE `" . DB_PREFIX . "order_status_vendor_update` SET order_status_id = '" . (int)$this->request->post['order_status_id'] . "', date_add = NOW() WHERE order_id = '" . (int)$order_id . "' AND vendor_id = '" . (int)$this->request->post['vendor_id'] . "'");
 					$this->db->query("UPDATE `" . DB_PREFIX . "order_product` SET order_status_id = '" . (int)$this->request->post['order_status_id'] . "' WHERE order_id = '" . (int)$order_id . "' AND vendor_id = '" . (int)$this->request->post['vendor_id'] . "'");
@@ -117,6 +118,13 @@ class ControllerApiVDIOrder extends Controller {
 			} else {
 				$json['error'] = $this->language->get('error_not_found');
 			}
+		}
+		
+		if (isset($this->request->server['HTTP_ORIGIN'])) {
+			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
+			$this->response->addHeader('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+			$this->response->addHeader('Access-Control-Max-Age: 1000');
+			$this->response->addHeader('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 		}
 
 		$this->response->addHeader('Content-Type: application/json');

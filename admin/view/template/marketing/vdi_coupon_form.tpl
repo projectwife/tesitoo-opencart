@@ -103,29 +103,7 @@
                   </label>
                 </div>
               </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label"><?php echo $entry_shipping; ?></label>
-                <div class="col-sm-10">
-                  <label class="radio-inline">
-                    <?php if ($shipping) { ?>
-                    <input type="radio" name="shipping" value="1" checked="checked" />
-                    <?php echo $text_yes; ?>
-                    <?php } else { ?>
-                    <input type="radio" name="shipping" value="1" />
-                    <?php echo $text_yes; ?>
-                    <?php } ?>
-                  </label>
-                  <label class="radio-inline">
-                    <?php if (!$shipping) { ?>
-                    <input type="radio" name="shipping" value="0" checked="checked" />
-                    <?php echo $text_no; ?>
-                    <?php } else { ?>
-                    <input type="radio" name="shipping" value="0" />
-                    <?php echo $text_no; ?>
-                    <?php } ?>
-                  </label>
-                </div>
-              </div>
+              <input type="hidden" name="shipping" value="0" />
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-product"><span data-toggle="tooltip" title="<?php echo $help_product; ?>"><?php echo $entry_product; ?></span></label>
                 <div class="col-sm-10">
@@ -139,39 +117,6 @@
                   </div>
                 </div>
               </div>
-			  <div class="form-group">
-				<label class="col-sm-2 control-label" for="input-category"><span data-toggle="tooltip" title="<?php echo $help_category; ?>"><?php echo $entry_category; ?></span></label>
-				<div class="col-sm-10">
-				  <div class="well well-sm" style="height: 150px; overflow: auto;">
-					<?php foreach ($categories as $category) { ?>
-					<div class="checkbox">
-					  <label>
-						<?php if ($category_access) { ?> 
-							<?php if (in_array($category['category_id'], $category_access)) { ?>
-								<?php if ($coupon_category) { ?>
-									<?php if (in_array($category['category_id'], $coupon_category)) { ?>
-										<input type="checkbox" name="coupon_category[]" value="<?php echo $category['category_id']; ?>" checked="checked" /><?php echo $category['name']; ?>
-									<?php } else { ?>
-										<input type="checkbox" name="coupon_category[]" value="<?php echo $category['category_id']; ?>" /><?php echo $category['name']; ?>
-									<?php } ?>
-								<?php } else { ?>
-									<input type="checkbox" name="coupon_category[]" value="<?php echo $category['category_id']; ?>" /><?php echo $category['name']; ?>
-								<?php } ?>
-							<?php } ?>
-						<?php } else { ?>
-							<?php if (in_array($category['category_id'], $coupon_category)) { ?>
-								<input type="checkbox" name="coupon_category[]" value="<?php echo $category['category_id']; ?>" checked="checked" /><?php echo $category['name']; ?>
-							<?php } else { ?>
-								<input type="checkbox" name="coupon_category[]" value="<?php echo $category['category_id']; ?>" /><?php echo $category['name']; ?>
-							<?php } ?>
-						<?php } ?>
-					  </label>
-					</div>
-					<?php } ?>
-				  </div>
-				  <a onclick="$(this).parent().find(':checkbox').prop('checked', true);"><?php echo $text_select_all; ?></a> / <a onclick="$(this).parent().find(':checkbox').prop('checked', false);"><?php echo $text_unselect_all; ?></a>
-				</div>
-			  </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-date-start"><?php echo $entry_date_start; ?></label>
                 <div class="col-sm-3">

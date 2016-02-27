@@ -13,11 +13,11 @@ class ModelMarketingVDICoupon extends Model {
 			}
 		}
 
-		if (isset($data['coupon_category'])) {
+		/*if (isset($data['coupon_category'])) {
 			foreach ($data['coupon_category'] as $category_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "coupon_category SET coupon_id = '" . (int)$coupon_id . "', category_id = '" . (int)$category_id . "'");
 			}
-		}
+		}*/
 
 		$this->event->trigger('post.admin.coupon.add', $coupon_id);
 
@@ -39,11 +39,11 @@ class ModelMarketingVDICoupon extends Model {
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "coupon_category WHERE coupon_id = '" . (int)$coupon_id . "'");
 
-		if (isset($data['coupon_category'])) {
+		/*if (isset($data['coupon_category'])) {
 			foreach ($data['coupon_category'] as $category_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "coupon_category SET coupon_id = '" . (int)$coupon_id . "', category_id = '" . (int)$category_id . "'");
 			}
-		}
+		}*/
 
 		$this->event->trigger('post.admin.coupon.edit', $coupon_id);
 	}

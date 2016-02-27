@@ -60,14 +60,14 @@ $_['entry_hour'] = 'Hour';
 $_['entry_minute'] = 'Minute';
 
 $_['column_order_id'] = 'Order ID';
-$_['column_transaction_reference'] = "Transaction reference";
-$_['column_customer'] = "Customer";
-$_['column_total'] = "Total";
-$_['column_currency'] = "Currency";
-$_['column_settle_status'] = "Settle status";
-$_['column_status'] = "Status";
-$_['column_type'] = "Type";
-$_['column_payment_type'] = "Payment type";
+$_['column_transaction_reference'] = 'Transaction reference';
+$_['column_customer'] = 'Customer';
+$_['column_total'] = 'Total';
+$_['column_currency'] = 'Currency';
+$_['column_settle_status'] = 'Settle status';
+$_['column_status'] = 'Status';
+$_['column_type'] = 'Type';
+$_['column_payment_type'] = 'Payment type';
 
 $_['error_permission'] = 'You do not have permissions to modify this module';
 $_['error_site_reference'] = 'Site Reference is required';
@@ -109,6 +109,6 @@ $_['text_confirm_void'] = 'Are you sure you want to reverse the authorisation?';
 $_['text_confirm_release'] = 'Are you sure you want to release the payment?';
 $_['text_confirm_rebate'] = 'Are you sure you want to rebate the payment?';
 
-$_['btn_release'] = 'Release';
-$_['btn_rebate'] = 'Rebate / refund';
-$_['btn_void'] = 'Reverse Authorisation';
+$_['button_release'] = 'Release';
+$_['button_rebate'] = 'Rebate / refund';
+$_['button_void'] = 'Reverse Authorisation';

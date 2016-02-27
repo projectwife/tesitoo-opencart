@@ -1530,10 +1530,8 @@ class ControllerCatalogVDIProduct extends Controller {
 				}
 			}
 		}
-
-		$this->load->model('sale/customer_group');
-
-		$data['customer_groups'] = $this->model_sale_customer_group->getCustomerGroups();
+		
+		$data['customer_groups'] = $this->model_catalog_vdi_product->getCustomerGroups();
 
 		if (isset($this->request->post['product_discount'])) {
 			$product_discounts = $this->request->post['product_discount'];

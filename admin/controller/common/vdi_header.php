@@ -22,7 +22,7 @@ class ControllerCommonVDIHeader extends Controller {
 		$data['heading_title'] = $this->language->get('heading_title');
 
 		$data['text_order'] = $this->language->get('text_order');
-		$data['text_order_status'] = $this->language->get('text_order_status');
+		$data['text_processing_status'] = $this->language->get('text_processing_status');
 		$data['text_complete_status'] = $this->language->get('text_complete_status');
 		$data['text_return'] = $this->language->get('text_return');
 		$data['text_customer'] = $this->language->get('text_customer');
@@ -41,21 +41,21 @@ class ControllerCommonVDIHeader extends Controller {
 		$data['text_logged'] = sprintf($this->language->get('text_logged'), $this->user->getUserName());
 		$data['text_logout'] = $this->language->get('text_logout');
 
-		if (!isset($this->request->get['token']) || !isset($this->session->data['token']) && ($this->request->get['token'] != $this->session->data['token'])) {
+		if (!isset($this->request->get['token']) || !isset($this->session->data['token']) || ($this->request->get['token'] != $this->session->data['token'])) {
 			$data['logged'] = '';
 			$data['home'] = $this->url->link('common/vdi_dashboard', '', 'SSL');
 		} else {
 			$data['logged'] = true;
 			$data['home'] = $this->url->link('common/vdi_dashboard', 'token=' . $this->session->data['token'], 'SSL');
-
+			
 			$data['logout'] = $this->url->link('common/logout', 'token=' . $this->session->data['token'], 'SSL');
 
 			// Orders
 			$this->load->model('sale/vdi_order');
 
 			// Processing Orders
-			$data['order_status_total'] = $this->model_sale_vdi_order->getTotalOrders(array('filter_order_status' => implode(',', $this->config->get('config_processing_status'))));
-			$data['order_status'] = $this->url->link('sale/vdi_order', 'token=' . $this->session->data['token'] . '&filter_order_status=' . implode(',', $this->config->get('config_processing_status')), 'SSL');
+			$data['processing_status_total'] = $this->model_sale_vdi_order->getTotalOrders(array('filter_order_status' => implode(',', $this->config->get('config_processing_status'))));
+			$data['processing_status'] = $this->url->link('sale/vdi_order', 'token=' . $this->session->data['token'] . '&filter_order_status=' . implode(',', $this->config->get('config_processing_status')), 'SSL');
 
 			// Complete Orders
 			$data['complete_status_total'] = $this->model_sale_vdi_order->getTotalOrders(array('filter_order_status' => implode(',', $this->config->get('config_complete_status'))));
@@ -69,7 +69,7 @@ class ControllerCommonVDIHeader extends Controller {
 			$data['product_total'] = $product_total;
 
 			$data['product'] = $this->url->link('catalog/vdi_product', 'token=' . $this->session->data['token'] . '&filter_quantity=0', 'SSL');
-			
+
 			// Products Pending Approval
 			$this->load->model('catalog/vdi_product');
 

@@ -59,11 +59,10 @@ class ControllerCatalogVendorSetting extends Controller {
 		$data['entry_product_notification'] = $this->language->get('entry_product_notification');
 		
 		$data['entry_order_detail'] = $this->language->get('entry_order_detail');
-		$data['entry_shipping_detail'] = $this->language->get('entry_shipping_detail');
 		$data['entry_product'] = $this->language->get('entry_product');
 		$data['entry_order_history'] = $this->language->get('entry_order_history');
 		$data['entry_vendor_invoice_address'] = $this->language->get('entry_vendor_invoice_address');
-		$data['entry_payment_detail'] = $this->language->get('entry_payment_detail');
+		$data['entry_customer_detail'] = $this->language->get('entry_customer_detail');
 		$data['entry_order_history_update'] = $this->language->get('entry_order_history_update');
 		$data['entry_allow_notification'] = $this->language->get('entry_allow_notification');
 		$data['entry_multi_store_activated'] = $this->language->get('entry_multi_store_activated');
@@ -102,8 +101,7 @@ class ControllerCatalogVendorSetting extends Controller {
 		$data['help_category_menu'] = $this->language->get('help_category_menu');
 		$data['help_vendor_invoice_address'] = $this->language->get('help_vendor_invoice_address');
 		$data['help_order_detail'] = $this->language->get('help_order_detail');
-		$data['help_payment_detail'] = $this->language->get('help_payment_detail');
-		$data['help_shipping_detail'] = $this->language->get('help_shipping_detail');
+		$data['help_customer_detail'] = $this->language->get('help_customer_detail');
 		$data['help_product'] = $this->language->get('help_product');
 		$data['help_paypal'] = $this->language->get('help_paypal');
 		
@@ -355,16 +353,10 @@ class ControllerCatalogVendorSetting extends Controller {
 			$data['mvd_sales_order_detail'] = $this->config->get('mvd_sales_order_detail');
 		}
 		
-		if (isset($this->request->post['mvd_sales_payment_detail'])) {
-			$data['mvd_sales_payment_detail'] = $this->request->post['mvd_sales_payment_detail'];
+		if (isset($this->request->post['mvd_sales_customer_detail'])) {
+			$data['mvd_sales_customer_detail'] = $this->request->post['mvd_sales_customer_detail'];
 		} else {
-			$data['mvd_sales_payment_detail'] = $this->config->get('mvd_sales_payment_detail');
-		}
-		
-		if (isset($this->request->post['mvd_sales_shipping_detail'])) {
-			$data['mvd_sales_shipping_detail'] = $this->request->post['mvd_sales_shipping_detail'];
-		} else {
-			$data['mvd_sales_shipping_detail'] = $this->config->get('mvd_sales_shipping_detail');
+			$data['mvd_sales_customer_detail'] = $this->config->get('mvd_sales_customer_detail');
 		}
 		
 		if (isset($this->request->post['mvd_sales_product'])) {

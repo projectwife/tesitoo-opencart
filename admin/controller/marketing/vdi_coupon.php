@@ -470,7 +470,7 @@ class ControllerMarketingVDICoupon extends Controller {
 			}
 		}
 		
-		if (isset($this->request->post['coupon_category'])) {
+		/*if (isset($this->request->post['coupon_category'])) {
 			$data['coupon_category'] = $this->request->post['coupon_category'];
 		} elseif (isset($this->request->get['coupon_id'])) {
 			$data['coupon_category'] = $this->model_marketing_vdi_coupon->getCouponCategories($this->request->get['coupon_id']);
@@ -478,7 +478,7 @@ class ControllerMarketingVDICoupon extends Controller {
 			$data['coupon_category'] = array();
 		}
 
-		/*$this->load->model('catalog/vdi_category');
+		$this->load->model('catalog/vdi_category');
 
 		$data['coupon_category'] = array();
 

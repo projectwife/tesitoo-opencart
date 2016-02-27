@@ -35,12 +35,12 @@ class Authentication {
 
 			// Restore data
 			if($oldAccessToken != NULL) {
-				$sessionData = $this->db->query("SELECT data FROM " . DB_PREFIX . "api_session WHERE session_id = '".$this->db->escape($oldAccessToken)."'");
+				$sessionData = $this->db->query("SELECT data FROM " . DB_PREFIX . "restapi_session WHERE session_id = '".$this->db->escape($oldAccessToken)."'");
 				if(!empty($sessionData->row)) {
-					$this->db->query("INSERT INTO " . DB_PREFIX . "api_session SET session_id = '" . $this->db->escape($accessToken) . "', access = '".time()."', data = '" . $sessionData->row['data'] . "'");
+					$this->db->query("INSERT INTO " . DB_PREFIX . "restapi_session SET session_id = '" . $this->db->escape($accessToken) . "', access = '".time()."', data = '" . $sessionData->row['data'] . "'");
 
 					// Clean up old session
-					$this->db->query("DELETE FROM " . DB_PREFIX . "api_session WHERE session_id = '".$this->db->escape($oldAccessToken)."'");
+					$this->db->query("DELETE FROM " . DB_PREFIX . "restapi_session WHERE session_id = '".$this->db->escape($oldAccessToken)."'");
 				}
 
 				$this->db->query("DELETE FROM " . DB_PREFIX . "api_oauth_session_access_token WHERE access_token = '".$this->db->escape($oldAccessToken)."'");
