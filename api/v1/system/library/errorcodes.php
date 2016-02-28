@@ -13,6 +13,8 @@ class ErrorCodes {
 	const ERRORCODE_MANUFACTURER_NOT_FOUND 			= 'manufacturer_not_found';
 	const ERRORCODE_PRODUCT_NOT_FOUND 				= 'product_not_found';
 	const ERRORCODE_RECURRING_DESCRIPTION_NOT_FOUND = 'recurring_description_not_found';
+	const ERRORCODE_VENDOR_NOT_FOUND				= 'vendor_not_found';
+	const ERRORCODE_VENDORS_NOT_FOUND				= 'vendors_not_found';
 
 	// account
 	const ERRORCODE_USER_NOT_LOGGED_IN 				= 'user_not_logged_in';
@@ -33,6 +35,11 @@ class ErrorCodes {
 	const ERRORCODE_ORDER_PROCESS_NOT_FINISHED 							= 'order_process_not_finished';
 	const ERRORCODE_USER_IS_LOGGED_IN_GUEST_CHECKOUT_NOT_ALLOWED 		= 'user_is_logged_in_guest_checkout_not_allowed';
 
+	const ERRORCODE_FILE_ERROR						= 'file_error';
+	const ERRORCODE_VENDOR_NOT_ALLOWED				= 'vendor_not_allowed';
+
+	const ERRORCODE_BAD_PARAMETER					= 'parameter_error';
+
 	private static $errorMessages = array(
 		self::ERRORCODE_INVALID_CLIENT 									=> 'Client authentication failed (e.g., unknown client, no client authentication included, or unsupported authentication method).',
 		self::ERRORCODE_INVALID_ACCESS_TOKEN 							=> 'Invalid or expired access token',
@@ -52,7 +59,12 @@ class ErrorCodes {
 		self::ERRORCODE_USER_IS_LOGGED_IN_GUEST_CHECKOUT_NOT_ALLOWED 	=> 'User is logged in or guest checkout is not allowed.',
 		self::ERRORCODE_PRODUCT_NOT_FOUND 								=> 'The product could not be found.',
 		self::ERRORCODE_CUSTOM_FIELD_LOCATION_INVALID 					=> 'The given custom field location is invalid.',
-		self::ERRORCODE_RECURRING_DESCRIPTION_NOT_FOUND 				=> 'The recurring description could not be found.'
+		self::ERRORCODE_RECURRING_DESCRIPTION_NOT_FOUND 				=> 'The recurring description could not be found.',
+		self::ERRORCODE_VENDOR_NOT_FOUND 								=> 'The Vendor could not be found.',
+		self::ERRORCODE_VENDORS_NOT_FOUND 								=> 'No Vendors could not be found.',
+		self::ERRORCODE_FILE_ERROR										=> 'Uploaded file is incorrect.',
+		self::ERRORCODE_VENDOR_NOT_ALLOWED								=> 'Vendor permission error.',
+		self::ERRORCODE_BAD_PARAMETER									=> 'Incorrect parameter.',
 	);
 
 	public static function getMessage($errorCode) {

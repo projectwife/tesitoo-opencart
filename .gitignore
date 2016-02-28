@@ -38,4 +38,5 @@ system/storage/upload/*
 system/storage/logs/*
 !system/storage/logs/index.html
 
-vqmod/vqcache/vq2*
+vqmod/mods.cache
+vqmod/vqcache/*

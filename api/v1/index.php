@@ -1,7 +1,7 @@
 <?php
 // Version
 define('VERSION', '2.1.0.2');
-define('APIVERSION', '1.3.1'); 
+define('APIVERSION', '1.3.1');
 
 // Configuration
 if (is_file('config.php')) {
@@ -28,6 +28,21 @@ $registry = new Registry();
 // Loader
 $loader = new ApiLoader($registry);
 $registry->set('load', $loader);
+
+// Overrides
+// Overrides
+
+$overrideModel = new OverrideTree(
+	'model',
+	[
+		DIR_APPLICATION,
+		DIR_APPLICATION.'/../admin/'
+	],
+	[
+		//Override Models Here
+	]
+);
+$registry->set('api_override_model', $overrideModel);
 
 // Config
 $config = new Config();
@@ -233,6 +248,9 @@ $registry->set('length', new Length($registry));
 // Cart
 $registry->set('cart', new Cart($registry));
 
+//User
+$registry->set('user', new User($registry));
+
 // Encryption
 $registry->set('encryption', new Encryption($config->get('config_encryption')));
 
@@ -256,7 +274,7 @@ $controller = new Front($registry);
 $controller->addPreAction(new ApiAction('common/maintenance'));
 
 // OAuth access token
-$controller->addPreAction(new ApiAction('oauth2/oauth'));
+//$controller->addPreAction(new ApiAction('oauth2/oauth'));
 
 // Router
 if (isset($request->get['route'])) {
