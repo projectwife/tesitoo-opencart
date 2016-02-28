@@ -1,6 +1,9 @@
 <?php
 class ControllerCommonDashboard extends Controller {
 	public function index() {
+			
+			if (!$this->user->getVP()) {
+			
 		$this->load->language('common/dashboard');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -60,5 +63,10 @@ class ControllerCommonDashboard extends Controller {
 		}
 
 		$this->response->setOutput($this->load->view('common/dashboard.tpl', $data));
+			
+			} else {
+			$this->response->redirect($this->url->link('common/vdi_dashboard', 'token=' . $this->session->data['token'], 'SSL'));
+			}
+			
 	}
 }
