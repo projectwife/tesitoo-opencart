@@ -523,46 +523,23 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="input-sales-payment-detail"><span data-toggle="tooltip" title="<?php echo $help_payment_detail; ?>"><?php echo $entry_payment_detail; ?></span></label>
+            <label class="col-sm-2 control-label" for="input-sales-customer-detail"><span data-toggle="tooltip" title="<?php echo $help_customer_detail; ?>"><?php echo $entry_customer_detail; ?></span></label>
             <div class="col-sm-10">
               <label class="radio-inline">
-                <?php if ($mvd_sales_payment_detail) { ?>
-                <input type="radio" name="mvd_sales_payment_detail" value="1" checked="checked" />
+                <?php if ($mvd_sales_customer_detail) { ?>
+                <input type="radio" name="mvd_sales_customer_detail" value="1" checked="checked" />
                 <?php echo $text_yes; ?>
                 <?php } else { ?>
-                <input type="radio" name="mvd_sales_payment_detail" value="1" />
-                <?php echo $text_yes; ?>
-                <?php } ?>
-              </label>
-              <label class="radio-inline">
-                <?php if (!$mvd_sales_payment_detail) { ?>
-                <input type="radio" name="mvd_sales_payment_detail" value="0" checked="checked" />
-                <?php echo $text_no; ?>
-                <?php } else { ?>
-                <input type="radio" name="mvd_sales_payment_detail" value="0" />
-                <?php echo $text_no; ?>
-                <?php } ?>
-              </label>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label" for="input-sales-shipping-detail"><span data-toggle="tooltip" title="<?php echo $help_shipping_detail; ?>"><?php echo $entry_shipping_detail; ?></span></label>
-            <div class="col-sm-10">
-              <label class="radio-inline">
-                <?php if ($mvd_sales_shipping_detail) { ?>
-                <input type="radio" name="mvd_sales_shipping_detail" value="1" checked="checked" />
-                <?php echo $text_yes; ?>
-                <?php } else { ?>
-                <input type="radio" name="mvd_sales_shipping_detail" value="1" />
+                <input type="radio" name="mvd_sales_customer_detail" value="1" />
                 <?php echo $text_yes; ?>
                 <?php } ?>
               </label>
               <label class="radio-inline">
-                <?php if (!$mvd_sales_shipping_detail) { ?>
-                <input type="radio" name="mvd_sales_shipping_detail" value="0" checked="checked" />
+                <?php if (!$mvd_sales_customer_detail) { ?>
+                <input type="radio" name="mvd_sales_customer_detail" value="0" checked="checked" />
                 <?php echo $text_no; ?>
                 <?php } else { ?>
-                <input type="radio" name="mvd_sales_shipping_detail" value="0" />
+                <input type="radio" name="mvd_sales_customer_detail" value="0" />
                 <?php echo $text_no; ?>
                 <?php } ?>
               </label>

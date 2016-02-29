@@ -18,5 +18,28 @@ image/cache/
 system/cache/
 system/logs/
 
-/vqmod/mods.cache
-/vqmod/vqcache/*
+# System Cache Files
+system/storage/cache/*
+!system/storage/cache/index.html
+
+# Modification Files
+system/storage/modification/*
+!system/storage/modification/index.html
+
+# Download Files
+system/storage/download/*
+!system/storage/download/index.html
+
+# Upload Files
+system/storage/upload/*
+!system/storage/upload/index.html
+
+# Log Files
+system/storage/logs/*
+!system/storage/logs/index.html
+
+vqmod/mods.cache
+vqmod/vqcache/*
+vqmod/logs/*
+
+.DS_Store

@@ -61,7 +61,7 @@ class ErrorCodes {
 		self::ERRORCODE_CUSTOM_FIELD_LOCATION_INVALID 					=> 'The given custom field location is invalid.',
 		self::ERRORCODE_RECURRING_DESCRIPTION_NOT_FOUND 				=> 'The recurring description could not be found.',
 		self::ERRORCODE_VENDOR_NOT_FOUND 								=> 'The Vendor could not be found.',
-		self::ERRORCODE_VENDORS_NOT_FOUND 								=> 'No Vendors could not be found.',
+		self::ERRORCODE_VENDORS_NOT_FOUND 								=> 'No Vendors could be found.',
 		self::ERRORCODE_FILE_ERROR										=> 'Uploaded file is incorrect.',
 		self::ERRORCODE_VENDOR_NOT_ALLOWED								=> 'Vendor permission error.',
 		self::ERRORCODE_BAD_PARAMETER									=> 'Incorrect parameter.',

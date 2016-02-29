@@ -66,7 +66,7 @@ class ApiSession extends Session {
 	}
 
 	public function read($id) {
-		$query = $this->db->query("SELECT data FROM " . DB_PREFIX . "api_session WHERE session_id = '" . $this->db->escape($id) . "'");
+		$query = $this->db->query("SELECT data FROM " . DB_PREFIX . "restapi_session WHERE session_id = '" . $this->db->escape($id) . "'");
 
 		if($query->row) {
 			return $query->row['data'];
@@ -78,7 +78,7 @@ class ApiSession extends Session {
 
 	public function write($id, $data) {
 		$access = time();
-		return $this->db->query("REPLACE INTO " . DB_PREFIX . "api_session VALUES ('" . $this->db->escape($id) . "', '" . $this->db->escape($access) . "', '" . $this->db->escape($data) . "')");
+		return $this->db->query("REPLACE INTO " . DB_PREFIX . "restapi_session VALUES ('" . $this->db->escape($id) . "', '" . $this->db->escape($access) . "', '" . $this->db->escape($data) . "')");
 	}
 
 	public function destroy($id = null) {
@@ -87,7 +87,7 @@ class ApiSession extends Session {
 		}
 
 		if($id != null && !empty($id)) {
-			return $this->db->query("DELETE FROM " . DB_PREFIX . "api_session WHERE session_id = '" . $this->db->escape($id) . "'");
+			return $this->db->query("DELETE FROM " . DB_PREFIX . "restapi_session WHERE session_id = '" . $this->db->escape($id) . "'");
 		}
 		
 		return false;
@@ -97,7 +97,7 @@ class ApiSession extends Session {
 	public function gc($max) {
 		return true;
 	//     $old = time() - $max;
-	//   	return $this->db->query("DELETE * FROM " . DB_PREFIX . "api_session WHERE access < '" . $this->db->escape($old) . "'");
+	//   	return $this->db->query("DELETE * FROM " . DB_PREFIX . "restapi_session WHERE access < '" . $this->db->escape($old) . "'");
 	}
 }
 ?>

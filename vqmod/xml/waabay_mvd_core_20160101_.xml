@@ -1,0 +1,2598 @@
+<modification>
+    <id>Multi Vendor Drop Shipper 2.1.0.1 - Coded by waabay.com</id>
+    <version>1.0</version>
+    <vqmver>2.5.1</vqmver>
+    <author>waabay</author>
+	<email>waabay@gmail.com</email>
+	<website>http://www.waabay.com</website>
+	
+	<!--Edit User Library-->
+	<file name="system/library/user.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			private $permission = array();
+			]]></search>
+			<add><![CDATA[
+			private $store_permission;
+			private $cat_permission;
+			private $vendor_permission;
+			private $folder_path;
+			private $account_expired;
+			private $user_expire_date;
+			]]></add>
+		</operation>
+		
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			$this->username = $user_query->row['username'];
+			]]></search>
+			<add><![CDATA[
+			$this->store_permission = $user_query->row['store_permission'];
+			$this->cat_permission = $user_query->row['cat_permission'];
+			$this->vendor_permission = $user_query->row['vendor_permission'];
+			$this->folder_path = $user_query->row['folder'];
+			$this->user_expire_date = $user_query->row['user_date_end'];
+				
+			if((strtotime(date('Y-m-d')) >= strtotime($user_query->row['user_date_start'])) && (strtotime(date('Y-m-d')) <= strtotime($user_query->row['user_date_end'])) || (($user_query->row['user_date_start'] == '0000-00-00') && ($user_query->row['user_date_end'] == '0000-00-00'))) {
+				$this->account_expired = false;
+			} else {
+				$this->account_expired = true;
+			}
+			]]></add>
+		</operation>
+		
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			$this->username = '';
+			]]></search>
+			<add><![CDATA[
+			$this->store_permission = '';
+			$this->cat_permission = '';
+			$this->vendor_permission = '';
+			$this->folder_path = '';
+			$this->user_expire_date = '';
+			$this->account_expired = false;
+			]]></add>
+		</operation>
+		
+		<operation error="skip">
+			<search position="after" offset="1"><![CDATA[
+			return $this->username;
+			]]></search>
+			<add><![CDATA[
+			public function getSP() {
+				return $this->store_permission;
+			}
+					
+			public function getCP() {
+				return $this->cat_permission;
+			}
+					
+			public function getVP() {
+				return $this->vendor_permission;
+			}
+					
+			public function getStorePath() {
+				return $this->folder_path;
+			}
+					
+			public function getExpireDate() {
+				return $this->user_expire_date;
+			}
+					
+			public function IsAccountExpired() {
+				return $this->account_expired;
+			}
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="admin/controller/common/column_left.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+			$data['stats'] = $this->load->controller('common/stats');
+			]]></search>
+			<add><![CDATA[			
+			if (!$this->user->getVP()) {
+				$data['stats'] = $this->load->controller('common/stats');
+			} else {
+				$data['stats'] = $this->load->controller('common/vdi_stats');
+			}
+			]]></add>
+		</operation>	
+	</file>
+	
+	<file name="catalog/language/english/api/order.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			$_['error_payment_address']  = 'Payment address required!';
+			]]></search>
+			<add><![CDATA[			
+			$_['text_commission']       		 = 'Commission';
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="admin/view/template/common/profile.tpl">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			<small><?php echo $user_group; ?></small>
+			]]></search>
+			<add><![CDATA[			
+			<small><?php echo $expiration_date; ?></small>
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="admin/controller/common/dashboard.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			$data['footer'] = $this->load->controller('common/footer');
+			]]></search>
+			<add><![CDATA[			
+			$data['text_total_product'] = $this->language->get('text_total_product');
+			$data['text_total_shipping'] = $this->language->get('text_total_shipping');
+			$data['text_total_product_approval'] = $this->language->get('text_total_product_approval');
+			$data['text_total_product_pendding'] = $this->language->get('text_total_product_pendding');
+			$data['text_total_vendor_approval'] = $this->language->get('text_total_vendor_approval');
+			]]></add>
+		</operation>
+		
+		<operation error="skip">
+			<search position="before"><![CDATA[
+			$this->load->language('common/dashboard');
+			]]></search>
+			<add><![CDATA[			
+			if (!$this->user->getVP()) {
+			]]></add>
+		</operation>
+		
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			$this->response->setOutput($this->load->view('common/dashboard.tpl', $data));
+			]]></search>
+			<add><![CDATA[			
+			} else {
+			$this->response->redirect($this->url->link('common/vdi_dashboard', 'token=' . $this->session->data['token'], 'SSL'));
+			}
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="admin/controller/common/forgotten.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+			$this->response->redirect($this->url->link('common/dashboard', '', 'SSL'));
+			]]></search>
+			<add><![CDATA[			
+			if (!$this->user->getVP()) {
+				$this->response->redirect($this->url->link('common/dashboard', '', 'SSL'));
+			} else {
+				$this->response->redirect($this->url->link('common/vdi_dashboard', '', 'SSL'));
+			}
+			]]></add>
+		</operation>	
+	</file>
+	
+	<file name="admin/controller/common/header.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			$data['text_logout'] = $this->language->get('text_logout');
+			]]></search>
+			<add><![CDATA[			
+			$data['text_multi_vendor_status'] = $this->language->get('text_multi_vendor_status');
+			$data['text_total_pending_products'] = $this->language->get('text_total_pending_products');
+			$data['text_total_pending_accounts'] = $this->language->get('text_total_pending_accounts');
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			$data['complete_status'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&filter_order_status=' . implode(',', $this->config->get('config_complete_status')), 'SSL');
+			]]></search>
+			<add><![CDATA[			
+			$this->load->model('catalog/mvd_product');
+			$total_pending_products = $this->model_catalog_mvd_product->getTotalWaitingApprovalProduct();
+			$data['total_pending_products'] = $total_pending_products;
+			$data['pending_products'] = $this->url->link('catalog/mvd_product', 'token=' . $this->session->data['token'] . '&filter_status=5', 'SSL');
+				
+			$this->load->model('catalog/vendor');
+			$total_pending_accounts = $this->model_catalog_vendor->getUserAwaitingApproval();
+			$data['total_pending_accounts'] = $total_pending_accounts;
+			$data['pending_accounts'] = $this->url->link('catalog/vendor', 'token=' . $this->session->data['token'] . '&filter_status=5', 'SSL');
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+			$data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total;
+			]]></search>
+			<add><![CDATA[
+			$data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total + $total_pending_products + $total_pending_accounts;
+			]]></add>
+		</operation>	
+	</file>
+	
+	<file name="admin/controller/common/login.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+			$this->response->redirect($this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL'));
+			]]></search>
+			<add><![CDATA[			
+			if (!$this->user->getVP()) {
+				$this->response->redirect($this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL'));
+			} else {
+				$this->response->redirect($this->url->link('common/vdi_dashboard', 'token=' . $this->session->data['token'], 'SSL'));
+			}
+			]]></add>
+		</operation>	
+	</file>
+	
+	<file name="admin/controller/common/menu.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			$data['text_openbay_order_import'] = $this->language->get('text_openbay_order_import');
+			]]></search>
+			<add><![CDATA[			
+			$data['text_vendor_tool'] = $this->language->get('text_vendor_tool');
+			$data['text_add_vendors'] = $this->language->get('text_add_vendors');
+			$data['text_add_courier'] = $this->language->get('text_add_courier');
+			$data['text_pro2ven'] = $this->language->get('text_pro2ven');
+			$data['text_vendor_sales'] = $this->language->get('text_vendor_sales');
+			$data['text_vendor_transaction'] = $this->language->get('text_vendor_transaction');
+			$data['text_payment_history'] = $this->language->get('text_payment_history');
+			$data['text_contract_history'] = $this->language->get('text_contract_history');
+			$data['text_vendor_sales_orders'] = $this->language->get('text_vendor_sales_orders');
+			$data['text_vendor_report'] = $this->language->get('text_vendor_report');
+			$data['text_setup'] = $this->language->get('text_setup');
+			$data['text_vendor_setting'] = $this->language->get('text_vendor_setting');
+			$data['text_vendor_commission'] = $this->language->get('text_vendor_commission');
+			$data['text_package_limit'] = $this->language->get('text_package_limit');
+			$data['text_vendor_personal'] = $this->language->get('text_vendor_personal');
+			$data['text_vendor_update_profile'] = $this->language->get('text_vendor_update_profile');
+			$data['text_vendor_update_password'] = $this->language->get('text_vendor_update_password');
+			$data['text_vendor_tools'] = $this->language->get('text_vendor_tools');
+			$data['text_quicker_status_modifier'] = $this->language->get('text_quicker_status_modifier');
+			$data['text_contract_status_modifier'] = $this->language->get('text_contract_status_modifier');
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before"><![CDATA[
+			$data['home'] = $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL');
+			]]></search>
+			<add><![CDATA[			
+			if (!$this->user->getVP()) {
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before"><![CDATA[
+			return $this->load->view('common/menu.tpl', $data);
+			]]></search>
+			<add><![CDATA[			
+			$data['mvd_add_vendors'] = $this->url->link('catalog/vendor', 'token=' . $this->session->data['token'], 'SSL');
+			$data['mvd_add_courier'] = $this->url->link('catalog/courier', 'token=' . $this->session->data['token'], 'SSL');
+			$data['mvd_product'] = $this->url->link('catalog/mvd_product', 'token=' . $this->session->data['token'], 'SSL');
+			$data['mvd_download'] = $this->url->link('catalog/mvd_download', 'token=' . $this->session->data['token'], 'SSL');
+			$data['mvd_option'] = $this->url->link('catalog/mvd_option', 'token=' . $this->session->data['token'], 'SSL');
+			$data['mvd_category'] = $this->url->link('catalog/mvd_category', 'token=' . $this->session->data['token'], 'SSL');
+			$data['mvd_information'] = $this->url->link('catalog/mvd_information', 'token=' . $this->session->data['token'], 'SSL');
+			$data['mvd_attribute'] = $this->url->link('catalog/mvd_attribute', 'token=' . $this->session->data['token'], 'SSL');
+			$data['mvd_attribute_group'] = $this->url->link('catalog/mvd_attribute_group', 'token=' . $this->session->data['token'], 'SSL');
+			$data['mvd_prostatctrl'] = $this->url->link('catalog/prostatctrl', 'token=' . $this->session->data['token'], 'SSL');
+			$data['mvd_setting'] = $this->url->link('catalog/vendor_setting', 'token=' . $this->session->data['token'], 'SSL');
+			$data['mvd_commission'] = $this->url->link('catalog/commission', 'token=' . $this->session->data['token'], 'SSL');
+			$data['mvd_limit'] = $this->url->link('catalog/prolimit', 'token=' . $this->session->data['token'], 'SSL');
+			$data['mvd_contstatctrl'] = $this->url->link('sale/contstatctrl', 'token=' . $this->session->data['token'], 'SSL');
+			$data['mvd_ven_transaction'] = $this->url->link('report/mvd_vendor_transaction', 'token=' . $this->session->data['token'], 'SSL');
+			$data['mvd_payment_history'] = $this->url->link('sale/mvd_payment_history', 'token=' . $this->session->data['token'], 'SSL');
+			$data['mvd_contract_history'] = $this->url->link('sale/mvd_contract_history', 'token=' . $this->session->data['token'], 'SSL');
+			$data['mvd_ven_report'] = $this->url->link('report/vendor_sale_order', 'token=' . $this->session->data['token'], 'SSL');
+			$data['mvd_coupon'] = $this->url->link('marketing/mvd_coupon', 'token=' . $this->session->data['token'], 'SSL');
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			return $this->load->view('common/menu.tpl', $data);
+			]]></search>
+			<add><![CDATA[			
+			} else {
+				$data['home'] = $this->url->link('common/vdi_dashboard', 'token=' . $this->session->data['token'], 'SSL');
+				$data['vdi_product'] = $this->url->link('catalog/vdi_product', 'token=' . $this->session->data['token'], 'SSL');
+				$data['vdi_category'] = $this->url->link('catalog/vdi_category', 'token=' . $this->session->data['token'], 'SSL');
+				$data['vdi_option'] = $this->url->link('catalog/vdi_option', 'token=' . $this->session->data['token'], 'SSL');
+				$data['vdi_attribute'] = $this->url->link('catalog/vdi_attribute', 'token=' . $this->session->data['token'], 'SSL');
+				$data['vdi_attribute_group'] = $this->url->link('catalog/vdi_attribute_group', 'token=' . $this->session->data['token'], 'SSL');
+				$data['vdi_information'] = $this->url->link('catalog/vdi_information', 'token=' . $this->session->data['token'], 'SSL');
+				$data['vdi_download'] = $this->url->link('catalog/vdi_download', 'token=' . $this->session->data['token'], 'SSL');
+				$data['vdi_report_product_viewed'] = $this->url->link('report/vdi_product_viewed', 'token=' . $this->session->data['token'], 'SSL');
+				$data['vdi_report_product_purchased'] = $this->url->link('report/vdi_product_purchased', 'token=' . $this->session->data['token'], 'SSL');
+				$data['vdi_contract_history'] = $this->url->link('sale/vdi_contract_history', 'token=' . $this->session->data['token'], 'SSL');
+				$data['vdi_update_vendor_profile'] = $this->url->link('catalog/vdi_vendor_profile', 'token=' . $this->session->data['token'], 'SSL');
+				$data['vdi_user_password'] = $this->url->link('user/vdi_user_password', 'token=' . $this->session->data['token'], 'SSL');
+				$data['vdi_sale_order'] = $this->url->link('sale/vdi_order', 'token=' . $this->session->data['token'], 'SSL');
+				$data['vdi_coupon'] = $this->url->link('marketing/vdi_coupon', 'token=' . $this->session->data['token'], 'SSL');
+				$data['vdi_transaction'] = $this->url->link('report/vdi_transaction', 'token=' . $this->session->data['token'], 'SSL');
+				$data['mvd_category_menu'] = $this->config->get('mvd_category_menu');
+				
+				if ($this->user->getExpireDate()!= '0000-00-00') { 
+					$data['expiration_date'] = '<span style="color:white;background-color:#4AA02C;padding:1px 5px 1px 5px;border-radius: 3px 3px 3px 3px">' . $this->user->getExpireDate() . '</span>';
+				} else {
+					$data['expiration_date'] = false;
+				}
+				
+				return $this->load->view('common/vdi_menu.tpl', $data);
+			}
+			]]></add>
+		</operation>	
+	</file>
+	
+	<file name="admin/controller/common/profile.php">
+		<operation error="skip">
+			<search position="before"><![CDATA[
+			$data['user_group'] = $user_info['user_group'] ;
+			]]></search>
+			<add><![CDATA[			
+			if ($this->user->getExpireDate()!= '0000-00-00') { 
+				$data['expiration_date'] = '<span style="color:white;background-color:#4AA02C;padding:1px 5px 1px 5px;border-radius: 3px 3px 3px 3px">' . $this->user->getExpireDate() . '</span>';
+			} else {
+				$data['expiration_date'] = false;
+			}
+			]]></add>
+		</operation>	
+	</file>
+	
+	<file name="admin/controller/common/reset.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+			$this->response->redirect($this->url->link('common/dashboard', '', 'SSL'));
+			]]></search>
+			<add><![CDATA[			
+			if (!$this->user->getVP()) {
+				$this->response->redirect($this->url->link('common/dashboard', '', 'SSL'));
+			} else {
+				$this->response->redirect($this->url->link('common/vdi_dashboard', '', 'SSL'));
+			}
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+			$data['header'] = $this->load->controller('common/header');
+			]]></search>
+			<add><![CDATA[			
+			if (!$this->user->getVP()) {
+				$data['header'] = $this->load->controller('common/header');
+			} else {
+				$data['header'] = $this->load->controller('common/vdi_header');
+			}
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="admin/controller/dashboard/recent.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			foreach ($results as $result) {
+			]]></search>
+			<add><![CDATA[			
+			$status = $this->model_sale_order->getAllVendorOrderStatus($result['order_id']);
+				
+			if ($status) {
+				$status = $status;
+			} else {
+				$status = $result['status'];
+			}
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+			'status'     => $result['status'],
+			]]></search>
+			<add><![CDATA[			
+			'status'     => $status,
+			]]></add>
+		</operation>	
+	</file>
+	
+	<file name="admin/controller/sale/order.php">
+		<operation error="skip">
+			<search position="after" index="2"><![CDATA[
+			$data['entry_comment'] = $this->language->get('entry_comment');
+			]]></search>
+			<add><![CDATA[			
+			$data['entry_sent_comment_to_all'] = $this->language->get('entry_sent_comment_to_all');
+			$data['help_sent_comment_to_all'] = $this->language->get('help_sent_comment_to_all');
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before" index="2"><![CDATA[
+			$products = $this->model_sale_order->getOrderProducts($this->request->get['order_id']);
+			]]></search>
+			<add><![CDATA[			
+			$this->load->model('catalog/vendor');
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			$options = $this->model_sale_order->getOrderOptions($this->request->get['order_id'], $product['order_product_id']);
+			]]></search>
+			<add><![CDATA[			
+			$vname = $this->model_catalog_vendor->getVendor($product['vendor_id']);
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			'name'    	 	   => $product['name'],
+			]]></search>
+			<add><![CDATA[			
+			'vname' 		   => $vname['vendor_name'],
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before" index="3"><![CDATA[
+			foreach ($results as $result) {
+			]]></search>
+			<add><![CDATA[			
+			$this->load->model('catalog/vendor');
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after" index="3"><![CDATA[
+			foreach ($results as $result) {
+			]]></search>
+			<add><![CDATA[			
+			$vendor_info = $this->model_catalog_vendor->getVendor($result['vendor_id']);
+			if (!empty($vendor_info)) {
+				$vendor_name = $vendor_info['vendor_name'];
+			} else {
+				$vendor_name = $this->language->get('text_default_store');
+			}
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+			'status'     => $result['status'],
+			]]></search>
+			<add><![CDATA[			
+			'status'     => $result['status'] . ' - ' . $vendor_name,
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="admin/language/english/common/dashboard.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			$_['heading_title']                = 'Dashboard';
+			]]></search>
+			<add><![CDATA[			
+			$_['text_total_product']           = 'Total Products';
+			$_['text_total_shipping']          = 'Total Shipping Charges';
+			$_['text_total_product_approval']  = 'Products Awaiting Approval';
+			$_['text_total_product_pendding']  = 'Products Pending Approval';
+			$_['text_total_vendor_approval']   = 'Vendors Account Awaiting Approval';
+			]]></add>
+		</operation>	
+	</file>
+	
+	<file name="admin/language/english/common/header.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			$_['text_review']            = 'Reviews';
+			]]></search>
+			<add><![CDATA[			
+			$_['text_multi_vendor_status']      = 'Multi Vendor';
+			$_['text_total_pending_products']   = 'Products Pending';
+			$_['text_total_pending_accounts']   = 'Accounts Pending';
+			]]></add>
+		</operation>	
+	</file>
+	
+	<file name="admin/language/english/common/login.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			$_['error_token']    = 'Invalid token session. Please login again.';
+			]]></search>
+			<add><![CDATA[			
+			$_['error_expired']  = 'Account Expired. Please contact system administrator.';
+			]]></add>
+		</operation>	
+	</file>
+	
+	<file name="admin/language/english/common/menu.php">
+		<operation error="skip">
+			<search position="before"><![CDATA[
+			$_['text_affiliate']                   = 'Affiliates';
+			]]></search>
+			<add><![CDATA[			
+			$_['expiration_date']      			= 'Account Expiry Date : ';
+			$_['text_vendor_tool']       		= 'Vendors';
+			$_['text_pro2ven']      	 		= 'Vendor Products';
+			$_['text_add_vendors']       	    = 'Manage Vendors';
+			$_['text_add_courier']       		= 'Manage Couriers';
+			$_['text_vendor_sales']      	    = 'Sales';
+			$_['text_vendor_sales_orders']      = 'Orders';
+			$_['text_vendor_report']      	    = 'Reports';
+			$_['text_vendor_transaction']      	= 'Transactions';
+			$_['text_payment_history']      	= 'Payment History';
+			$_['text_contract_history']     	= 'Contract History';
+			$_['text_setup']       		   		= 'Settings';
+			$_['text_vendor_setting']      		= 'Global Vendor Setting';
+			$_['text_vendor_commission']      	= 'Commissions';
+			$_['text_package_limit']      	   	= 'Product Limit';
+			$_['text_vendor_personal']      	= 'Personal Details';
+			$_['text_vendor_update_profile']   	= 'Update Profile';
+			$_['text_vendor_update_password']   = 'Change Password';
+			$_['text_vendor_tools']      		= 'Tools';
+			$_['text_quicker_status_modifier']  = 'Quicker Status Modifier';
+			$_['text_contract_status_modifier'] = 'Contract Status Modifier';
+			]]></add>
+		</operation>	
+	</file>
+	
+	<file name="admin/language/english/sale/order.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			$_['text_list']                  = 'Order List';
+			]]></search>
+			<add><![CDATA[			
+			$_['entry_sent_comment_to_all']               = 'All Comments';
+			$_['help_sent_comment_to_all']                = '<b>Notify Customer checkbox need to be checked</b>';
+			$_['text_default_store']                      = 'Default Store';
+			]]></add>
+		</operation>
+		
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			$_['text_history']             = 'Add Order History';
+			]]></search>
+			<add><![CDATA[			
+			$_['entry_sent_comment_to_all']               = 'All Comments';
+			$_['help_sent_comment_to_all']                = '<b>Notify Customer checkbox need to be checked</b>';
+			$_['text_default_store']                      = 'Default Store';
+			]]></add>
+		</operation>	
+	</file>
+	
+	<file name="admin/model/sale/order.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+			$query = $this->db->query("SELECT oh.date_added, os.name AS status, oh.comment, oh.notify FROM " . DB_PREFIX . "order_history oh LEFT JOIN " . DB_PREFIX . "order_status os ON oh.order_status_id = os.order_status_id WHERE oh.order_id = '" . (int)$order_id . "' AND os.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY oh.date_added DESC LIMIT " . (int)$start . "," . (int)$limit);
+			]]></search>
+			<add><![CDATA[			
+			$query = $this->db->query("SELECT oh.date_added, os.name AS status, oh.comment, oh.notify, oh.vendor_id FROM " . DB_PREFIX . "order_history oh LEFT JOIN " . DB_PREFIX . "order_status os ON oh.order_status_id = os.order_status_id WHERE oh.order_id = '" . (int)$order_id . "' AND os.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY oh.date_added DESC LIMIT " . (int)$start . "," . (int)$limit);
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before"><![CDATA[
+			public function getTotalEmailsByProductsOrdered($products) {
+			]]></search>
+			<add><![CDATA[			
+			public function getAllVendorOrderStatus($order_id) {
+				$getOrderStatusID = $this->db->query("SELECT order_status_id FROM  `" . DB_PREFIX . "order` WHERE order_id = '" . (int)$order_id . "'");
+				$count1 = $this->db->query("SELECT COUNT(*) as total FROM  `" . DB_PREFIX . "order_status_vendor_update` WHERE order_id = '" . (int)$order_id . "'");
+				$count2 = $this->db->query("SELECT COUNT(*) as total FROM  `" . DB_PREFIX . "order_status_vendor_update` WHERE order_id = '" . (int)$order_id . "' AND order_status_id = '" . (int)$getOrderStatusID->row['order_status_id'] . "'");
+
+				if ($count1->row['total'] != $count2->row['total']) {
+					$query = $this->db->query("SELECT DISTINCT(`vendor_id`), order_status_id FROM  `" . DB_PREFIX . "order_status_vendor_update` WHERE order_id = '" . (int)$order_id . "'");
+					$status_text = '';
+							
+					if ($query->rows) {
+						foreach ($query->rows as $result) {						
+							$name = $this->db->query("SELECT vendor_name FROM  `" . DB_PREFIX . "vendors` WHERE vendor_id = '" . (int)$result['vendor_id'] . "'");
+							$status = $this->db->query("SELECT name FROM  `" . DB_PREFIX . "order_status` WHERE order_status_id = '" . (int)$result['order_status_id'] . "'");
+										
+							if ($name->row) {
+								$vname = $name->row['vendor_name'];
+							} else {
+								$vname = '';
+							}
+									
+							if ($vname) {
+								if (empty($status_text)) {
+									$status_text = '<small><b>' . $vname . '</b> - ' . $status->row['name'] . '</small>';
+								} else {
+									$status_text .= '<br /><small><b>' . $vname . '</b> - ' . $status->row['name'] . '</small>';
+								}							
+							}
+						}
+						return $status_text;
+					} else {
+						return false;
+					}
+				} else {
+					$current_status = $this->db->query("SELECT name FROM  `" . DB_PREFIX . "order_status` WHERE order_status_id = '" . (int)$getOrderStatusID->row['order_status_id'] . "'");
+					return $current_status->row['name'];
+				}
+			}
+			]]></add>
+		</operation>	
+	</file>
+	
+	<file name="admin/view/template/common/header.tpl">
+		<operation error="skip">
+			<search position="before"><![CDATA[
+			<li class="dropdown-header"><?php echo $text_product; ?></li>
+			]]></search>
+			<add><![CDATA[			
+			<li class="dropdown-header"><?php echo $text_multi_vendor_status; ?></li>
+			<li><a href="<?php echo $pending_products; ?>"><?php echo $text_total_pending_products; ?> <span class="label label-danger pull-right"><?php echo $total_pending_products; ?></a></li>
+			<li><a href="<?php echo $pending_accounts; ?>"><?php echo $text_total_pending_accounts; ?> <span class="label label-danger pull-right"><?php echo $total_pending_accounts; ?></span></a></li>
+			<li class="divider"></li>
+			]]></add>
+		</operation>	
+	</file>
+	
+	<file name="admin/view/template/common/menu.tpl">
+		<operation error="skip">
+			<search position="before"><![CDATA[
+			<li><a class="parent"><i class="fa fa-share-alt fa-fw"></i> <span><?php echo $text_marketing; ?></span></a>
+			]]></search>
+			<add><![CDATA[			
+			<li id="extension"><a class="parent"><i class="fa fa-users fa-fw"></i> <span><?php echo $text_vendor_tool; ?></span></a>
+			  <ul>
+				<li><a href="<?php echo $mvd_add_vendors; ?>"><?php echo $text_add_vendors; ?></a></li>
+				<li><a href="<?php echo $mvd_add_courier; ?>"><?php echo $text_add_courier; ?></a></li>
+				<li><a class="parent"><?php echo $text_catalog; ?></a>
+				  <ul>
+					 <li><a href="<?php echo $mvd_product; ?>"><?php echo $text_product; ?></a></li>
+					 <li><a class="parent"><?php echo $text_attribute; ?></a>
+						<ul>
+						  <li><a href="<?php echo $mvd_attribute; ?>"><?php echo $text_attribute; ?></a></li>
+						  <li><a href="<?php echo $mvd_attribute_group; ?>"><?php echo $text_attribute_group; ?></a></li>
+						</ul>
+					 </li>
+					 <li><a href="<?php echo $mvd_option; ?>"><?php echo $text_option; ?></a></li>
+					 <li><a href="<?php echo $mvd_download; ?>"><?php echo $text_download; ?></a></li>
+					 <li><a href="<?php echo $mvd_information; ?>"><?php echo $text_information; ?></a></li>
+				  </ul>
+				</li>
+				<li><a class="parent"><?php echo $text_vendor_sales; ?></a>
+				  <ul>
+					<li><a href="<?php echo $mvd_ven_transaction; ?>"><?php echo $text_vendor_transaction; ?></a></li>
+					<li><a href="<?php echo $mvd_payment_history; ?>"><?php echo $text_payment_history; ?></a></li>
+					<li><a href="<?php echo $mvd_contract_history; ?>"><?php echo $text_contract_history; ?></a></li>
+					<li><a href="<?php echo $mvd_coupon; ?>"><?php echo $text_coupon; ?></a></li>
+				  </ul>
+				</li>
+				<li><a class="parent"><?php echo $text_vendor_tools; ?></a>
+				  <ul>
+					<li><a href="<?php echo $mvd_prostatctrl; ?>"><?php echo $text_quicker_status_modifier; ?></a></li>
+					<li><a href="<?php echo $mvd_contstatctrl; ?>"><?php echo $text_contract_status_modifier; ?></a></li>
+				  </ul>
+				</li>
+				<li><a class="parent"><?php echo $text_setup; ?></a>
+				  <ul>
+					<li><a href="<?php echo $mvd_limit; ?>"><?php echo $text_package_limit; ?></a></li>
+					<li><a href="<?php echo $mvd_commission; ?>"><?php echo $text_vendor_commission; ?></a></li>
+					<li><a href="<?php echo $mvd_setting; ?>"><?php echo $text_vendor_setting; ?></a></li>
+				  </ul>
+				</li>
+			  </ul>
+			</li>
+			]]></add>
+		</operation>	
+	</file>
+	
+	<file name="admin/view/template/sale/order_info.tpl">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			<td class="text-left"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
+			]]></search>
+			<add><![CDATA[			
+			&nbsp;<small> - <?php echo $product['vname']; ?></small>
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after" offset="2"><![CDATA[
+			<input type="checkbox" name="notify" value="1" id="input-notify" />
+			]]></search>
+			<add><![CDATA[			
+			<div class="form-group">
+              <label class="col-sm-2 control-label" for="input-sent-comment-to-all"><span data-toggle="tooltip" title="<?php echo $help_sent_comment_to_all; ?>"><?php echo $entry_sent_comment_to_all; ?></span></label>
+                <div class="col-sm-10">
+                <input type="checkbox" name="sent_comment_to_all" value="1" id="input-sent-comment-to-all" />
+              </div>
+            </div>
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+			data: 'order_status_id=' + encodeURIComponent($('select[name=\'order_status_id\']').val()) + '&notify=' + ($('input[name=\'notify\']').prop('checked') ? 1 : 0) + '&override=' + ($('input[name=\'override\']').prop('checked') ? 1 : 0) + '&append=' + ($('input[name=\'append\']').prop('checked') ? 1 : 0) + '&comment=' + encodeURIComponent($('textarea[name=\'comment\']').val()),
+			]]></search>
+			<add><![CDATA[			
+			data: 'order_status_id=' + encodeURIComponent($('select[name=\'order_status_id\']').val()) + '&notify=' + ($('input[name=\'notify\']').prop('checked') ? 1 : 0) + '&override=' + ($('input[name=\'override\']').prop('checked') ? 1 : 0) + '&sent_comment_to_all=' + ($('input[name=\'sent_comment_to_all\']').prop('checked') ? 1 : 0) + '&append=' + ($('input[name=\'append\']').prop('checked') ? 1 : 0) + '&comment=' + encodeURIComponent($('textarea[name=\'comment\']').val()),
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/controller/api/order.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			'notify',
+			]]></search>
+			<add><![CDATA[			
+			'sent_comment_to_all',
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+			$this->model_checkout_order->addOrderHistory($order_id, $this->request->post['order_status_id'], $this->request->post['comment'], $this->request->post['notify'], $this->request->post['override']);
+			]]></search>
+			<add><![CDATA[
+			$this->model_checkout_order->addOrderHistory($order_id, $this->request->post['order_status_id'], $this->request->post['comment'], $this->request->post['notify'], $this->request->post['override'], $this->request->post['sent_comment_to_all']);
+			$this->UpdateAllMultiVendorOrderStatus($order_id, $this->request->post['order_status_id']);
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before"><![CDATA[
+			public function history() {
+			]]></search>
+			<add><![CDATA[			
+			public function UpdateAllMultiVendorOrderStatus($order_id, $order_status_id) {
+				$this->db->query("UPDATE `" . DB_PREFIX . "order_status_vendor_update` SET order_status_id = '" . (int)$order_status_id . "' WHERE order_id = '" . $order_id . "'");
+				$this->db->query("UPDATE `" . DB_PREFIX . "order_product` SET order_status_id = '" . (int)$order_status_id . "' WHERE order_id = '" . $order_id . "'");
+			}
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/controller/checkout/confirm.php">
+		<operation error="skip">
+			<search position="before"><![CDATA[
+			$order_data['products'][] = array(
+			]]></search>
+			<add><![CDATA[			
+			$get_vendor_id = $this->db->query("SELECT v.vendor AS vendor, cm.commission_type AS commission_type, cm.commission AS commission, cm.commission_name as commission_name FROM `" . DB_PREFIX . "vendor` v LEFT JOIN `" . DB_PREFIX . "vendors` vds ON (v.vendor = vds.vendor_id) LEFT JOIN `" . DB_PREFIX . "commission` cm ON (vds.commission_id = cm.commission_id) WHERE v.vproduct_id = '" . (int)$product['product_id'] . "'");
+			if (isset($get_vendor_id->row['vendor'])) {
+				switch ($get_vendor_id->row['commission_type']) {
+					case '0':
+					$commission = (float)$product['total']*((float)$get_vendor_id->row['commission']/100);
+					$vendor_id = $get_vendor_id->row['vendor'];
+					$vendor_total = (float)$product['total']*(1-((float)$get_vendor_id->row['commission'])/100);
+					$vendor_tax = $this->tax->getTax($vendor_total, $product['tax_class_id']);
+					$store_tax = $this->tax->getTax($product['total']-$vendor_total, $product['tax_class_id']);
+					$title = '(' . $get_vendor_id->row['commission'] . '%' . ') ' . $this->language->get('text_commission');
+					break;
+							
+					case '1':
+					$commission = (float)$get_vendor_id->row['commission'];
+					$vendor_id = $get_vendor_id->row['vendor'];
+					$vendor_total = (float)($product['total']-($get_vendor_id->row['commission']));
+					$vendor_tax = $this->tax->getTax($vendor_total, $product['tax_class_id']);
+					$store_tax = $this->tax->getTax($product['total']-$vendor_total, $product['tax_class_id']);
+					$title = '(' . $this->currency->format($get_vendor_id->row['commission'],$this->config->get('config_currency')) . ') ' . $this->language->get('text_commission');
+					break;
+							
+					case '2': 					
+					$comrate = explode(':',$get_vendor_id->row['commission']);
+					$commission = ((float)$product['total']*((float)$comrate[0]/100))+(float)$comrate[1];
+					$vendor_id = $get_vendor_id->row['vendor'];
+					$vendor_total = (float)$product['total']-$commission;
+					$vendor_tax = $this->tax->getTax($vendor_total, $product['tax_class_id']);
+					$store_tax = $this->tax->getTax($product['total']-$vendor_total, $product['tax_class_id']);
+					$title = '(' . $comrate[0] . '% + ' . $this->currency->format($comrate[1],$this->config->get('config_currency')) . ') ' . $this->language->get('text_commission');
+					break;
+							
+					case '3':
+					$comrate = explode(':',$get_vendor_id->row['commission']);
+					$commission = ((float)$product['total']+(float)$comrate[0])*((float)$comrate[1]/100);
+					$vendor_id = $get_vendor_id->row['vendor'];
+					$vendor_total = (float)$product['total']-$commission;
+					$vendor_tax = $this->tax->getTax($vendor_total, $product['tax_class_id']);
+					$store_tax = $this->tax->getTax($product['total']-$vendor_total, $product['tax_class_id']);
+					$title = '(' . $this->currency->format($comrate[0],$this->config->get('config_currency')) . ' + ' . $comrate[1] . '%' . ') ' . $this->language->get('text_commission');
+					break;
+						
+					default:
+					$commission = '0';
+					$vendor_id = $get_vendor_id->row['vendor'];
+					$vendor_total = (float)$product['total'];
+					$vendor_tax = $this->tax->getTax($vendor_total, $product['tax_class_id']);
+					$store_tax = '0';
+					$title = $get_vendor_id->row['commission_name'] . '(' . $this->currency->format($get_vendor_id->row['commission'],$this->config->get('config_currency')) . ') ' . $this->language->get('text_commission');
+				}
+			} else {
+				$commission = '0';
+				$vendor_id = '0';
+				$vendor_total = '0';
+				$vendor_tax = '0';
+				$store_tax = '0';
+				$title = '';
+			}
+					
+			if (!$this->config->get('tax_status')) {
+				$vendor_tax = '0';
+				$store_tax = '0';
+			}
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after" index="1"><![CDATA[
+			'subtract'   => $product['subtract'],
+			]]></search>
+			<add><![CDATA[			
+			'commission' 	=> $commission,
+			'vendor_id'  	=> $vendor_id,
+			'vendor_total' 	=> $vendor_total,
+			'store_tax'	 	=> $store_tax,
+			'vendor_tax' 	=> $vendor_tax,
+			'title'			=> $title,
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/language/english/checkout/checkout.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			$_['text_year']                      = 'year';
+			]]></search>
+			<add><![CDATA[			
+			$_['text_commission']       		 = 'Commission';
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/controller/api/cart.php">
+		<operation error="skip">
+			<search position="before"><![CDATA[
+			$json['products'][] = array(
+			]]></search>
+			<add><![CDATA[			
+			$get_vendor_id = $this->db->query("SELECT v.vendor AS vendor, cm.commission_type AS commission_type, cm.commission AS commission, cm.commission_name as commission_name FROM `" . DB_PREFIX . "vendor` v LEFT JOIN `" . DB_PREFIX . "vendors` vds ON (v.vendor = vds.vendor_id) LEFT JOIN `" . DB_PREFIX . "commission` cm ON (vds.commission_id = cm.commission_id) WHERE v.vproduct_id = '" . (int)$product['product_id'] . "'");
+			if (isset($get_vendor_id->row['vendor'])) {
+				switch ($get_vendor_id->row['commission_type']) {
+					case '0':
+					$commission = (float)$product['total']*((float)$get_vendor_id->row['commission']/100);
+					$vendor_id = $get_vendor_id->row['vendor'];
+					$vendor_total = (float)$product['total']*(1-((float)$get_vendor_id->row['commission'])/100);
+					$vendor_tax = $this->tax->getTax($vendor_total, $product['tax_class_id']);
+					$store_tax = $this->tax->getTax($product['total']-$vendor_total, $product['tax_class_id']);
+					$title = '(' . $get_vendor_id->row['commission'] . '%' . ') ' . $this->language->get('text_commission');
+					break;
+							
+					case '1':
+					$commission = (float)$get_vendor_id->row['commission'];
+					$vendor_id = $get_vendor_id->row['vendor'];
+					$vendor_total = (float)($product['total']-($get_vendor_id->row['commission']));
+					$vendor_tax = $this->tax->getTax($vendor_total, $product['tax_class_id']);
+					$store_tax = $this->tax->getTax($product['total']-$vendor_total, $product['tax_class_id']);
+					$title = '(' . $this->currency->format($get_vendor_id->row['commission'],$this->config->get('config_currency')) . ') ' . $this->language->get('text_commission');
+					break;
+							
+					case '2': 					
+					$comrate = explode(':',$get_vendor_id->row['commission']);
+					$commission = ((float)$product['total']*((float)$comrate[0]/100))+(float)$comrate[1];
+					$vendor_id = $get_vendor_id->row['vendor'];
+					$vendor_total = (float)$product['total']-$commission;
+					$vendor_tax = $this->tax->getTax($vendor_total, $product['tax_class_id']);
+					$store_tax = $this->tax->getTax($product['total']-$vendor_total, $product['tax_class_id']);
+					$title = '(' . $comrate[0] . '% + ' . $this->currency->format($comrate[1],$this->config->get('config_currency')) . ') ' . $this->language->get('text_commission');
+					break;
+							
+					case '3':
+					$comrate = explode(':',$get_vendor_id->row['commission']);
+					$commission = ((float)$product['total']+(float)$comrate[0])*((float)$comrate[1]/100);
+					$vendor_id = $get_vendor_id->row['vendor'];
+					$vendor_total = (float)$product['total']-$commission;
+					$vendor_tax = $this->tax->getTax($vendor_total, $product['tax_class_id']);
+					$store_tax = $this->tax->getTax($product['total']-$vendor_total, $product['tax_class_id']);
+					$title = '(' . $this->currency->format($comrate[0],$this->config->get('config_currency')) . ' + ' . $comrate[1] . '%' . ') ' . $this->language->get('text_commission');
+					break;
+						
+					default:
+					$commission = '0';
+					$vendor_id = $get_vendor_id->row['vendor'];
+					$vendor_total = (float)$product['total'];
+					$vendor_tax = $this->tax->getTax($vendor_total, $product['tax_class_id']);
+					$store_tax = '0';
+					$title = $get_vendor_id->row['commission_name'] . '(' . $this->currency->format($get_vendor_id->row['commission'],$this->config->get('config_currency')) . ') ' . $this->language->get('text_commission');
+				}
+			} else {
+				$commission = '0';
+				$vendor_id = '0';
+				$vendor_total = '0';
+				$vendor_tax = '0';
+				$store_tax = '0';
+				$title = '';
+			}
+					
+			if (!$this->config->get('tax_status')) {
+				$vendor_tax = '0';
+				$store_tax = '0';
+			}
+			]]></add>
+		</operation>
+		
+		<operation error="skip">
+			<search position="before"><![CDATA[
+			'quantity'   => $product['quantity'],
+			]]></search>
+			<add><![CDATA[
+			'commission' 	=> $commission,
+			'vendor_id'  	=> $vendor_id,
+			'vendor_total' 	=> $vendor_total,
+			'store_tax'	 	=> $store_tax,
+			'vendor_tax' 	=> $vendor_tax,
+			'title'			=> $title,
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/controller/api/order.php">
+		<operation error="skip">
+			<search position="after" index="2"><![CDATA[
+			foreach ($this->cart->getProducts() as $product) {
+			]]></search>
+			<add><![CDATA[			
+			$get_vendor_id = $this->db->query("SELECT v.vendor AS vendor, cm.commission_type AS commission_type, cm.commission AS commission, cm.commission_name as commission_name FROM `" . DB_PREFIX . "vendor` v LEFT JOIN `" . DB_PREFIX . "vendors` vds ON (v.vendor = vds.vendor_id) LEFT JOIN `" . DB_PREFIX . "commission` cm ON (vds.commission_id = cm.commission_id) WHERE v.vproduct_id = '" . (int)$product['product_id'] . "'");
+			if (isset($get_vendor_id->row['vendor'])) {
+				switch ($get_vendor_id->row['commission_type']) {
+					case '0':
+					$commission = (float)$product['total']*((float)$get_vendor_id->row['commission']/100);
+					$vendor_id = $get_vendor_id->row['vendor'];
+					$vendor_total = (float)$product['total']*(1-((float)$get_vendor_id->row['commission'])/100);
+					$vendor_tax = $this->tax->getTax($vendor_total, $product['tax_class_id']);
+					$store_tax = $this->tax->getTax($product['total']-$vendor_total, $product['tax_class_id']);
+					$title = '(' . $get_vendor_id->row['commission'] . '%' . ') ' . $this->language->get('text_commission');
+					break;
+							
+					case '1':
+					$commission = (float)$get_vendor_id->row['commission'];
+					$vendor_id = $get_vendor_id->row['vendor'];
+					$vendor_total = (float)($product['total']-($get_vendor_id->row['commission']));
+					$vendor_tax = $this->tax->getTax($vendor_total, $product['tax_class_id']);
+					$store_tax = $this->tax->getTax($product['total']-$vendor_total, $product['tax_class_id']);
+					$title = '(' . $this->currency->format($get_vendor_id->row['commission'],$this->config->get('config_currency')) . ') ' . $this->language->get('text_commission');
+					break;
+							
+					case '2': 					
+					$comrate = explode(':',$get_vendor_id->row['commission']);
+					$commission = ((float)$product['total']*((float)$comrate[0]/100))+(float)$comrate[1];
+					$vendor_id = $get_vendor_id->row['vendor'];
+					$vendor_total = (float)$product['total']-$commission;
+					$vendor_tax = $this->tax->getTax($vendor_total, $product['tax_class_id']);
+					$store_tax = $this->tax->getTax($product['total']-$vendor_total, $product['tax_class_id']);
+					$title = '(' . $comrate[0] . '% + ' . $this->currency->format($comrate[1],$this->config->get('config_currency')) . ') ' . $this->language->get('text_commission');
+					break;
+							
+					case '3':
+					$comrate = explode(':',$get_vendor_id->row['commission']);
+					$commission = ((float)$product['total']+(float)$comrate[0])*((float)$comrate[1]/100);
+					$vendor_id = $get_vendor_id->row['vendor'];
+					$vendor_total = (float)$product['total']-$commission;
+					$vendor_tax = $this->tax->getTax($vendor_total, $product['tax_class_id']);
+					$store_tax = $this->tax->getTax($product['total']-$vendor_total, $product['tax_class_id']);
+					$title = '(' . $this->currency->format($comrate[0],$this->config->get('config_currency')) . ' + ' . $comrate[1] . '%' . ') ' . $this->language->get('text_commission');
+					break;
+						
+					default:
+					$commission = '0';
+					$vendor_id = $get_vendor_id->row['vendor'];
+					$vendor_total = (float)$product['total'];
+					$vendor_tax = $this->tax->getTax($vendor_total, $product['tax_class_id']);
+					$store_tax = '0';
+					$title = $get_vendor_id->row['commission_name'] . '(' . $this->currency->format($get_vendor_id->row['commission'],$this->config->get('config_currency')) . ') ' . $this->language->get('text_commission');
+				}
+			} else {
+				$commission = '0';
+				$vendor_id = '0';
+				$vendor_total = '0';
+				$vendor_tax = '0';
+				$store_tax = '0';
+				$title = '';
+			}
+					
+			if (!$this->config->get('tax_status')) {
+				$vendor_tax = '0';
+				$store_tax = '0';
+			}
+			]]></add>
+		</operation>
+		
+		<operation error="skip">
+			<search position="before" index="2"><![CDATA[
+			'tax'        => $this->tax->getTax($product['price'], $product['tax_class_id']),
+			]]></search>
+			<add><![CDATA[
+			'commission' 	=> $commission,
+			'vendor_id'  	=> $vendor_id,
+			'vendor_total' 	=> $vendor_total,
+			'store_tax'	 	=> $store_tax,
+			'vendor_tax' 	=> $vendor_tax,
+			'title'			=> $title,
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/model/checkout/order.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+			$this->db->query("INSERT INTO " . DB_PREFIX . "order_product SET order_id = '" . (int)$order_id . "', product_id = '" . (int)$product['product_id'] . "', name = '" . $this->db->escape($product['name']) . "', model = '" . $this->db->escape($product['model']) . "', quantity = '" . (int)$product['quantity'] . "', price = '" . (float)$product['price'] . "', total = '" . (float)$product['total'] . "', tax = '" . (float)$product['tax'] . "', reward = '" . (int)$product['reward'] . "'");
+			]]></search>
+			<add><![CDATA[			
+			$this->db->query("INSERT INTO " . DB_PREFIX . "order_product SET order_id = '" . (int)$order_id . "', product_id = '" . (int)$product['product_id'] . "', name = '" . $this->db->escape($product['name']) . "', model = '" . $this->db->escape($product['model']) . "', quantity = '" . (int)$product['quantity'] . "', price = '" . (float)$product['price'] . "', total = '" . (float)$product['total'] . "', tax = '" . (float)$product['tax'] . "', vendor_id = '" . (int)$product['vendor_id'] . "', commission =  '" . (float)$product['commission'] . "', title = '" . $this->db->escape($product['title']) . "', vendor_total = '" . (float)$product['vendor_total'] . "', vendor_tax = '" . (float)$product['vendor_tax'] . "', store_tax = '" . (float)$product['store_tax'] . "',reward = '" . (int)$product['reward'] . "'");
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after" index="1,2" offset="2"><![CDATA[
+			foreach ($product['option'] as $option) {
+			]]></search>
+			<add><![CDATA[			
+			$getVenId = $this->db->query("SELECT vs.vendor_id AS vendor_id FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "vendor v ON (p.product_id = v.vproduct_id) LEFT JOIN " . DB_PREFIX . "vendors vs ON (v.vendor = vs.vendor_id) WHERE p.product_id = '" . (int)$product['product_id'] . "'");
+			$getVenIds[] = array ('vendor_id' => $getVenId->row['vendor_id']);
+			]]></add>
+		</operation>
+		
+		<operation error="skip">
+			<search position="before"><![CDATA[
+			$this->db->query("UPDATE `" . DB_PREFIX . "order` SET order_status_id = '" . (int)$order_status_id . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");
+			]]></search>
+			<add><![CDATA[			
+			$myop_data = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");
+			foreach ($myop_data->rows as $order_product) {
+				$getVenId = $this->db->query("SELECT vs.vendor_id AS vendor_id FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "vendor v ON (p.product_id = v.vproduct_id) LEFT JOIN " . DB_PREFIX . "vendors vs ON (v.vendor = vs.vendor_id) WHERE p.product_id = '" . (int)$order_product['product_id'] . "'");
+				
+				$getVenIds[] = array ('vendor_id' => $getVenId->row['vendor_id']);
+			}
+			]]></add>
+		</operation>
+		
+		<operation error="skip">
+			<search position="before" index="1,2"><![CDATA[
+			$this->load->model('total/voucher');
+			]]></search>
+			<add><![CDATA[			
+			$vendor_cost = $this->getdescost();	
+			$getUniVenId = array_map("unserialize", array_unique(array_map("serialize", $getVenIds)));
+			//$this->db->query("DELETE FROM " . DB_PREFIX . "order_shipping WHERE order_id = '" . (int)$order_id . "'");
+			foreach ($getUniVenId as $vendor) {
+				if (!empty($this->session->data['shipping_method'])) {
+					if ($vendor['vendor_id']) {
+						if (preg_match("/\bmvdm_flat\b/i", $this->session->data['shipping_method']['code'])) {
+							
+							$final_couriers = array();
+							foreach($this->mvdm_flat_shipping() as $courier) {
+								if (substr($this->session->data['shipping_method']['code'],19) == $courier['courier_id']) {
+									$getVendor = $this->db->query("SELECT vendor FROM `" . DB_PREFIX . "vendor` WHERE vproduct_id = '" . (int)$courier['product_id'] . "'");
+									$final_couriers[] = array (
+										'vendor_id'	=> $getVendor->row['vendor'],
+										'cost'		=> $courier['cost'],
+										'weight'	=> $courier['weight']
+									);	
+										
+								}
+							}
+								
+							$scost = 0;
+							$sweight = 0;							
+							foreach ($final_couriers as $final_courier) {
+								if ($vendor['vendor_id'] == $final_courier['vendor_id']) {
+									$scost += $final_courier['cost'];
+									$sweight += $final_courier['weight'];
+								}
+							}
+								
+							if ($this->config->get('mvdm_flat_tax_class_id')) {
+								$shipping_tax = $this->tax->calculate($scost, $this->config->get('mvdm_flat_tax_class_id'), $this->config->get('config_tax')) - $scost;
+							} else {
+								$shipping_tax = '0';
+							}
+								
+							$couriername = $this->db->query("SELECT courier_name FROM `" . DB_PREFIX . "courier` WHERE courier_id = '" . (int)(substr($this->session->data['shipping_method']['code'],19)) . "'");
+								
+							$this->db->query("INSERT INTO " . DB_PREFIX . "order_shipping SET order_id = '" . (int)$order_id . "', vendor_id =  '" . (int)$vendor['vendor_id'] . "', title = '" . $this->db->escape($couriername->row['courier_name']) . "', cost =  '" . (float)$scost . "', tax =  '" . (float)$shipping_tax . "', weight = '" . (float)$sweight . "'");
+								
+						} elseif ($this->session->data['shipping_method']['code'] == 'mvweight.mvweight') {
+							$scost = 0;
+							$sweight = 0;
+											
+							foreach ($vendor_cost as $vsc) {
+								if ($vendor['vendor_id'] == $vsc['vendor_id']) {
+									$scost = $vsc['cost'];
+									$sweight = $vsc['weight'];
+								}
+							}
+								
+							if ($this->config->get('mvweight_tax_class_id')) {
+								$shipping_tax = $this->tax->calculate($scost, $this->config->get('mvweight_tax_class_id'), $this->config->get('config_tax')) - $scost;
+							} else {
+								$shipping_tax = '0';
+							}
+								
+							$this->db->query("INSERT INTO " . DB_PREFIX . "order_shipping SET order_id = '" . (int)$order_id . "', vendor_id =  '" . (int)$vendor['vendor_id'] . "', title = 'Weight Base Shipping', cost =  '" . (float)$scost . "', tax =  '" . (float)$shipping_tax . "', weight = '" . (float)$sweight . "'");
+							
+						} elseif ($this->session->data['shipping_method']['code'] == 'mvflat.mvflat') {			
+							$mv_flat = $this->mv_flat_shipping();
+							$scost = 0;
+							$sweight = 0;
+				
+							foreach ($mv_flat as $mvflat) {
+								if ($vendor['vendor_id'] == $mvflat['vendor']) {
+									$scost += $mvflat['cost'];
+									$sweight += $mvflat['weight'];
+								}
+							}
+								
+							if ($this->config->get('mvflat_tax_class_id')) {
+								$shipping_tax = $this->tax->calculate($scost, $this->config->get('mvflat_tax_class_id'), $this->config->get('config_tax')) - $scost;
+							} else {
+								$shipping_tax = '0';
+							}
+								
+							$this->db->query("INSERT INTO " . DB_PREFIX . "order_shipping SET order_id = '" . (int)$order_id . "', vendor_id =  '" . (int)$vendor['vendor_id'] . "', title = 'Flat Rate Shipping', tax =  '" . (float)$shipping_tax . "', cost =  '" . (float)$scost . "', weight = '" . (float)$sweight . "'");
+						}
+					}
+				}
+			}
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after" index="1"><![CDATA[
+			$this->db->query("INSERT INTO " . DB_PREFIX . "order_total SET order_id = '" . (int)$order_id . "', code = '" . $this->db->escape($total['code']) . "', title = '" . $this->db->escape($total['title']) . "', `value` = '" . (float)$total['value'] . "', sort_order = '" . (int)$total['sort_order'] . "'");
+			]]></search>
+			<add><![CDATA[
+			if($total['code'] == 'coupon') {
+				$code = '';		
+				$start = strpos($total['title'], '(') + 1;
+				$end = strrpos($total['title'], ')');
+					
+				if ($start && $end) {  
+					$code = substr($total['title'], $start, $end - $start);
+				}
+				
+				$this->load->model('checkout/coupon');				
+				$coupon_info = $this->model_checkout_coupon->getCoupon($code);
+					
+				if ($coupon_info) {
+					$vendor_list = array();
+					$vendor_pool = array();
+					
+					foreach ($coupon_info['product'] as $product_id){
+						$getvendor = $this->db->query("SELECT vendor FROM " . DB_PREFIX . "vendor WHERE vproduct_id = '" . (int)$product_id . "'");
+						$vendor_list[] = array (
+							'vendor_id'	=> $getvendor->row['vendor']
+						);
+					}
+									
+					$vendor_pool = array_map("unserialize", array_unique(array_map("serialize", $vendor_list)));
+								
+					foreach ($vendor_pool as $vendor) {
+						if ($vendor) {
+							${'sub_total' . $vendor['vendor_id'] } = 0;
+							${'tax_rate' . $vendor['vendor_id'] } = 0;
+								
+							foreach($this->cart->getProducts() as $product) {
+								$get_id = $this->db->query("SELECT vendor FROM " . DB_PREFIX . "vendor WHERE vproduct_id = '" . (int)$product['product_id'] . "'");
+								if ($vendor['vendor_id'] == $get_id->row['vendor']) {
+									if (in_array($product['product_id'], $coupon_info['product'])) {
+										${'sub_total' . $vendor['vendor_id'] } += $product['total'];	
+											
+										if ($coupon_info['type'] == 'F') {
+											$tax_discount = $coupon_info['discount'];
+										} elseif ($coupon_info['type'] == 'P') {
+											$tax_discount = $product['total'] / 100 * $coupon_info['discount'];
+										}
+											
+										if ($product['tax_class_id']) {
+											${'tax_rate' . $vendor['vendor_id'] } += $this->tax->getTax($product['total'] - ($product['total'] - $tax_discount), $product['tax_class_id']);
+										}
+									}
+								}						
+							}
+									
+							$subtotal_list[] = array (
+								'subtotal'	=>	${'sub_total' . $vendor['vendor_id'] },
+								'tax'		=>	${'tax_rate' . $vendor['vendor_id'] },
+								'vendor_id'	=>	$vendor['vendor_id']
+							);
+						}
+					}
+
+					foreach ($subtotal_list as $subtotal) {
+						if ($subtotal) {
+							$discount_amount = 0;
+							if ($coupon_info['type'] == 'F') {
+								$discount_amount = $coupon_info['discount'];
+							} elseif ($coupon_info['type'] == 'P') {
+								$discount_amount = $subtotal['subtotal'] / 100 * $coupon_info['discount'];
+							}
+							$this->db->query("INSERT INTO `" . DB_PREFIX . "vendor_discount` SET coupon_id = '" . (int)$coupon_info['coupon_id'] . "', title= '" . $total['title'] . "',order_id = '" . (int)$order_id . "', vendor_id = '" . (int)$subtotal['vendor_id'] . "', amount = '" . (float)$discount_amount . "', tax = '" . (float)$subtotal['tax'] . "'");
+						}
+					}				
+				}
+			}
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+			public function addOrderHistory($order_id, $order_status_id, $comment = '', $notify = false, $override = false) {
+			]]></search>
+			<add><![CDATA[
+			public function addOrderHistory($order_id, $order_status_id, $comment = '', $notify = false, $override = false, $sent_comment_to_all = false) {
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after" offset="2"><![CDATA[
+			$download_status = false;
+			]]></search>
+			<add><![CDATA[			
+			$this->load->model('tool/upload');
+			$this->db->query("UPDATE `" . DB_PREFIX . "order_product` SET order_status_id = '" . (int)$order_status_id . "' WHERE order_id = '" . (int)$order_id . "'");
+			]]></add>
+		</operation>
+		
+		<operation error="skip">
+			<search position="before" index="1"><![CDATA[
+			$product_download_query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "product_to_download` WHERE product_id = '" . (int)$order_product['product_id'] . "'");
+			]]></search>
+			<add><![CDATA[			
+			$option_data_vendor = array();
+			$order_option_vendor_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_option WHERE order_id = '" . (int)$order_id . "' AND order_product_id = '" . (int)$order_product['order_product_id'] . "'");
+					
+			foreach ($order_option_vendor_query->rows as $option) {
+				if ($option['type'] != 'file') {
+					$value = $option['value'];
+				} else {
+					$upload_info = $this->model_tool_upload->getUploadByCode($option['value']);
+
+					if ($upload_info) {
+						$value = $upload_info['name'];
+					} else {
+						$value = '';
+					}
+				}
+
+				$option_data_vendor[] = array(
+					'name'  => $option['name'],
+					'value' => (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
+				);
+			}						
+					
+			$vmail = $this->db->query("SELECT pd.name AS name, p.model AS model, p.sku AS sku, vs.email AS email, vs.vendor_id AS vendor_id FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "vendor v ON (pd.product_id = v.vproduct_id) LEFT JOIN " . DB_PREFIX . "vendors vs ON (v.vendor = vs.vendor_id) WHERE p.product_id = '" . (int)$order_product['product_id'] . "'");
+			$vendor_products[] = array(
+				'name'     => $vmail->row['name'],
+				'model'    => $vmail->row['model'],
+				'sku' 	   => $vmail->row['sku'],
+				'option'   => $option_data_vendor,
+				'quantity' => $order_product['quantity'],
+				'price'	   => $order_product['price'],
+				'total'	   => $order_product['total'],
+				'tax'	   => $order_product['tax'],
+				'vendor_id' => $vmail->row['vendor_id'],
+				'email'	    => $vmail->row['email']
+			);
+						
+			$vendor_list[] = array ('vendor_id' => $vmail->row['vendor_id']);
+			$this->db->query("INSERT INTO " . DB_PREFIX . "order_status_vendor_update SET order_id = '" . (int)$order_id . "', order_status_id = '" . (int)$order_status_id . "', vendor_id = '" . (int)$vmail->row['vendor_id'] . "', product_id = '" . (int)$order_product['order_product_id'] . "'");
+			]]></add>
+		</operation>
+		
+		<operation error="skip">
+			<search position="after" offset="2"><![CDATA[
+			$download_status = true;
+			]]></search>
+			<add><![CDATA[			
+			$vendor_unique = array_map("unserialize", array_unique(array_map("serialize", $vendor_list)));				
+			if (($this->config->get('mvd_email_status')) && (in_array((int)$order_status_id,$this->config->get('mvd_checkout_order_status')))) {
+				if ($vendor_products){
+					$vendor_cost = $this->getdescost();					
+					foreach ($vendor_unique as $vendor) {
+						if ($vendor['vendor_id']) {
+							$data = array();
+							$vemail = $this->db->query("SELECT *, CONCAT(firstname,' ',lastname) AS contact_name FROM `" . DB_PREFIX . "vendors` WHERE vendor_id = '" . (int)$vendor['vendor_id'] . "'");
+							$cust_order_status_query = $this->db->query("SELECT name FROM " . DB_PREFIX . "order_status WHERE order_status_id = '" . (int)$order_status_id . "' AND language_id = '" . (int)$order_info['language_id'] . "'");
+							$language = new Language($order_info['language_directory']);
+							//$language->load($order_info['language_filename']);
+							$language->load('mail/vendor_email');
+										
+							$data['text_order_details'] = $language->get('text_order_details');
+							$data['text_shipping_address'] = "<b>" . $language->get('text_shipping_address') . "</b><br/>";
+							$data['date_ordered'] = '<b>' . $language->get('text_date_ordered') . ' </b>' . date('F j\, Y') . '<br/>';
+							$data['logo'] = HTTP_SERVER . 'image/' . $this->config->get('config_logo');
+							$data['store_name'] = $order_info['store_name'];
+							$data['store_url'] = $order_info['store_url'];
+								
+							/*Show header title*/
+							$data['title'] = sprintf($language->get('text_new_subject'), html_entity_decode($order_info['store_name'], ENT_QUOTES, 'UTF-8'), $order_id);		
+								
+							/*show vendor name*/
+							$data['vendor_name'] = '<b>' . $language->get('text_title') . $vemail->row['contact_name'] . '</b>,' . "\n\n";
+								
+							/*show message to vendor*/
+							$data['vendor_message'] = $this->config->get('mvd_new_order_message' . $this->config->get('config_language_id')) . "\n\n";
+																					
+							/*show vendor customer order id*/
+							if ($this->config->get('mvd_show_order_id')) {
+								$data['order_id'] = '<b>' . $language->get('text_vendor_order_id') . '</b>' . $order_id . '<br/>';
+							} else {
+								$data['order_id'] = '';
+							}
+								
+							/*show vendor customer order status*/
+							if ($this->config->get('mvd_show_order_status')) {
+								$data['order_status'] = '<b>' . $language->get('text_order_status') . ' </b>' . $cust_order_status_query->row['name'] . '<br/>';
+							} else {
+								$data['order_status'] = '';
+							}
+								
+							/*show payment method*/
+							if ($this->config->get('mvd_show_payment_method')) {
+								$data['payment_method'] = '<b>' . $language->get('text_payment_method') . ' </b>' . $order_info['payment_method'] . '<br/>';
+							} else {
+								$data['payment_method'] = '';
+							}
+								
+							/*show vendor customer email*/
+							if ($this->config->get('mvd_show_cust_email')) {
+								$data['email_address'] = '<b>' . $language->get('text_email') . ' </b>' . $order_info['email'] . '<br/>';
+							} else {
+								$data['email_address'] = '';
+							}
+								
+							/*show vendor customer telephone*/
+							if ($this->config->get('mvd_show_cust_telephone')) {
+								$data['telephone'] = '<b>' . $language->get('text_telephone') . ' </b>' . $order_info['telephone'] . '<br/>';
+							} else {
+								$data['telephone'] = '';
+							}
+								
+							/*show vendor customer shipping address*/
+							if ($this->config->get('mvd_show_cust_shipping_address')) {
+								if (($order_info['shipping_firstname']) && ($order_info['shipping_address_1'])) { 
+									$format = '<b>{firstname} {lastname}</b>' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city}, {postcode}' . "\n" . '{zone}, {country}';
+									$find = array(
+									'{firstname}',
+									'{lastname}',
+									'{company}',
+									'{address_1}',
+									'{address_2}',
+									'{city}',
+									'{postcode}',
+									'{zone}',
+									'{zone_code}',
+									'{country}'
+									);
+								
+									$replace = array(
+										'firstname' => $order_info['shipping_firstname'],
+										'lastname'  => $order_info['shipping_lastname'],
+										'company'   => $order_info['shipping_company'],
+										'address_1' => $order_info['shipping_address_1'],
+										'address_2' => $order_info['shipping_address_2'],
+										'city'      => $order_info['shipping_city'],
+										'postcode'  => $order_info['shipping_postcode'],
+										'zone'      => $order_info['shipping_zone'],
+										'zone_code' => $order_info['shipping_zone_code'],
+										'country'   => $order_info['shipping_country']  
+									);
+									$data['cust_shipping_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
+								} else {
+									$format = '<b>{firstname} {lastname}</b>' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city}, {postcode}' . "\n" . '{zone}, {country}';
+									$find = array(
+										'{firstname}',
+										'{lastname}',
+										'{company}',
+										'{address_1}',
+										'{address_2}',
+										'{city}',
+										'{postcode}',
+										'{zone}',
+										'{zone_code}',
+										'{country}'
+									);
+									
+									$replace = array(
+										'firstname' => $order_info['payment_firstname'],
+										'lastname'  => $order_info['payment_lastname'],
+										'company'   => $order_info['payment_company'],
+										'address_1' => $order_info['payment_address_1'],
+										'address_2' => $order_info['payment_address_2'],
+										'city'      => $order_info['payment_city'],
+										'postcode'  => $order_info['payment_postcode'],
+										'zone'      => $order_info['payment_zone'],
+										'zone_code' => $order_info['payment_zone_code'],
+										'country'   => $order_info['payment_country']  
+									);
+									$data['cust_shipping_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
+								}
+							} else {
+								$data['cust_shipping_address'] = '';
+							}
+							
+							/*show vendor information*/
+							if ($this->config->get('mvd_show_vendor_address')) {
+								$data['show_vendor_contact'] = True;
+								$format = '<b>{firstname} {lastname}</b>' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city}, {postcode}' . "\n" . '{zone}, {country}';
+									$find = array(
+										'{firstname}',
+										'{lastname}',
+										'{company}',
+										'{address_1}',
+										'{address_2}',
+										'{city}',
+										'{postcode}',
+										'{zone}',
+										'{country}'
+									);
+									
+								$zone_name = $this->db->query("SELECT name FROM " . DB_PREFIX . "zone WHERE zone_id = '" . (int)$vemail->row['zone_id'] . "' AND country_id = '" . (int)$vemail->row['country_id'] . "'");			
+								$country_name = $this->db->query("SELECT name FROM " . DB_PREFIX . "country WHERE country_id = '" . (int)$vemail->row['country_id'] . "'");	
+									
+									$replace = array(
+										'firstname' => $vemail->row['firstname'],
+										'lastname'  => $vemail->row['lastname'],
+										'company'   => $vemail->row['company'],
+										'address_1' => $vemail->row['address_1'],
+										'address_2' => $vemail->row['address_2'],
+										'city'      => $vemail->row['city'],
+										'postcode'  => $vemail->row['postcode'],
+										'zone'  	=> isset($zone_name->row['name']) ? $zone_name->row['name'] : 'None',
+										'country'   => $country_name->row['name']
+									);
+										
+								$vendor_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
+											
+								$data['vendor_address'] = $vendor_address . '<br/>';
+								$data['text_vendor_contact'] = $language->get('text_vendor_contact');
+									
+								/*show vendor email*/
+								if ($this->config->get('mvd_show_vendor_email')) {
+									$data['vendor_email'] = '<b>' . $language->get('text_email') . ' </b>' . $vemail->row['email'] . '<br/>';
+								} else {
+									$data['vendor_email'] = '';
+								}
+									
+								/*show vendor telephone*/
+								if ($this->config->get('mvd_show_vendor_telephone')) {
+									$data['vendor_telephone'] = '<b>' . $language->get('text_telephone') . ' </b>' . $vemail->row['telephone'] . '<br/>';
+								} else {
+									$data['vendor_telephone'] = '';
+								}
+					
+							} else {
+								$data['show_vendor_contact'] = False;
+							}
+							/*end show vendor address*/
+								
+							$coupon = $this->db->query("SELECT * FROM " . DB_PREFIX . "vendor_discount WHERE order_id = '" . (int)$order_id . "' AND vendor_id = '" . (int)$vendor['vendor_id'] . "'");
+							if (isset($coupon->row['amount']) > 0) {
+								$data['coupon_title'] = $coupon->row['title'];
+								$data['coupon'] = '-' . $this->currency->format($coupon->row['amount']);
+							} else {
+								$data['coupon'] = false;
+							}
+							
+							$subtotal = 0;
+							$vsubtotal = $this->db->query("SELECT SUM(total) AS sum_product_total, SUM(quantity*tax) as sum_product_tax FROM " . DB_PREFIX . "order_product op LEFT JOIN " . DB_PREFIX . "vendor v ON ( op.product_id = v.vproduct_id ) WHERE v.vendor =  '" . (int)$vendor['vendor_id'] . "' AND op.order_id =  '" . (int)$order_id . "'");
+							$subtotal = $vsubtotal->row['sum_product_total'];
+								
+							$vat = $this->db->query("SELECT title FROM " . DB_PREFIX . "order_total WHERE order_id = '" . (int)$order_id . "' AND code = 'tax'");
+
+							/*Get Shipping Cost*/
+							$shipcost = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_shipping` WHERE vendor_id = '" . (int)$vendor['vendor_id'] . "' AND order_id = '" . (int)$order_id . "'");
+								
+							if ($this->config->get('tax_status') && ($vsubtotal->row['sum_product_tax'] != 0)) {
+								$data['text_tax'] = $vat->row['title'];
+								$data['tax'] = $this->currency->format($vsubtotal->row['sum_product_tax'] + (isset($shipcost->row['tax']) ? $shipcost->row['tax'] : '0') - (isset($coupon->row['tax']) ? $coupon->row['tax'] : '0'));
+							} else {
+								$data['tax'] = '0';
+							}
+									
+							if ($shipcost->rows) {
+								if ($shipcost->row['cost']) {
+									$total = $vsubtotal->row['sum_product_total'] + $shipcost->row['cost'] - ((isset($coupon->row['amount'])) ? $coupon->row['amount'] : 0) + ($this->config->get('tax_status') ? ($vsubtotal->row['sum_product_tax'] + $shipcost->row['tax'] -((isset($coupon->row['tax'])) ? $coupon->row['tax'] : 0)): 0);
+								} else {
+									$total = $vsubtotal->row['sum_product_total'] - ((isset($coupon->row['amount'])) ? $coupon->row['amount'] : 0) + ($this->config->get('tax_status') ? ($vsubtotal->row['sum_product_tax'] - ((isset($coupon->row['tax'])) ? $coupon->row['tax'] : 0)): 0);
+								}
+									
+								$data['shipping'] = $shipcost->row['title'] . ' (' . $this->weight->format($shipcost->row['weight'], $this->config->get('config_weight_class_id')) . ')';
+								$data['scost'] = $this->currency->format($shipcost->row['cost']);
+									
+							} else {
+								$total = $vsubtotal->row['sum_product_total'] - ((isset($coupon->row['amount'])) ? $coupon->row['amount'] : 0) + ($this->config->get('tax_status') ? ($vsubtotal->row['sum_product_tax'] - ((isset($coupon->row['tax'])) ? $coupon->row['tax'] : 0)): 0);
+								$data['scost'] = 0;
+							}
+										
+							/*END Get Shipping Cost*/
+													
+							foreach ($vendor_products as $vendor_product) {
+								if ($vendor['vendor_id'] == $vendor_product['vendor_id']) {
+									$data['vendor_products'][] = array(
+										'name'     => $vendor_product['name'],
+										'option'   => $vendor_product['option'],
+										'model'    => $vendor_product['model'],
+										'sku'	   => $vendor_product['sku'],
+										'price'	   => $this->currency->format($vendor_product['price'] + ($this->config->get('tax_status') ? $vendor_product['tax'] : 0)),
+										'quantity' => $vendor_product['quantity'],
+										'total'	   => $this->currency->format($vendor_product['total'] + ($this->config->get('tax_status') ? ($vendor_product['tax'] * $vendor_product['quantity']) : 0)),
+										'email'    => $vendor_product['email']
+									);
+								}
+							}
+								
+							$data['product'] = $language->get('column_product');
+							$data['model'] = $language->get('column_model');
+							$data['quantity'] = $language->get('column_quantity');
+							$data['unit_price'] = $language->get('column_unit_price');
+							$data['total'] = $language->get('column_total');
+							$data['subtotal'] = $language->get('column_subtotal');
+							$data['vendor_auto_msg'] = $language->get('text_vendor_auto_msg');
+							$data['vendor_alert'] = $language->get('text_vendor_email') . $this->config->get('config_name');
+							$data['vsubtotal'] = $this->currency->format($subtotal);
+							$data['vtotal'] = $this->currency->format($total);
+
+							if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/mail/vendor_email.tpl')) {
+								$html = $this->load->view($this->config->get('config_template') . '/template/mail/vendor_email.tpl', $data);
+							} else {
+								$html = $this->load->view('default/template/mail/vendor_email.tpl', $data);
+							}
+							
+							$mail = new Mail();
+							$mail->protocol = $this->config->get('config_mail_protocol');
+							$mail->parameter = $this->config->get('config_mail_parameter');
+							$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+							$mail->smtp_username = $this->config->get('config_mail_smtp_username');
+							$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+							$mail->smtp_port = $this->config->get('config_mail_smtp_port');
+							$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+							
+							$mail->setTo($vemail->row['email']);
+							$mail->setFrom($this->config->get('config_email'));
+							$mail->setSender($this->config->get('config_name'));
+							$mail->setSubject($language->get('text_vendor_email_subject') . $language->get('text_vendor_order') . $order_id . ' (' . $this->config->get('config_name') . ')');
+							$mail->setHtml($html);
+							$mail->send();
+						} 
+					}
+				}
+			}
+			]]></add>
+		</operation>
+		
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			if ($order_info['order_status_id'] && $order_status_id) {
+			]]></search>
+			<add><![CDATA[			
+			$order_product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");
+				$this->db->query("UPDATE `" . DB_PREFIX . "order_product` SET order_status_id = '" . (int)$order_status_id . "' WHERE order_id = '" . (int)$order_id . "'");
+				
+				foreach ($order_product_query->rows as $order_product) {				
+					$option_data_vendor = array();
+					$order_option_vendor_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_option WHERE order_id = '" . (int)$order_id . "' AND order_product_id = '" . (int)$order_product['order_product_id'] . "'");
+					
+					foreach ($order_option_vendor_query->rows as $option) {
+						if ($option['type'] != 'file') {
+							$value = $option['value'];
+						} else {
+							$upload_info = $this->model_tool_upload->getUploadByCode($option['value']);
+
+							if ($upload_info) {
+								$value = $upload_info['name'];
+							} else {
+								$value = '';
+							}
+						}
+
+						$option_data_vendor[] = array(
+							'name'  => $option['name'],
+							'value' => (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
+						);
+					}						
+					
+					$vmail = $this->db->query("SELECT pd.name AS name, p.model AS model, p.sku AS sku, vs.email AS email, vs.vendor_id AS vendor_id FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "vendor v ON (pd.product_id = v.vproduct_id) LEFT JOIN " . DB_PREFIX . "vendors vs ON (v.vendor = vs.vendor_id) WHERE p.product_id = '" . (int)$order_product['product_id'] . "'");
+					$vendor_products[] = array(
+						'name'     => $vmail->row['name'],
+						'model'    => $vmail->row['model'],
+						'sku' 	   => $vmail->row['sku'],
+						'option'   => $option_data_vendor,
+						'quantity' => $order_product['quantity'],
+						'price'	   => $order_product['price'],
+						'total'	   => $order_product['total'],
+						'tax'	   => $order_product['tax'],
+						'vendor_id' => $vmail->row['vendor_id'],
+						'email'	    => $vmail->row['email']
+					);
+						
+					$vendor_list[] = array ('vendor_id' => $vmail->row['vendor_id']);
+					$this->db->query("INSERT INTO " . DB_PREFIX . "order_status_vendor_update SET order_id = '" . (int)$order_id . "', order_status_id = '" . (int)$order_status_id . "', vendor_id = '" . (int)$vmail->row['vendor_id'] . "', product_id = '" . (int)$order_product['order_product_id'] . "'");
+					
+					// Check if there are any linked downloads
+					$product_download_query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "product_to_download` WHERE product_id = '" . (int)$order_product['product_id'] . "'");
+
+					if ($product_download_query->row['total']) {
+						$download_status = true;
+					}
+				}
+				
+				$vendor_unique = array_map("unserialize", array_unique(array_map("serialize", $vendor_list)));				
+				if (($this->config->get('mvd_email_status')) && (in_array((int)$order_status_id,$this->config->get('mvd_checkout_order_status')))) {
+					if ($vendor_products){				
+						foreach ($vendor_unique as $vendor) {
+							if ($vendor['vendor_id']) {
+								$data = array();
+								$vemail = $this->db->query("SELECT *, CONCAT(firstname,' ',lastname) AS contact_name FROM `" . DB_PREFIX . "vendors` WHERE vendor_id = '" . (int)$vendor['vendor_id'] . "'");
+								$cust_order_status_query = $this->db->query("SELECT name FROM " . DB_PREFIX . "order_status WHERE order_status_id = '" . (int)$order_status_id . "' AND language_id = '" . (int)$order_info['language_id'] . "'");
+								$language = new Language($order_info['language_directory']);
+								//$language->load($order_info['language_filename']);
+								$language->load('mail/vendor_email');
+										
+								$data['text_order_details'] = $language->get('text_order_details');
+								$data['text_shipping_address'] = "<b>" . $language->get('text_shipping_address') . "</b><br/>";
+								$data['date_ordered'] = '<b>' . $language->get('text_date_ordered') . ' </b>' . date('F j\, Y') . '<br/>';
+								$data['logo'] = HTTP_SERVER . 'image/' . $this->config->get('config_logo');
+								$data['store_name'] = $order_info['store_name'];
+								$data['store_url'] = $order_info['store_url'];
+								
+								/*Show header title*/
+								$data['title'] = sprintf($language->get('text_new_subject'), html_entity_decode($order_info['store_name'], ENT_QUOTES, 'UTF-8'), $order_id);		
+								
+								/*show vendor name*/
+								$data['vendor_name'] = '<b>' . $language->get('text_title') . $vemail->row['contact_name'] . '</b>,' . "\n\n";
+								
+								/*show message to vendor*/
+								$data['vendor_message'] = $this->config->get('mvd_history_order_message' . $this->config->get('config_language_id')) . "\n\n";
+																					
+								/*show vendor customer order id*/
+								if ($this->config->get('mvd_show_order_id')) {
+									$data['order_id'] = '<b>' . $language->get('text_vendor_order_id') . '</b>' . $order_id . '<br/>';
+								} else {
+									$data['order_id'] = '';
+								}
+								
+								/*show vendor customer order status*/
+								if ($this->config->get('mvd_show_order_status')) {
+									$data['order_status'] = '<b>' . $language->get('text_order_status') . ' </b>' . $cust_order_status_query->row['name'] . '<br/>';
+								} else {
+									$data['order_status'] = '';
+								}
+								
+								/*show payment method*/
+								if ($this->config->get('mvd_show_payment_method')) {
+									$data['payment_method'] = '<b>' . $language->get('text_payment_method') . ' </b>' . $order_info['payment_method'] . '<br/>';
+								} else {
+									$data['payment_method'] = '';
+								}
+								
+								/*show vendor customer email*/
+								if ($this->config->get('mvd_show_cust_email')) {
+									$data['email_address'] = '<b>' . $language->get('text_email') . ' </b>' . $order_info['email'] . '<br/>';
+								} else {
+									$data['email_address'] = '';
+								}
+								
+								/*show vendor customer telephone*/
+								if ($this->config->get('mvd_show_cust_telephone')) {
+									$data['telephone'] = '<b>' . $language->get('text_telephone') . ' </b>' . $order_info['telephone'] . '<br/>';
+								} else {
+									$data['telephone'] = '';
+								}
+								
+								/*show vendor customer shipping address*/
+								if ($this->config->get('mvd_show_cust_shipping_address')) {
+									if (($order_info['shipping_firstname']) && ($order_info['shipping_address_1'])) { 
+										$format = '<b>{firstname} {lastname}</b>' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city}, {postcode}' . "\n" . '{zone}, {country}';
+										$find = array(
+										'{firstname}',
+										'{lastname}',
+										'{company}',
+										'{address_1}',
+										'{address_2}',
+										'{city}',
+										'{postcode}',
+										'{zone}',
+										'{zone_code}',
+										'{country}'
+										);
+									
+										$replace = array(
+											'firstname' => $order_info['shipping_firstname'],
+											'lastname'  => $order_info['shipping_lastname'],
+											'company'   => $order_info['shipping_company'],
+											'address_1' => $order_info['shipping_address_1'],
+											'address_2' => $order_info['shipping_address_2'],
+											'city'      => $order_info['shipping_city'],
+											'postcode'  => $order_info['shipping_postcode'],
+											'zone'      => $order_info['shipping_zone'],
+											'zone_code' => $order_info['shipping_zone_code'],
+											'country'   => $order_info['shipping_country']  
+										);
+										$data['cust_shipping_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
+									} else {
+										$format = '<b>{firstname} {lastname}</b>' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city}, {postcode}' . "\n" . '{zone}, {country}';
+										$find = array(
+											'{firstname}',
+											'{lastname}',
+											'{company}',
+											'{address_1}',
+											'{address_2}',
+											'{city}',
+											'{postcode}',
+											'{zone}',
+											'{zone_code}',
+											'{country}'
+										);
+									
+										$replace = array(
+											'firstname' => $order_info['payment_firstname'],
+											'lastname'  => $order_info['payment_lastname'],
+											'company'   => $order_info['payment_company'],
+											'address_1' => $order_info['payment_address_1'],
+											'address_2' => $order_info['payment_address_2'],
+											'city'      => $order_info['payment_city'],
+											'postcode'  => $order_info['payment_postcode'],
+											'zone'      => $order_info['payment_zone'],
+											'zone_code' => $order_info['payment_zone_code'],
+											'country'   => $order_info['payment_country']  
+										);
+										$data['cust_shipping_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
+									}
+								} else {
+									$data['cust_shipping_address'] = '';
+								}
+								
+								/*show vendor information*/
+								if ($this->config->get('mvd_show_vendor_address')) {
+									$data['show_vendor_contact'] = True;
+									$format = '<b>{firstname} {lastname}</b>' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city}, {postcode}' . "\n" . '{zone}, {country}';
+										$find = array(
+											'{firstname}',
+											'{lastname}',
+											'{company}',
+											'{address_1}',
+											'{address_2}',
+											'{city}',
+											'{postcode}',
+											'{zone}',
+											'{country}'
+										);
+										
+									$zone_name = $this->db->query("SELECT name FROM " . DB_PREFIX . "zone WHERE zone_id = '" . (int)$vemail->row['zone_id'] . "' AND country_id = '" . (int)$vemail->row['country_id'] . "'");			
+									$country_name = $this->db->query("SELECT name FROM " . DB_PREFIX . "country WHERE country_id = '" . (int)$vemail->row['country_id'] . "'");	
+									
+										$replace = array(
+											'firstname' => $vemail->row['firstname'],
+											'lastname'  => $vemail->row['lastname'],
+											'company'   => $vemail->row['company'],
+											'address_1' => $vemail->row['address_1'],
+											'address_2' => $vemail->row['address_2'],
+											'city'      => $vemail->row['city'],
+											'postcode'  => $vemail->row['postcode'],
+											'zone'  	=> isset($zone_name->row['name']) ? $zone_name->row['name'] : 'None',
+											'country'   => $country_name->row['name']
+										);
+										
+									$vendor_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
+											
+									$data['vendor_address'] = $vendor_address . '<br/>';
+									$data['text_vendor_contact'] = $language->get('text_vendor_contact');
+									
+									/*show vendor email*/
+									if ($this->config->get('mvd_show_vendor_email')) {
+										$data['vendor_email'] = '<b>' . $language->get('text_email') . ' </b>' . $vemail->row['email'] . '<br/>';
+									} else {
+										$data['vendor_email'] = '';
+									}
+									
+									/*show vendor telephone*/
+									if ($this->config->get('mvd_show_vendor_telephone')) {
+										$data['vendor_telephone'] = '<b>' . $language->get('text_telephone') . ' </b>' . $vemail->row['telephone'] . '<br/>';
+									} else {
+										$data['vendor_telephone'] = '';
+									}
+					
+								} else {
+									$data['show_vendor_contact'] = False;
+								}
+								/*end show vendor address*/
+								
+								$coupon = $this->db->query("SELECT * FROM " . DB_PREFIX . "vendor_discount WHERE order_id = '" . (int)$order_id . "' AND vendor_id = '" . (int)$vendor['vendor_id'] . "'");
+								if (isset($coupon->row['amount']) > 0) {
+									$data['coupon_title'] = $coupon->row['title'];
+									$data['coupon'] = '-' . $this->currency->format($coupon->row['amount']);
+								} else {
+									$data['coupon'] = false;
+								}
+								
+								$subtotal = 0;
+								$vsubtotal = $this->db->query("SELECT SUM(total) AS sum_product_total, SUM(quantity*tax) as sum_product_tax FROM " . DB_PREFIX . "order_product op LEFT JOIN " . DB_PREFIX . "vendor v ON ( op.product_id = v.vproduct_id ) WHERE v.vendor =  '" . (int)$vendor['vendor_id'] . "' AND op.order_id =  '" . (int)$order_id . "'");
+								$subtotal = $vsubtotal->row['sum_product_total'];
+								
+								$vat = $this->db->query("SELECT title FROM " . DB_PREFIX . "order_total WHERE order_id = '" . (int)$order_id . "' AND code = 'tax'");
+
+								/*Get Shipping Cost*/
+								$shipcost = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_shipping` WHERE vendor_id = '" . (int)$vendor['vendor_id'] . "' AND order_id = '" . (int)$order_id . "'");
+								
+								if ($this->config->get('tax_status') && ($vsubtotal->row['sum_product_tax'] != 0)) {
+									$data['text_tax'] = $vat->row['title'];
+									$data['tax'] = $this->currency->format($vsubtotal->row['sum_product_tax'] + (isset($shipcost->row['tax']) ? $shipcost->row['tax'] : '0') - (isset($coupon->row['tax']) ? $coupon->row['tax'] : '0'));
+								} else {
+									$data['tax'] = '0';
+								}
+									
+								if ($shipcost->rows) {
+									if ($shipcost->row['cost']) {
+										$total = $vsubtotal->row['sum_product_total'] + $shipcost->row['cost'] - ((isset($coupon->row['amount'])) ? $coupon->row['amount'] : 0) + ($this->config->get('tax_status') ? ($vsubtotal->row['sum_product_tax'] + $shipcost->row['tax'] -((isset($coupon->row['tax'])) ? $coupon->row['tax'] : 0)): 0);
+									} else {
+										$total = $vsubtotal->row['sum_product_total'] - ((isset($coupon->row['amount'])) ? $coupon->row['amount'] : 0) + ($this->config->get('tax_status') ? ($vsubtotal->row['sum_product_tax'] - ((isset($coupon->row['tax'])) ? $coupon->row['tax'] : 0)): 0);
+									}
+									
+									$data['shipping'] = $shipcost->row['title'] . ' (' . $this->weight->format($shipcost->row['weight'], $this->config->get('config_weight_class_id')) . ')';
+									$data['scost'] = $this->currency->format($shipcost->row['cost']);
+									
+								} else {
+									$total = $vsubtotal->row['sum_product_total'] - ((isset($coupon->row['amount'])) ? $coupon->row['amount'] : 0) + ($this->config->get('tax_status') ? ($vsubtotal->row['sum_product_tax'] - ((isset($coupon->row['tax'])) ? $coupon->row['tax'] : 0)): 0);
+									$data['scost'] = 0;
+								}
+										
+								/*END Get Shipping Cost*/
+													
+								foreach ($vendor_products as $vendor_product) {
+									if ($vendor['vendor_id'] == $vendor_product['vendor_id']) {
+										$data['vendor_products'][] = array(
+											'name'     => $vendor_product['name'],
+											'option'   => $vendor_product['option'],
+											'model'    => $vendor_product['model'],
+											'sku'	   => $vendor_product['sku'],
+											'price'	   => $this->currency->format($vendor_product['price'] + ($this->config->get('tax_status') ? $vendor_product['tax'] : 0)),
+											'quantity' => $vendor_product['quantity'],
+											'total'	   => $this->currency->format($vendor_product['total'] + ($this->config->get('tax_status') ? ($vendor_product['tax'] * $vendor_product['quantity']) : 0)),
+											'email'    => $vendor_product['email']
+										);
+									}
+								}
+								
+								$data['product'] = $language->get('column_product');
+								$data['model'] = $language->get('column_model');
+								$data['quantity'] = $language->get('column_quantity');
+								$data['unit_price'] = $language->get('column_unit_price');
+								$data['total'] = $language->get('column_total');
+								$data['subtotal'] = $language->get('column_subtotal');
+								$data['vendor_auto_msg'] = $language->get('text_vendor_auto_msg');
+								$data['vendor_alert'] = $language->get('text_vendor_email') . $this->config->get('config_name');
+								$data['vsubtotal'] = $this->currency->format($subtotal);
+								$data['vtotal'] = $this->currency->format($total);
+
+								if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/mail/vendor_email.tpl')) {
+									$html = $this->load->view($this->config->get('config_template') . '/template/mail/vendor_email.tpl', $data);
+								} else {
+									$html = $this->load->view('default/template/mail/vendor_email.tpl', $data);
+								}
+
+								
+								$mail = new Mail();
+								$mail->protocol = $this->config->get('config_mail_protocol');
+								$mail->parameter = $this->config->get('config_mail_parameter');
+								$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+								$mail->smtp_username = $this->config->get('config_mail_smtp_username');
+								$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+								$mail->smtp_port = $this->config->get('config_mail_smtp_port');
+								$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+									
+								$mail->setTo($vemail->row['email']);
+								$mail->setFrom($this->config->get('config_email'));
+								$mail->setSender($this->config->get('config_name'));
+								$mail->setSubject($language->get('text_vendor_email_subject') . $language->get('text_vendor_order') . $order_id . ' (' . $this->config->get('config_name') . ')');
+								$mail->setHtml($html);
+								$mail->send();
+							} 
+						}
+					}
+				}
+			]]></add>
+		</operation>
+		
+		<!--v2.0.3.1-->
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			if ($order_info['order_status_id'] && $order_status_id && $notify) {
+			]]></search>
+			<add><![CDATA[			
+			$order_product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");
+				$this->db->query("UPDATE `" . DB_PREFIX . "order_product` SET order_status_id = '" . (int)$order_status_id . "' WHERE order_id = '" . (int)$order_id . "'");
+				
+				foreach ($order_product_query->rows as $order_product) {				
+					$option_data_vendor = array();
+					$order_option_vendor_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_option WHERE order_id = '" . (int)$order_id . "' AND order_product_id = '" . (int)$order_product['order_product_id'] . "'");
+					
+					foreach ($order_option_vendor_query->rows as $option) {
+						if ($option['type'] != 'file') {
+							$value = $option['value'];
+						} else {
+							$upload_info = $this->model_tool_upload->getUploadByCode($option['value']);
+
+							if ($upload_info) {
+								$value = $upload_info['name'];
+							} else {
+								$value = '';
+							}
+						}
+
+						$option_data_vendor[] = array(
+							'name'  => $option['name'],
+							'value' => (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
+						);
+					}						
+					
+					$vmail = $this->db->query("SELECT pd.name AS name, p.model AS model, p.sku AS sku, vs.email AS email, vs.vendor_id AS vendor_id FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "vendor v ON (pd.product_id = v.vproduct_id) LEFT JOIN " . DB_PREFIX . "vendors vs ON (v.vendor = vs.vendor_id) WHERE p.product_id = '" . (int)$order_product['product_id'] . "'");
+					$vendor_products[] = array(
+						'name'     => $vmail->row['name'],
+						'model'    => $vmail->row['model'],
+						'sku' 	   => $vmail->row['sku'],
+						'option'   => $option_data_vendor,
+						'quantity' => $order_product['quantity'],
+						'price'	   => $order_product['price'],
+						'total'	   => $order_product['total'],
+						'tax'	   => $order_product['tax'],
+						'vendor_id' => $vmail->row['vendor_id'],
+						'email'	    => $vmail->row['email']
+					);
+						
+					$vendor_list[] = array ('vendor_id' => $vmail->row['vendor_id']);
+					$this->db->query("INSERT INTO " . DB_PREFIX . "order_status_vendor_update SET order_id = '" . (int)$order_id . "', order_status_id = '" . (int)$order_status_id . "', vendor_id = '" . (int)$vmail->row['vendor_id'] . "', product_id = '" . (int)$order_product['order_product_id'] . "'");
+					
+					// Check if there are any linked downloads
+					$product_download_query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "product_to_download` WHERE product_id = '" . (int)$order_product['product_id'] . "'");
+
+					if ($product_download_query->row['total']) {
+						$download_status = true;
+					}
+				}
+				
+				$vendor_unique = array_map("unserialize", array_unique(array_map("serialize", $vendor_list)));				
+				if (($this->config->get('mvd_email_status')) && (in_array((int)$order_status_id,$this->config->get('mvd_checkout_order_status')))) {
+					if ($vendor_products){				
+						foreach ($vendor_unique as $vendor) {
+							if ($vendor['vendor_id']) {
+								$data = array();
+								$vemail = $this->db->query("SELECT *, CONCAT(firstname,' ',lastname) AS contact_name FROM `" . DB_PREFIX . "vendors` WHERE vendor_id = '" . (int)$vendor['vendor_id'] . "'");
+								$cust_order_status_query = $this->db->query("SELECT name FROM " . DB_PREFIX . "order_status WHERE order_status_id = '" . (int)$order_status_id . "' AND language_id = '" . (int)$order_info['language_id'] . "'");
+								$language = new Language($order_info['language_directory']);
+								//$language->load($order_info['language_filename']);
+								$language->load('mail/vendor_email');
+										
+								$data['text_order_details'] = $language->get('text_order_details');
+								$data['text_shipping_address'] = "<b>" . $language->get('text_shipping_address') . "</b><br/>";
+								$data['date_ordered'] = '<b>' . $language->get('text_date_ordered') . ' </b>' . date('F j\, Y') . '<br/>';
+								$data['logo'] = HTTP_SERVER . 'image/' . $this->config->get('config_logo');
+								$data['store_name'] = $order_info['store_name'];
+								$data['store_url'] = $order_info['store_url'];
+								
+								/*Show header title*/
+								$data['title'] = sprintf($language->get('text_new_subject'), html_entity_decode($order_info['store_name'], ENT_QUOTES, 'UTF-8'), $order_id);		
+								
+								/*show vendor name*/
+								$data['vendor_name'] = '<b>' . $language->get('text_title') . $vemail->row['contact_name'] . '</b>,' . "\n\n";
+								
+								/*show message to vendor*/
+								$data['vendor_message'] = $this->config->get('mvd_history_order_message' . $this->config->get('config_language_id')) . "\n\n";
+																					
+								/*show vendor customer order id*/
+								if ($this->config->get('mvd_show_order_id')) {
+									$data['order_id'] = '<b>' . $language->get('text_vendor_order_id') . '</b>' . $order_id . '<br/>';
+								} else {
+									$data['order_id'] = '';
+								}
+								
+								/*show vendor customer order status*/
+								if ($this->config->get('mvd_show_order_status')) {
+									$data['order_status'] = '<b>' . $language->get('text_order_status') . ' </b>' . $cust_order_status_query->row['name'] . '<br/>';
+								} else {
+									$data['order_status'] = '';
+								}
+								
+								/*show payment method*/
+								if ($this->config->get('mvd_show_payment_method')) {
+									$data['payment_method'] = '<b>' . $language->get('text_payment_method') . ' </b>' . $order_info['payment_method'] . '<br/>';
+								} else {
+									$data['payment_method'] = '';
+								}
+								
+								/*show vendor customer email*/
+								if ($this->config->get('mvd_show_cust_email')) {
+									$data['email_address'] = '<b>' . $language->get('text_email') . ' </b>' . $order_info['email'] . '<br/>';
+								} else {
+									$data['email_address'] = '';
+								}
+								
+								/*show vendor customer telephone*/
+								if ($this->config->get('mvd_show_cust_telephone')) {
+									$data['telephone'] = '<b>' . $language->get('text_telephone') . ' </b>' . $order_info['telephone'] . '<br/>';
+								} else {
+									$data['telephone'] = '';
+								}
+								
+								/*show vendor customer shipping address*/
+								if ($this->config->get('mvd_show_cust_shipping_address')) {
+									if (($order_info['shipping_firstname']) && ($order_info['shipping_address_1'])) { 
+										$format = '<b>{firstname} {lastname}</b>' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city}, {postcode}' . "\n" . '{zone}, {country}';
+										$find = array(
+										'{firstname}',
+										'{lastname}',
+										'{company}',
+										'{address_1}',
+										'{address_2}',
+										'{city}',
+										'{postcode}',
+										'{zone}',
+										'{zone_code}',
+										'{country}'
+										);
+									
+										$replace = array(
+											'firstname' => $order_info['shipping_firstname'],
+											'lastname'  => $order_info['shipping_lastname'],
+											'company'   => $order_info['shipping_company'],
+											'address_1' => $order_info['shipping_address_1'],
+											'address_2' => $order_info['shipping_address_2'],
+											'city'      => $order_info['shipping_city'],
+											'postcode'  => $order_info['shipping_postcode'],
+											'zone'      => $order_info['shipping_zone'],
+											'zone_code' => $order_info['shipping_zone_code'],
+											'country'   => $order_info['shipping_country']  
+										);
+										$data['cust_shipping_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
+									} else {
+										$format = '<b>{firstname} {lastname}</b>' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city}, {postcode}' . "\n" . '{zone}, {country}';
+										$find = array(
+											'{firstname}',
+											'{lastname}',
+											'{company}',
+											'{address_1}',
+											'{address_2}',
+											'{city}',
+											'{postcode}',
+											'{zone}',
+											'{zone_code}',
+											'{country}'
+										);
+									
+										$replace = array(
+											'firstname' => $order_info['payment_firstname'],
+											'lastname'  => $order_info['payment_lastname'],
+											'company'   => $order_info['payment_company'],
+											'address_1' => $order_info['payment_address_1'],
+											'address_2' => $order_info['payment_address_2'],
+											'city'      => $order_info['payment_city'],
+											'postcode'  => $order_info['payment_postcode'],
+											'zone'      => $order_info['payment_zone'],
+											'zone_code' => $order_info['payment_zone_code'],
+											'country'   => $order_info['payment_country']  
+										);
+										$data['cust_shipping_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
+									}
+								} else {
+									$data['cust_shipping_address'] = '';
+								}
+								
+								/*show vendor information*/
+								if ($this->config->get('mvd_show_vendor_address')) {
+									$data['show_vendor_contact'] = True;
+									$format = '<b>{firstname} {lastname}</b>' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city}, {postcode}' . "\n" . '{zone}, {country}';
+										$find = array(
+											'{firstname}',
+											'{lastname}',
+											'{company}',
+											'{address_1}',
+											'{address_2}',
+											'{city}',
+											'{postcode}',
+											'{zone}',
+											'{country}'
+										);
+										
+									$zone_name = $this->db->query("SELECT name FROM " . DB_PREFIX . "zone WHERE zone_id = '" . (int)$vemail->row['zone_id'] . "' AND country_id = '" . (int)$vemail->row['country_id'] . "'");			
+									$country_name = $this->db->query("SELECT name FROM " . DB_PREFIX . "country WHERE country_id = '" . (int)$vemail->row['country_id'] . "'");	
+									
+										$replace = array(
+											'firstname' => $vemail->row['firstname'],
+											'lastname'  => $vemail->row['lastname'],
+											'company'   => $vemail->row['company'],
+											'address_1' => $vemail->row['address_1'],
+											'address_2' => $vemail->row['address_2'],
+											'city'      => $vemail->row['city'],
+											'postcode'  => $vemail->row['postcode'],
+											'zone'  	=> isset($zone_name->row['name']) ? $zone_name->row['name'] : 'None',
+											'country'   => $country_name->row['name']
+										);
+										
+									$vendor_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
+											
+									$data['vendor_address'] = $vendor_address . '<br/>';
+									$data['text_vendor_contact'] = $language->get('text_vendor_contact');
+									
+									/*show vendor email*/
+									if ($this->config->get('mvd_show_vendor_email')) {
+										$data['vendor_email'] = '<b>' . $language->get('text_email') . ' </b>' . $vemail->row['email'] . '<br/>';
+									} else {
+										$data['vendor_email'] = '';
+									}
+									
+									/*show vendor telephone*/
+									if ($this->config->get('mvd_show_vendor_telephone')) {
+										$data['vendor_telephone'] = '<b>' . $language->get('text_telephone') . ' </b>' . $vemail->row['telephone'] . '<br/>';
+									} else {
+										$data['vendor_telephone'] = '';
+									}
+					
+								} else {
+									$data['show_vendor_contact'] = False;
+								}
+								/*end show vendor address*/
+								
+								$coupon = $this->db->query("SELECT * FROM " . DB_PREFIX . "vendor_discount WHERE order_id = '" . (int)$order_id . "' AND vendor_id = '" . (int)$vendor['vendor_id'] . "'");
+								if (isset($coupon->row['amount']) > 0) {
+									$data['coupon_title'] = $coupon->row['title'];
+									$data['coupon'] = '-' . $this->currency->format($coupon->row['amount']);
+								} else {
+									$data['coupon'] = false;
+								}
+								
+								$subtotal = 0;
+								$vsubtotal = $this->db->query("SELECT SUM(total) AS sum_product_total, SUM(quantity*tax) as sum_product_tax FROM " . DB_PREFIX . "order_product op LEFT JOIN " . DB_PREFIX . "vendor v ON ( op.product_id = v.vproduct_id ) WHERE v.vendor =  '" . (int)$vendor['vendor_id'] . "' AND op.order_id =  '" . (int)$order_id . "'");
+								$subtotal = $vsubtotal->row['sum_product_total'];
+								
+								$vat = $this->db->query("SELECT title FROM " . DB_PREFIX . "order_total WHERE order_id = '" . (int)$order_id . "' AND code = 'tax'");
+
+								/*Get Shipping Cost*/
+								$shipcost = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_shipping` WHERE vendor_id = '" . (int)$vendor['vendor_id'] . "' AND order_id = '" . (int)$order_id . "'");
+								
+								if ($this->config->get('tax_status') && ($vsubtotal->row['sum_product_tax'] != 0)) {
+									$data['text_tax'] = $vat->row['title'];
+									$data['tax'] = $this->currency->format($vsubtotal->row['sum_product_tax'] + (isset($shipcost->row['tax']) ? $shipcost->row['tax'] : '0') - (isset($coupon->row['tax']) ? $coupon->row['tax'] : '0'));
+								} else {
+									$data['tax'] = '0';
+								}
+									
+								if ($shipcost->rows) {
+									if ($shipcost->row['cost']) {
+										$total = $vsubtotal->row['sum_product_total'] + $shipcost->row['cost'] - ((isset($coupon->row['amount'])) ? $coupon->row['amount'] : 0) + ($this->config->get('tax_status') ? ($vsubtotal->row['sum_product_tax'] + $shipcost->row['tax'] -((isset($coupon->row['tax'])) ? $coupon->row['tax'] : 0)): 0);
+									} else {
+										$total = $vsubtotal->row['sum_product_total'] - ((isset($coupon->row['amount'])) ? $coupon->row['amount'] : 0) + ($this->config->get('tax_status') ? ($vsubtotal->row['sum_product_tax'] - ((isset($coupon->row['tax'])) ? $coupon->row['tax'] : 0)): 0);
+									}
+									
+									$data['shipping'] = $shipcost->row['title'] . ' (' . $this->weight->format($shipcost->row['weight'], $this->config->get('config_weight_class_id')) . ')';
+									$data['scost'] = $this->currency->format($shipcost->row['cost']);
+									
+								} else {
+									$total = $vsubtotal->row['sum_product_total'] - ((isset($coupon->row['amount'])) ? $coupon->row['amount'] : 0) + ($this->config->get('tax_status') ? ($vsubtotal->row['sum_product_tax'] - ((isset($coupon->row['tax'])) ? $coupon->row['tax'] : 0)): 0);
+									$data['scost'] = 0;
+								}
+										
+								/*END Get Shipping Cost*/
+													
+								foreach ($vendor_products as $vendor_product) {
+									if ($vendor['vendor_id'] == $vendor_product['vendor_id']) {
+										$data['vendor_products'][] = array(
+											'name'     => $vendor_product['name'],
+											'option'   => $vendor_product['option'],
+											'model'    => $vendor_product['model'],
+											'sku'	   => $vendor_product['sku'],
+											'price'	   => $this->currency->format($vendor_product['price'] + ($this->config->get('tax_status') ? $vendor_product['tax'] : 0)),
+											'quantity' => $vendor_product['quantity'],
+											'total'	   => $this->currency->format($vendor_product['total'] + ($this->config->get('tax_status') ? ($vendor_product['tax'] * $vendor_product['quantity']) : 0)),
+											'email'    => $vendor_product['email']
+										);
+									}
+								}
+								
+								$data['product'] = $language->get('column_product');
+								$data['model'] = $language->get('column_model');
+								$data['quantity'] = $language->get('column_quantity');
+								$data['unit_price'] = $language->get('column_unit_price');
+								$data['total'] = $language->get('column_total');
+								$data['subtotal'] = $language->get('column_subtotal');
+								$data['vendor_auto_msg'] = $language->get('text_vendor_auto_msg');
+								$data['vendor_alert'] = $language->get('text_vendor_email') . $this->config->get('config_name');
+								$data['vsubtotal'] = $this->currency->format($subtotal);
+								$data['vtotal'] = $this->currency->format($total);
+
+								if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/mail/vendor_email.tpl')) {
+									$html = $this->load->view($this->config->get('config_template') . '/template/mail/vendor_email.tpl', $data);
+								} else {
+									$html = $this->load->view('default/template/mail/vendor_email.tpl', $data);
+								}
+
+								
+								$mail = new Mail();
+								$mail->protocol = $this->config->get('config_mail_protocol');
+								$mail->parameter = $this->config->get('config_mail_parameter');
+								$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+								$mail->smtp_username = $this->config->get('config_mail_smtp_username');
+								$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+								$mail->smtp_port = $this->config->get('config_mail_smtp_port');
+								$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+									
+								$mail->setTo($vemail->row['email']);
+								$mail->setFrom($this->config->get('config_email'));
+								$mail->setSender($this->config->get('config_name'));
+								$mail->setSubject($language->get('text_vendor_email_subject') . $language->get('text_vendor_order') . $order_id . ' (' . $this->config->get('config_name') . ')');
+								$mail->setHtml($html);
+								$mail->send();
+							} 
+						}
+					}
+				}
+			]]></add>
+		</operation>
+		<!--End v2.0.3.1-->
+		
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+			$message .= strip_tags($comment) . "\n\n";
+			]]></search>
+			<add><![CDATA[			
+			if ($notify && $sent_comment_to_all) {
+				$getComments = $this->getVendorComment($order_id);
+					foreach ($getComments AS $Comment) {
+						if ($Comment['comment']) {
+							$message .= strip_tags(html_entity_decode($Comment['comment'], ENT_QUOTES, 'UTF-8')) . "\n\n";
+						}
+					}
+			} else {
+				$message .= strip_tags($comment) . "\n\n";
+			}
+			]]></add>
+		</operation>
+		
+		<!--Start version 2.0.0.0-->
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+			$message .= $comment . "\n\n";
+			]]></search>
+			<add><![CDATA[			
+			if ($notify && $sent_comment_to_all) {
+				$getComments = $this->getVendorComment($order_id);
+					foreach ($getComments AS $Comment) {
+						if ($Comment['comment']) {
+							$message .= strip_tags(html_entity_decode($Comment['comment'], ENT_QUOTES, 'UTF-8')) . "\n\n";
+						}
+					}
+			} else {
+				$message .= strip_tags($comment) . "\n\n";
+			}
+			]]></add>
+		</operation>
+		<!--End version 2.0.0.0-->
+		
+		<operation error="skip">
+			<search position="after" offset="1"><![CDATA[
+			$this->event->trigger('post.order.history.add', $order_id);
+			]]></search>
+			<add><![CDATA[			
+				Private function getdescost() {
+				$purchase_product = array();
+				$vendor_country = array();
+				$product_vendor = array();
+				$purchase_data =array();
+				$filtered_geo_zone_id = array();
+				$vendor_data = array();
+						
+				$address = array();
+				if (isset($this->session->data['shipping_address']['address_id']) && $this->session->data['shipping_address']['address_id']) { 
+					$this->load->model('account/address');
+					$address = $this->model_account_address->getAddress($this->session->data['shipping_address']['address_id']);
+				} elseif (isset($this->session->data['payment_address']['address_id']) && $this->session->data['payment_address']['address_id']) { 
+					$this->load->model('account/address');
+					$address = $this->model_account_address->getAddress($this->session->data['payment_address']['address_id']);
+				} else { 
+					$address = (isset($this->session->data['guest'])) ? $this->session->data['guest'] : array();
+				}
+				
+				if (!empty($this->session->data['shipping_address']['country_id'])) {
+					$country_id	= (isset($this->session->data['shipping_address']['country_id'])) ? $this->session->data['shipping_address']['country_id'] : $this->request->post['country_id'];
+					$zone_id 	= (isset($this->session->data['shipping_address']['zone_id'])) ? $this->session->data['shipping_address']['zone_id'] : $this->request->post['zone_id'];
+				} else {
+					$country_id	= $this->session->data['payment_address']['country_id'];
+					$zone_id 	= $this->session->data['payment_address']['zone_id'];
+				}
+
+				foreach ($this->cart->getProducts() as $product) {
+					if ($product['shipping']) {
+						$purchase_product = $this->db->query("SELECT vs.vendor_id AS vendor_id, vs.country_id as country_id FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "vendor v ON (p.product_id = v.vproduct_id) LEFT JOIN " . DB_PREFIX . "vendors vs ON (v.vendor = vs.vendor_id) WHERE p.product_id = '" . (int)$product['product_id'] . "'");
+							$purchase_data[] = array (
+								'product_id'  	=> $product['product_id'],
+								'weight'		=> (float)$product['weight'],
+								'country_id'	=> $purchase_product->row['country_id'],
+								'vendor_id'		=> $purchase_product->row['vendor_id']
+							);
+									
+						$vendor_country[] = $purchase_product->row['country_id'];
+						$product_vendor[] = array ('vendor_id'	=> $purchase_product->row['vendor_id']);
+					}
+				}
+							
+				$scountry = array_filter(array_unique($vendor_country));
+				$svendor = array_map("unserialize", array_unique(array_map("serialize", $product_vendor)));
+							
+				$pquery = $this->db->query("SELECT * FROM " . DB_PREFIX . "geo_zone ORDER BY geo_zone_id");
+				$pgetvendors = $this->db->query("SELECT * FROM " . DB_PREFIX . "vendors");
+
+				foreach ($pquery->rows as $geo_zone) {
+					if (in_array($this->config->get('mvweight_' . $geo_zone['geo_zone_id'] . '_scountry'),$scountry)) { 
+						foreach ($pgetvendors->rows as $getvendor) {
+							if ($this->config->get('mvweight_' . $geo_zone['geo_zone_id'] . '_vendors')) {
+								if (in_array($getvendor['vendor_id'],$this->config->get('mvweight_' . $geo_zone['geo_zone_id'] . '_vendors'))) {
+									$filtered_geo_zone_id[] = array('geo_zone'	=>	(int)$geo_zone['geo_zone_id']);
+								}
+							}
+						}
+					} 
+				}
+							
+				$desGeoZone = array_map("unserialize", array_unique(array_map("serialize", $filtered_geo_zone_id)));
+					
+				$group_total_weight = 0;
+				foreach ($svendor as $vendor) {
+					${'group_' . $vendor['vendor_id'] . '_weight'} = '';
+					foreach ($purchase_data as $pd_weight) {
+						if (isset($pd_weight['product_id'])) {
+							if ($pd_weight['vendor_id'] == $vendor['vendor_id']) {
+								${'group_' . $vendor['vendor_id'] . '_weight'} += $pd_weight['weight'];
+							}
+						}
+					}
+					${'get_group_vendor_id_' . $vendor['vendor_id'] . '_weight'} = 'group_vendor_id_' . $vendor['vendor_id'] . '_weight';
+					$group_total_weight += ${'group_' . $vendor['vendor_id'] . '_weight'};
+				}
+						
+				foreach ($desGeoZone as $geo_zone) {
+					if ($this->config->get('mvweight_' . (int)$geo_zone['geo_zone'] . '_status')) {
+						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$geo_zone['geo_zone'] . "' AND country_id = '" . (int)$country_id . "' AND (zone_id = '" . (int)$zone_id . "' OR zone_id = '0')");
+								
+						if ($query->num_rows) {
+							$status = true;
+						} else {
+							$status = false;
+						}
+									
+					} else {
+						$status = false;
+					}
+								
+					if ($status) {
+						foreach ($svendor as $vendor) {
+							if (in_array(preg_replace("/[^0-9]/", '', ${'get_group_vendor_id_' . $vendor['vendor_id'] . '_weight'}), $this->config->get('mvweight_' . (int)$geo_zone['geo_zone'] . '_vendors'))) {
+								$weight = ${'group_' . $vendor['vendor_id'] . '_weight'};
+								$rates = explode(',', $this->config->get('mvweight_' . (int)$geo_zone['geo_zone'] . '_rate'));
+								foreach ($rates as $rate) {
+									$data = explode(':', $rate);
+									if ($data[0] >= $weight) {
+										if (isset($data[1])) {
+											$vendor_data[] = array(
+												'vendor_id'	=>	$vendor['vendor_id'],
+												'cost'		=>	$data[1],
+												'weight'	=>	(float)$weight
+											);
+										}
+										break;
+									}
+								}
+							}
+						}
+					}
+				}
+				return $vendor_data;
+			}
+				
+			Private function mv_flat_shipping() {
+						
+				$mv_flat_data = array();		
+				foreach ($this->cart->getProducts() as $product) {
+					if ($product['shipping']) {
+						$vproduct = $this->db->query("SELECT v.vendor, v.prefered_shipping, v.shipping_cost, p.weight FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "vendor v ON (p.product_id = v.vproduct_id) WHERE p.product_id = '" . (int)$product['product_id'] . "'");
+							if ($this->config->get('mvflat_shipping_method') == $vproduct->row['prefered_shipping']) {
+								$mv_flat_data[] = array (
+									'vendor' 	=> (int)$vproduct->row['vendor'],
+									'weight'	=> (float)$vproduct->row['weight']*$product['quantity'],
+									'cost'		=> (float)$vproduct->row['shipping_cost']*$product['quantity']
+									);
+							}
+					}
+				}
+				return $mv_flat_data;
+			}
+				
+			Private function mvdm_flat_shipping() {
+						
+				$valid_courier = array();
+				$shipping_courier = array();		
+				$shipping_pool = array();
+				$validate_shipping_method = TRUE;
+				$num_of_shipping_products = 0;
+					
+				$address = array();
+				if (isset($this->session->data['shipping_address']['address_id']) && $this->session->data['shipping_address']['address_id']) { 
+					$this->load->model('account/address');
+					$address = $this->model_account_address->getAddress($this->session->data['shipping_address']['address_id']);
+				} elseif (isset($this->session->data['payment_address']['address_id']) && $this->session->data['payment_address']['address_id']) { 
+					$this->load->model('account/address');
+					$address = $this->model_account_address->getAddress($this->session->data['payment_address']['address_id']);
+				} else { 
+					$address = (isset($this->session->data['guest'])) ? $this->session->data['guest'] : array();
+				}
+
+				if (!empty($this->session->data['shipping_address']['country_id'])) {
+					$country_id	= (isset($this->session->data['shipping_address']['country_id'])) ? $this->session->data['shipping_address']['country_id'] : $this->request->post['country_id'];
+					$zone_id 	= (isset($this->session->data['shipping_address']['zone_id'])) ? $this->session->data['shipping_address']['zone_id'] : $this->request->post['zone_id'];
+				} else {
+					$country_id	= $this->session->data['payment_address']['country_id'];
+					$zone_id 	= $this->session->data['payment_address']['zone_id'];
+				}
+
+				foreach ($this->cart->getProducts() as $product) {
+					if ($product['shipping']) {
+						$query_shipping_data = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_shipping WHERE product_id = '" . (int)$product['product_id'] . "' ORDER BY product_shipping_id");
+						if ($query_shipping_data->rows) {
+							foreach ($query_shipping_data->rows as $courier) {
+								$valid_destination = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$courier['geo_zone_id'] . "' AND country_id = '" . (int)$country_id . "' AND (zone_id = '" . (int)$zone_id . "' OR zone_id = '0')");
+								if ($valid_destination->row) {
+									$shipping_couriers[] = array(
+										'product_id'	=>	$courier['product_id'],
+										'courier_id'	=>	$courier['courier_id'],
+										'shipping_rate'	=>	$product['quantity']*$courier['shipping_rate'],
+										'weight'		=>	$product['weight'],
+										'geo_zone_id'	=>	$courier['geo_zone_id']
+									);
+								}
+							}
+						}
+						$num_of_shipping_products++;
+					}				
+				}
+					
+				foreach ($shipping_couriers as $shipping_courier) {
+					$i=0;
+					foreach ($shipping_couriers as $shipping_compare) {
+						if ($shipping_courier['courier_id'] == $shipping_compare['courier_id']) {						
+							$i++;
+						}
+					}
+							
+					if ($num_of_shipping_products == $i) {
+						$valid_courier[] = array (
+							'courier_id'	=> $shipping_courier['courier_id']
+						);
+					}
+				}
+
+				$available_shipping_methods = array_map("unserialize", array_unique(array_map("serialize", $valid_courier)));
+				foreach ($available_shipping_methods as $shipping_method) {
+					foreach($shipping_couriers as $shipping_courier) {
+						if ($shipping_method['courier_id'] == $shipping_courier['courier_id'] ) {
+							$shipping_pool[] = array(
+								'product_id'	=>	$shipping_courier['product_id'],
+								'courier_id'	=>	$shipping_courier['courier_id'],
+								'cost'			=>	$shipping_courier['shipping_rate'],
+								'weight'		=>	$shipping_courier['weight']
+							);
+						}
+					}				
+				}
+				return $shipping_pool;		
+			}
+				
+			Public function PaymentGateway() {		
+				$products = $this->cart->getProducts();
+				$identical_vendor = true;
+					
+				if ($products) {				
+					foreach ($products as $product) {
+						if ($product) {
+							$getVID = $this->db->query("SELECT vendor FROM " . DB_PREFIX . "vendor WHERE vproduct_id = '" . (int)$product['product_id'] . "'");						
+							if ($getVID->row) {
+								foreach ($products as $product1) {
+									if ($product1) {
+										$getVID2 = $this->db->query("SELECT vendor FROM " . DB_PREFIX . "vendor WHERE vproduct_id = '" . (int)$product1['product_id'] . "'");
+										if ($getVID->row['vendor'] == $getVID2->row['vendor']) {									
+											$vendor_id = $getVID->row['vendor'];
+										} else {
+											$identical_vendor = false;
+										}			
+									}
+								}
+							}
+						}
+					}
+				} else {
+					$identical_vendor = false;
+				}
+
+				if ($identical_vendor && $getVID->row) {
+					$getPaymentInfo = $this->db->query("SELECT * FROM " . DB_PREFIX . "vendors WHERE vendor_id = '" . (int)$vendor_id . "'");
+					return $getPaymentInfo->row;
+				} else {
+					return false;
+				}
+			}
+				
+			Public function MSPPCallback($order_info) {
+				if ($order_info) {
+					$getVendorID = $this->db->query("SELECT vendor_id FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_info . "' LIMIT 1");
+					$getEmail = $this->db->query("SELECT * FROM " . DB_PREFIX . "vendors WHERE vendor_id = '" . (int)$getVendorID->row['vendor_id'] . "'");
+					return $getEmail->row;
+				} else {
+					return false;
+				}
+			}
+
+			public function getVendorComment($order_id) {
+				$query = $this->db->query("SELECT comment FROM " . DB_PREFIX . "order_history WHERE order_id = '" . (int)$order_id . "' ORDER BY order_history_id DESC");
+				return $query->rows;
+			}
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/language/english/checkout/checkout.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			$_['text_year']                      = 'year';
+			]]></search>
+			<add><![CDATA[			
+			$_['text_commission']       		 = 'Commission';
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/controller/common/header.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			$data['telephone'] = $this->config->get('config_telephone');
+			]]></search>
+			<add><![CDATA[			
+			$data['signup'] = $this->url->link('account/signup', '', 'SSL');
+			$data['mvd_login'] = HTTP_SERVER . 'admin';
+			$data['txt_signup'] = $this->language->get('txt_signup');
+			$data['text_seller'] = $this->language->get('text_seller');
+			$data['mvd_signup'] = $this->config->get('mvd_sign_up');
+			]]></add>
+		</operation>	
+	</file>
+	
+	<file name="catalog/language/english/common/header.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			$_['text_all']           = 'Show All';
+			]]></search>
+			<add><![CDATA[			
+			$_['txt_signup']         = 'Sign Up';
+			$_['text_seller']        = 'Seller Account';
+			]]></add>
+		</operation>	
+	</file>
+	
+	<file name="catalog/view/theme/default/template/common/header.tpl">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			<li><a href="<?php echo $contact; ?>"><i class="fa fa-phone"></i></a> <span class="hidden-xs hidden-sm hidden-md"><?php echo $telephone; ?></span></li>
+			]]></search>
+			<add><![CDATA[
+			<?php if ($mvd_signup) { ?>
+			<li class="dropdown"><a href="<?php echo $signup; ?>" title="<?php echo $text_seller; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users fa-fw"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_seller; ?></span> <span class="caret"></span></a>
+			  <ul class="dropdown-menu dropdown-menu-right">
+				<li><a href="<?php echo $signup; ?>"><?php echo $txt_signup; ?></a></li>
+				<li><a href="<?php echo $mvd_login; ?>"><?php echo $text_login; ?></a></li>
+			  </ul>
+			</li>
+			<?php } ?>
+			]]></add>
+		</operation>	
+	</file>
+	
+	<file name="catalog/view/theme/default/template/checkout/shipping_method.tpl">
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+			<input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" checked="checked" />
+			]]></search>
+			<add><![CDATA[
+			<input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" checked="checked" /> <?php echo isset($quote['cimage']) ? $quote['cimage'] : ''; ?>
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+			<input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" />
+			]]></search>
+			<add><![CDATA[			
+			<input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" /> <?php echo isset($quote['cimage']) ? $quote['cimage'] : ''; ?>
+			]]></add>
+		</operation>	
+	</file>
+</modification>

@@ -682,6 +682,12 @@ class ModelCatalogVDIProduct extends Model {
 
 		return $query->rows;
 	}
+	
+	public function getProductOptionValue($product_id, $product_option_value_id) {
+		$query = $this->db->query("SELECT pov.option_value_id, ovd.name, pov.quantity, pov.subtract, pov.price, pov.price_prefix, pov.points, pov.points_prefix, pov.weight, pov.weight_prefix FROM " . DB_PREFIX . "product_option_value pov LEFT JOIN " . DB_PREFIX . "option_value ov ON (pov.option_value_id = ov.option_value_id) LEFT JOIN " . DB_PREFIX . "option_value_description ovd ON (ov.option_value_id = ovd.option_value_id) WHERE pov.product_id = '" . (int)$product_id . "' AND pov.product_option_value_id = '" . (int)$product_option_value_id . "' AND ovd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+
+		return $query->row;
+	}
 
 	public function getTotalProducts($data = array()) {
 
@@ -911,4 +917,42 @@ class ModelCatalogVDIProduct extends Model {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "vendors WHERE user_id = '" . (int)$this->db->escape($user_id) . "'");
 		return $query->row;
 	}
+	
+	public function getCustomerGroups($data = array()) {
+		$sql = "SELECT * FROM " . DB_PREFIX . "customer_group cg LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (cg.customer_group_id = cgd.customer_group_id) WHERE cgd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
+		$sort_data = array(
+			'cgd.name',
+			'cg.sort_order'
+		);
+
+		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+			$sql .= " ORDER BY " . $data['sort'];
+		} else {
+			$sql .= " ORDER BY cgd.name";
+		}
+
+		if (isset($data['order']) && ($data['order'] == 'DESC')) {
+			$sql .= " DESC";
+		} else {
+			$sql .= " ASC";
+		}
+
+		if (isset($data['start']) || isset($data['limit'])) {
+			if ($data['start'] < 0) {
+				$data['start'] = 0;
+			}
+
+			if ($data['limit'] < 1) {
+				$data['limit'] = 20;
+			}
+
+			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+		}
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
+
 }

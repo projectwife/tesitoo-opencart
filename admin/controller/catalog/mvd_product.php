@@ -1555,9 +1555,8 @@ class ControllerCatalogMVDProduct extends Controller {
 			}
 		}
 
-		$this->load->model('sale/customer_group');
-
-		$data['customer_groups'] = $this->model_sale_customer_group->getCustomerGroups();
+		$this->load->model('customer/customer_group');
+		$data['customer_groups'] = $this->model_customer_customer_group->getCustomerGroups();
 
 		if (isset($this->request->post['product_discount'])) {
 			$product_discounts = $this->request->post['product_discount'];

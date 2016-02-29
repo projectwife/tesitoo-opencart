@@ -1,6 +1,6 @@
 <?php
 // Version
-define('VERSION', '2.0.2.0');
+define('VERSION', '2.1.0.2');
 
 // Configuration
 if (is_file('config.php')) {
@@ -28,7 +28,7 @@ $config = new Config();
 $registry->set('config', $config);
 
 // Database
-$db = new DB(DB_DRIVER, DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+$db = new DB(DB_DRIVER, DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE, DB_PORT);
 $registry->set('db', $db);
 
 // Settings
@@ -38,7 +38,7 @@ foreach ($query->rows as $setting) {
 	if (!$setting['serialized']) {
 		$config->set($setting['key'], $setting['value']);
 	} else {
-		$config->set($setting['key'], unserialize($setting['value']));
+		$config->set($setting['key'], json_decode($setting['value'], true));
 	}
 }
 
@@ -54,7 +54,7 @@ $registry->set('url', $url);
 $log = new Log($config->get('config_error_filename'));
 $registry->set('log', $log);
 
-function error_handler($errno, $errstr, $errfile, $errline) {
+function error_handler($code, $message, $file, $line) {
 	global $log, $config;
 
 	// error suppressed with @
@@ -62,7 +62,7 @@ function error_handler($errno, $errstr, $errfile, $errline) {
 		return false;
 	}
 
-	switch ($errno) {
+	switch ($code) {
 		case E_NOTICE:
 		case E_USER_NOTICE:
 			$error = 'Notice';
@@ -81,11 +81,11 @@ function error_handler($errno, $errstr, $errfile, $errline) {
 	}
 
 	if ($config->get('config_error_display')) {
-		echo '<b>' . $error . '</b>: ' . $errstr . ' in <b>' . $errfile . '</b> on line <b>' . $errline . '</b>';
+		echo '<b>' . $error . '</b>: ' . $message . ' in <b>' . $file . '</b> on line <b>' . $line . '</b>';
 	}
 
 	if ($config->get('config_error_log')) {
-		$log->write('PHP ' . $error . ':  ' . $errstr . ' in ' . $errfile . ' on line ' . $errline);
+		$log->write('PHP ' . $error . ':  ' . $message . ' in ' . $file . ' on line ' . $line);
 	}
 
 	return true;
@@ -142,7 +142,7 @@ $registry->set('length', new Length($registry));
 // User
 $registry->set('user', new User($registry));
 
-//OpenBay Pro
+// OpenBay Pro
 $registry->set('openbay', new Openbay($registry));
 
 // Event
@@ -157,6 +157,9 @@ foreach ($query->rows as $result) {
 
 // Front Controller
 $controller = new Front($registry);
+
+// Compile Sass
+$controller->addPreAction(new Action('common/sass'));
 
 // Login
 $controller->addPreAction(new Action('common/login/check'));
