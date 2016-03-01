@@ -348,22 +348,22 @@
                 <div class="share"><!-- AddThis Button BEGIN -->
                   <div class="addthis_default_style">
                     <a class="addthis_button_pinterest_share">
-                      <img width="20" height="20" src="catalog/view/theme/atr368opc2031/image/socialproduct/icon_pinterest.png" alt="pinterest" />
+                      <img width="20" height="20" src="catalog/view/theme/atr374opc2101/image/socialproduct/icon_pinterest.png" alt="pinterest" />
                     </a>
                     <a class="addthis_button_facebook">
-                      <img width="20" height="20" src="catalog/view/theme/atr368opc2031/image/socialproduct/icon_facebook.png" alt="facebook" />
+                      <img width="20" height="20" src="catalog/view/theme/atr374opc2101/image/socialproduct/icon_facebook.png" alt="facebook" />
                     </a> 
                     <a class="addthis_button_twitter">
-                      <img width="20" height="20" src="catalog/view/theme/atr368opc2031/image/socialproduct/icon_twitter.png" alt="twitter" />
+                      <img width="20" height="20" src="catalog/view/theme/atr374opc2101/image/socialproduct/icon_twitter.png" alt="twitter" />
                     </a>
                     <a class="addthis_button_email">
-                      <img width="20" height="20" src="catalog/view/theme/atr368opc2031/image/socialproduct/icon_mail.png" alt="email" />
+                      <img width="20" height="20" src="catalog/view/theme/atr374opc2101/image/socialproduct/icon_mail.png" alt="email" />
                     </a>
                     <a class="addthis_button_print">
-                      <img width="20" height="20" src="catalog/view/theme/atr368opc2031/image/socialproduct/icon_print.png" alt="print" />
+                      <img width="20" height="20" src="catalog/view/theme/atr374opc2101/image/socialproduct/icon_print.png" alt="print" />
                     </a> 
                     <a class="addthis_button_compact">
-                      <img width="20" height="20" src="catalog/view/theme/atr368opc2031/image/socialproduct/icon_plus.png" alt="plus" />
+                      <img width="20" height="20" src="catalog/view/theme/atr374opc2101/image/socialproduct/icon_plus.png" alt="plus" />
                     </a> 
                   </div>
                   <script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js"></script> 
