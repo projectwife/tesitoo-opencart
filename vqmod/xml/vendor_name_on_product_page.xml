@@ -3,9 +3,15 @@
 	<version><![CDATA[0.1]]></version>
 	<vqmver><![CDATA[2.5.1]]></vqmver>
 	<author><![CDATA[]]></author>
-	<file path="catalog/view/theme/default/template/product/" name="product.tpl">
+	<file name="catalog/view/theme/default/template/product/product.tpl">
 		<operation>
 			<search position="after"><![CDATA[<li><?php echo $text_stock; ?> <?php echo $stock; ?></li>]]></search>
+			<add><![CDATA[            <li><?php echo $text_vendor_name; ?> <?php echo $vendor_name; ?></li>]]></add>
+		</operation>
+    </file>
+	<file name="catalog/view/theme/atr374opc2101/template/product/product.tpl">
+		<operation>
+			<search position="after"><![CDATA[<li><?php echo $text_stock; ?> <span><?php echo $stock; ?></span></li>]]></search>
 			<add><![CDATA[            <li><?php echo $text_vendor_name; ?> <?php echo $vendor_name; ?></li>]]></add>
 		</operation>
 	</file>

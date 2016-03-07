@@ -1,0 +1,26 @@
+<modification>
+    <id>Multi Vendor Drop Shipper - changes for Atragene theme</id>
+    <version>1.0</version>
+    <vqmver>2.5.1</vqmver>
+    <author></author>
+    <email></email>
+	<website></website>
+
+	<file name="catalog/view/theme/atr374opc2101/template/common/header.tpl">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+			<li class="hide_tablet"><a href="<?php echo $contact; ?>"><i class="fa fa-phone"></i></a> <span class="hidden-xs hidden-sm hidden-md"><?php echo $telephone; ?></span></li>
+			]]></search>
+			<add><![CDATA[
+			<?php if ($mvd_signup) { ?>
+			<li class="dropdown"><a href="<?php echo $signup; ?>" title="<?php echo $text_seller; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users fa-fw"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_seller; ?></span> <span class="caret"></span></a>
+			  <ul class="dropdown-menu dropdown-menu-right">
+				<li><a href="<?php echo $signup; ?>"><?php echo $txt_signup; ?></a></li>
+				<li><a href="<?php echo $mvd_login; ?>"><?php echo $text_login; ?></a></li>
+			  </ul>
+			</li>
+			<?php } ?>
+			]]></add>
+		</operation>
+	</file>
+</modification>
