@@ -688,7 +688,7 @@ div.required .control-label:before {
 #product  .add-cart-group label { vertical-align: top; }
 .logo_mobile, .logo_mobile + .container { clear: both; }
 .home-carousel .img-responsive { margin: 0 auto; }
-.product-list .img-responsive { width: 80%; margin: 10%; }
+.product-list .img-responsive { width: 100%; margin: 0%; } /* edited by David 2016-03-08 */
 .container-wrapper { padding-bottom: 30px; background: #f0f1f3 url('../image/noise.png') repeat left top; }
 
 
@@ -1134,7 +1134,7 @@ footer #powered a:hover, footer #powered a:focus, footer #powered a:active {}
 .product-grid .product-thumb { border: 0 none; }
 .product-thumb .image, #carousel_featured .image {
 	max-width: 100%;
-	padding: 2.4em;
+	padding: 0em;  /* edited by David 2016-03-08 */
 	overflow: hidden;
 	-moz-border-radius: 50%;
 	-khtml-border-radius: 50%;
@@ -1584,13 +1584,13 @@ h2.price {
 @media (min-width: 767px) {
     .product-list .product-thumb .image {
       float: left;
-      padding: 15px;
+      padding: 0px;   /* edited by David 2016-03-08 */
     }
     .product-list .product-thumb .image {
       float: none;
       width: 20%;
       margin-right: 5%;
-      padding: 15px;
+      padding: 0px;   /* edited by David 2016-03-08 */
     }
     .product-list .product-thumb .image, .product-list .product-thumb .image + div {
       display: inline-block;
