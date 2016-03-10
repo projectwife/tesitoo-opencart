@@ -10,6 +10,15 @@
 			<div><?php echo $weight_class; ?></div>]]></add>
 		</operation>
 	</file>
+    <!--
+	<file path="catalog/view/theme/atr374opc2101/template/product/" name="product.tpl">
+		<operation>
+			<search position="before"><![CDATA[<div class="button-group add-cart-group">]]></search>
+			<add><![CDATA[
+			<div><?php echo $weight_class; ?></div>]]></add>
+		</operation>
+	</file>
+    -->
 	<file path="catalog/controller/product/" name="product.php">
 		<operation>
 			<search position="before"><![CDATA[if ($product_info['quantity'] <= 0) {]]></search>
