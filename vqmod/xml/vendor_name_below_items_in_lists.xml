@@ -1,0 +1,19 @@
+<modification>
+	<id><![CDATA[Show vendor name below products in categories, search results etc.]]></id>
+	<version><![CDATA[0.1]]></version>
+	<vqmver><![CDATA[2.5.1]]></vqmver>
+	<author><![CDATA[David Edgar]]></author>
+	<file path="catalog/controller/product/" name="category.php">
+		<operation>
+			<search position="after"><![CDATA['rating'      => $result['rating'],]]></search>
+			<add><![CDATA[
+            'vendor_name' => $result['vendor_name'],]]></add>
+		</operation>
+	</file>
+	<file name="catalog/view/theme/atr374opc2101/template/product/category.tpl">
+		<operation>
+			<search position="before" offset="2"><![CDATA[<div class="button-group list-action action">]]></search>
+			<add><![CDATA[                                       <p><?php echo $product['vendor_name']; ?></p>]]></add>
+		</operation>
+	</file>
+</modification>
