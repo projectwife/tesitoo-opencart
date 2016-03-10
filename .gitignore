@@ -40,6 +40,6 @@ system/storage/logs/*
 
 vqmod/mods.cache
 vqmod/vqcache/*
-# vqmod/logs/*
+vqmod/logs/*
 
 .DS_Store
