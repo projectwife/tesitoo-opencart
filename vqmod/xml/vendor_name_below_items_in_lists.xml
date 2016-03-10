@@ -16,4 +16,17 @@
 			<add><![CDATA[                                       <p><?php echo $product['vendor_name']; ?></p>]]></add>
 		</operation>
 	</file>
+	<file path="catalog/controller/module/" name="featured.php">
+		<operation>
+			<search position="after"><![CDATA['rating'      => $rating,]]></search>
+			<add><![CDATA[
+						'vendor_name' => $product_info['vendor_name'],]]></add>
+		</operation>
+	</file>
+	<file path="catalog/view/theme/atr374opc2101/template/module/" name="featured.tpl">
+		<operation>
+			<search position="before" offset="2"><![CDATA[<?php if ($product['rating']) { ?>]]></search>
+			<add><![CDATA[                                       <p><?php echo $product['vendor_name']; ?></p>]]></add>
+		</operation>
+	</file>
 </modification>
