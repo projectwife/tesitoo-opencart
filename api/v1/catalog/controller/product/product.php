@@ -111,8 +111,8 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		ApiException::evaluateErrors($data);
 
         if ($this->config->get('mvd_product_notification')) {
-				$this->add_edit_notification(false, $this->request->post['name']);
-				$this->add_edit_vendor_notification(false, $this->request->post['name']);
+				$this->add_edit_notification(true, $this->request->post['name']);
+				$this->add_edit_vendor_notification(true, $this->request->post['name']);
         }
 
 		$json['product_id'] = $data['product_id'];
@@ -218,8 +218,8 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		}
 
         if ($this->config->get('mvd_product_notification')) {
-				$this->add_edit_notification(true, $description['name']);
-				$this->add_edit_vendor_notification(true, $this->request->post['name']);
+				$this->add_edit_notification(false, $description['name']);
+				$this->add_edit_vendor_notification(false, $this->request->post['name']);
         }
 	}
 
