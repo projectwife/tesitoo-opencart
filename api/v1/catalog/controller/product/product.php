@@ -110,6 +110,11 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 
 		ApiException::evaluateErrors($data);
 
+        if ($this->config->get('mvd_product_notification')) {
+				$this->add_edit_notification(false, $this->request->post['name']);
+				$this->add_edit_vendor_notification(false, $this->request->post['name']);
+        }
+
 		$json['product_id'] = $data['product_id'];
 
 		$this->response->addHeader('Content-Type: application/json');
@@ -211,6 +216,11 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 			$catData['product_category'] = array_filter(array_unique($inputCatIds), "is_numeric");
 			$this->model_catalog_vdi_product->editProductCategories((int)$id, $catData);
 		}
+
+        if ($this->config->get('mvd_product_notification')) {
+				$this->add_edit_notification(true, $description['name']);
+				$this->add_edit_vendor_notification(true, $this->request->post['name']);
+        }
 	}
 
 	public function deleteProduct($id = NULL) {
@@ -401,6 +411,101 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		return $this->processProduct($product);
 	}
 
+
+    public function add_edit_notification($pmode = true,$pname) {
+
+		$this->log->write('add_edit_notification');
+
+		$this->language->load('mail/email_notification');
+
+		$this->load->model('catalog/vdi_product');
+
+		$vendor_data = $this->model_catalog_vdi_product->getVendorName($this->user->getId());
+
+		if ($pmode) {
+			$subject = sprintf($this->language->get('text_subject_add'), $pname, $vendor_data['vendor_name']);
+		} else {
+			$subject = sprintf($this->language->get('text_subject_edit'), $vendor_data['vendor_name'], $pname);
+		}
+
+		$text = sprintf($this->language->get('text_to'), $this->config->get('config_owner')) . "<br><br>";
+
+		if ($pmode) {
+			$text .= sprintf($this->language->get('text_message_add'), $vendor_data['vendor_name'], $pname) . "<br><br>";
+		} else {
+			$text .= sprintf($this->language->get('text_message_edit'), $pname, $vendor_data['vendor_name']) . "<br><br>";
+		}
+
+		$text .= $this->language->get('text_thanks') . "<br>";
+		$text .= $this->config->get('config_name') . "<br><br>";
+		$text .= $this->language->get('text_system');
+
+		$mail = new Mail();
+		$mail->protocol = $this->config->get('config_mail_protocol');
+		$mail->parameter = $this->config->get('config_mail_parameter');
+		$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+		$mail->smtp_username = $this->config->get('config_mail_smtp_username');
+		$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+		$mail->smtp_port = $this->config->get('config_mail_smtp_port');
+		$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+
+		$mail->setTo($this->config->get('config_email'));
+		$mail->setFrom($this->config->get('config_email'));
+		$mail->setSender($this->config->get('config_name'));
+		$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
+		$mail->setHtml(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
+		$mail->send();
+
+        $this->log->write('message sent to admin: ' . $subject . ' ::: ' . $text);
+    }
+
+    public function add_edit_vendor_notification($pmode = true,$pname) {
+
+		$this->log->write('add_edit_vendor_notification');
+
+		$this->language->load('mail/email_notification');
+
+		$this->load->model('catalog/vdi_product');
+
+		$vendor_data = $this->model_catalog_vdi_product->getVendorName($this->user->getId());
+
+		if ($pmode) {
+			$subject = sprintf($this->language->get('text_subject_confirm_add'), $pname);
+		} else {
+			$subject = sprintf($this->language->get('text_subject_confirm_edit'), $pname);
+		}
+
+		$text = sprintf($this->language->get('text_to'), $vendor_data['firstname'] . ' ' . $vendor_data['lastname']) . "<br><br>";
+
+		if ($pmode) {
+			$text .= sprintf($this->language->get('text_message_confirm_add'), $pname) . "<br><br>";
+		} else {
+			$text .= sprintf($this->language->get('text_message_confirm_edit'), $pname) . "<br><br>";
+		}
+
+        $text .= $this->language->get('text_thanks') . "<br>";
+		$text .= $this->config->get('config_name') . "<br><br>";
+		$text .= $this->language->get('text_system');
+
+		$mail = new Mail();
+		$mail->protocol = $this->config->get('config_mail_protocol');
+		$mail->parameter = $this->config->get('config_mail_parameter');
+		$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+		$mail->smtp_username = $this->config->get('config_mail_smtp_username');
+		$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+		$mail->smtp_port = $this->config->get('config_mail_smtp_port');
+		$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+
+		$mail->setTo($vendor_data['email']);
+		$mail->setFrom($this->config->get('config_email'));
+		$mail->setSender($this->config->get('config_name'));
+		$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
+		$mail->setHtml(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
+		$mail->send();
+
+		$this->log->write('sending message to vendor email: ' . $vendor_data['email']);
+        $this->log->write('message sent to vendor: ' . $subject . ' ::: ' . $text);
+	}
 }
 
 ?>

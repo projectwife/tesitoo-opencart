@@ -209,7 +209,7 @@ $config->set('config_language_id', $languages[$code]['language_id']);
 $config->set('config_language', $languages[$code]['code']);
 
 // Language
-$language = new Language($languages[$code]['directory']);
+$language = new ApiLanguage($languages[$code]['directory']);
 $language->load($languages[$code]['directory']);
 $registry->set('language', $language);
 
