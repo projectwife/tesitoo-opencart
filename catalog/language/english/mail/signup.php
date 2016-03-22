@@ -14,8 +14,8 @@ $_['text_signup_plan']   		= '<b>Sign Up Plan : </b>';
 $_['text_signup_date']   		= '<b>Register Date : </b>';
 $_['text_signup_expire_date']   = '<b>Expire Date : </b>';
 
-$_['text_subject1'] = 'New member %s has join vendor program';
+$_['text_subject1'] = 'New member %s has joined as a vendor';
 $_['text_to'] 		= 'Dear %s,';
-$_['text_join']     = 'This is to inform you that %s from %s has sign up to join the vendor program';
+$_['text_join']     = 'This is to inform you that %s from %s has signed up to join the vendor program.';
 $_['text_system'] 	= '<span class="help">This is system generated message. Please do not reply.</span>';
 ?>

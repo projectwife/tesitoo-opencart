@@ -62,6 +62,10 @@ class ControllerCatalogVDIProduct extends Controller {
 					$url .= '&page=' . $this->request->get['page'];
 				}
 
+				if ($this->config->get('mvd_product_notification')) {
+					$this->add_edit_notification(true,$this->request->post['product_name']);
+				}
+
 				$this->response->redirect($this->url->link('catalog/vdi_product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
 			}
 			$this->getForm();
@@ -1953,7 +1957,7 @@ class ControllerCatalogVDIProduct extends Controller {
 	}
 	
 	public function add_edit_notification($pmode = true,$pname) {
-	
+
 		$this->language->load('mail/email_notification');
 		
 		$this->load->model('catalog/vdi_product');
