@@ -1973,7 +1973,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		$text = sprintf($this->language->get('text_to'), $this->config->get('config_owner')) . "<br><br>";
 		
 		if ($pmode) {
-			$text .= sprintf($this->language->get('text_message_add'), $vendor_data['vendor_name'], $pname) . "<br><br>";
+			$text .= sprintf($this->language->get('text_message_add'), $pname, $vendor_data['vendor_name']) . "<br><br>";
 		} else {
 			$text .= sprintf($this->language->get('text_message_edit'), $pname, $vendor_data['vendor_name']) . "<br><br>";
 		}
