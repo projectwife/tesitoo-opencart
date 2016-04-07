@@ -2,9 +2,9 @@
 
 ### OpenCart ###
 
-# actually maybe not including the config files is a sensible idea?
-#   /config.php
-#   admin/config.php
+config.php
+admin/config.php
+api/v1/config.php
 
 !index.html
 

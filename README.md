@@ -33,7 +33,7 @@ Opencart source
 - cp config-dist.php config.php
 - cp admin/config-dist.php admin/config.php
 - cp api/v1/config-dist.php api/v1/config.php
-- edit config.php :
+- edit config.php, admin/config.php and api/v1/config.php as necessary :
 
     all the paths should be changed to correspond to your opencart location
     DB_USERNAME, DB_PASSWORD and DB_DATABASE should be set according to the database & user you created above
