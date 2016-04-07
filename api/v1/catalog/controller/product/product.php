@@ -414,8 +414,6 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 
     public function add_edit_notification($pmode = true,$pname) {
 
-		$this->log->write('add_edit_notification');
-
 		$this->language->load('mail/email_notification');
 
 		$this->load->model('catalog/vdi_product');
@@ -460,8 +458,6 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
     }
 
     public function add_edit_vendor_notification($pmode = true,$pname) {
-
-		$this->log->write('add_edit_vendor_notification');
 
 		$this->language->load('mail/email_notification');
 

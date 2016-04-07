@@ -26,4 +26,19 @@ $_['text_subject_confirm_edit'] = 'Product %s edit received.';
 $_['text_message_confirm_add'] = 'Thank you for submitting the new product <b>%s</b> to the store for review.<br/> You will receive a confirmation email shortly.';
 $_['text_message_confirm_edit'] = 'Thank you for editing the product <b>%s</b>.<br/> It will be reviewed again shortly.';
 
+
+
+$_['date_format_email'] = 'g:i A, F j, Y';
+
+
+$_['text_subject_shipped'] = "Order shipped";
+$_['text_subject_complete'] = "Order complete";
+$_['text_subject_cancelled'] = "Order cancelled";
+
+$_['text_message_shipped'] = "Shipping notice for order <b>%s</b><br/>\nProduct <b>%s</b> has been shipped at: <b>%s</b>, and shall be arriving within 5 working days.";
+$_['text_message_complete'] = "Thank you for your order of product: <b>%s</b>. Your order is now complete. We hope you were satisfied with the transaction. If any problem occurred, please get in touch to let us know.";
+$_['text_message_cancelled'] = "The vendor has cancelled the following product at: <b>%s</b><br/>\nProduct: <b>%s</b><br/>\nQuantity: <b>%s</b><br/>\nTotal: <b>%s</b><br/>\nNo further action is required.";
+
+
+
 ?>
