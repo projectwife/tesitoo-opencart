@@ -30,19 +30,23 @@ Using phpMyAdmin
 Opencart source
 - clone this repository (https://github.com/projectwife/tesitoo-opencart)
 - install in desired location within web-server content directory
-- edit config.php :
+- cp config-dist.php config.php
+- cp admin/config-dist.php admin/config.php
+- cp api/v1/config-dist.php api/v1/config.php
+- edit config.php, admin/config.php and api/v1/config.php as necessary :
 
     all the paths should be changed to correspond to your opencart location
     DB_USERNAME, DB_PASSWORD and DB_DATABASE should be set according to the database & user you created above
 
 File permissions - make the following writable by www-data (apache default user)
 - vqmod/*
-- system/logs/* 
-- system/cache
-- system/cache/*
+- system/storage/logs/
+- system/storage/cache/
+- system/storage/download/
+- system/storage/upload/
+- system/storage/modification/
 - image/cache/*
 - image/catalog/*
-- download/   (may not exist)
 
 !!!FIXME need to find way to handle permissions / users programmatically!!!
 
