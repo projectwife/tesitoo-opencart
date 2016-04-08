@@ -111,8 +111,8 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		ApiException::evaluateErrors($data);
 
         if ($this->config->get('mvd_product_notification')) {
-				$this->add_edit_notification(false, $this->request->post['name']);
-				$this->add_edit_vendor_notification(false, $this->request->post['name']);
+				$this->add_edit_notification(true, $this->request->post['name']);
+				$this->add_edit_vendor_notification(true, $this->request->post['name']);
         }
 
 		$json['product_id'] = $data['product_id'];
@@ -218,8 +218,8 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		}
 
         if ($this->config->get('mvd_product_notification')) {
-				$this->add_edit_notification(true, $description['name']);
-				$this->add_edit_vendor_notification(true, $this->request->post['name']);
+				$this->add_edit_notification(false, $description['name']);
+				$this->add_edit_vendor_notification(false, $this->request->post['name']);
         }
 	}
 
@@ -414,8 +414,6 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 
     public function add_edit_notification($pmode = true,$pname) {
 
-		$this->log->write('add_edit_notification');
-
 		$this->language->load('mail/email_notification');
 
 		$this->load->model('catalog/vdi_product');
@@ -431,7 +429,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$text = sprintf($this->language->get('text_to'), $this->config->get('config_owner')) . "<br><br>";
 
 		if ($pmode) {
-			$text .= sprintf($this->language->get('text_message_add'), $vendor_data['vendor_name'], $pname) . "<br><br>";
+			$text .= sprintf($this->language->get('text_message_add'), $pname, $vendor_data['vendor_name']) . "<br><br>";
 		} else {
 			$text .= sprintf($this->language->get('text_message_edit'), $pname, $vendor_data['vendor_name']) . "<br><br>";
 		}
@@ -460,8 +458,6 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
     }
 
     public function add_edit_vendor_notification($pmode = true,$pname) {
-
-		$this->log->write('add_edit_vendor_notification');
 
 		$this->language->load('mail/email_notification');
 
@@ -502,9 +498,6 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
 		$mail->setHtml(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
 		$mail->send();
-
-		$this->log->write('sending message to vendor email: ' . $vendor_data['email']);
-        $this->log->write('message sent to vendor: ' . $subject . ' ::: ' . $text);
 	}
 }
 

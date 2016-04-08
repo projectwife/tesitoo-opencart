@@ -88,7 +88,7 @@ class ControllerCatalogMVDProduct extends Controller {
 			if ($this->config->get('mvd_product_edit_approval')) {
 				if ($this->config->get('mvd_product_notification')) {
 					if (!empty($this->request->post['product_name']) && ($this->request->post['status'] == '1') && ($this->request->post['pending_status'] == '5')) {
-						$this->approve_notification($this->request->post['product_name'],$this->request->post['vendor']);
+						$this->approve_notification($this->request->post['product_name'],$this->request->post['vendor'], $this->request->get['product_id']);
 					}
 				}
 			}
@@ -1778,15 +1778,18 @@ class ControllerCatalogMVDProduct extends Controller {
 		$this->response->setOutput(json_encode($results));
 	}
 			
-	public function approve_notification($pname,$vendor_id) {
+	public function approve_notification($pname, $vendor_id, $product_id) {
 		$this->language->load('mail/email_notification');
 		$this->load->model('catalog/mvd_product');
 				
 		$vendor_data = $this->model_catalog_mvd_product->getVendorData($vendor_id);
 		$subject = sprintf($this->language->get('text_subject_approve'),$pname);
 				
-		$text = sprintf($this->language->get('text_to'), $vendor_data['firstname'] . ' ' . $vendor_data['lastname']) . "<br/><br/>";				
-		$text .= sprintf($this->language->get('text_message_approve'), $pname) . "<br/><br/>";						
+		$text = sprintf($this->language->get('text_to'), $vendor_data['firstname'] . ' ' . $vendor_data['lastname']) . "<br/><br/>";
+
+		$productURL = HTTPS_CATALOG . "index.php?route=product/product&product_id=" . $product_id;
+		$text .= sprintf($this->language->get('text_message_approve'), $pname,
+                $productURL, $productURL) . "<br/><br/>";
 		$text .= $this->language->get('text_thanks') . "<br/>";
 		$text .= $this->config->get('config_name') . "<br/><br/>";
 		$text .= $this->language->get('text_system');
