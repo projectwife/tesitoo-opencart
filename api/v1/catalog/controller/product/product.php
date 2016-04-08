@@ -498,9 +498,6 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
 		$mail->setHtml(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
 		$mail->send();
-
-		$this->log->write('sending message to vendor email: ' . $vendor_data['email']);
-        $this->log->write('message sent to vendor: ' . $subject . ' ::: ' . $text);
 	}
 }
 

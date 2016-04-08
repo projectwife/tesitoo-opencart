@@ -47,8 +47,6 @@ class ControllerVendorOrderProductAPI extends ApiController {
 
     public function sendEditOrderStatusNotification($orderStatusId, $orderProductId) {
 
-		$this->log->write('sendEditOrderStatusNotification ' . $orderStatusId . ', ' . $orderProductId);
-
 		$this->language->load('mail/email_notification');
 
 		$this->load->model('sale/vdi_order');
@@ -61,7 +59,6 @@ class ControllerVendorOrderProductAPI extends ApiController {
 		//this gives us customer_id, customer, firstname, lastname, email, shipping_address_1,
 		//shipping_address_2, shipping_postcode, shipping_city
 		$order = $this->model_sale_vdi_order->getOrder($orderProduct['order_id']);
-
 
 		$customer_email = $order['email'];
 		$customer_name = $order['firstname'] . ' ' . $order['lastname'];
@@ -79,19 +76,11 @@ class ControllerVendorOrderProductAPI extends ApiController {
 		//want 'g:i A, F j, Y'
         $date = date($this->language->get('date_format_email'));
 
-		$this->log->write($customer_email);
-		$this->log->write($customer_name);
-		$this->log->write($shipping_address);
-		$this->log->write($order_id);
-		$this->log->write($productName);
-		$this->log->write($quantity);
-		$this->log->write($date);
-
-
         //This is not really what we should be doing, for both subject and email texts.
         //  We hard-code the order status IDs. Really we should DB lookup (oc_order_status)
         //  for the correct status values, or even better have this entirely configurable on the
         //  admin dashboard.
+        //TODO make notifications via API configurable
 
         switch ($orderStatusId) {
             case 3:
@@ -104,8 +93,6 @@ class ControllerVendorOrderProductAPI extends ApiController {
                 $subject = $this->language->get('text_subject_cancelled');
                 break;
         }
-
-		$this->log->write($subject);
 
         $text = sprintf($this->language->get('text_to'), $customer_name) . "<br><br>";
 
