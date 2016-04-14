@@ -1,9 +1,12 @@
+machine:
+  python:
+    version: 3.2.6
+
 dependencies:
    post:
       - wget http://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.0.jar
       - java -jar selenium-server-standalone-2.53.0.jar:
             background: true
-      - pip install pyopenssl ndg-httpsclient pyasn1
       - pip install selenium
 
 checkout:
