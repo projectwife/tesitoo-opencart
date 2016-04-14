@@ -1,11 +1,11 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://localhost/admin/');
-define('HTTP_CATALOG', 'http://localhost/');
+define('HTTP_SERVER', 'http://localhost:8080/admin/');
+define('HTTP_CATALOG', 'http://localhost:8080/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://localhost/admin/');
-define('HTTPS_CATALOG', 'http://localhost/');
+define('HTTPS_SERVER', 'http://localhost:8080/admin/');
+define('HTTPS_CATALOG', 'http://localhost:8080/');
 
 // DIR
 define('DIR_APPLICATION', '/home/ubuntu/tesitoo-opencart/admin/');

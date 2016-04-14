@@ -1,9 +1,9 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://localhost/');
+define('HTTP_SERVER', 'http://localhost:8080/');
 
 // HTTPS
-define('HTTPS_SERVER', 'https://localhost/');
+define('HTTPS_SERVER', 'https://localhost:8080/');
 
 // DIR
 define('DIR_APPLICATION', '/home/ubuntu/tesitoo-opencart/catalog/');
