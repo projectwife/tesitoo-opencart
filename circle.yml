@@ -18,6 +18,8 @@ checkout:
     - cp ./admin/config-circleci.php ./admin/config.php
     - cp ./api/v1/config-dist.php ./api/v1/config.php
     - chmod -R 1777 system/storage/* image/ vqmod/
+    - mkdir test/circleci_artifacts
+
 general:
   artifacts:
     - "test/circleci_artifacts/"
