@@ -11,8 +11,8 @@ dependencies:
 
 checkout:
   post:
-    - cp ./config-dist.php ./config.php
-    - cp ./admin/config-dist.php ./admin/config.php
+    - cp ./config-circleci.php ./config.php
+    - cp ./admin/config-circleci.php ./admin/config.php
     - cp ./api/v1/config-dist.php ./api/v1/config.php
 
 database:
