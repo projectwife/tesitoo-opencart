@@ -20,8 +20,7 @@ checkout:
     - chmod -R 1777 system/storage/* image/ vqmod/
 general:
   artifacts:
-    - "opencartHomepage.html"
-    - "opencartHomepage.png"
+    - "test/circleci_artifacts/"
 
 database:
   override:
