@@ -3,7 +3,8 @@ dependencies:
       - wget http://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.0.jar
       - java -jar selenium-server-standalone-2.53.0.jar:
             background: true
-      - pip install 'selenium[security]'
+      - pip install pyopenssl ndg-httpsclient pyasn1
+      - pip install selenium
 
 checkout:
   post:
