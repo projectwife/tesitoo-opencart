@@ -15,6 +15,11 @@ checkout:
     - cp ./admin/config-circleci.php ./admin/config.php
     - cp ./api/v1/config-dist.php ./api/v1/config.php
 
+general:
+  artifacts:
+    - "opencartHomepage.html"
+    - "opencartHomepage.png"
+
 database:
   override:
     - mysql -u ubuntu circle_test < tesitoo.sql

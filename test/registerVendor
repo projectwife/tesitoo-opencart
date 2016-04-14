@@ -22,7 +22,7 @@ class RegisterVendor(unittest.TestCase):
     def test_register_vendor(self):
         driver = self.driver
         driver.get(self.base_url + "index.php?route=common/home")
-        driver.save_screenshot('python_org.png')
+        driver.save_screenshot('opencartHomepage.png')
         with open('opencartHomepage.html', 'wb') as file_:
             file_.write(driver.page_source.encode('utf-8'))
         driver.find_element_by_xpath("//a[@title='Seller Account']").click()
