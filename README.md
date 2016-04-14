@@ -38,15 +38,16 @@ Opencart source
     all the paths should be changed to correspond to your opencart location
     DB_USERNAME, DB_PASSWORD and DB_DATABASE should be set according to the database & user you created above
 
-File permissions - make the following writable by www-data (apache default user)
-- vqmod/*
+File permissions - make the following directories recursively writable by www-data
+(apache default user)
+- vqmod/
 - system/storage/logs/
 - system/storage/cache/
 - system/storage/download/
 - system/storage/upload/
 - system/storage/modification/
-- image/cache/*
-- image/catalog/*
+- image/cache/
+- image/catalog/
 
 !!!FIXME need to find way to handle permissions / users programmatically!!!
 
