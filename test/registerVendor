@@ -22,9 +22,6 @@ class RegisterVendor(unittest.TestCase):
     def test_register_vendor(self):
         driver = self.driver
         driver.get(self.base_url + "index.php?route=common/home")
-        driver.save_screenshot('test/circleci_artifacts/opencartHomepage.png')
-        with open('test/circleci_artifacts/opencartHomepage.html', 'wb') as file_:
-            file_.write(driver.page_source.encode('utf-8'))
         driver.find_element_by_xpath("//a[@title='Seller Account']").click()
         driver.find_element_by_link_text("Sign Up").click()
         driver.find_element_by_id("input-username").clear()
@@ -54,12 +51,12 @@ class RegisterVendor(unittest.TestCase):
         driver.find_element_by_id("input-password").send_keys("password")
         driver.find_element_by_id("input-confirm").clear()
         driver.find_element_by_id("input-confirm").send_keys("password")
-        driver.save_screenshot('test/circleci_artifacts/beforeAgree.png')
-        with open('test/circleci_artifacts/beforeAgree.html', 'wb') as file_:
-            file_.write(driver.page_source.encode('utf-8'))
         driver.find_element_by_xpath("//input[@name='agree']").click()
         driver.find_element_by_css_selector("input.btn.btn-primary").click()
         assert "alert-danger" not in driver.page_source
+        driver.save_screenshot('test/circleci_artifacts/beforeFinalContinue.png')
+        with open('test/circleci_artifacts/beforeFinalContinue.html', 'wb') as file_:
+            file_.write(driver.page_source.encode('utf-8'))
         driver.find_element_by_link_text("Continue").click()
     
     def is_element_present(self, how, what):
