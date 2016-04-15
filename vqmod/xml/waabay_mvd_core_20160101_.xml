@@ -2531,7 +2531,8 @@
 			]]></add>
 		</operation>
 	</file>
-	
+
+    <!-- modified by David, 2016-04-15, to merge menus -->
 	<file name="catalog/controller/common/header.php">
 		<operation error="skip">
 			<search position="after"><![CDATA[
@@ -2547,7 +2548,8 @@
 			]]></add>
 		</operation>	
 	</file>
-	
+
+    <!-- modified by David, 2016-04-15, to merge menus -->
 	<file name="catalog/language/english/common/header.php">
 		<operation error="skip">
 			<search position="after"><![CDATA[

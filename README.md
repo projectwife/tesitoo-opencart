@@ -36,7 +36,8 @@ Opencart source
 - edit config.php, admin/config.php and api/v1/config.php as necessary :
 
     all the paths should be changed to correspond to your opencart location
-    DB_USERNAME, DB_PASSWORD and DB_DATABASE should be set according to the database & user you created above
+
+	    DB_USERNAME, DB_PASSWORD and DB_DATABASE should be set according to the database & user you created above
 
 File permissions - make the following directories recursively writable by www-data
 (apache default user)
