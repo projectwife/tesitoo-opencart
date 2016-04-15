@@ -6,24 +6,25 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-import unittest, time, re
+import unittest, time, re, sys, argparse
 
 class RegisterVendor(unittest.TestCase):
+    base_url = "http://localhost/opencart/"
+
     def setUp(self):
         #self.driver = webdriver.Firefox()
         self.driver = webdriver.Remote(
             command_executor='http://127.0.0.1:4444/wd/hub',
             desired_capabilities=DesiredCapabilities.FIREFOX)
         self.driver.implicitly_wait(30)
-        self.base_url = "http://localhost:8080/"
         self.verificationErrors = []
         self.accept_next_alert = True
     
     def test_register_vendor(self):
         driver = self.driver
         driver.get(self.base_url + "index.php?route=common/home")
-        driver.find_element_by_xpath("//a[@title='Seller Account']").click()
-        driver.find_element_by_link_text("Sign Up").click()
+        driver.find_element_by_xpath("//a[@title='My Account']").click()
+        driver.find_element_by_link_text("Sign Up as a Seller").click()
         driver.find_element_by_id("input-username").clear()
         driver.find_element_by_id("input-username").send_keys("selenium1")
         driver.find_element_by_id("input-firstname").clear()
@@ -85,4 +86,13 @@ class RegisterVendor(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 if __name__ == "__main__":
-    unittest.main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--url', default='http://localhost/opencart/')
+    parser.add_argument('unittest_args', nargs='*')
+
+    args = parser.parse_args()
+    RegisterVendor.base_url = args.url
+
+    unit_argv = [sys.argv[0]] + args.unittest_args;
+    unittest.main(argv=unit_argv)
+
