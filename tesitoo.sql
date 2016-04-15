@@ -2878,7 +2878,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (447, 0, 'mvd', 'mvd_signup_auto_approval', '1', 0),
 (448, 0, 'mvd', 'mvd_signup_show_plan', '0', 0),
 (449, 0, 'mvd', 'mvd_signup_default_payment_method', '0', 0),
-(450, 0, 'mvd', 'mvd_signup_policy', '0', 0),
+(450, 0, 'mvd', 'mvd_signup_policy', '5', 0),
 (451, 0, 'mvd', 'mvd_signup_commission', '0', 0),
 (795, 0, 'config', 'config_meta_description', 'My Store', 0),
 (794, 0, 'config', 'config_meta_title', 'Your Store', 0),
