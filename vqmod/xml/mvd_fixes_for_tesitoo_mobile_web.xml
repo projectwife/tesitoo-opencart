@@ -74,4 +74,14 @@
 			<add><![CDATA[]]></add>
 		</operation>
     </file>
+    <file name="catalog/language/english/account/signup.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[
+                $_['text_approval'] 	   = '<p>Thank you for registering with %s!</p><p>Your account has now been created and you can log in by using your username and password through following <a href="%s">login page</a></p>';
+            ]]></search>
+            <add><![CDATA[
+                $_['text_approval'] 	   = '<p>Thank you for registering with %s!</p><p>Your account has now been created and you can log in with your username and password on the <a href="%s"><u>seller login page</u></a></p>';
+            ]]></add>
+		</operation>
+    </file>
 </modification>
