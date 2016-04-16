@@ -12,7 +12,7 @@
 	<file name="catalog/view/theme/atr374opc2101/template/product/product.tpl">
 		<operation>
 			<search position="after"><![CDATA[<li><?php echo $text_stock; ?> <span><?php echo $stock; ?></span></li>]]></search>
-			<add><![CDATA[            <li><?php echo $text_vendor_name; ?> <a href=index.php?route=product/vendor/info&vendor_id=<?php echo $vendor_id; ?>"><?php echo $vendor_name; ?></a></li>]]></add>
+			<add><![CDATA[            <li><?php echo $text_vendor_name; ?> <a href="index.php?route=product/vendor/info&vendor_id=<?php echo $vendor_id; ?>"><?php echo $vendor_name; ?></a></li>]]></add>
 		</operation>
 	</file>
 	<file path="catalog/controller/product/" name="product.php">

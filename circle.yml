@@ -30,4 +30,4 @@ database:
 
 test:
   override:
-    - python test/registerVendor
+    - python test/registerVendor.py --url http://localhost:8080/

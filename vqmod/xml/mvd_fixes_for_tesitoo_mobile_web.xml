@@ -1,0 +1,87 @@
+<modification>
+    <id>Multi Vendor Drop Shipper - changes to interface for Tesitoo selling via (mobile) web</id>
+    <version>1.0</version>
+    <vqmver>2.5.1</vqmver>
+    <author></author>
+    <email></email>
+	<website></website>
+
+	<file name="catalog/view/theme/default/template/account/signup.tpl">
+		<operation error="skip">
+			<search position="replace" index="1,2,3,4,5,6,8,9,11,12" offset="5"><![CDATA[
+            <div class="form-group">
+			]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" index="1"><![CDATA[
+            <div class="form-group">
+			]]></search>
+			<add><![CDATA[
+            <div class="form-group required">
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" index="5,8,10" offset="8"><![CDATA[
+            <div class="form-group required">
+			]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<!--<operation error="skip">
+			<search position="replace" index="9" offset="9"><![CDATA[
+            <div class="form-group required">
+			]]></search>
+			<add><![CDATA[]]></add>
+        </operation>-->
+	</file>
+    <file name="catalog/controller/account/signup.php">
+        <operation error="skip">
+            <search position="replace" offset="4"><![CDATA[
+                if (!empty($this->request->post['paypal'])) {
+			]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="replace" offset="2"><![CDATA[
+                if ((utf8_strlen($this->request->post['address_1']) < 3) || (utf8_strlen($this->request->post['address_1']) > 128)) {
+			]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="replace" offset="2"><![CDATA[
+                if ($country_info && $country_info['postcode_required'] && (utf8_strlen($this->request->post['postcode']) < 2) || (utf8_strlen($this->request->post['postcode']) > 10)) {
+			]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+        <!--<operation error="skip">
+            <search position="replace" offset="2"><![CDATA[
+                if ($this->request->post['zone_id'] == '') {
+			]]></search>
+			<add><![CDATA[]]></add>
+        </operation>-->
+    </file>
+    <file name="admin/controller/catalog/vdi_vendor_profile.php">
+        <operation error="skip">
+            <search position="replace" offset="2"><![CDATA[
+                if ((utf8_strlen($this->request->post['address_1']) < 3) || (utf8_strlen($this->request->post['address_1']) > 128)) {
+			]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="replace" offset="2"><![CDATA[
+                if ($country_info && $country_info['postcode_required'] && (utf8_strlen($this->request->post['postcode']) < 2) || (utf8_strlen($this->request->post['postcode']) > 10)) {
+			]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+    </file>
+    <file name="catalog/language/english/account/signup.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[
+                $_['text_approval'] 	   = '<p>Thank you for registering with %s!</p><p>Your account has now been created and you can log in by using your username and password through following <a href="%s">login page</a></p>';
+            ]]></search>
+            <add><![CDATA[
+                $_['text_approval'] 	   = '<p>Thank you for registering with %s!</p><p>Your account has now been created and you can log in with your username and password on the <a href="%s"><u>seller login page</u></a></p>';
+            ]]></add>
+		</operation>
+    </file>
+</modification>

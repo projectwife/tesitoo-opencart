@@ -1,6 +1,6 @@
 <?php
 // Text
-$_['text_success']           = 'You order has been successfully modified orders';
+$_['text_success']           = 'You have successfully modified the order';
 $_['date_format_short']      = 'd/m/Y';
 
 // Error

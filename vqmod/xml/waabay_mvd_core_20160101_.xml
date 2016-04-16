@@ -2531,7 +2531,8 @@
 			]]></add>
 		</operation>
 	</file>
-	
+
+    <!-- modified by David, 2016-04-15, to merge menus -->
 	<file name="catalog/controller/common/header.php">
 		<operation error="skip">
 			<search position="after"><![CDATA[
@@ -2542,21 +2543,40 @@
 			$data['mvd_login'] = HTTP_SERVER . 'admin';
 			$data['txt_signup'] = $this->language->get('txt_signup');
 			$data['text_seller'] = $this->language->get('text_seller');
+			$data['text_login_vendor'] = $this->language->get('text_login_vendor');
 			$data['mvd_signup'] = $this->config->get('mvd_sign_up');
 			]]></add>
 		</operation>	
 	</file>
-	
+
+    <!-- modified by David, 2016-04-15, to merge menus -->
 	<file name="catalog/language/english/common/header.php">
 		<operation error="skip">
 			<search position="after"><![CDATA[
 			$_['text_all']           = 'Show All';
 			]]></search>
 			<add><![CDATA[			
-			$_['txt_signup']         = 'Sign Up';
+			$_['txt_signup']         = 'Sign Up as a Seller';
+			$_['text_login_vendor']  = 'Login as a Seller';
 			$_['text_seller']        = 'Seller Account';
 			]]></add>
-		</operation>	
+		</operation>
+        <operation error="skip">
+			<search position="replace"><![CDATA[
+			$_['text_register']      = 'Register';
+			]]></search>
+			<add><![CDATA[
+			$_['text_register']      = 'Register as a Customer';
+			]]></add>
+		</operation>
+        <operation error="skip">
+			<search position="replace"><![CDATA[
+			$_['text_login']         = 'Login';
+			]]></search>
+			<add><![CDATA[
+			$_['text_login']         = 'Login as a Customer';
+			]]></add>
+		</operation>
 	</file>
 	
 	<file name="catalog/view/theme/default/template/common/header.tpl">
