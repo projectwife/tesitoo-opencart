@@ -84,4 +84,18 @@
             ]]></add>
 		</operation>
     </file>
+    <file name="catalog/view/theme/atr374opc2101/template/account/register.tpl">
+        <operation error="skip">
+            <search position="replace" index="1" offset="14"><![CDATA[
+                <div class="form-group">
+            ]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="replace" index="1" offset="5"><![CDATA[
+                <div class="form-group">
+            ]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+    </file>
 </modification>
