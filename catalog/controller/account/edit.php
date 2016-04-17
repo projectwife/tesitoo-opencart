@@ -199,12 +199,9 @@ class ControllerAccountEdit extends Controller {
 			$this->error['warning'] = $this->language->get('error_exists');
 		}
 
-		//commented by David - we don't want telephone to be a required field
-		/*
 		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
 			$this->error['telephone'] = $this->language->get('error_telephone');
 		}
-		*/
 
 		// Custom field validation
 		$this->load->model('account/custom_field');
