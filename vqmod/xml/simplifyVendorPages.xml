@@ -1,0 +1,49 @@
+<modification>
+    <id>Multi Vendor Drop Shipper - changes to interface for Tesitoo selling via (mobile) web</id>
+    <version>1.0</version>
+    <vqmver>2.5.1</vqmver>
+    <author></author>
+    <email></email>
+	<website></website>
+
+	<file name="admin/view/template/common/vdi_menu.tpl">
+		<operation error="skip">
+			<search position="replace" index="1"><![CDATA[
+            <li><a href="<?php echo $vdi_category; ?>"><?php echo $text_category; ?></a></li>
+			]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" index="1" offset="8"><![CDATA[
+            <li><a class="parent"><?php echo $text_attribute; ?></a>
+			]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[
+            <li><a href="<?php echo $vdi_coupon; ?>"><?php echo $text_coupon; ?></a></li>
+			]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="5"><![CDATA[
+            <li id="reports"><a class="parent"><i class="fa fa-bar-chart-o fa-fw"></i> <span><?php echo $text_reports; ?></span></a>
+			]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+	</file>
+	<file name="admin/view/template/common/vdi_dashboard.tpl">
+		<operation error="skip">
+			<search position="replace" index="2" offset="3"><![CDATA[
+            <div class="row">
+			]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+            <div class="col-lg-4 col-md-12 col-sm-12 col-sx-12"><?php echo $order_stock; ?></div>
+			]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+	</file>
+</modification>
