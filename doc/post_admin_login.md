@@ -7,5 +7,4 @@ Admin / vendor login
 **Request parameters**
 
 * `username` - vendor username
-
 * `password` - plaintext password
