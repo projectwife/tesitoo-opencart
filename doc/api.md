@@ -1,23 +1,24 @@
 # Tesitoo OpenCart API #
 
-The basic REST API is documented at:
+The core REST API is documented at:
 http://oc2-demo.opencartapi.com/docs/v1/Getting_Started.html (see the section 'API Resources')
 
 The Tesitoo extended API requests are documented here.
 
-
-### admin ###
-
-* [POST login](get_admin_login.md)
-* [POST logout](get_admin_logout.md)
+Most of them require authentication first. See [the Tesitoo OpenCart API instructions](https://docs.google.com/document/d/19rFh9ekIklVX75kOpjOVkEvCt5RWucAbq9PFDtUu1bA).
 
 
-### common ###
+#### admin ####
+
+* [POST login](post_admin_login.md)
+* [POST logout](post_admin_logout.md)
+
+#### common ####
 
 * [GET weight](get_common_weight.md)
 * [GET length](get_common_length.md)
 
-### product###
+#### product ####
 
 * [GET vendor](get_product_vendor.md)
 * [GET vendor/{id}](get_product_vendor_id.md  )
@@ -28,7 +29,7 @@ The Tesitoo extended API requests are documented here.
 * [POST product/{id}/image](post_product_product_image.md)
 * [DEL product/{id}/image?files={files}](del_product_product_image.md)
 
-### vendor ###
+### vendor ####
 
 * [GET order](get_vendor_order.md)
 * [GET order/{id}](get_vendor_order_id.md)
