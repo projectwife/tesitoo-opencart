@@ -1,0 +1,20 @@
+<modification>
+    <id>Disable status check before notifications are sent</id>
+    <version>1.0</version>
+    <vqmver>2.5.1</vqmver>
+    <author></author>
+    <email></email>
+	<website></website>
+
+    <file name="admin/controller/sale/vdi_order.php">
+        <operation error="skip">
+            <search position="replace" index="1" offset="9"><![CDATA[
+                if ($this->model_sale_vdi_order->getCurrentMultiVendorOrderStatus($this->request->get['order_id']) != $this->model_sale_vdi_order->getRequiredMultiVendorsOrderStatus($this->request->get['order_id'])) {
+            ]]></search>
+			<add><![CDATA[
+                $this->model_sale_vdi_order->updateOrderStatus($this->request->get['order_id'],$this->config->get('mvd_order_status'));
+                $pending_vendor = '';
+            ]]></add>
+		</operation>
+    </file>
+</modification>
