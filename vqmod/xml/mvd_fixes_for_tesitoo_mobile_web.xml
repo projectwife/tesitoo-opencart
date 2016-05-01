@@ -22,7 +22,7 @@
 			]]></add>
 		</operation>
 		<operation error="skip">
-			<search position="replace" index="5,8,10" offset="8"><![CDATA[
+			<search position="replace" index="5,10" offset="8"><![CDATA[
             <div class="form-group required">
 			]]></search>
 			<add><![CDATA[]]></add>
@@ -74,6 +74,16 @@
 			<add><![CDATA[]]></add>
 		</operation>
     </file>
+    <file name="admin/view/template/catalog/vdi_vendor_profile_form.tpl">
+        <operation error="skip">
+            <search position="replace" index="8"><![CDATA[
+                <div class="form-group required">
+			]]></search>
+			<add><![CDATA[
+                <div class="form-group">
+            ]]></add>
+		</operation>
+    </file>
     <file name="catalog/language/english/account/signup.php">
         <operation error="skip">
             <search position="replace"><![CDATA[
@@ -83,28 +93,68 @@
                 $_['text_approval'] 	   = '<p>Thank you for registering with %s!</p><p>Your account has now been created and you can log in with your username and password on the <a href="%s"><u>seller login page</u></a></p>';
             ]]></add>
 		</operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[
+                $_['heading_title']        = 'Sign UP';
+            ]]></search>
+            <add><![CDATA[
+                $_['heading_title']        = 'Sign Up as a Seller';
+            ]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[
+                $_['entry_company']        = 'Company';
+            ]]></search>
+            <add><![CDATA[
+                $_['entry_company']        = 'Display Name';
+            ]]></add>
+		</operation>
     </file>
     <file name="catalog/view/theme/atr374opc2101/template/account/register.tpl">
         <operation error="skip">
-            <search position="replace" index="2" offset="5"><![CDATA[
+            <search position="replace" index="2,3,4" offset="5"><![CDATA[
                 <div class="form-group">
             ]]></search>
 			<add><![CDATA[]]></add>
 		</operation>
-        <operation error="skip">
-            <search position="replace" index="2" offset="5"><![CDATA[
-                <div class="form-group">
-            ]]></search>
-			<add><![CDATA[]]></add>
-		</operation>
-    </file>
-    <file name="catalog/view/theme/atr374opc2101/template/account/register.tpl">
         <operation error="skip">
             <search position="replace" index="1"><![CDATA[
                 <div class="form-group">
             ]]></search>
 			<add><![CDATA[
                 <div class="form-group required">
+            ]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="replace" index="7" offset="8"><![CDATA[
+                <div class="form-group required">
+            ]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+    </file>
+    <file name="catalog/controller/account/register.php">
+        <operation error="skip">
+            <search position="replace" index="1" offset="2"><![CDATA[
+                if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
+            ]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+    </file>
+    <file name="catalog/controller/account/address.php">
+        <operation error="skip">
+            <search position="replace" index="1" offset="2"><![CDATA[
+                if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
+            ]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+    </file>
+    <file name="catalog/language/english/account/register.php">
+        <operation error="skip">
+            <search position="replace" index="1"><![CDATA[
+                $_['heading_title']        = 'Register Account';
+            ]]></search>
+			<add><![CDATA[
+                $_['heading_title']        = 'Register Customer Account';
             ]]></add>
 		</operation>
     </file>
