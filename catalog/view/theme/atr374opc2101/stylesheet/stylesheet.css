@@ -646,7 +646,7 @@ div.required .control-label:before {
 	#top .open, #header .open { background: #496600 none; }
 	#cart.open > .btn, #cart.open > .btn:hover { color: #fff; }
 	#logo_mobile { display: block; text-align: center; clear: both; }
-	#logo_mobile a { display: inline-block; width: 50%; max-width: 80%; 50%: auto; margin: 10px auto; }
+	#logo_mobile a { display: inline-block; width: auto; max-width: 100%; height: auto; margin: 10px auto; }
 	
 	/* Top conditions width */
 	#top.mobile-sm-6 { width: 50%; }
