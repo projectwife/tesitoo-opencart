@@ -57,15 +57,18 @@ $('a.thumbnail').on('click', function(e) {
 	$('#<?php echo $target; ?>').attr('value', $(this).parent().find('input').attr('value'));
 	<?php } ?>
 	
+	//what is this for? It constitutes an annoying bug. Does it have a genuine purpose too?
+	/*
 	var range, sel = window.getSelection(); 
-	
+
 	if (sel.rangeCount) { 
 		var img = document.createElement('img');
 		img.src = $(this).attr('href');
 	
 		range = sel.getRangeAt(0); 
-		range.insertNode(img); 
+		range.insertNode(img);
 	}
+	*/
 	
 	$('#modal-image').modal('hide');
 });
