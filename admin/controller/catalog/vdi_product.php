@@ -1682,7 +1682,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('catalog/vdi_product_form.tpl', $data));
+		$this->response->setOutput($this->load->view('catalog/vdi_product_form_tesitoo.tpl', $data));
 	}
 
 	protected function validateForm() {
