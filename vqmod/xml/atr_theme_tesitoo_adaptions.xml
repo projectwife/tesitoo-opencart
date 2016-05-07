@@ -15,6 +15,23 @@
             <h3 class="featured-title"><span><?php echo $heading_title; ?></span></h3>
 			]]></add>
 		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+            <a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" class="img-responsive" /></a>
+			]]></search>
+			<add><![CDATA[
+            <a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" class="img-responsive" />
+    <div><?php echo $banner['title']; ?></div></a>
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after" index="2"><![CDATA[
+            <img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" class="img-responsive" />
+			]]></search>
+			<add><![CDATA[
+            <div><?php echo $banner['title']; ?></div>
+			]]></add>
+		</operation>
 	</file>
 	<file name="catalog/controller/module/carousel.php">
 		<operation error="skip">

@@ -124,9 +124,8 @@ class Image {
 
 	//added by David
 	//
-	//makes the largest possible centred square from an image, i.e. keeping if the width is
-	//less than the height, keeping the width and cropping the top and bottom, and vice versa,
-	//and scales it to fit the given size square
+	//makes the largest possible centred square from an image, i.e. if width < height,
+	//cropping the top and bottom, or vice versa, scaling it to fit the given size square
 	public function squareCropScale($squareSide) {
 		if (!$this->width || !$this->height) {
 			return;
