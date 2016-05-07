@@ -692,7 +692,9 @@ div.required .control-label:before {
 .product-list .img-responsive { width: 100%; margin: 0%; } /* edited by David 2016-03-08 */
 .container-wrapper { padding-bottom: 30px; background: #f0f1f3 url('../image/noise.png') repeat left top; }
 
-
+/* added by David 2016-05-06 */
+#content .owl-wrapper-outer { border: 0px solid #fff; }
+#content .owl-carousel { background: transparent; }
 
 /* category */
 .category_content h1 { overflow: hidden; }

@@ -1,0 +1,63 @@
+<modification>
+    <id>Tesitoo changes for Atragene theme</id>
+    <version>1.0</version>
+    <vqmver>2.5.1</vqmver>
+    <author></author>
+    <email></email>
+	<website></website>
+
+    <file name="catalog/view/theme/atr374opc2101/template/module/carousel.tpl">
+		<operation error="skip">
+			<search position="before"><![CDATA[
+            <div id="carousel<?php echo $module; ?>" class="owl-carousel home-carousel">
+			]]></search>
+			<add><![CDATA[
+            <h3 class="featured-title"><span><?php echo $heading_title; ?></span></h3>
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+            <a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" class="img-responsive" /></a>
+			]]></search>
+			<add><![CDATA[
+            <a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" class="img-responsive" />
+    <div><?php echo $banner['title']; ?></div></a>
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after" index="2"><![CDATA[
+            <img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" class="img-responsive" />
+			]]></search>
+			<add><![CDATA[
+            <div><?php echo $banner['title']; ?></div>
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/module/carousel.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+            $results = $this->model_design_banner->getBanner($setting['banner_id']);
+			]]></search>
+			<add><![CDATA[
+            $data['heading_title'] = $this->model_design_banner->getTitle($setting['banner_id']);
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/model/design/banner.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+            class ModelDesignBanner extends Model {
+			]]></search>
+			<add><![CDATA[
+            public function getTitle($banner_id) {
+        $query = $this->db->query("SELECT name FROM " . DB_PREFIX . "banner WHERE banner_id = '" . (int)$banner_id . "'");
+
+        return $query->rows[0]["name"];
+	}
+			]]></add>
+		</operation>
+	</file>
+
+
+
+</modification>

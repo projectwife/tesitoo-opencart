@@ -122,6 +122,47 @@ class Image {
 		$this->height = $height;
 	}
 
+	//added by David
+	//
+	//makes the largest possible centred square from an image, i.e. if width < height,
+	//cropping the top and bottom, or vice versa, scaling it to fit the given size square
+	public function squareCropScale($squareSide) {
+		if (!$this->width || !$this->height) {
+			return;
+		}
+
+		$srcx = 0;
+		$srcy = 0;
+
+		$largestSquareInOrig = min($this->width, $this->height);
+		if ($this->width == $largestSquareInOrig) { //i.e. portrait
+            $srcy = ($this->height - $largestSquareInOrig) / 2;
+		} else { //i.e. landscape
+            $srcx = ($this->width - $largestSquareInOrig) / 2;
+		}
+
+		$image_old = $this->image;
+		$this->image = imagecreatetruecolor($squareSide, $squareSide);
+
+		if ($this->mime == 'image/png') {
+			imagealphablending($this->image, false);
+			imagesavealpha($this->image, true);
+			$background = imagecolorallocatealpha($this->image, 255, 255, 255, 127);
+			imagecolortransparent($this->image, $background);
+		} else {
+			$background = imagecolorallocate($this->image, 255, 255, 255);
+		}
+
+		imagefilledrectangle($this->image, 0, 0, $squareSide, $squareSide, $background);
+
+		imagecopyresampled($this->image, $image_old, 0, 0, $srcx, $srcy, $squareSide, $squareSide, $largestSquareInOrig, $largestSquareInOrig);
+		imagedestroy($image_old);
+
+		$this->width = $squareSide;
+		$this->height = $squareSide;
+	}
+
+
 	public function watermark($watermark, $position = 'bottomright') {
 		switch($position) {
 			case 'topleft':
