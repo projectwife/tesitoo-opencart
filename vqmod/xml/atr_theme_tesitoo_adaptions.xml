@@ -57,6 +57,32 @@
 			]]></add>
 		</operation>
 	</file>
+	<file name="catalog/language/english/account/login.php,catalog/language/english/checkout/checkout.php,catalog/language/english/mail/customer.php">
+		<operation error="skip">
+			<search position="replace" regex="true"><![CDATA[
+            '\$_\[\'text_returning_customer\'\]\s+= \'Returning Customer\';'
+			]]></search>
+			<add><![CDATA[
+            $_['text_returning_customer']      = 'Returning Buyer';
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" regex="true"><![CDATA[
+            '\$_\[\'text_i_am_returning_customer\'\]\s+= \'I am a returning customer\';'
+			]]></search>
+			<add><![CDATA[
+            $_['text_i_am_returning_customer'] = 'I am a returning buyer';
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" regex="true"><![CDATA[
+            '\$_\[\'text_new_customer\'\]\s+= \'New Customer\';'
+            ]]></search>
+			<add><![CDATA[
+            $_['text_new_customer']            = 'New Buyer';
+			]]></add>
+		</operation>
+	</file>
 
 
 
