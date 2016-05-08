@@ -2556,8 +2556,8 @@
 			$_['text_all']           = 'Show All';
 			]]></search>
 			<add><![CDATA[			
-			$_['txt_signup']         = 'Sign Up as a Seller';
-			$_['text_login_vendor']  = 'Login as a Seller';
+			$_['txt_signup']         = 'Sign Up as a Farmer';
+			$_['text_login_vendor']  = 'Login as a Farmer';
 			$_['text_seller']        = 'Seller Account';
 			]]></add>
 		</operation>
@@ -2566,7 +2566,7 @@
 			$_['text_register']      = 'Register';
 			]]></search>
 			<add><![CDATA[
-			$_['text_register']      = 'Register as a Customer';
+			$_['text_register']      = 'Register as a Buyer';
 			]]></add>
 		</operation>
         <operation error="skip">
@@ -2574,7 +2574,7 @@
 			$_['text_login']         = 'Login';
 			]]></search>
 			<add><![CDATA[
-			$_['text_login']         = 'Login as a Customer';
+			$_['text_login']         = 'Login as a Buyer';
 			]]></add>
 		</operation>
 	</file>
