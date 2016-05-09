@@ -1,0 +1,28 @@
+<modification>
+    <id>Make the 'model' not a required field of a product</id>
+    <version>1.0</version>
+    <vqmver>2.5.1</vqmver>
+    <author></author>
+    <email></email>
+	<website></website>
+
+	<file path="admin/controller/catalog/" name="vdi_product.php,mvd_product.php">
+		<operation error="skip">
+			<search position="replace" offset="2"><![CDATA[
+            if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
+			]]></search>
+			<add><![CDATA[
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/view/template/catalog/" name="mvd_product_form.tpl">
+		<operation error="skip">
+			<search position="replace" index="3"><![CDATA[
+            <div class="form-group required">
+			]]></search>
+			<add><![CDATA[
+            <div class="form-group">
+			]]></add>
+		</operation>
+	</file>
+</modification>
