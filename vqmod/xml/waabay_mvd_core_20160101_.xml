@@ -318,7 +318,7 @@
 					$data['expiration_date'] = false;
 				}
 				
-				return $this->load->view('common/vdi_menu.tpl', $data);
+				return $this->load->view('common/vdi_menu_tesitoo.tpl', $data);
 			}
 			]]></add>
 		</operation>	

@@ -6,7 +6,7 @@
     <email></email>
 	<website></website>
 
-	<file name="admin/view/template/common/vdi_menu.tpl">
+	<file name="admin/view/template/common/vdi_menu_tesitoo.tpl">
 		<operation error="skip">
 			<search position="replace" index="1"><![CDATA[
                 <li><a href="<?php echo $vdi_category; ?>"><?php echo $text_category; ?></a></li>
