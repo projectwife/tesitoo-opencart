@@ -14,6 +14,8 @@ $_['text_telephone']  			= 'Telephone: ';
 $_['text_order_status']     	= 'Order Status: ';
 $_['text_payment_method']   	= 'Payment Method:';
 $_['text_vendor_auto_msg']      = 'This is auto generated message from system, please do not reply. Thank you.';
+$_['text_new_order_admin_notif'] = 'A new order has been received for vendor: ';
+$_['text_history_order_admin_notif'] = 'The status of an order has been updated for vendor: ';
 
 // Column
 $_['column_product']        = 'Product';

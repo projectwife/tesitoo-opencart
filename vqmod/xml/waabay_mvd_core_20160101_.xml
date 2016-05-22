@@ -1541,6 +1541,20 @@
 							$mail->send();
 
                             //added by David - send copy of email to admin
+
+							/*show admin name*/
+							$data['admin_name'] = '<b>' . $language->get('text_title') . $this->config->get('config_owner') . '</b>,' . "\n\n";
+
+							/*show message to admin*/
+							$data['admin_message'] =
+                                $language->get('text_new_order_admin_notif') . $vemail->row['contact_name'] . "\n\n";
+
+ 							if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/mail/admin_email.tpl')) {
+								$html = $this->load->view($this->config->get('config_template') . '/template/mail/admin_email.tpl', $data);
+							} else {
+								$html = $this->load->view('default/template/mail/admin_email.tpl', $data);
+							}
+
 							$mail = new Mail();
 							$mail->protocol = $this->config->get('config_mail_protocol');
 							$mail->parameter = $this->config->get('config_mail_parameter');
@@ -1892,6 +1906,20 @@
 								$mail->send();
 
 								//added by David - send copy of email to admin
+
+								/*show admin name*/
+								$data['admin_name'] = '<b>' . $language->get('text_title') . $this->config->get('config_owner') . '</b>,' . "\n\n";
+
+								/*show message to admin*/
+								$data['admin_message'] =
+                                    $language->get('text_history_order_admin_notif') . $vemail->row['contact_name'] . "\n\n";
+
+                                if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/mail/admin_email.tpl')) {
+                                    $html = $this->load->view($this->config->get('config_template') . '/template/mail/admin_email.tpl', $data);
+                                } else {
+                                    $html = $this->load->view('default/template/mail/admin_email.tpl', $data);
+                                }
+
 								$mail = new Mail();
 								$mail->protocol = $this->config->get('config_mail_protocol');
 								$mail->parameter = $this->config->get('config_mail_parameter');
