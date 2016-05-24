@@ -18,6 +18,11 @@
 
 				$order_status_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE order_status_id = '" . (int)$this->request->post['order_status_id'] . "' AND language_id = '" . (int)$order_info['language_id'] . "'");
 
+				$vendor_query = $this->db->query("SELECT vendor_name FROM " . DB_PREFIX . "vendors WHERE vendor_id = '" . (int)$this->request->post['vendor_id'] . "'");
+				if ($vendor_query->num_rows) {
+					$message .= $vendor_query->row['vendor_name'];
+				}
+
 				if ($order_status_query->num_rows) {
 					$message .= $language->get('text_admin_update_order_status') . "\n\n";
 					$message .= $order_status_query->row['name'] . "\n\n";
@@ -41,6 +46,8 @@
 						$message .= $this->request->post['comment'] . "\n\n";
 					}
 				}
+
+				$this->log->write($message);
 
 				$mail = new Mail();
 				$mail->protocol = $this->config->get('config_mail_protocol');
@@ -77,7 +84,7 @@
                 $_['text_update_order_status']  = 'Your order has been updated to the following status:';
 			]]></search>
 			<add><![CDATA[
-                $_['text_admin_update_order_status']  = 'This order has been updated to the following status:';
+                $_['text_admin_update_order_status']  = ' has updated this order to the following status:';
 			]]></add>
 		</operation>
 	</file>
