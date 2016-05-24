@@ -42,8 +42,6 @@
 					}
 				}
 
-                $this->log->write($message);
-
 				$mail = new Mail();
 				$mail->protocol = $this->config->get('config_mail_protocol');
 				$mail->parameter = $this->config->get('config_mail_parameter');
