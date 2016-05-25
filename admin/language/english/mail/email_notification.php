@@ -39,6 +39,8 @@ $_['text_message_shipped'] = "Shipping notice for order <b>%s</b><br/>\nProduct 
 $_['text_message_complete'] = "Thank you for your order of product: <b>%s</b>. Your order is now complete. We hope you were satisfied with the transaction. If any problem occurred, please get in touch to let us know.";
 $_['text_message_cancelled'] = "The vendor has cancelled the following product at: <b>%s</b><br/>\nProduct: <b>%s</b><br/>\nQuantity: <b>%s</b><br/>\nTotal: <b>%s</b><br/>\nNo further action is required.";
 
-
+$_['text_message_admin_shipped'] = "Shipping notice for order <b>%s</b><br/>\nProduct <b>%s</b> has been shipped at: <b>%s</b> by vendor <b>%s</b>, and shall be arriving within 5 working days.";
+$_['text_message_admin_complete'] = "Order <b>%d</b> - product: <b>%s</b> has been marked as complete by vendor <b>%s</b>.";
+$_['text_message_admin_cancelled'] = "The vendor <b>%s</b> has cancelled the following product at: <b>%s</b><br/>\nProduct: <b>%s</b><br/>\nQuantity: <b>%s</b><br/>\nTotal: <b>%s</b><br/>\n";
 
 ?>
