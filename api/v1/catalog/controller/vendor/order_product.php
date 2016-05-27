@@ -42,10 +42,10 @@ class ControllerVendorOrderProductAPI extends ApiController {
 
 		$orders = $this->model_sale_vdi_order->editOrderProduct($id, $order_product);
 
-		$this->sendEditOrderStatusNotification($order_product['order_status_id'], $id);
+		$this->sendEditOrderStatusNotifications($order_product['order_status_id'], $id);
 	}
 
-    public function sendEditOrderStatusNotification($orderStatusId, $orderProductId) {
+    public function sendEditOrderStatusNotifications($orderStatusId, $orderProductId) {
 
 		$this->language->load('mail/email_notification');
 
@@ -59,6 +59,8 @@ class ControllerVendorOrderProductAPI extends ApiController {
 		//this gives us customer_id, customer, firstname, lastname, email, shipping_address_1,
 		//shipping_address_2, shipping_postcode, shipping_city
 		$order = $this->model_sale_vdi_order->getOrder($orderProduct['order_id']);
+
+		$vendorName = $this->model_sale_vdi_order->getVendorName();
 
 		$customer_email = $order['email'];
 		$customer_name = $order['firstname'] . ' ' . $order['lastname'];

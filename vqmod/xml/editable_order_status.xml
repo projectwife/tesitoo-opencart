@@ -25,7 +25,15 @@
 				"order_product WHERE order_product_id = '" . (int)$order_product_id . "')");
 		}
 	}
-]]></add>
+
+    public function getVendorName() {
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "vendors` WHERE vendor_id = '" . (int)$this->user->getVP() . "'");
+
+		if ($query->num_rows) {
+                return $query->row['vendor_name'];
+        }
+    }
+            ]]></add>
 		</operation>
 	</file>
 </modification>
