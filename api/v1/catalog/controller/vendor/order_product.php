@@ -128,7 +128,35 @@ class ControllerVendorOrderProductAPI extends ApiController {
 		$mail->setHtml(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
 		$mail->send();
 
-        $this->log->write('message sent to customer: ' . $subject . ' ::: ' . $text);
+        $text = sprintf($this->language->get('text_to'), $this->config->get('config_name')) . "<br><br>";
+
+        switch ($orderStatusId) {
+            case 3:
+                $text .= sprintf($this->language->get('text_message_admin_shipped'), $order_id, $productName, $date, $vendorName). "<br><br>";
+                break;
+            case 5:
+                $text .= sprintf($this->language->get('text_message_admin_complete'), $order_id, $productName, $vendorName). "<br><br>";
+                break;
+            case 7:
+                $text .= sprintf($this->language->get('text_message_admin_cancelled'), $vendorName, $date, $productName, $quantity, $productTotal). "<br><br>";
+                break;
+        }
+
+		$mail = new Mail();
+		$mail->protocol = $this->config->get('config_mail_protocol');
+		$mail->parameter = $this->config->get('config_mail_parameter');
+		$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+		$mail->smtp_username = $this->config->get('config_mail_smtp_username');
+		$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+		$mail->smtp_port = $this->config->get('config_mail_smtp_port');
+		$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+
+		$mail->setTo($this->config->get('config_email'));
+		$mail->setFrom($this->config->get('config_email'));
+		$mail->setSender($this->config->get('config_name'));
+		$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
+		$mail->setHtml(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
+		$mail->send();
     }
 
 
