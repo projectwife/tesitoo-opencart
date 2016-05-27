@@ -130,10 +130,6 @@ class ControllerVendorOrderProductAPI extends ApiController {
 		$mail->setHtml(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
 		$mail->send();
 
-        $this->log->write('message sent to customer: ' . $subject . ' ::: ' . $text);
-
-
-        //replace this with admin name - check!
         $text = sprintf($this->language->get('text_to'), $this->config->get('config_name')) . "<br><br>";
 
         switch ($orderStatusId) {
@@ -163,8 +159,6 @@ class ControllerVendorOrderProductAPI extends ApiController {
 		$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
 		$mail->setHtml(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
 		$mail->send();
-
-        $this->log->write('message sent to admin: ' . $subject . ' ::: ' . $text);
     }
 
 

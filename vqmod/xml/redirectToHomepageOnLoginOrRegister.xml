@@ -1,0 +1,26 @@
+<modification>
+	<id><![CDATA[On buyer login or register, redirect to the homepage instead of account page]]></id>
+	<version><![CDATA[0.1]]></version>
+	<vqmver><![CDATA[2.5.1]]></vqmver>
+	<author><![CDATA[David Edgar]]></author>
+	<file path="catalog/controller/account/" name="login.php">
+		<operation>
+			<search position="replace" index="3"><![CDATA[
+                $this->response->redirect($this->url->link('account/account', '', 'SSL'));
+                ]]></search>
+			<add><![CDATA[
+                $this->response->redirect($this->url->link('common/home', '', 'SSL'));
+                ]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/account/" name="success.php">
+		<operation>
+			<search position="replace"><![CDATA[
+                $data['continue'] = $this->url->link('account/account', '', 'SSL');
+                ]]></search>
+			<add><![CDATA[
+                $data['continue'] = $this->url->link('common/home', '', 'SSL');
+                ]]></add>
+		</operation>
+	</file>
+</modification>
