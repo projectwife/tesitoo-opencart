@@ -64,15 +64,6 @@
                       <textarea name="product_description[<?php echo $language['language_id']; ?>][description]" placeholder="<?php echo $entry_description; ?>" id="input-description<?php echo $language['language_id']; ?>"><?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['description'] : ''; ?></textarea>
                     </div>
                   </div>
-                  <div class="form-group required">
-                    <label class="col-sm-2 control-label" for="input-meta-title<?php echo $language['language_id']; ?>"><?php echo $entry_meta_title; ?></label>
-                    <div class="col-sm-10">
-                      <input type="text" name="product_description[<?php echo $language['language_id']; ?>][meta_title]" value="<?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['meta_title'] : ''; ?>" placeholder="<?php echo $entry_meta_title; ?>" id="input-meta-title<?php echo $language['language_id']; ?>" class="form-control" />
-                      <?php if (isset($error_meta_title[$language['language_id']])) { ?>
-                      <div class="text-danger"><?php echo $error_meta_title[$language['language_id']]; ?></div>
-                      <?php } ?>
-                    </div>
-                  </div>
                 </div>
                 <?php } ?>
               </div>
@@ -405,6 +396,36 @@
 				  <a onclick="$(this).parent().find(':checkbox').prop('checked', true);"><?php echo $text_select_all; ?></a> / <a onclick="$(this).parent().find(':checkbox').prop('checked', false);"><?php echo $text_unselect_all; ?></a>
 				</div>
 			  </div>
+              <div class="form-group" style="display: none;">
+                <label class="col-sm-2 control-label"><?php echo $entry_store; ?></label>
+                <div class="col-sm-10">
+                  <div class="well well-sm" style="height: 150px; overflow: auto;">
+                    <div class="checkbox">
+                      <label>
+					  <?php if ($store_permission) { ?>
+						  <?php if (in_array(0,$store_permission)) { ?>
+							<?php if (in_array(0, $product_store)) { ?>
+							<input type="checkbox" name="product_store[]" value="0" checked="checked" />
+							<?php echo $text_default; ?>
+							<?php } else { ?>
+							<input type="checkbox" name="product_store[]" value="0" />
+							<?php echo $text_default; ?>
+							<?php } ?>
+						  <?php } ?>
+						<?php } else { ?>
+							<?php if (in_array(0, $product_store)) { ?>
+							<input type="checkbox" name="product_store[]" value="0" checked="checked" />
+							<?php echo $text_default; ?>
+							<?php } else { ?>
+							<input type="checkbox" name="product_store[]" value="0" />
+							<?php echo $text_default; ?>
+							<?php } ?>
+						<?php } ?>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="table-responsive">
                 <table id="images" class="table table-striped table-bordered table-hover">
                   <thead>
