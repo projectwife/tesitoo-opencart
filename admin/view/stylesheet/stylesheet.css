@@ -674,16 +674,39 @@ body {
 }
 
 /* can we just do this for all .btn? */
-.btn-info, .btn-primary, .btn-info:disabled {
+.btn-info, .btn-primary {
+    background-color: #7fae09;
+    border-color: #7fae09;
+}
+
+.btn-info:disabled, .btn-primary:disabled {
     background-color: #bdd387;
     border-color: #bdd387;
 }
 
 /* can we just do this for all .btn:hover? */
-.btn-info:hover,.btn-primary:hover, .btn-info:disabled:hover {
+.btn-info:hover, .btn-primary:hover, .btn-info:disabled:hover {
     color: #fff;
-    background-color: #496600;
-    border-color: #496600;
+    background-color: #4b7600;
+    border-color: #4b7600;
+}
+
+.btn-primary:active:hover, .open > .btn-primary.dropdown-toggle:hover, .btn-primary:active:focus, .open > .btn-primary.dropdown-toggle:focus, .btn-info:active:hover, .btn-primary:active:focus,
+.btn-primary:focus{
+    color: #fff;
+    background-color: #306000;
+    border-color: #306000;
+}
+
+
+.btn-danger {
+    background: #e94c5b none;
+    border-color: #e94c5b;
+}
+
+.btn-danger:hover {
+    background: #b20919 none;
+    border-color: #b20919;
 }
 
 .tile {
@@ -702,7 +725,7 @@ body {
     color: #496600;
 }
 
-a {
+a, .pagination > li > a {
     color: #6c9407;
 }
 
@@ -713,3 +736,14 @@ a:hover, a:focus {
 .breadcrumb li:last-child a {
     color: #313133;
 }
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    color: #fff;
+    background-color: #6c9407;
+    border-color: #6c9407;
+}
+
+
+
+
+
