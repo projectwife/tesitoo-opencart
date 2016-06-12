@@ -630,3 +630,86 @@ input[type="checkbox"]:checked::after, .checkbox input[type="checkbox"]:checked:
     visibility: unset;
 }
 /* Menu Fix For System -> Layout -> Banner */
+
+
+/************************* Tesitoo vendor styles *********************************/
+
+body {
+    font-family: 'Doppio One', sans-serif;
+    background: #f0f1f3 url('../../../catalog/view/theme/atr374opc2101/image/noise.png') repeat left top;
+}
+
+.page-header h1, .panel-heading h3, #profile h4 {
+    font-family: inherit;
+}
+
+#column-left {
+    background: #7fae09 none;
+}
+
+#column-left #menu > li a {
+    font: 400 14px 'Passion One', sans-serif;
+    text-transform: uppercase;
+    text-shadow: 0 0 1px #658e00;
+}
+
+#column-left #menu > li.active > a {
+    background: #496600 none;
+}
+
+#column-left #menu > li > a:hover {
+    background: #506d06 none;
+}
+
+#menu li li a {
+    background: #6b9202 none;
+}
+
+#menu li li a:hover {
+    background: #496600 none;
+}
+
+#stats {
+    background: #496600 none;
+}
+
+/* can we just do this for all .btn? */
+.btn-info, .btn-primary, .btn-info:disabled {
+    background-color: #bdd387;
+    border-color: #bdd387;
+}
+
+/* can we just do this for all .btn:hover? */
+.btn-info:hover,.btn-primary:hover, .btn-info:disabled:hover {
+    color: #fff;
+    background-color: #496600;
+    border-color: #496600;
+}
+
+.tile {
+    background: #e6f03a none;
+}
+
+.tile-heading, .tile-footer {
+    background-color: #cdd711;
+}
+
+.tile-body, .tile-body .fa {
+    color: #89904f;
+}
+
+#profile div i {
+    color: #496600;
+}
+
+a {
+    color: #6c9407;
+}
+
+a:hover, a:focus {
+    color: #224802;
+}
+
+.breadcrumb li:last-child a {
+    color: #313133;
+}
