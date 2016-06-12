@@ -15,6 +15,8 @@
 <script type="text/javascript" src="view/javascript/bootstrap/js/bootstrap.min.js"></script>
 <link href="view/stylesheet/bootstrap.css" type="text/css" rel="stylesheet" />
 <link href="view/javascript/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Doppio+One' rel='stylesheet' type='text/css' />
+<link href='//fonts.googleapis.com/css?family=Passion+One:400,700' rel='stylesheet' type='text/css' />
 <link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
 <script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
 <script src="view/javascript/jquery/datetimepicker/moment.js" type="text/javascript"></script>
