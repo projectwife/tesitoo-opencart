@@ -96,6 +96,11 @@
         </div>
         <div class="col-sm-3"><?php echo $cart; ?></div>
       </div>
+      <div class="row">
+        <div class="slogan">
+          <?php echo $text_slogan; ?>
+        </div>
+      </div>
     </div>
   </header>
   <?php if ($categories) { ?><!-- 

@@ -200,7 +200,7 @@ div.required .control-label:before {
 /* logo */
 #logo_mobile { display: none; }
 #logo_mobile .img-responsive { max-height: 96px;} /* edited by Mohamed Dukuray 28/04/2016 */
-#logo { margin: 0 0 10px 0; }
+#logo { margin: 0 0 0px 0; }
 #logo .img-responsive { max-height: 96px; }
 .is-sticky #logo, #sticky_logo, .is-sticky  #header .col-sm-4 { display: none; width: 0; }
 .is-sticky #sticky_logo { position: relative; float: left; display: block; width: 100%; max-width: 100px; height: 52px; line-height: 52px; margin: 0 10px; text-align: center; overflow: hidden; z-index: 1000; }
@@ -1879,3 +1879,11 @@ h2.price {
 .information-sitemap #content ul > li > ul li a { color: #626262; }
 .information-sitemap #content .col-sm-6 > ul a:hover { background-color: #f5f6f7; }
 .information-sitemap #content .col-sm-6 ul li span { display: block; padding: 5px 10px; background-color: #eef4fe; border-bottom: 1px dotted #c5cacb; }
+
+.slogan { font-size: 14px; font-style: italic; margin-left: 24px; }
+
+@media (max-width: 767px) {
+    .slogan {display: none;}
+}
+
+.is-sticky .slogan { display: none; }
