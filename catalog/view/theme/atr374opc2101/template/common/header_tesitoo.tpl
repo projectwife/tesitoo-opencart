@@ -120,7 +120,9 @@
       <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
         <li class="menu_home"><a href="<?php echo $home; ?>"><img width="18" height="18" src="catalog/view/theme/atr374opc2101/image/home_hover.png" title="<?php echo $text_home; ?>" alt="<?php echo $text_home; ?>" class="img-responsive home_hover" /><img width="18" height="18" src="catalog/view/theme/atr374opc2101/image/home.png" title="<?php echo $text_home; ?>" alt="<?php echo $text_home; ?>" class="img-responsive home_icon" /></a></li><!--
-        --><li class="mobile_home"><a href="<?php echo $home; ?>"><?php echo $text_home; ?></a></li><!--
+        --><li class="mobile_home"><a href="<?php echo $home; ?>"><?php echo $text_home; ?></a></li>
+        <li><a href="index.php?route=product/allproduct">All Products</a></li>
+        <!--
         --><?php foreach ($categories as $category) { ?><?php if ($category['children']) { ?><li class="dropdown"><a href="<?php echo $category['href']; ?>" class="dropdown-toggle" data-toggle="dropdown"><span><?php echo $category['name']; ?></span>&nbsp;&nbsp;<img width="8" height="8" class="menu-close" src="catalog/view/theme/atr374opc2101/image/menu_close.gif" /><img width="8" height="8" class="menu-open" src="catalog/view/theme/atr374opc2101/image/menu_open.gif" /></a>
           <div class="dropdown-menu">
           <div class="dropdown-inner">

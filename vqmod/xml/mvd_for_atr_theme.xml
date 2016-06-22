@@ -6,7 +6,7 @@
     <email></email>
 	<website></website>
 
-	<file name="catalog/view/theme/atr374opc2101/template/common/header.tpl">
+	<file path="catalog/view/theme/atr374opc2101/template/common/" name="header.tpl,header_tesitoo.tpl">
 		<operation error="skip">
 			<search position="after"><![CDATA[
             <li><a href="<?php echo $login; ?>"><?php echo $text_login; ?></a></li>

@@ -1,0 +1,16 @@
+<modification>	
+	<version>OC 1.5 and OC 2</version>
+	<vqmver>2.0.0</vqmver>
+	<author>Equotix</author>
+	    <code>List_all_Products</code>
+	<file name="catalog/view/theme/*/template/common/header.tpl" error="skip">
+		<operation>
+			<search position="after"><![CDATA[
+				<ul class="nav navbar-nav">
+			]]></search>
+			<add><![CDATA[
+				<li><a href="index.php?route=product/allproduct">All Products</a></li>
+			]]></add>
+		</operation>
+	</file>
+</modification>
