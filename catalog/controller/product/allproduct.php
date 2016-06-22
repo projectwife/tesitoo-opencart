@@ -91,7 +91,7 @@ class ControllerProductAllproduct extends Controller {
 		}
 
 		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
+			'text' => $this->language->get('text_product_listing'),
 			'href' => $this->url->link('product/allproduct')
 		);
 

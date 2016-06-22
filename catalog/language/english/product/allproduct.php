@@ -1,6 +1,6 @@
 <?php
 // Text
-$_['text_product_listing']       = 'All Products Listing';
+$_['text_product_listing']       = 'All Products';
 $_['text_refine']       = 'Refine Search';
 $_['text_product']      = 'Products';
 $_['text_error']        = 'Category not found!';
