@@ -404,6 +404,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		$results = $this->model_catalog_vdi_product->getProducts($filter_data);
 
 		foreach ($results as $result) {
+
 			if (is_file(DIR_IMAGE . $result['image'])) {
 				$image = $this->model_tool_image->resize($result['image'], 40, 40);
 			} else {
@@ -436,7 +437,7 @@ class ControllerCatalogVDIProduct extends Controller {
 				'name'       => $result['name'],
 				'model'      => $result['model'],
 				'sku'      	 => $result['sku'],
-				'price'      => $result['price'],
+				'price'      => $this->currency->format($result['price']),
 				'special'    => $special,
 				'quantity'   => $result['quantity'],
 				'status'     => $status,
