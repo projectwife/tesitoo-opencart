@@ -745,5 +745,86 @@ a:hover, a:focus {
 
 
 
+/* added by David to fit vdi product and order tables on screen in mobile view */
 
 
+@media screen and (max-width: 767px) {
+  .table > tbody > tr > td,
+  .table > thead > tr > td {
+    padding: 8px 4px;
+  }
+
+  .prod-tbl-model {
+    display: none;
+  }
+
+  .table-responsive > .table > tbody > tr > td.prod-tbl-name,
+  .table-responsive > .table > thead > tr > td.prod-tbl-name,
+  .table-responsive > .table > tbody > tr > td.prod-tbl-status,
+  .table-responsive > .table > thead > tr > td.prod-tbl-status,
+  .table-responsive > .table > tbody > tr > td.order-tbl-id,
+  .table-responsive > .table > thead > tr > td.order-tbl-id {
+    white-space: normal;
+    max-width: 68px;
+  }
+
+  .prod-tbl-action .btn {
+      padding: 5px 9px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+
+
+  .table-responsive > .table > thead > tr > td,
+  .table-responsive > .table > tbody > tr > td {
+    font-size: x-small;
+  }
+
+  .order-tbl-date-mod {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .table > tbody > tr > td,
+  .table > thead > tr > td {
+    padding: 6px 2px;
+  }
+
+  .table-responsive > .table > thead > tr > th,
+  .table-responsive > .table > tbody > tr > th,
+  .table-responsive > .table > tfoot > tr > th,
+  .table-responsive > .table > thead > tr > td,
+  .table-responsive > .table > tbody > tr > td,
+  .table-responsive > .table > tfoot > tr > td {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .prod-tbl-quantity {
+    max-width: 36px;
+  }
+
+  .prod-tbl-status {
+    max-width: 34px;
+  }
+
+  .table-responsive > .table > tbody > tr > td.prod-tbl-name,
+  .table-responsive > .table > thead > tr > td.prod-tbl-name {
+    white-space: normal;
+    max-width: 68px;
+  }
+
+  .prod-tbl-action .btn,
+  .order-tbl-view .btn {
+    padding: 4px 7px;
+  }
+}
+
+@media screen and (max-width: 386px) {
+  .order-tbl-date-add {
+    display: none;
+  }
+}
