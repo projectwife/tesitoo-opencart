@@ -827,4 +827,17 @@ a:hover, a:focus {
   .order-tbl-date-add {
     display: none;
   }
+
+  .table-responsive > .table > thead > tr > td.recent-tbl-id {
+    white-space: normal;
+    max-width: 68px;
+  }
+
+  .recent-tbl-status {
+    max-width: 34px;
+  }
+
+  .recent-tbl-action .btn {
+    padding: 4px 7px;
+  }
 }
