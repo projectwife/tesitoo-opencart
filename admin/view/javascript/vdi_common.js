@@ -89,6 +89,24 @@ $(document).ready(function() {
 		}
 	});
 
+    // on small screens, drop the side bar if user clicks outside
+    $("#content").click(function(event) {
+        if(!$(event.target).closest('#column-left').length &&
+          !$(event.target).is('#column-left') &&
+          $(window).width() <= 767) {
+            if ($('#column-left').hasClass('active')) {
+                localStorage.setItem('column-left', '');
+
+                $('#button-menu i').replaceWith('<i class="fa fa-indent fa-lg"></i>');
+
+                $('#column-left').removeClass('active');
+
+                $('#menu > li > ul').removeClass('in collapse');
+                $('#menu > li > ul').removeAttr('style');
+            }
+        }
+    });
+
 	// Menu
 	$('#menu').find('li').has('ul').children('a').on('click', function() {
 		if ($('#column-left').hasClass('active')) {
@@ -99,7 +117,7 @@ $(document).ready(function() {
 			$(this).parent('li').siblings().removeClass('open').children('ul.in').collapse('hide');
 		}
 	});
-	
+
 	// Override summernotes image manager
 	$('button[data-event=\'showImageDialog\']').attr('data-toggle', 'image').removeAttr('data-event');
 	
