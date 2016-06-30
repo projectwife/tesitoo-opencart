@@ -841,3 +841,39 @@ a:hover, a:focus {
     padding: 4px 7px;
   }
 }
+
+
+@media screen and (max-width: 399px) {
+    .col-sm-4 .form-group {
+        padding: 6px 0px;
+        font-size: x-small;
+    }
+
+    .col-sm-4 .form-group .control-label {
+        margin-bottom: 2px;
+    }
+}
+
+@media screen and (min-width: 400px) and (max-width: 649px) {
+    .col-sm-4 {
+        width: 50%;
+        float: left;
+        padding: 0px 8px;
+    }
+
+    .col-sm-4 .form-group {
+        padding: 8px 0px;
+        font-size: 11px;
+    }
+
+    .col-sm-4 .form-group .control-label {
+        margin-bottom: 4px;
+    }
+}
+
+@media screen and (min-width: 650px) {
+.col-sm-4 {
+    width: 33.33333%;
+    float: left;
+}
+}
