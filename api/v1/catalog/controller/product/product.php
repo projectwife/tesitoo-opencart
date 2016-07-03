@@ -117,8 +117,9 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 
 		$json['product_id'] = $data['product_id'];
 
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
+		//$this->response->addHeader('Content-Type: application/json');
+		//$this->response->setOutput(json_encode($json));
+		$this->response->setOutput($json);
 	}
 
 	public function edit($id) {
@@ -244,6 +245,8 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 	}
 
 	public function uploadImage($id) {
+		$json = array();
+
 		if ($this->user->isLogged()) {
 			$this->request->post['vendor'] = $this->user->getVP();
 		}
@@ -286,8 +289,9 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 
 		//append timestamp to all uploaded image filenames to ensure uniqueness
 		$path_parts = pathinfo($srcFileName);
-		$destination = "catalog/" . $userName . "/" . $path_parts['filename']
+		$fileNameTimestamped = $path_parts['filename']
 			. "_" . time() . "." . $path_parts['extension'];
+		$destination = "catalog/" . $userName . "/" . $fileNameTimestamped;
 
 		//$destination (eg. catalog/vendor1/Barley.jpg) is the string to put in the db
 
@@ -319,6 +323,10 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 			$this->model_catalog_vdi_product
 							->addAuxProductImage($id, $sortOrder, $destination);
 		}
+
+		$json['filename'] = $fileNameTimestamped;
+
+		$this->response->setOutput($json);
 	}
 
 	public function deleteImage($id) {
