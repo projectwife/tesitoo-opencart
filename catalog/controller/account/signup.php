@@ -666,11 +666,11 @@ class ControllerAccountSignUp extends Controller {
 			$this->error['postcode'] = $this->language->get('error_postcode');
 		}
 
-    	if ($this->request->post['country_id'] == '') {
+    	if ($this->request->post['country_id'] == '' || !is_numeric($this->request->post['country_id'])) {
       		$this->error['country'] = $this->language->get('error_country');
     	}
 		
-    	if ($this->request->post['zone_id'] == '') {
+    	if ($this->request->post['zone_id'] == '' || !is_numeric($this->request->post['zone_id'])) {
       		$this->error['zone'] = $this->language->get('error_zone');
     	}
 
