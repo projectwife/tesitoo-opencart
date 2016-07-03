@@ -659,6 +659,7 @@ body {
 
 #column-left #menu > li > a:hover {
     background: #506d06 none;
+    color: #ccc;
 }
 
 #menu li li a {
@@ -667,6 +668,7 @@ body {
 
 #menu li li a:hover {
     background: #496600 none;
+    color: #ccc;
 }
 
 #stats {
