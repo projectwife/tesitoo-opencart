@@ -1,0 +1,40 @@
+<modification>
+	<id>Add location to catalog product page</id>
+	<version>1.0.0</version>
+	<vqmver>2.5.1</vqmver>
+	<author>impairedspook</author>
+
+<!-- Display product location on catalog product page -->
+
+	<file name="catalog/controller/product/product.php">
+        <operation>
+            <search position="after"><![CDATA[$data['text_model'] = $this->language->get('text_model');]]></search>
+            <add><![CDATA[$data['text_location'] = $this->language->get('text_location');]]></add>
+        </operation>
+    <operation>
+            <search position="after"><![CDATA[$data['model'] = $product_info['model'];]]></search>
+            <add><![CDATA[$data['location'] = $product_info['location'];]]></add>
+        </operation>
+	</file>
+	<file name="catalog/language/english/product/product.php">
+        <operation>
+            <search position="after"><![CDATA[$_['text_model']               = 'Product Code:';]]></search>
+            <add><![CDATA[$_['text_location']       = 'Location:';]]></add>
+        </operation>
+	</file>
+	<file name="catalog/view/theme/atr374opc2101/template/product/product.tpl">
+        <operation>
+            <search position="after"><![CDATA[<li><?php echo $text_model; ?> <span><?php echo $model; ?></span></li>]]></search>
+            <add><![CDATA[<?php if ($location) { ?><li><?php echo $text_location; ?> <span><?php echo $location; ?></span></li><?php } ?>]]></add>
+        </operation>
+    </file>
+	<file name="catalog/view/theme/*/template/product/product.tpl">
+        <operation>
+            <search position="after"><![CDATA[<li><?php echo $text_model; ?> <?php echo $model; ?></li>]]></search>
+            <add><![CDATA[<?php if ($location) { ?><li><?php echo $text_location; ?> <?php echo $location; ?></li><?php } ?>]]></add>
+        </operation>
+	</file>
+</modification>
+
+
+
