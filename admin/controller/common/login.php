@@ -31,6 +31,10 @@ class ControllerCommonLogin extends Controller {
 
 		$data['button_login'] = $this->language->get('button_login');
 
+		$data['text_not_yet'] = $this->language->get('text_not_yet');
+		$data['text_sign_up'] = $this->language->get('text_sign_up');
+		$data['text_storefront'] = $this->language->get('text_storefront');
+
 		if ((isset($this->session->data['token']) && !isset($this->request->get['token'])) || ((isset($this->request->get['token']) && (isset($this->session->data['token']) && ($this->request->get['token'] != $this->session->data['token']))))) {
 			$this->error['warning'] = $this->language->get('error_token');
 		}
@@ -88,6 +92,8 @@ class ControllerCommonLogin extends Controller {
 
 		$data['header'] = $this->load->controller('common/header');
 		$data['footer'] = $this->load->controller('common/footer');
+
+		$data['signup'] = HTTP_CATALOG . "index.php?route=account/signup";
 
 		$this->response->setOutput($this->load->view('common/login.tpl', $data));
 	}

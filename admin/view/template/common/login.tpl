@@ -42,8 +42,12 @@
               <input type="hidden" name="redirect" value="<?php echo $redirect; ?>" />
               <?php } ?>
             </form>
+            <div class="not-yet-registered-link">
+                <div><?php echo $text_not_yet; ?> <a href="<?php echo $signup; ?>"><?php echo $text_sign_up; ?></a></div>
+            </div>
           </div>
         </div>
+        <div class="store-link"><a href="<?php echo HTTP_CATALOG; ?>"><i class="fa fa-shopping-cart"></i> <?php echo $text_storefront; ?></a></div>
       </div>
     </div>
   </div>
