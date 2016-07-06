@@ -17,3 +17,8 @@ $_['button_login']   = 'Login';
 // Error
 $_['error_login']    = 'No match for Username and/or Password.';
 $_['error_token']    = 'Invalid token session. Please login again.';
+
+$_['text_not_yet']   = 'Not yet registered as a farmer?';
+$_['text_sign_up']   = 'Sign Up.';
+
+$_['text_storefront']   = 'Return to Tesitoo storefront';
