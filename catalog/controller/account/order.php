@@ -167,6 +167,7 @@ class ControllerAccountOrder extends Controller {
 			$data['text_payment_address'] = $this->language->get('text_payment_address');
 			$data['text_history'] = $this->language->get('text_history');
 			$data['text_comment'] = $this->language->get('text_comment');
+			$data['text_vendor_details'] = $this->language->get('text_vendor_details');
 
 			$data['column_name'] = $this->language->get('column_name');
 			$data['column_model'] = $this->language->get('column_model');
@@ -177,6 +178,10 @@ class ControllerAccountOrder extends Controller {
 			$data['column_date_added'] = $this->language->get('column_date_added');
 			$data['column_status'] = $this->language->get('column_status');
 			$data['column_comment'] = $this->language->get('column_comment');
+			$data['column_vendor_name'] = $this->language->get('column_vendor_name');
+			$data['column_vendor_email'] = $this->language->get('column_vendor_email');
+			$data['column_vendor_phone'] = $this->language->get('column_vendor_phone');
+			$data['column_vendor_address'] = $this->language->get('column_vendor_address');
 
 			$data['button_reorder'] = $this->language->get('button_reorder');
 			$data['button_return'] = $this->language->get('button_return');
@@ -281,6 +286,7 @@ class ControllerAccountOrder extends Controller {
 
 			$this->load->model('catalog/product');
 			$this->load->model('tool/upload');
+			$this->load->model('catalog/vendor');
 
 			// Products
 			$data['products'] = array();
@@ -319,9 +325,33 @@ class ControllerAccountOrder extends Controller {
 					$reorder = '';
 				}
 
+				if (!array_key_exists('vendors', $data)) {
+                    $data['vendors'] = array();
+				}
+				if (!array_key_exists($product['vendor_id'], $data['vendors'])) {
+                    //if not, get the vendor
+                    $vendor = $this->model_catalog_vendor->getVendor($product['vendor_id']);
+                    $data['vendors'][$product['vendor_id']] = array(
+                        'vendor_id' => $vendor['vendor_id'],
+                        'vendor_name' => $vendor['vendor_name'],
+                        'email' => $vendor['email'],
+                        'telephone' => $vendor['telephone'],
+                        'firstname' => $vendor['firstname'],
+                        'lastname' => $vendor['lastname'],
+                        'address_1' => $vendor['address_1'],
+                        'address_2' => $vendor['address_2'],
+                        'city' => $vendor['city'],
+                        'postcode' => $vendor['postcode'],
+                        'country_id' => $vendor['country_id'],
+                        'zone_id' => $vendor['zone_id']
+                    );
+				}
+
+
 				$data['products'][] = array(
 					'name'     => $product['name'],
 					'model'    => $product['model'],
+					'vendor_name' => $data['vendors'][$product['vendor_id']]['vendor_name'],
 					'option'   => $option_data,
 					'quantity' => $product['quantity'],
 					'price'    => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
@@ -379,8 +409,8 @@ class ControllerAccountOrder extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/order_info.tpl')) {
-				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/order_info.tpl', $data));
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/order_info_tesitoo.tpl')) {
+				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/order_info_tesitoo.tpl', $data));
 			} else {
 				$this->response->setOutput($this->load->view('default/template/account/order_info.tpl', $data));
 			}
