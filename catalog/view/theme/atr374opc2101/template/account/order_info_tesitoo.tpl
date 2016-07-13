@@ -141,16 +141,10 @@
             <tbody>
               <?php foreach ($vendors as $vendor) { ?>
               <tr>
-                <td class="text-left"><?php echo $vendor['vendor_name']; ?><br>
-                    <?php echo "&nbsp;" . $vendor['firstname'] . " " . $vendor['lastname']; ?></td>
+                <td class="text-left"><?php echo $vendor['vendor_name']; ?></td>
                 <td class="text-left"><?php echo $vendor['email']; ?></td>
                 <td class="text-left"><?php echo $vendor['telephone']; ?></td>
-                <td class="text-left"><?php echo $vendor['address_1']; ?><br>
-                    <?php if (strlen($vendor['address_2']) > 0) echo $vendor['address_2'] . "<br>"; ?>
-                    <?php echo $vendor['city']; ?><br>
-                    <?php echo $vendor['zone_id']; ?><br>
-                    <?php echo $vendor['postcode']; ?><br>
-                    <?php echo $vendor['country_id']; ?></td>
+                <td class="text-left"><?php echo $vendor['address']; ?></td>
               </tr>
               <?php } ?>
             </tbody>

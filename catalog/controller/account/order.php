@@ -331,6 +331,36 @@ class ControllerAccountOrder extends Controller {
 				if (!array_key_exists($product['vendor_id'], $data['vendors'])) {
                     //if not, get the vendor
                     $vendor = $this->model_catalog_vendor->getVendor($product['vendor_id']);
+
+                    $format = '{firstname} {lastname}' . "\n" . '{address_1}' . "\n" .     '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+
+                    $find = array(
+                        '{firstname}',
+                        '{lastname}',
+                        '{company}',
+                        '{address_1}',
+                        '{address_2}',
+                        '{city}',
+                        '{postcode}',
+                        '{zone}',
+                        '{zone_code}',
+                        '{country}'
+                    );
+
+                    $replace = array(
+                        'firstname' => $vendor['firstname'],
+                        'lastname'  => $vendor['lastname'],
+                        'company'   => $vendor['company'],
+                        'address_1' => $vendor['address_1'],
+                        'address_2' => $vendor['address_2'],
+                        'city'      => $vendor['city'],
+                        'postcode'  => $vendor['postcode'],
+                        'zone'      => $vendor['zone_name'],
+                        'country'   => $vendor['country_name']
+                    );
+
+                    $vendorAddress = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
+
                     $data['vendors'][$product['vendor_id']] = array(
                         'vendor_id' => $vendor['vendor_id'],
                         'vendor_name' => $vendor['vendor_name'],
@@ -343,7 +373,10 @@ class ControllerAccountOrder extends Controller {
                         'city' => $vendor['city'],
                         'postcode' => $vendor['postcode'],
                         'country_id' => $vendor['country_id'],
-                        'zone_id' => $vendor['zone_id']
+                        'country_name' => $vendor['country_name'],
+                        'zone_id' => $vendor['zone_id'],
+                        'zone_name' => $vendor['zone_name'],
+                        'address' => $vendorAddress
                     );
 				}
 
