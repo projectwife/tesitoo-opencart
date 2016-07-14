@@ -1887,3 +1887,12 @@ h2.price {
 }
 
 .is-sticky .slogan { display: none; }
+
+
+.checkout-success a:hover {
+    text-decoration: none;
+}
+
+.checkout-success a {
+    text-decoration: underline;
+}
