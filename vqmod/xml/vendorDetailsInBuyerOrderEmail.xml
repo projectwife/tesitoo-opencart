@@ -1,0 +1,126 @@
+<modification>
+    <id>Add Vendor Details to new order email sent to buyer</id>
+    <version>1.0</version>
+    <vqmver>2.5.1</vqmver>
+    <author></author>
+    <email></email>
+	<website></website>
+	<file name="catalog/language/english/mail/order.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+                $_['text_update_footer']        = 'Please reply to this email if you have any questions.';
+            ]]></search>
+			<add><![CDATA[
+                $_['text_mail_vendor'] = 'Vendor';
+                $_['text_mail_vendor_details'] = 'Vendor Details';
+                $_['text_mail_vendor_name'] = 'Name';
+                $_['text_mail_vendor_email'] = 'Email';
+                $_['text_mail_vendor_phone'] = 'Telephone';
+                $_['text_mail_vendor_address'] = 'Address';
+            ]]></add>
+		</operation>
+    </file>
+	<file name="catalog/model/checkout/order.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[
+                $data['text_footer'] = $language->get('text_new_footer');
+            ]]></search>
+			<add><![CDATA[
+                $data['text_vendor'] = $language->get('text_mail_vendor');
+                $data['text_vendor_details'] = $language->get('text_mail_vendor_details');
+                $data['text_vendor_name'] = $language->get('text_mail_vendor_name');
+                $data['text_vendor_email'] = $language->get('text_mail_vendor_email');
+                $data['text_vendor_phone'] = $language->get('text_mail_vendor_phone');
+                $data['text_vendor_address'] = $language->get('text_mail_vendor_address');
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before" offset="2"><![CDATA[
+                $data['products'] = array();
+            ]]></search>
+			<add><![CDATA[
+                $this->load->model('catalog/vendor');
+                $data['vendors'] = array();
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before"><![CDATA[
+                $data['products'][] = array(
+            ]]></search>
+			<add><![CDATA[
+                if (!array_key_exists($product['vendor_id'], $data['vendors'])) {
+                    //if not, get the vendor
+                    $vendor = $this->model_catalog_vendor->getVendor($product['vendor_id']);
+
+                    $format = '{firstname} {lastname}' . "\n" . '{address_1}' . "\n" .
+                    '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" .
+                    '{country}';
+
+                    $find = array(
+                        '{firstname}',
+                        '{lastname}',
+                        '{company}',
+                        '{address_1}',
+                        '{address_2}',
+                        '{city}',
+                        '{postcode}',
+                        '{zone}',
+                        '{zone_code}',
+                        '{country}'
+                    );
+
+                    $replace = array(
+                        'firstname' => $vendor['firstname'],
+                        'lastname'  => $vendor['lastname'],
+                        'company'   => $vendor['company'],
+                        'address_1' => $vendor['address_1'],
+                        'address_2' => $vendor['address_2'],
+                        'city'      => $vendor['city'],
+                        'postcode'  => $vendor['postcode'],
+                        'zone'      => $vendor['zone_name'],
+                        'country'   => $vendor['country_name']
+                    );
+
+                    $vendorAddress = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
+
+                    $data['vendors'][$product['vendor_id']] = array(
+                        'vendor_id' => $vendor['vendor_id'],
+                        'vendor_name' => $vendor['vendor_name'],
+                        'email' => $vendor['email'],
+                        'telephone' => $vendor['telephone'],
+                        'firstname' => $vendor['firstname'],
+                        'lastname' => $vendor['lastname'],
+                        'address_1' => $vendor['address_1'],
+                        'address_2' => $vendor['address_2'],
+                        'city' => $vendor['city'],
+                        'postcode' => $vendor['postcode'],
+                        'country_id' => $vendor['country_id'],
+                        'zone_id' => $vendor['zone_id'],
+                        'address' => $vendorAddress
+                    );
+                }
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after"><![CDATA[
+                'total'    => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value'])
+            ]]></search>
+			<add><![CDATA[
+                ,
+                'vendor_name' => $data['vendors'][$product['vendor_id']]['vendor_name']
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after"><![CDATA[
+                $text .= $language->get('text_new_footer') . "\n\n";
+            ]]></search>
+			<add><![CDATA[
+                $this->log->write($html);
+			]]></add>
+		</operation>
+	</file>
+</modification>
+
+
+
+
