@@ -110,14 +110,6 @@
                 'vendor_name' => $data['vendors'][$product['vendor_id']]['vendor_name']
 			]]></add>
 		</operation>
-		<operation error="skip">
-			<search position="after"><![CDATA[
-                $text .= $language->get('text_new_footer') . "\n\n";
-            ]]></search>
-			<add><![CDATA[
-                $this->log->write($html);
-			]]></add>
-		</operation>
 	</file>
 </modification>
 
