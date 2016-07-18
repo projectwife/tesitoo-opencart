@@ -2,10 +2,10 @@
 class ModelLocalisationOrderStatus extends Model {
 
 	public function getOrderStatus() {
-		$orderStatus_desc_data = $this->cache->get('order_status_desc');
+		$orderStatus_desc_data = $this->cache->get('orderStatus_desc');
 
-		if (!$order_status_desc_data) {
-			$order_status_desc_data = array();
+		if (!$orderStatus_desc_data) {
+			$orderStatus_desc_data = array();
 
 			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status ORDER BY order_status_id ASC");
 
@@ -17,9 +17,9 @@ class ModelLocalisationOrderStatus extends Model {
 				);
 			}
 
-			$this->cache->set('order_status_desc', $order_status_desc_data);
+			$this->cache->set('orderStatus_desc', $orderStatus_desc_data);
 		}
 
-		return $order_status_desc_data;
+		return $orderStatus_desc_data;
 	}
 }

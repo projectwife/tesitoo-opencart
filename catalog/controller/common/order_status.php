@@ -7,7 +7,7 @@ class ControllerCommonOrderStatus extends Controller {
 
 		$data['order_status'] = array();
 
-		$results = $this->model_localisation_order_status->getOrder_status();
+		$results = $this->model_localisation_order_status->getOrderStatus();
 
 		foreach ($results as $result) {
 			$data['order_status'][] = array(
