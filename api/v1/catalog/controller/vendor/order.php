@@ -10,7 +10,7 @@ class ControllerVendorOrderAPI extends ApiController {
 
 			if (isset($args['id'])) {
 				if ($this->request->isGetRequest()) {
-					return $this->response->setOutput($this->getVendorOrderProducts($args['id']));
+					return $this->response->setOutput($this->getVendorOrder($args['id']));
 				}
 			}
 			else {
@@ -34,13 +34,45 @@ class ControllerVendorOrderAPI extends ApiController {
 		return $orders;
 	}
 
-	//Get the products for a specific order belonging to this vendor
-	protected function getVendorOrderProducts($id) {
+	//Get details of a specific order belonging to this vendor
+	//Should return customer details, and products to ship
+	protected function getVendorOrder($id) {
 
 		$this->load->model('sale/vdi_order');
 
-		$orders = $this->model_sale_vdi_order->getOrderProducts($id);
+		$products = $this->model_sale_vdi_order->getOrderProducts($id);
+        //if there were no products in the order belonging to this vendor,
+        //return immediately, without any data about the customer
+		if (0 == sizeof($products)) {
+            return;
+		}
+		else {
+            $order = $this->model_sale_vdi_order->getOrder($id);
 
-		return $orders;
+            $result = array(
+                "order_id" => $order['order_id'],
+                "customer_id" => $order['customer_id'],
+                "firstname" => $order['firstname'],
+                "lastname" => $order['lastname'],
+                "email" => $order['email'],
+                "telephone" => $order['telephone'],
+                "payment_method" => $order['payment_method'],
+                "shipping_firstname" => $order['shipping_firstname'],
+                "shipping_lastname" => $order['shipping_lastname'],
+                "shipping_address_1" => $order['shipping_address_1'],
+                "shipping_address_2" => $order['shipping_address_2'],
+                "shipping_city" => $order['shipping_city'],
+                "shipping_postcode" => $order['shipping_postcode'],
+                "shipping_zone_id" => $order['shipping_zone_id'],
+                "shipping_zone" => $order['shipping_zone'],
+                "shipping_zone_code" => $order['shipping_zone_code'],
+                "shipping_country_id" => $order['shipping_country_id'],
+                "shipping_country" => $order['shipping_country']
+            );
+
+            $result['products'] = $products;
+
+            return $result;
+        }
 	}
 }
