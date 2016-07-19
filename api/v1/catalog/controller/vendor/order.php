@@ -67,7 +67,22 @@ class ControllerVendorOrderAPI extends ApiController {
                 "shipping_zone" => $order['shipping_zone'],
                 "shipping_zone_code" => $order['shipping_zone_code'],
                 "shipping_country_id" => $order['shipping_country_id'],
-                "shipping_country" => $order['shipping_country']
+                "shipping_country" => $order['shipping_country'],
+                "shipping_iso_code_2" => $order['shipping_iso_code_2'],
+                "shipping_iso_code_3" => $order['shipping_iso_code_3'],
+                "payment_firstname" => $order['payment_firstname'],
+                "payment_lastname" => $order['payment_lastname'],
+                "payment_address_1" => $order['payment_address_1'],
+                "payment_address_2" => $order['payment_address_2'],
+                "payment_city" => $order['payment_city'],
+                "payment_postcode" => $order['payment_postcode'],
+                "payment_zone_id" => $order['payment_zone_id'],
+                "payment_zone" => $order['payment_zone'],
+                "payment_zone_code" => $order['payment_zone_code'],
+                "payment_country_id" => $order['payment_country_id'],
+                "payment_country" => $order['payment_country'],
+                "payment_iso_code_2" => $order['payment_iso_code_2'],
+                "payment_iso_code_3" => $order['payment_iso_code_3']
             );
 
             $result['products'] = $products;
