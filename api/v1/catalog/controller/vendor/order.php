@@ -26,9 +26,17 @@ class ControllerVendorOrderAPI extends ApiController {
 	protected function getVendorOrders() {
 
 		$this->load->model('sale/vdi_order');
-
 		$data = array();
-		$data['filter_order_status'] = "1"; // Status code of orders with 'Pending' status
+
+        if (isset($this->request->request['filter_order_status'])) {
+            //check input - should be list of integers
+            if (1 === preg_match('/^[0-9,\s]+$/',
+                                 $this->request->request['filter_order_status'])) {
+                $data['filter_order_status'] = $this->request->request['filter_order_status'];
+            }
+        }
+
+		//$data['filter_order_status'] = "1"; // Status code of orders with 'Pending' status
 		$orders = $this->model_sale_vdi_order->getOrders($data);
 
 		return $orders;
