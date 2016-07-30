@@ -19,44 +19,43 @@ class ControllerVendorProfileAPI extends ApiController {
         else {
 			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED, ErrorCodes::ERRORCODE_USER_NOT_LOGGED_IN, "not allowed");
 		}
-
-        //return $this->response->setOutput({});
-
-        //var_dump($this->request);
 	}
 
 	public function get() {
-        $user = $this->user;
-		$this->load->model('catalog/vdi_vendor_profile');
-        $vendorProfile = $this->model_catalog_vdi_vendor_profile->getVendorProfile($user->getId());
-        //var_dump($vendorProfile);
 
-        $profile = array();
+        $this->load->model('catalog/vendor');
+		$vendor = $this->model_catalog_vendor->getVendor($this->user->getVP());
 
-        $profile['username'] = $user->getUserName();
-        $profile['vendor_id'] = $user->getVP();
-        $profile['company'] = $vendorProfile['company'];
-        $profile['vendor_description'] = $vendorProfile['vendor_description'];
-        $profile['firstname'] = $vendorProfile['firstname'];
-        $profile['lastname'] = $vendorProfile['lastname'];
-        $profile['email'] = $vendorProfile['email'];
-        $profile['telephone'] = $vendorProfile['telephone'];
-        $profile['address_1'] = $vendorProfile['address_1'];
-        $profile['address_2'] = $vendorProfile['address_2'];
-        $profile['city'] = $vendorProfile['city'];
-        $profile['postcode'] = $vendorProfile['postcode'];
-        $profile['country_id'] = $vendorProfile['country_id'];
-        $profile['zone_id'] = $vendorProfile['zone_id'];
-        $profile['vendor_image'] = $vendorProfile['vendor_image'];
+		if(empty($vendor)) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_VENDOR_NOT_FOUND, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_VENDOR_NOT_FOUND));
+		}
 
+        $this->load->model('localisation/country');
+		$this->load->model('localisation/zone');
+		$this->load->model('tool/image');
 
+		$profile = array(
+			'vendor_id' => (int)$vendor['vendor_id'],
+			'user_id' => (int)$vendor['user_id'],
+			'username' => $vendor['username'],
+			'thumb' => $this->model_tool_image->resize($vendor['vendor_image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height')),
+			'telephone' => $vendor['telephone'],
+			'company' => $vendor['company'],
+			'description' => $vendor['vendor_description'],
+			'email' => $vendor['email'],
+			'firstname' => $vendor['firstname'],
+			'lastname' => $vendor['lastname'],
+			'address' => array(
+				'address_1' => $vendor['address_1'],
+				'address_2' => $vendor['address_2'],
+				'city' => $vendor['city'],
+				'postcode' => $vendor['postcode'],
+				'country' => $this->model_localisation_country->getCountry($vendor['country_id']),
+				'zone' => $this->model_localisation_zone->getZone($vendor['zone_id']),
+			)
+		);
 
-        //$profile[''] = $vendorProfile[''];
-        //$profile[''] = $vendorProfile[''];
-        //$profile[''] = $vendorProfile[''];
-
-
-        return $profile;
+		return $profile;
 	}
 
 	public function post() {
