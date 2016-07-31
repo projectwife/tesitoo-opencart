@@ -74,4 +74,32 @@ class ModelCatalogVendor extends Model {
 
 		return $query->rows;
 	}
+
+	public function editVendor($vendor) {
+		if(!is_array($vendor)){
+			return;
+		}
+
+        $this->db->query("UPDATE " . DB_PREFIX . "vendors SET " .
+        "vendor_name = '" . $this->db->escape($vendor['vendor_name']) . "', " .
+        "company = '" . $this->db->escape($vendor['company']) . "', " .
+        "vendor_description = '" . $this->db->escape($vendor['vendor_description']) . "', " .
+        "telephone = '" . $this->db->escape($vendor['telephone']) . "', " .
+        "email = '" . $this->db->escape($vendor['email']) . "', " .
+        "firstname = '" . $this->db->escape($vendor['firstname']) . "', " .
+        "lastname = '" . $this->db->escape($vendor['lastname']) . "', " .
+        "address_1 = '" . $this->db->escape($vendor['address_1']) . "', " .
+        "address_2 = '" . $this->db->escape($vendor['address_2']) . "', " .
+        "city = '" . $this->db->escape($vendor['city']) . "', " .
+        "postcode = '" . $this->db->escape($vendor['postcode']) . "', " .
+        "country_id = '" . (int)($vendor['country_id']) . "', " .
+        "zone_id = '" . (int)($vendor['zone_id']) . "' " .
+        "WHERE vendor_id = '" . (int)($vendor['vendor_id']) . "'");
+
+        $this->db->query("UPDATE " . DB_PREFIX . "user SET " .
+        "email = '" . $this->db->escape($vendor['email']) . "', " .
+        "firstname = '" . $this->db->escape($vendor['firstname']) . "', " .
+        "lastname = '" . $this->db->escape($vendor['lastname']) . "' " .
+        "WHERE user_id = '" . (int)($vendor['user_id']) . "'");
+	}
 }
