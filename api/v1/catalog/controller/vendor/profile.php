@@ -69,7 +69,7 @@ class ControllerVendorProfileAPI extends ApiController {
 
 		if (isset($this->request->post['company'])) {
 			$vendor['company'] = $this->request->post['company'];
-            if (!isset($this->request->post['company'])) {
+            if (!isset($this->request->post['vendor_name'])) {
                 $vendor['vendor_name'] = $this->request->post['company'];
             }
 		}

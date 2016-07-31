@@ -85,6 +85,9 @@ class ModelCatalogVendor extends Model {
         "company = '" . $this->db->escape($vendor['company']) . "', " .
         "vendor_description = '" . $this->db->escape($vendor['vendor_description']) . "', " .
         "telephone = '" . $this->db->escape($vendor['telephone']) . "', " .
+        "email = '" . $this->db->escape($vendor['email']) . "', " .
+        "firstname = '" . $this->db->escape($vendor['firstname']) . "', " .
+        "lastname = '" . $this->db->escape($vendor['lastname']) . "', " .
         "address_1 = '" . $this->db->escape($vendor['address_1']) . "', " .
         "address_2 = '" . $this->db->escape($vendor['address_2']) . "', " .
         "city = '" . $this->db->escape($vendor['city']) . "', " .
