@@ -37,4 +37,5 @@ Most of them require authentication first. See [the Tesitoo OpenCart API instruc
 * [GET order_product/{id}](get_vendor_order_product_id.md)
 * [POST order_product/{id}](post_vendor_order_product_id.md)
 * [POST register](post_vendor_register.md)
-
+* [GET vendor/profile](get_vendor_profile.md)
+* [POST vendor/profile](post_vendor_profile.md)
