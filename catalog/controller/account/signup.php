@@ -398,7 +398,8 @@ class ControllerAccountSignUp extends Controller {
 		
 		$comdata= array();
 		$comdata = explode(':',$this->config->get('mvd_signup_commission'));
-		if ($comdata) {
+		if ($comdata && $comdata[0] != 0) {
+
 			foreach ($this->model_account_signup->getCommissionLimits() as $default_text) {
 				if ($default_text['commission_id'] == $comdata[0]) {
 					$data['hsignup_plan'] = $default_text['commission_text'];
