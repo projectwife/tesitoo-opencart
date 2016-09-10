@@ -106,6 +106,10 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 			$this->request->post['model'] = $this->request->post['name'];
 		}
 
+		if ('' === $this->request->post['shipping']) {
+            $this->request->post['shipping'] = '1';
+        }
+
 		$data = parent::getInternalRouteData('product/product/addNew', true);
 
 		ApiException::evaluateErrors($data);
