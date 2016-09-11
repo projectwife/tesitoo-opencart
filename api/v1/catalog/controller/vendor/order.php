@@ -36,10 +36,17 @@ class ControllerVendorOrderAPI extends ApiController {
             }
         }
 
-		//$data['filter_order_status'] = "1"; // Status code of orders with 'Pending' status
-		$orders = $this->model_sale_vdi_order->getOrders($data);
+        $result = array();
+        $orderCount = $this->model_sale_vdi_order->getTotalOrders($data);
+        $result['total_order_count'] = $orderCount;
 
-		return $orders;
+        if (!isset($this->request->request['metaonly']) ||
+            ("true" !== $this->request->request['metaonly'])) {
+            $orders = $this->model_sale_vdi_order->getOrders($data);
+            $result['orders'] = $orders;
+        }
+
+		return $result;
 	}
 
 	//Get details of a specific order belonging to this vendor
