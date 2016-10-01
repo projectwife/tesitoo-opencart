@@ -42,7 +42,7 @@ class ControllerVendorOrderAPI extends ApiController {
 
         if (!isset($this->request->request['metaonly']) ||
             ("true" !== $this->request->request['metaonly'])) {
-            $orders = $this->model_sale_vdi_order->getOrders($data);
+            $orders = $this->model_sale_vdi_order->getOrdersByOrderProductStatus($data);
             $result['orders'] = $orders;
         }
 
