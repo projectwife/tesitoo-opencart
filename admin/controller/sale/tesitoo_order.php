@@ -1008,7 +1008,8 @@ class ControllerSaleTesitooOrder extends Controller {
 					'price'    		   => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
 					'total'    		   => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
 					'status'           => $product['status'],
-					'href'     		   => $this->url->link('catalog/product/edit', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], 'SSL')
+					'href'     		   => $this->url->link('catalog/product/edit', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], 'SSL'),
+					'edit_href'        => $this->url->link('sale/tesitoo_order/edit_order_product', 'token=' . $this->session->data['token'] . '&order_product_id=' . $product['order_product_id'], 'SSL')
 				);
 			}
 

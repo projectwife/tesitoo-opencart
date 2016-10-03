@@ -152,13 +152,16 @@
               <td class="text-right"><?php echo $column_status; ?></td>
               <td class="text-right"><?php echo $column_price; ?></td>
               <td class="text-right"><?php echo $column_total; ?></td>
-              <td></td>
+              <td style="width: 1px;"></td>
             </tr>
           </thead>
           <tbody>
             <?php foreach ($products as $product) { ?>
             <tr>
               <td class="text-left"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
+
+              &nbsp;<small> - <?php echo $product['vname']; ?></small>
+
                 <?php foreach ($product['option'] as $option) { ?>
                 <br />
                 <?php if ($option['type'] != 'file') { ?>
@@ -172,7 +175,7 @@
               <td class="text-right"><?php echo $product['status']; ?></td>
               <td class="text-right"><?php echo $product['price']; ?></td>
               <td class="text-right"><?php echo $product['total']; ?></td>
-              <td class="text-left"><?php echo "edit"; ?></td>
+              <td class="text-center"><a href="<?php echo $product['edit_href']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
             </tr>
             <?php } ?>
             <?php foreach ($vouchers as $voucher) { ?>
