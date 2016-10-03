@@ -1009,7 +1009,7 @@ class ControllerSaleTesitooOrder extends Controller {
 					'total'    		   => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
 					'status'           => $product['status'],
 					'href'     		   => $this->url->link('catalog/product/edit', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], 'SSL'),
-					'edit_href'        => $this->url->link('sale/tesitoo_order/edit_order_product', 'token=' . $this->session->data['token'] . '&order_product_id=' . $product['order_product_id'], 'SSL')
+					'edit_href'        => $this->url->link('sale/tesitoo_order/order_product', 'token=' . $this->session->data['token'] . '&order_product_id=' . $product['order_product_id'], 'SSL')
 				);
 			}
 
@@ -1969,5 +1969,126 @@ class ControllerSaleTesitooOrder extends Controller {
 		}
 
 		$this->response->setOutput($this->load->view('sale/order_shipping.tpl', $data));
+	}
+
+	public function order_product() {
+		$this->load->model('sale/tesitoo_order');
+
+		if (isset($this->request->get['order_product_id'])) {
+			$order_product_id = $this->request->get['order_product_id'];
+		} else {
+			$order_product_id = 0;
+		}
+
+		$order_product = $this->model_sale_tesitoo_order->getOrderProduct($order_product_id);
+
+		if ($order_product) {
+			$this->load->language('sale/order_product');
+
+			$this->document->setTitle($this->language->get('heading_title'));
+
+			$data['heading_title'] = $this->language->get('heading_title');
+			$data['text_order_product'] = $this->language->get('text_order_product');
+
+			$data['breadcrumbs'] = array();
+
+			$data['breadcrumbs'][] = array(
+				'text' => $this->language->get('text_home'),
+				'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+			);
+
+            $data['token'] = $this->session->data['token'];
+
+            $url = '';
+
+			$data['text_order_product_id'] = $this->language->get('text_order_product_id');
+			$data['text_product_name'] = $this->language->get('text_product_name');
+			$data['text_quantity'] = $this->language->get('text_quantity');
+			$data['text_status'] = $this->language->get('text_status');
+			$data['text_price'] = $this->language->get('text_price');
+			$data['text_vendor_total'] = $this->language->get('text_vendor_total');
+
+            $data['order_product_id'] = $order_product['order_product_id'];
+            $data['product_name'] = $order_product['name'];
+            $data['quantity'] = $order_product['quantity'];
+            $data['order_status_id'] = $order_product['order_status_id'];
+            $data['status'] = $order_product['status'];
+            $data['price'] = $order_product['price'];
+            $data['vendor_total'] = $order_product['vendor_total'];
+
+			$this->load->model('localisation/order_status');
+			$data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
+
+            $data['action'] = $this->url->link('sale/tesitoo_order/edit_order_product', 'token=' . $this->session->data['token'] . '&order_product_id=' . $this->request->get['order_product_id'] . $url, 'SSL');
+
+            $data['button_save'] = $this->language->get('button_save');
+            $data['button_cancel'] = $this->language->get('button_cancel');
+
+            $data['cancel'] = $this->url->link('sale/tesitoo_order/info', 'token=' . $this->session->data['token'] . $url . '&order_id=' . $order_product['order_id'], 'SSL');
+
+            /*
+			// API login
+			$this->load->model('user/api');
+
+			$api_info = $this->model_user_api->getApi($this->config->get('config_api_id'));
+
+			if ($api_info) {
+				$data['api_id'] = $api_info['api_id'];
+				$data['api_key'] = $api_info['key'];
+				$data['api_ip'] = $this->request->server['REMOTE_ADDR'];
+			} else {
+				$data['api_id'] = '';
+				$data['api_key'] = '';
+				$data['api_ip'] = '';
+			}
+			*/
+
+            $data['header'] = $this->load->controller('common/header');
+			$data['column_left'] = $this->load->controller('common/column_left');
+			$data['footer'] = $this->load->controller('common/footer');
+
+			$this->response->setOutput($this->load->view('sale/order_product_info.tpl', $data));
+
+		}
+		else {
+			$this->load->language('error/not_found');
+
+			$this->document->setTitle($this->language->get('heading_title'));
+
+			$data['heading_title'] = $this->language->get('heading_title');
+
+			$data['text_not_found'] = $this->language->get('text_not_found');
+
+			$data['breadcrumbs'] = array();
+
+			$data['breadcrumbs'][] = array(
+				'text' => $this->language->get('text_home'),
+				'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+			);
+
+			$data['breadcrumbs'][] = array(
+				'text' => $this->language->get('heading_title'),
+				'href' => $this->url->link('error/not_found', 'token=' . $this->session->data['token'], 'SSL')
+			);
+
+			$data['header'] = $this->load->controller('common/header');
+			$data['column_left'] = $this->load->controller('common/column_left');
+			$data['footer'] = $this->load->controller('common/footer');
+
+			$this->response->setOutput($this->load->view('error/not_found.tpl', $data));
+		}
+	}
+
+	public function edit_order_product() {
+		$this->load->model('sale/tesitoo_order');
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') /*&& $this->validateForm() && $this->validateUpdate()*/) {
+            $order_product = $this->model_sale_tesitoo_order->getOrderProduct($this->request->get['order_product_id']);
+
+            $this->model_sale_tesitoo_order->editOrderProduct($this->request->get['order_product_id'], $this->request->post);
+
+            $this->response->redirect($this->url->link('sale/tesitoo_order/info', 'token=' . $this->session->data['token'] . $url . '&order_id=' . $order_product['order_id'], 'SSL'));
+
+        }
 	}
 }

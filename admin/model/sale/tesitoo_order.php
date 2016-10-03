@@ -240,6 +240,13 @@ class ModelSaleTesitooOrder extends Model {
 		return $query->rows;
 	}
 
+    public function getOrderProduct($order_product_id) {
+	    //modified by David to add text name of order_status_id
+		$query = $this->db->query("SELECT *, (SELECT os.name FROM " . DB_PREFIX . "order_status os WHERE os.order_status_id = op.order_status_id AND os.language_id = '" . (int)$this->config->get('config_language_id') . "') AS status FROM " . DB_PREFIX . "order_product op WHERE order_product_id = '" . (int)$order_product_id . "'");
+
+		return $query->rows[0];
+	}
+
 	public function getOrderOptions($order_id, $order_product_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_option WHERE order_id = '" . (int)$order_id . "' AND order_product_id = '" . (int)$order_product_id . "'");
 
@@ -434,5 +441,9 @@ class ModelSaleTesitooOrder extends Model {
 		$query = $this->db->query("SELECT DISTINCT email FROM `" . DB_PREFIX . "order` o LEFT JOIN " . DB_PREFIX . "order_product op ON (o.order_id = op.order_id) WHERE (" . implode(" OR ", $implode) . ") AND o.order_status_id <> '0'");
 
 		return $query->row['total'];
+	}
+
+    public function editOrderProduct($order_product_id, $data) {
+		$this->db->query("UPDATE `" . DB_PREFIX . "order_product` SET order_status_id = '" . (int)$data['order_status_id'] . "' WHERE order_product_id = '" . (int)$order_product_id . "'");
 	}
 }
