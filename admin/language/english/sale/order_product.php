@@ -9,4 +9,4 @@ $_['text_quantity']              = 'Quantity';
 $_['text_status']              = 'Status';
 $_['text_price']              = 'Price';
 $_['text_vendor_total']              = 'Total';
-
+$_['text_for_order']              = 'Part of order';

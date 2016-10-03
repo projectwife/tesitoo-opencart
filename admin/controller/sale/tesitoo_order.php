@@ -2007,14 +2007,17 @@ class ControllerSaleTesitooOrder extends Controller {
 			$data['text_status'] = $this->language->get('text_status');
 			$data['text_price'] = $this->language->get('text_price');
 			$data['text_vendor_total'] = $this->language->get('text_vendor_total');
+			$data['text_for_order'] = $this->language->get('text_for_order');
 
             $data['order_product_id'] = $order_product['order_product_id'];
+            $data['order_id'] = $order_product['order_id'];
             $data['product_name'] = $order_product['name'];
             $data['quantity'] = $order_product['quantity'];
             $data['order_status_id'] = $order_product['order_status_id'];
             $data['status'] = $order_product['status'];
             $data['price'] = $order_product['price'];
             $data['vendor_total'] = $order_product['vendor_total'];
+
 
 			$this->load->model('localisation/order_status');
 			$data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
