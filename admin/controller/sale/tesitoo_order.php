@@ -728,7 +728,14 @@ class ControllerSaleTesitooOrder extends Controller {
 
 			$this->document->setTitle($this->language->get('heading_title'));
 
-			$data['heading_title'] = $this->language->get('heading_title');
+            $data['heading_title'] = $this->language->get('heading_title');
+
+            if (isset($this->session->data['success'])) {
+                $data['success'] = $this->session->data['success'];
+                unset($this->session->data['success']);
+            } else {
+                $data['success'] = '';
+            }
 
 			$data['text_ip_add'] = sprintf($this->language->get('text_ip_add'), $this->request->server['REMOTE_ADDR']);
 			$data['text_order_detail'] = $this->language->get('text_order_detail');
@@ -2084,8 +2091,12 @@ class ControllerSaleTesitooOrder extends Controller {
 
 	public function edit_order_product() {
 		$this->load->model('sale/tesitoo_order');
+		$this->load->language('sale/order_product');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') /*&& $this->validateForm() && $this->validateUpdate()*/) {
+
+            $this->session->data['success'] = $this->language->get('text_success');
+
             $order_product = $this->model_sale_tesitoo_order->getOrderProduct($this->request->get['order_product_id']);
 
             $this->model_sale_tesitoo_order->editOrderProduct($this->request->get['order_product_id'], $this->request->post);

@@ -10,3 +10,6 @@ $_['text_status']              = 'Status';
 $_['text_price']              = 'Price';
 $_['text_vendor_total']              = 'Total';
 $_['text_for_order']              = 'Part of order';
+
+$_['text_success'] = 'Order Product details updated!';
+

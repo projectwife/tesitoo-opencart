@@ -12,6 +12,11 @@
     </div>
   </div>
   <div class="container-fluid">
+    <?php if ($success) { ?>
+        <div class="alert alert-success"><i class="fa fa-check-circle"></i> <?php echo $success; ?>
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    <?php } ?>
     <div class="row">
       <div class="col-md-4">
         <div class="panel panel-default">
@@ -534,7 +539,7 @@ $.ajax({
 	data: 'key=<?php echo $api_key; ?>',
 	crossDomain: true,
 	success: function(json) {
-		$('.alert').remove();
+		//$('.alert').remove();
 
         if (json['error']) {
     		if (json['error']['key']) {
