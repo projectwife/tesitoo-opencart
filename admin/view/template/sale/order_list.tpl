@@ -240,6 +240,25 @@ $('input[name^=\'selected\']:first').trigger('change');
 // Login to the API
 var token = '';
 
+var autoAddIP = function() {
+	$.ajax({
+		url: 'index.php?route=user/api/addip&token=<?php echo $token; ?>&api_id=<?php echo $api_id; ?>',
+		type: 'post',
+		data: 'ip=<?php echo $api_ip; ?>',
+		dataType: 'json',
+		success: function(json) {
+			$('.alert').remove();
+
+			if (json['error']) {
+				$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+}
+
 $.ajax({
 	url: '<?php echo $store; ?>index.php?route=api/login',
 	type: 'post',
@@ -255,7 +274,7 @@ $.ajax({
     		}
 
             if (json['error']['ip']) {
-    			$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error']['ip'] + ' <button type="button" id="button-ip-add" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-danger btn-xs pull-right"><i class="fa fa-plus"></i> <?php echo $button_ip_add; ?></button></div>');
+                autoAddIP();
     		}
         }
 
