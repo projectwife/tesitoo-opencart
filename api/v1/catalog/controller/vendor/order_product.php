@@ -21,28 +21,32 @@ class ControllerVendorOrderProductAPI extends ApiController {
 		}
 	}
 
-	//Get the products for a specific order belonging to this vendor
+	//Get a specific ordered product belonging to this vendor
 	protected function getVendorOrderProduct($id) {
 
 		$this->load->model('sale/vdi_order');
 
-		$orders = $this->model_sale_vdi_order->getOrderProduct($id);
+		$orderProduct = $this->model_sale_vdi_order->getOrderProduct($id);
 
-		return $orders;
+		return $orderProduct;
 	}
 
 	protected function editVendorOrderProduct($id) {
 
 		$this->load->model('sale/vdi_order');
-		$order_product = $this->model_sale_vdi_order->getOrderProduct($id);
+		$orderProduct = $this->model_sale_vdi_order->getOrderProduct($id);
 
 		if (isset($this->request->post['order_status_id'])) {
-			$order_product['order_status_id'] = (int)$this->request->post['order_status_id'];
+			$orderProduct['order_status_id'] = (int)$this->request->post['order_status_id'];
 		}
 
-		$orders = $this->model_sale_vdi_order->editOrderProduct($id, $order_product);
+		$this->model_sale_vdi_order->editOrderProduct($id, $orderProduct);
 
-		$this->sendEditOrderStatusNotifications($order_product['order_status_id'], $id);
+		$this->sendEditOrderStatusNotifications($orderProduct['order_status_id'], $id);
+
+		$updatedOrderProduct = $this->model_sale_vdi_order->getOrderProduct($id);
+
+		return $updatedOrderProduct;
 	}
 
     public function sendEditOrderStatusNotifications($orderStatusId, $orderProductId) {
