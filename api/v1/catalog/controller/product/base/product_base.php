@@ -49,6 +49,7 @@ class ControllerProductProductBaseAPI extends ApiController {
 		}
 
 		$product = array('product' => $this->getProduct($id, $data));
+
 		$this->response->setOutput($product);
 	}
 
