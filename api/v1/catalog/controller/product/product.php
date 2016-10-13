@@ -391,6 +391,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 	}
 
 	//ADDED: tesitoo - david - 2015-08-25 - override to add vendor id & name
+	//ADDED: tesitoo - david - 2016-10-13 - add quantity and status
 	protected function getProduct($id, $data) {
 
 		$product = array();
@@ -419,6 +420,8 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$product['recurrings'] = isset($data['recurrings']) ? $data['recurrings'] : null;
 		$product['vendor_id'] = $data['vendor_id'];
 		$product['vendor_name'] = $data['vendor_name'];
+		$product['quantity'] = $data['quantity'];
+		$product['status'] = $data['status'];
 
 		return $this->processProduct($product);
 	}
