@@ -98,6 +98,9 @@ class ControllerVendorOrderProductAPI extends ApiController {
             case 7:
                 $subject = $this->language->get('text_subject_cancelled');
                 break;
+            default:
+                $subject = sprintf($this->language->get('text_subject_other_status'), $orderProduct['status']);
+                break;
         }
 
         $text = sprintf($this->language->get('text_to'), $customer_name) . "<br><br>";
@@ -111,6 +114,9 @@ class ControllerVendorOrderProductAPI extends ApiController {
                 break;
             case 7:
                 $text .= sprintf($this->language->get('text_message_cancelled'), $date, $productName, $quantity, $productTotal). "<br><br>";
+                break;
+            default:
+                $text .= sprintf($this->language->get('text_message_other_status'), $productName, $orderProduct['status']);
                 break;
         }
 
