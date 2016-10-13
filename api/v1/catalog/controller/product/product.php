@@ -224,7 +224,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 
         if ($this->config->get('mvd_product_notification')) {
 				$this->add_edit_notification(false, $description['name']);
-				$this->add_edit_vendor_notification(false, $this->request->post['name']);
+				$this->add_edit_vendor_notification(false, $description['name']);
         }
 	}
 
