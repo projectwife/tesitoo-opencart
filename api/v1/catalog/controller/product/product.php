@@ -69,6 +69,21 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		}
 	}
 
+	//override to allow retrieval of pending products
+    public function get($id = NULL) {
+		$this->request->get['product_id'] = (int)$id;
+		$this->request->get['include_pending'] = 1;
+
+		$data = parent::getInternalRouteData('product/product');
+
+		if(isset($data['text_error'])) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_PRODUCT_NOT_FOUND, $data['text_error']);
+		}
+
+		$product = array('product' => $this->getProduct($id, $data));
+		$this->response->setOutput($product);
+	}
+
 	public function image($args = array()) {
 		$id = isset($args['id']) ? $args['id'] : null;
 
