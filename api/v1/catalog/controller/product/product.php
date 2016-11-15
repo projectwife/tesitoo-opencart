@@ -437,6 +437,8 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$product['vendor_name'] = $data['vendor_name'];
 		$product['quantity'] = $data['quantity'];
 		$product['status'] = $data['status'];
+		$product['location'] = $data['location'];
+
 
 		return $this->processProduct($product);
 	}
