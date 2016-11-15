@@ -276,6 +276,8 @@ class ControllerProductProduct extends Controller {
 			$data['points'] = $product_info['points'];
 			$data['quantity'] = $product_info['quantity'];
 			$data['status'] = $product_info['status'];
+			$data['length_class_id'] = $product_info['length_class_id'];
+			$data['weight_class_id'] = $product_info['weight_class_id'];
 			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 
 			if ($product_info['quantity'] <= 0) {
