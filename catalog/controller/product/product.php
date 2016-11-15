@@ -276,6 +276,8 @@ class ControllerProductProduct extends Controller {
 			$data['points'] = $product_info['points'];
 			$data['quantity'] = $product_info['quantity'];
 			$data['status'] = $product_info['status'];
+			$data['length_class_id'] = $product_info['length_class_id'];
+			$data['weight_class_id'] = $product_info['weight_class_id'];
 			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 
 			if ($product_info['quantity'] <= 0) {
@@ -408,6 +410,12 @@ class ControllerProductProduct extends Controller {
 			$data['attribute_groups'] = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
 
 			$data['products'] = array();
+
+			$data['categories'] = array();
+			$categoriesToProducts = $this->model_catalog_product->getCategories($this->request->get['product_id']);
+			foreach ($categoriesToProducts as $categoryToProduct) {
+                $data['categories'][] = $categoryToProduct['category_id'];
+            }
 
 			$results = $this->model_catalog_product->getProductRelated($this->request->get['product_id']);
 
