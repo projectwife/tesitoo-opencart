@@ -441,6 +441,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$product['length_class_id'] = $data['length_class_id'];
 		$product['weight_class_id'] = $data['weight_class_id'];
 		$product['categories'] = $data['categories'];
+		$product['date_added'] = $data['date_added'];
 
 		return $this->processProduct($product);
 	}

@@ -280,6 +280,8 @@ class ControllerProductProduct extends Controller {
 			$data['weight_class_id'] = $product_info['weight_class_id'];
 			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 
+			$data['date_added'] = $product_info['date_added'];
+
 			if ($product_info['quantity'] <= 0) {
 				$data['stock'] = $product_info['stock_status'];
 			} elseif ($this->config->get('config_stock_display')) {
