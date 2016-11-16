@@ -1,6 +1,6 @@
-### GET profile ###
+### POST profile ###
 
-**Method** `GET /api/v1/vendor/profile`
+**Method** `POST /api/v1/vendor/profile`
 
 Sets the vendor profile data for the currently logged-in vendor.
 
