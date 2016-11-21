@@ -18,6 +18,7 @@ class ControllerVendorProductsAPI extends ApiController {
 	protected function getOwnProducts() {
 
 		$this->load->model('catalog/vdi_product');
+		$this->load->model('catalog/product');
 		$this->load->model('tool/image');
 
 		$data = array();
@@ -34,7 +35,15 @@ class ControllerVendorProductsAPI extends ApiController {
                 "minimum" => (int)$product['minimum'],
                 "quantity" => (int)$product['quantity'],
                 "status" => (int)$product['status'],
-                "thumb_image" => $thumb);
+                "thumb_image" => $thumb,
+                "location" => $product['location']);
+
+            $resultProduct['categories'] = array();
+            $categoriesToProducts = $this->model_catalog_product->getCategories($product['product_id']);
+            foreach ($categoriesToProducts as $categoryToProduct) {
+                $resultProduct['categories'][] = $categoryToProduct['category_id'];
+            }
+
             $result[] = $resultProduct;
         }
 
