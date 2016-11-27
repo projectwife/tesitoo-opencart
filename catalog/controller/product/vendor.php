@@ -234,6 +234,12 @@ class ControllerProductVendor extends Controller
 					$rating = false;
 				}
 
+				$categories = array();
+				$catsToProds = $this->model_catalog_product->getCategories($result['product_id']);
+				foreach ($catsToProds as $catToProd) {
+                    $categories[] = $catToProd['category_id'];
+                }
+
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
@@ -244,7 +250,9 @@ class ControllerProductVendor extends Controller
 					'tax'         => $tax,
 					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'rating'      => $result['rating'],
-					'href'        => $this->url->link('product/product', 'vendor_id=' . $this->request->get['vendor_id'] . '&product_id=' . $result['product_id'] . $url)
+					'href'        => $this->url->link('product/product', 'vendor_id=' . $this->request->get['vendor_id'] . '&product_id=' . $result['product_id'] . $url),
+					'location'    => $result['location'],
+					'categories'  => $categories
 				);
 			}
 
