@@ -22,5 +22,13 @@ class ModelCatalogVDIVendorProfile extends Model {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "vendors WHERE user_id = '" . (int)$user_id . "'");
 		return $query->row; 
 	}
+
+    public function setVendorProfileImage($vendor_id, $imgFile) {
+		if (isset($imgFile)) {
+			$this->db->query("UPDATE " . DB_PREFIX . "vendors SET vendor_image = '"
+			. $this->db->escape($imgFile) . "' WHERE vendor_id = '" . (int)$vendor_id . "'");
+		}
+	}
+
 }
 ?>
