@@ -20,7 +20,7 @@ class ControllerVendorProfileImageAPI extends ApiController {
         }
     }
 
-    public function post() {
+    protected function post() {
         $json = array();
 
         $userName = $this->user->getUserName();
@@ -63,7 +63,22 @@ class ControllerVendorProfileImageAPI extends ApiController {
         $this->response->setOutput($json);
     }
 
-    public function delete() {
+    protected function delete() {
+
+        $vendorId = $this->user->getVP();
+
+        $this->load->model('catalog/vdi_vendor_profile');
+
+        $currentImage = $this->model_catalog_vdi_vendor_profile->getVendorProfileImage($vendorId);
+
+        //instruct the model to set the profile image field to an empty string
+        $this->model_catalog_vdi_vendor_profile->setVendorProfileImage($vendorId, "");
+
+        //remove file from image catalog
+        if (file_exists(DIR_IMAGE . $currentImage)) {
+            unlink(DIR_IMAGE . $currentImage);
+        }
+        //don't clean up image cache - assume cleared periodically by routine maintenance
 
     }
 }
