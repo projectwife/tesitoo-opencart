@@ -84,7 +84,7 @@ class ControllerVendorRegisterAPI extends ApiController {
 			$this->request->post['zone_id'] = '';
 		}
 		if (!isset($this->request->post['company'])) {
-			$this->request->post['company'] = '';
+			$this->request->post['company'] = $data['firstname'] . ' ' . $data['lastname'];
 		}
 
 		$data = parent::getInternalRouteData('account/signup/index');
