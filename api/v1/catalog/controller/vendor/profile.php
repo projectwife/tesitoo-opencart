@@ -117,3 +117,6 @@ class ControllerVendorProfileAPI extends ApiController {
 	}
 
 }
+
+?>
+

@@ -82,3 +82,6 @@ class ControllerVendorProfileImageAPI extends ApiController {
 
     }
 }
+
+?>
+

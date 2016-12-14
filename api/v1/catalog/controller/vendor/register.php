@@ -21,14 +21,6 @@ class ControllerVendorRegisterAPI extends ApiController {
 		$data['firstname'] = $this->request->post['firstname'];
 		$data['lastname'] = $this->request->post['lastname'];
 		$data['email'] = $this->request->post['email'];
-		$data['telephone'] = $this->request->post['telephone'];
-		$data['address_1'] = $this->request->post['address_1'];
-		$data['address_2'] = $this->request->post['address_2'];
-		$data['city'] = $this->request->post['city'];
-		$data['postcode'] = $this->request->post['postcode'];
-		$data['country_id'] = $this->request->post['country_id'];
-		$data['zone_id'] = $this->request->post['zone_id'];
-		$data['company'] = $this->request->post['company'];
 
 		if (!isset($data['confirm'])) {
 			//we expect to handle password confirmation check on the client side
@@ -70,6 +62,30 @@ class ControllerVendorRegisterAPI extends ApiController {
 		if (!isset($this->request->post['hsignup_plan'])) {
 			$this->request->post['hsignup_plan'] = '';
 		}
+		if (!isset($this->request->post['telephone'])) {
+			$this->request->post['telephone'] = '';
+		}
+		if (!isset($this->request->post['address_1'])) {
+			$this->request->post['address_1'] = '';
+		}
+		if (!isset($this->request->post['address_2'])) {
+			$this->request->post['address_2'] = '';
+		}
+		if (!isset($this->request->post['city'])) {
+			$this->request->post['city'] = '';
+		}
+		if (!isset($this->request->post['postcode'])) {
+			$this->request->post['postcode'] = '';
+		}
+		if (!isset($this->request->post['country_id'])) {
+			$this->request->post['country_id'] = '';
+		}
+		if (!isset($this->request->post['zone_id'])) {
+			$this->request->post['zone_id'] = '';
+		}
+		if (!isset($this->request->post['company'])) {
+			$this->request->post['company'] = '';
+		}
 
 		$data = parent::getInternalRouteData('account/signup/index');
 
@@ -91,34 +107,33 @@ class ControllerVendorRegisterAPI extends ApiController {
 		if ('' != ($data['error_paypal'])) {
 			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_BAD_PARAMETER, $data['error_paypal']);
 		}
-		if ('' != ($data['error_telephone'])) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_BAD_PARAMETER, $data['error_telephone']);
-		}
-		if ('' != ($data['error_password'])) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_BAD_PARAMETER, $data['error_password']);
-		}
-		if ('' != ($data['error_address_1'])) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_BAD_PARAMETER, $data['error_address_1']);
-		}
-		if ('' != ($data['error_city'])) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_BAD_PARAMETER, $data['error_city']);
-		}
-		if ('' != ($data['error_company'])) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_BAD_PARAMETER, $data['error_company']);
-		}
-		if ('' != ($data['error_postcode'])) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_BAD_PARAMETER, $data['error_postcode']);
-		}
-		if ('' != ($data['error_country'])) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_BAD_PARAMETER, $data['error_country']);
-		}
-		if ('' != ($data['error_zone'])) {
-			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_BAD_PARAMETER, $data['error_zone']);
-		}
-
+       if ('' != ($data['error_telephone'])) {
+            throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_BAD_PARAMETER, $data['error_telephone']);
+        }
+        if ('' != ($data['error_password'])) {
+            throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_BAD_PARAMETER, $data['error_password']);
+        }
+        if ('' != ($data['error_address_1'])) {
+            throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST,     ErrorCodes::ERRORCODE_BAD_PARAMETER, $data['error_address_1']);
+        }
+        if ('' != ($data['error_city'])) {
+            throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_BAD_PARAMETER, $data['error_city']);
+        }
+        if ('' != ($data['error_company'])) {
+            throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_BAD_PARAMETER, $data['error_company']);
+        }
+        if ('' != ($data['error_postcode'])) {
+            throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_BAD_PARAMETER, $data['error_postcode']);
+        }
+        if ('' != ($data['error_country'])) {
+            throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_BAD_PARAMETER, $data['error_country']);
+        }
+        if ('' != ($data['error_zone'])) {
+            throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_BAD_PARAMETER, $data['error_zone']);
+        }
 	}
 
-
-
-
 }
+
+?>
+

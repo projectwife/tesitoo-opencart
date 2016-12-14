@@ -170,6 +170,6 @@ class ControllerVendorOrderProductAPI extends ApiController {
 		$mail->setHtml(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
 		$mail->send();
     }
-
-
 }
+
+?>
