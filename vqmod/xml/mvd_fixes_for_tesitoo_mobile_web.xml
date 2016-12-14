@@ -33,7 +33,11 @@
             <search position="replace" offset="36"><![CDATA[
                 if (!empty($this->request->post['paypal'])) {
 			]]></search>
-			<add><![CDATA[]]></add>
+			<add><![CDATA[
+                if ((utf8_strlen($this->request->post['username']) < 3) || (utf8_strlen($this->request->post['username']) > 96)) {
+                    $this->error['username'] = $this->language->get('error_username');
+                }
+            ]]></add>
 		</operation>
     </file>
     <file name="admin/controller/catalog/vdi_vendor_profile.php">
