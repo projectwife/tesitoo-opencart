@@ -62,6 +62,7 @@ $_['help_product_limit']   = 'The number of products can add to account';
 // Error
 $_['error_exists']         = 'Warning: E-Mail Address is already registered!';
 $_['error_username_exists']= 'Warning: Username is already registered!';
+$_['error_username']       = 'Username must be between 3 and 96 characters!';
 $_['error_firstname']      = 'First Name must be between 1 and 32 characters!';
 $_['error_lastname']       = 'Last Name must be between 1 and 32 characters!';
 $_['error_email']          = 'E-Mail Address does not appear to be valid!';

@@ -50,3 +50,5 @@ class ControllerVendorProductsAPI extends ApiController {
         return $result;
     }
 }
+
+?>

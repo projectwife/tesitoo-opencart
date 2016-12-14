@@ -188,3 +188,5 @@ class ControllerProductVendorBaseAPI extends ApiController
 	    return isset($args['id']) ? $args['id'] : null;
 	}
 }
+
+?>

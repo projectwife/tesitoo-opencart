@@ -213,7 +213,7 @@ class ControllerAccountSignUp extends Controller {
 		} else {
 			$data['error_zone'] = '';
 		}
-		
+
 		if (isset($this->request->post['username'])) {
     		$data['username'] = $this->request->post['username'];
 		} else {
@@ -681,8 +681,8 @@ class ControllerAccountSignUp extends Controller {
 
     	if ($this->request->post['confirm'] != $this->request->post['password']) {
       		$this->error['confirm'] = $this->language->get('error_confirm');
-    	} 
-		
+    	}
+
 		if ($this->config->get('config_account_id')) {
 			$this->load->model('catalog/information');
 			
