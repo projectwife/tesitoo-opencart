@@ -97,7 +97,7 @@ $_['help_folder_path']     		= 'Create a vendor folder to isolate all uploaded f
 $_['help_folder_path_remove']  	= 'Warning : Remove this folder will deleted all files reside in this folder';
 $_['help_expired_date']  		= 'User account expired date. <br/> Leave it blank or set it to \'0000-00-00\' for no limit. <br/> Date Format : (yyyy-mm-dd)'; 		
 $_['help_map_vendor_profile']   = 'This user account cannot map to more than one vendor profile';
-$_['help_folder_delete']    	= '<font color="red">Warning : Deleted the <b> %s </b>folder will be permanently and cannot be recovered.</font>';
+$_['help_folder_delete']    	= '<font color="red">Warning : Deleting the <b> %s </b>folder will be permanent and cannot be undone.</font>';
 $_['help_password']         	= 'Enter password if you want include username and password into the email notification.';
 
 //tab

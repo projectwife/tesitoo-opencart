@@ -17,7 +17,7 @@ $_['entry_store']      			= 'Store Permission';
 $_['entry_expired_date']  		= 'Expired Date'; 
 $_['text_change_password'] 		= 'Success: Password change completed !';
 $_['text_remove']               = 'Checked to remove <b>%s</b> folder.';
-$_['help_folder_delete']        = '<font color="red">Warning : Deleted the <b> %s </b>folder will be permanently and cannot be recovered.</font>';
+$_['help_folder_delete']        = '<font color="red">Warning : Deleting the <b> %s </b>folder will be permanent and cannot be undone.</font>';
 $_['txt_pending_approval']  	= 'Pending Approval'; 
 $_['txt_start_date']  			= 'Start Date';
 $_['txt_end_date']  			= 'End Date';
