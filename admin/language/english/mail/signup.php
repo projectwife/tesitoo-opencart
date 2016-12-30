@@ -1,7 +1,7 @@
 <?php
 // Text
 $_['text_dear']  	= 'Dear %s';
-$_['text_subject1'] = '%s - You have been selected to participate in our vendor program';
+$_['text_subject1'] = 'New member %s has joined as a vendor';
 $_['text_welcome1'] = 'Welcome and thank you for your interested at %s vendor program!';
 $_['text_subject']  = '%s - Thank you for registering';
 $_['text_url']  	= 'URL : ';
