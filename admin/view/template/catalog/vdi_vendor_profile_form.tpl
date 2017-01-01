@@ -87,7 +87,7 @@
               <input type="text" name="fax" value="<?php echo $fax; ?>" placeholder="<?php echo $entry_fax; ?>" id="input-fax" class="form-control" />
               </div>
           </div>
-		  <div class="form-group required">
+		  <div class="form-group">
             <label class="col-sm-2 control-label"><?php echo $entry_description; ?></label>
             <div class="col-sm-10">
 			  <textarea name="vendor_description" rows="5" placeholder="<?php echo $entry_description; ?>" class="form-control"><?php echo $vendor_description; ?></textarea>
@@ -131,7 +131,7 @@
 			<?php } ?>
 			</div>
           </div>
-		  <div class="form-group required">
+		  <div class="form-group">
             <label class="col-sm-2 control-label" for="input-postcode"><?php echo $entry_postcode; ?></label>
             <div class="col-sm-10">
             <input type="text" name="postcode" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="input-postcode" class="form-control" />
@@ -170,7 +170,7 @@
           </div>
         </div>
         <div class="tab-pane" id="tab-finance">
-          <div class="form-group required">
+          <div class="form-group">
             <label class="col-sm-2 control-label" for="input-paypal_email"><span data-toggle="tooltip" title="<?php echo $help_paypal_email; ?>"><?php echo $entry_paypal_email; ?></span></label>
             <div class="col-sm-10">
             <input type="text" name="paypal_email" value="<?php echo $paypal_email; ?>" placeholder="<?php echo $entry_paypal_email; ?>" id="input-paypal_email" class="form-control" />

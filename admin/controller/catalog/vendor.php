@@ -1040,30 +1040,7 @@ class ControllerCatalogVendor extends Controller {
 				$this->error['paypal_email'] = $this->language->get('error_vendor_paypal_email');
 			}
 		}
-		
-		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
-      		$this->error['telephone'] = $this->language->get('error_vendor_telephone');
-    	}
 
-    	if ((utf8_strlen($this->request->post['address_1']) < 3) || (utf8_strlen($this->request->post['address_1']) > 128)) {
-      		$this->error['address_1'] = $this->language->get('error_vendor_address_1');
-    	}
-
-    	if ((utf8_strlen($this->request->post['city']) < 2) || (utf8_strlen($this->request->post['city']) > 128)) {
-      		$this->error['city'] = $this->language->get('error_vendor_city');
-    	}
-
-		$this->load->model('localisation/country');
-		$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
-		
-		if ($country_info && $country_info['postcode_required'] && (utf8_strlen($this->request->post['postcode']) < 2) || (utf8_strlen($this->request->post['postcode']) > 10)) {
-			$this->error['postcode'] = $this->language->get('error_vendor_postcode');
-		}
-		
-    	if ($this->request->post['country_id'] == '') {
-      		$this->error['country'] = $this->language->get('error_vendor_country');
-    	}
-		
     	if ($this->request->post['zone_id'] == '') {
       		$this->error['zone'] = $this->language->get('error_vendor_zone');
     	}
