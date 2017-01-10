@@ -20,11 +20,8 @@ Environment
     - suggest per directory in `/etc/apache2/sites-available/000-default.conf`) :
 
             <Directory /var/www/html>
-	    
                 Options FollowSymLinks
-		
                 AllowOverride All
-		
             </Directory>
 
 - php 5.x (5.6 recommended)
