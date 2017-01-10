@@ -46,9 +46,10 @@ Opencart source
   - `sudo apt-get install git`
   - `git clone https://github.com/projectwife/tesitoo-opencart.git`
 - install in desired location within web-server content directory
-- `cp config-dist.php config.php`
-- `cp admin/config-dist.php admin/config.php`
-- `cp api/v1/config-dist.php api/v1/config.php`
+- copy the core config files
+  - `cp config-dist.php config.php`
+  - `cp admin/config-dist.php admin/config.php`
+  - `cp api/v1/config-dist.php api/v1/config.php`
 - edit `config.php`, `admin/config.php` and `api/v1/config.php` as necessary :
 
   - all the paths should be changed to correspond to your opencart location
@@ -74,6 +75,8 @@ Database set-up (phpMyAdmin)
 
 SSL (Let's Encrypt)
 ---------------------
+First change the DNS settings. The domain name must be updated to this IP (certbot checks this).
+
 To install certbot
 - `sudo apt-get install python-certbot-apache -t jessie-backports`
 - `sudo certbot --apache`
