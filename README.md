@@ -87,7 +87,7 @@ To set up certificate renewal:
 and add the line:
 - `56 06,18 * * *   certbot renew`
 
-.HTACCESS
+.htaccess
 --------------
 
 The `.htaccess` file in your document root should allow cross origin requests between the main domain and the `www.` subdomain. Something like this:
