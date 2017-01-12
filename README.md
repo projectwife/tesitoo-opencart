@@ -86,3 +86,14 @@ To set up certificate renewal:
 
 and add the line:
 - `56 06,18 * * *   certbot renew`
+
+.HTACCESS
+--------------
+
+The `.htaccess` file in your document root should allow cross origin requests between the main domain and the `www.` subdomain. Something like this:
+
+    <IfModule mod_headers.c>
+        SetEnvIf Origin ^(https?://(?:.+\.)?tesitoo\.com(?::\d{1,5})?)$   CORS_ALLOW_ORIGIN=$1
+        Header append Access-Control-Allow-Origin  %{CORS_ALLOW_ORIGIN}e   env=CORS_ALLOW_ORIGIN
+        Header merge  Vary "Origin"
+    </IfModule>
