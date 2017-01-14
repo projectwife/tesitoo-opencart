@@ -282,6 +282,8 @@ class ControllerProductProduct extends Controller {
 
 			$data['date_added'] = $product_info['date_added'];
 
+			$data['expiration_date'] = '2222-22-22 22:22:22';
+
 			if ($product_info['quantity'] <= 0) {
 				$data['stock'] = $product_info['stock_status'];
 			} elseif ($this->config->get('config_stock_display')) {
