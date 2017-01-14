@@ -156,12 +156,11 @@ class ControllerProductProduct extends Controller {
 
 		$this->load->model('catalog/product');
 
+		$include_pending = false;
 		if (isset($this->request->get['include_pending']) && $this->request->get['include_pending'] != 0) {
-            $product_info = $this->model_catalog_product->getProductIncludingPendingApproval($product_id);
+            $include_pending = true;
         }
-        else {
-            $product_info = $this->model_catalog_product->getProduct($product_id);
-        }
+        $product_info = $this->model_catalog_product->getProduct($product_id, $include_pending);
 
 		if ($product_info) {
 			$url = '';
