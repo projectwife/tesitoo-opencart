@@ -4,7 +4,7 @@ class ModelCatalogProduct extends Model {
 		$this->db->query("UPDATE " . DB_PREFIX . "product SET viewed = (viewed + 1) WHERE product_id = '" . (int)$product_id . "'");
 	}
 
-    public function getProduct($product_id, $includePending) {
+    public function getProduct($product_id, $includePending=false) {
         if ($includePending) {
             $status_sel_expr = "(p.status = '1' OR p.status = '5')";
         } else {
