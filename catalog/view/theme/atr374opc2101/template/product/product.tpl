@@ -143,6 +143,7 @@
                 <li><?php echo $text_reward; ?> <span><?php echo $reward; ?></span></li>
                 <?php } ?>
                 <li><?php echo $text_stock; ?> <span><?php echo $stock; ?></span></li>
+                <li><?php echo $text_exp_date; ?> <span><?php echo $expiration_date ?></span></li>
               </ul>
               <?php if ($price) { ?>
               <ul class="list-unstyled list-price">
