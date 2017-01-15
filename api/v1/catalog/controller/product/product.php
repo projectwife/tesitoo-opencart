@@ -99,6 +99,22 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		}
 	}
 
+	protected function convertDateToMySQLDateTime($datetime) {
+        //convert dates if possible, if not return null
+        $expDateOut = null;
+        //date formats tested in order - if the date matches one, use it
+        $validDateFormats = [DateTime::ISO8601, 'Y-m-d H:i:s', 'Y-m-d'];
+        foreach ($validDateFormats as $fmt) {
+            $expDateIn = DateTime::createFromFormat($fmt, $datetime);
+            if ($expDateIn) {
+                //then we've found a valid date format, output it in MySQL DateTime format
+                $expDateOut = $expDateIn->format('Y-m-d H:i:s');
+                break;
+            }
+        }
+        return $expDateOut;
+	}
+
 	public function postNew() {
 		$json = array();
 
@@ -126,19 +142,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
             $this->request->post['shipping'] = '1';
         }
 
-        //convert dates if possible
-        $expDateOut = null;
-        //date formats tested in order - if the date matches one, use it
-        $validDateFormats = [DateTime::ISO8601, 'Y-m-d H:i:s', 'Y-m-d'];
-        foreach ($validDateFormats as $fmt) {
-            $expDateIn = DateTime::createFromFormat($fmt, $this->request->post['expiration_date']);
-            if ($expDateIn) {
-                //then we've found a valid date format
-                $expDateOut = $expDateIn->format('Y-m-d H:i:s');
-                $this->request->post['expiration_date'] = $expDateOut;
-                break;
-            }
-        }
+        $this->request->post['expiration_date'] = $this->convertDateToMySQLDateTime($this->request->post['expiration_date']);
 
 		$data = parent::getInternalRouteData('product/product/addNew', true);
 
@@ -209,6 +213,10 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		if (isset($this->request->post['height'])) {
 			$product['height'] = (float)$this->request->post['height'];
 		}
+
+        if (isset($this->request->post['expiration_date'])) {
+            $product['expiration_date'] = $this->convertDateToMySQLDateTime($this->request->post['expiration_date']);
+        }
 
 		//save product
 		$this->model_catalog_vdi_product->editProductCoreDetails((int)$id, $product);
