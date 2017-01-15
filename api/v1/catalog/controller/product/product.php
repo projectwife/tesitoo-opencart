@@ -17,6 +17,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		'subtract' => 1,
 		'stock_status_id' => 6,
 		'date_available' => '',
+		'expiration_date' => '',
 		'manufacturer_id' => '',
 		'shipping' => '',
 		'weight' => 0.0,
@@ -123,6 +124,20 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 
 		if ('' === $this->request->post['shipping']) {
             $this->request->post['shipping'] = '1';
+        }
+
+        //convert dates if possible
+        $expDateOut = null;
+        //date formats tested in order - if the date matches one, use it
+        $validDateFormats = [DateTime::ISO8601, 'Y-m-d H:i:s', 'Y-m-d'];
+        foreach ($validDateFormats as $fmt) {
+            $expDateIn = DateTime::createFromFormat($fmt, $this->request->post['expiration_date']);
+            if ($expDateIn) {
+                //then we've found a valid date format
+                $expDateOut = $expDateIn->format('Y-m-d H:i:s');
+                $this->request->post['expiration_date'] = $expDateOut;
+                break;
+            }
         }
 
 		$data = parent::getInternalRouteData('product/product/addNew', true);

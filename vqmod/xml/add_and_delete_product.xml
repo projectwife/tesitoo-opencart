@@ -56,6 +56,14 @@ $_['error_not_logged_in']      = 'Warning: User not logged in!';
 				$json['error'] = $this->language->get('error_quantity');
 			}
 
+			if ((null !== $this->request->post['expiration_date'])
+                && ("" !== $this->request->post['expiration_date'])) {
+                $expDate = DateTime::createFromFormat('Y-m-d H:i:s', $this->request->post['expiration_date']);
+                if (!$expDate) {
+                    $json['error'] = $this->language->get('error_date_fmt');
+                }
+            }
+
 			if (!isset($json['error'])) {
 				$this->load->model('catalog/vdi_product');
 
