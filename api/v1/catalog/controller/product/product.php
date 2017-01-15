@@ -17,6 +17,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		'subtract' => 1,
 		'stock_status_id' => 6,
 		'date_available' => '',
+		'expiration_date' => '',
 		'manufacturer_id' => '',
 		'shipping' => '',
 		'weight' => 0.0,
@@ -98,6 +99,22 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		}
 	}
 
+	protected function convertDateToMySQLDateTime($datetime) {
+        //convert dates if possible, if not return null
+        $expDateOut = null;
+        //date formats tested in order - if the date matches one, use it
+        $validDateFormats = [DateTime::ISO8601, 'Y-m-d H:i:s', 'Y-m-d'];
+        foreach ($validDateFormats as $fmt) {
+            $expDateIn = DateTime::createFromFormat($fmt, $datetime);
+            if ($expDateIn) {
+                //then we've found a valid date format, output it in MySQL DateTime format
+                $expDateOut = $expDateIn->format('Y-m-d H:i:s');
+                break;
+            }
+        }
+        return $expDateOut;
+	}
+
 	public function postNew() {
 		$json = array();
 
@@ -124,6 +141,8 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		if ('' === $this->request->post['shipping']) {
             $this->request->post['shipping'] = '1';
         }
+
+        $this->request->post['expiration_date'] = $this->convertDateToMySQLDateTime($this->request->post['expiration_date']);
 
 		$data = parent::getInternalRouteData('product/product/addNew', true);
 
@@ -194,6 +213,10 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		if (isset($this->request->post['height'])) {
 			$product['height'] = (float)$this->request->post['height'];
 		}
+
+        if (isset($this->request->post['expiration_date'])) {
+            $product['expiration_date'] = $this->convertDateToMySQLDateTime($this->request->post['expiration_date']);
+        }
 
 		//save product
 		$this->model_catalog_vdi_product->editProductCoreDetails((int)$id, $product);
@@ -442,6 +465,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$product['weight_class_id'] = $data['weight_class_id'];
 		$product['categories'] = $data['categories'];
 		$product['date_added'] = $data['date_added'];
+		$product['expiration_date'] = $data['expiration_date'];
 
 		return $this->processProduct($product);
 	}

@@ -156,12 +156,11 @@ class ControllerProductProduct extends Controller {
 
 		$this->load->model('catalog/product');
 
+		$include_pending = false;
 		if (isset($this->request->get['include_pending']) && $this->request->get['include_pending'] != 0) {
-            $product_info = $this->model_catalog_product->getProductIncludingPendingApproval($product_id);
+            $include_pending = true;
         }
-        else {
-            $product_info = $this->model_catalog_product->getProduct($product_id);
-        }
+        $product_info = $this->model_catalog_product->getProduct($product_id, $include_pending);
 
 		if ($product_info) {
 			$url = '';
@@ -281,6 +280,8 @@ class ControllerProductProduct extends Controller {
 			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 
 			$data['date_added'] = $product_info['date_added'];
+
+			$data['expiration_date'] = $product_info['expiration_date'];
 
 			if ($product_info['quantity'] <= 0) {
 				$data['stock'] = $product_info['stock_status'];
