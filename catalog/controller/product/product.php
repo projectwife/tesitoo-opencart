@@ -236,6 +236,7 @@ class ControllerProductProduct extends Controller {
 			$data['text_reward'] = $this->language->get('text_reward');
 			$data['text_points'] = $this->language->get('text_points');
 			$data['text_stock'] = $this->language->get('text_stock');
+			$data['text_exp_date'] = $this->language->get('text_exp_date');
 			$data['text_discount'] = $this->language->get('text_discount');
 			$data['text_tax'] = $this->language->get('text_tax');
 			$data['text_option'] = $this->language->get('text_option');
@@ -281,7 +282,20 @@ class ControllerProductProduct extends Controller {
 
 			$data['date_added'] = $product_info['date_added'];
 
-			$data['expiration_date'] = $product_info['expiration_date'];
+			if ($product_info['expiration_date'] == null) {
+                $data['expiration_date'] = "&nbsp; &mdash;";
+			}
+			else {
+                $expDateFromDB =
+                    DateTime::createFromFormat('Y-m-d H:i:s', $product_info['expiration_date']);
+                //sanity check
+                if ($expDateFromDB < new DateTime('2010-01-01 00:00:00')) {
+                    $data['expiration_date'] = "&nbsp; &mdash;";
+                }
+                else {
+                    $data['expiration_date'] = $expDateFromDB->format('Y-m-d');
+                }
+            }
 
 			if ($product_info['quantity'] <= 0) {
 				$data['stock'] = $product_info['stock_status'];
