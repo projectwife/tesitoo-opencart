@@ -143,7 +143,21 @@
                 <li><?php echo $text_reward; ?> <span><?php echo $reward; ?></span></li>
                 <?php } ?>
                 <li><?php echo $text_stock; ?> <span><?php echo $stock; ?></span></li>
-                <li><?php echo $text_exp_date; ?> <span><?php echo $expiration_date ?></span></li>
+                <li><?php echo $text_exp_date; ?> <span><?php
+                if ($expiration_date == null) {
+                    $expiration_date = "&nbsp; &mdash;";
+                }
+                else {
+                    $expDateFromDB = DateTime::createFromFormat('Y-m-d H:i:s', $expiration_date);
+                    //sanity check
+                    if ($expDateFromDB < new DateTime('2010-01-01 00:00:00')) {
+                        $expiration_date = "&nbsp; &mdash;";
+                    }
+                    else {
+                        $expiration_date = $expDateFromDB->format('Y-m-d');
+                    }
+                }
+                echo $expiration_date ?></span></li>
               </ul>
               <?php if ($price) { ?>
               <ul class="list-unstyled list-price">

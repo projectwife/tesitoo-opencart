@@ -282,20 +282,7 @@ class ControllerProductProduct extends Controller {
 
 			$data['date_added'] = $product_info['date_added'];
 
-			if ($product_info['expiration_date'] == null) {
-                $data['expiration_date'] = "&nbsp; &mdash;";
-			}
-			else {
-                $expDateFromDB =
-                    DateTime::createFromFormat('Y-m-d H:i:s', $product_info['expiration_date']);
-                //sanity check
-                if ($expDateFromDB < new DateTime('2010-01-01 00:00:00')) {
-                    $data['expiration_date'] = "&nbsp; &mdash;";
-                }
-                else {
-                    $data['expiration_date'] = $expDateFromDB->format('Y-m-d');
-                }
-            }
+			$data['expiration_date'] = $product_info['expiration_date'];
 
 			if ($product_info['quantity'] <= 0) {
 				$data['stock'] = $product_info['stock_status'];
