@@ -639,6 +639,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		$data['entry_minimum'] = $this->language->get('entry_minimum');
 		$data['entry_shipping'] = $this->language->get('entry_shipping');
 		$data['entry_date_available'] = $this->language->get('entry_date_available');
+		$data['entry_expiration_date'] = $this->language->get('entry_expiration_date');
 		$data['entry_quantity'] = $this->language->get('entry_quantity');
 		$data['entry_stock_status'] = $this->language->get('entry_stock_status');
 		$data['entry_price'] = $this->language->get('entry_price');
@@ -1274,6 +1275,20 @@ class ControllerCatalogVDIProduct extends Controller {
 			$data['date_available'] = ($product_info['date_available'] != '0000-00-00') ? $product_info['date_available'] : '';
 		} else {
 			$data['date_available'] = date('Y-m-d');
+		}
+
+		if (isset($this->request->post['expiration_date'])) {
+			$data['expiration_date'] = $this->request->post['expiration_date'];
+		} elseif (!empty($product_info)) {
+			if ((null == $product_info['expiration_date']) ||
+				($product_info['expiration_date'] == '0000-00-00 00:00:00')) {
+				$data['expiration_date'] = '';
+			} else {
+				$data['expiration_date'] = DateTime::createFromFormat('Y-m-d H:i:s',
+					$product_info['expiration_date'])->format('Y-m-d');
+			}
+		} else {
+			$data['expiration_date'] = date('Y-m-d');
 		}
 
 		if (isset($this->request->post['quantity'])) {
