@@ -19,5 +19,4 @@ Currently the following properties can be set:
 * `country_id` should be a *country_id* as returned in the [GET /common/country](http://oc2-demo.opencartapi.com/docs/v1/API_Resources/Common/GET_country.html) request.
 * `zone_id` should be a *zone_id* as returned in the [GET /common/country/{id}](http://oc2-demo.opencartapi.com/docs/v1/API_Resources/Common/GET_country[s]%7Bid%7D.html) request.
 
-Currently `password` cannot be changed. The vendor profile image can also
-not be set (separate API requests will be provided).
+Separate API requests are provided to set the vendor profile image and the `password`.
