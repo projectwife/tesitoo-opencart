@@ -1,4 +1,4 @@
-### POST vendor/profile_image ###
+### POST profile_image ###
 
 **Method** `POST /api/v1/vendor/profile_image`
 
