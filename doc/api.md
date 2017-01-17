@@ -12,6 +12,7 @@ Most of them require authentication first. See [the Tesitoo OpenCart API instruc
 
 * [POST login](post_admin_login.md)
 * [POST logout](post_admin_logout.md)
+* [POST password](post_admin_password.md)
 
 #### common ####
 
@@ -39,3 +40,5 @@ Most of them require authentication first. See [the Tesitoo OpenCart API instruc
 * [POST register](post_vendor_register.md)
 * [GET vendor/profile](get_vendor_profile.md)
 * [POST vendor/profile](post_vendor_profile.md)
+* [POST vendor/profile_image](post_vendor_profile_image.md)
+* [DEL vendor/profile_image](del_vendor_profile_image.md)
