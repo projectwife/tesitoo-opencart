@@ -1,4 +1,4 @@
-### POST admin/password ###
+### POST password ###
 
 **Method** `POST /api/v1/admin/password`
 
