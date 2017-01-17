@@ -29,3 +29,4 @@ Fields for which editing is implemented:
 * `length`: float
 * `width`: float
 * `height`: float
+* `expiration_date`: date-time giving expiry date. In `yyyy-MM-dd hh:mm:ss` format
