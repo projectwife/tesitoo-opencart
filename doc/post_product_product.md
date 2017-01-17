@@ -15,6 +15,8 @@ The new product will be owned by the logged in vendor.
 * `weight_class_id`: integer identifying weight unit. Should match a weight_class_id returned by [GET weight](common_weight.md).
 * `minimum`: minimum ordering quantity
 * `status` : eventually this should be disabled for vendors, but during development, set it to 1 (enabled) to override admin approval step before item is shown on site. By default it's set to 5 (pending approval).
+* `expiration_date`: date-time giving expiry date. In `yyyy-MM-dd hh:mm:ss` format
+* ...
 
 **Success response**
 
