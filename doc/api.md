@@ -19,6 +19,8 @@ Most of them require authentication first. See [the Tesitoo OpenCart API instruc
 * [GET weight](get_common_weight.md)
 * [GET length](get_common_length.md)
 * [GET order_status](get_order_status.md)
+* [GET country](get_common_country.md)
+* [GET country/{id}](get_common_country_id.md)
 
 #### product ####
 
