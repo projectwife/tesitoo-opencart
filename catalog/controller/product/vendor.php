@@ -110,7 +110,7 @@ class ControllerProductVendor extends Controller
 		if (isset($this->request->get['include_expired'])) {
 			$include_expired = $this->request->get['include_expired'];
 		} else {
-			$include_expired = 1;
+			$include_expired = 0;
 		}
 
 		$data['breadcrumbs'] = array();
