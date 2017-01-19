@@ -160,6 +160,7 @@ class ControllerProductProduct extends Controller {
 		if (isset($this->request->get['include_pending']) && $this->request->get['include_pending'] != 0) {
             $include_pending = true;
         }
+
         $product_info = $this->model_catalog_product->getProduct($product_id, $include_pending);
 
 		if ($product_info) {

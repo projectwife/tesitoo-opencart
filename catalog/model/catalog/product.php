@@ -150,6 +150,10 @@ class ModelCatalogProduct extends Model {
 			$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer_id'] . "'";
 		}
 
+		if (!isset($data['include_expired']) || (empty($data['include_expired']))) {
+            $sql .= " AND (p.expiration_date IS NULL OR p.expiration_date = '0000-00-00 00:00:00' OR DATE(p.expiration_date) >= DATE(NOW()))";
+        }
+
 		$sql .= " GROUP BY p.product_id";
 
 		$sort_data = array(
@@ -492,6 +496,10 @@ class ModelCatalogProduct extends Model {
 		if (!empty($data['filter_manufacturer_id'])) {
 			$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer_id'] . "'";
 		}
+
+		if (!isset($data['include_expired']) || (empty($data['include_expired']))) {
+            $sql .= " AND (p.expiration_date IS NULL OR p.expiration_date = '0000-00-00 00:00:00' OR DATE(p.expiration_date) >= DATE(NOW()))";
+        }
 
 		$query = $this->db->query($sql);
 
