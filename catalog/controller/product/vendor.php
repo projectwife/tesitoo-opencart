@@ -107,6 +107,12 @@ class ControllerProductVendor extends Controller
 			$limit = $this->config->get('config_product_limit');
 		}
 
+		if (isset($this->request->get['include_expired'])) {
+			$include_expired = $this->request->get['include_expired'];
+		} else {
+			$include_expired = 1;
+		}
+
 		$data['breadcrumbs'] = array();
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
@@ -196,7 +202,8 @@ class ControllerProductVendor extends Controller
 				'sort'             => $sort,
 				'order'            => $order,
 				'start'            => ($page - 1) * $limit,
-				'limit'            => $limit
+				'limit'            => $limit,
+				'include_expired'  => $include_expired
 			);
 
 			$product_total = $this->model_catalog_product->getTotalProducts($filter_data);
