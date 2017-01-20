@@ -10,37 +10,38 @@ Most of them require authentication first. See [the Tesitoo OpenCart API instruc
 
 #### admin ####
 
-* [POST login](post_admin_login.md)
-* [POST logout](post_admin_logout.md)
-* [POST password](post_admin_password.md)
+* [POST admin/login](post_admin_login.md)
+* [POST admin/logout](post_admin_logout.md)
+* [POST admin/password](post_admin_password.md)
 
 #### common ####
 
-* [GET weight](get_common_weight.md)
-* [GET length](get_common_length.md)
-* [GET order_status](get_order_status.md)
-* [GET country](get_common_country.md)
-* [GET country/{id}](get_common_country_id.md)
+* [GET common/weight](get_common_weight.md)
+* [GET common/length](get_common_length.md)
+* [GET common/order_status](get_order_status.md)
+* [GET common/country](get_common_country.md)
+* [GET common/country/{id}](get_common_country_id.md)
 
 #### product ####
 
-* [GET vendor](get_product_vendor.md)
-* [GET vendor/{id}](get_product_vendor_id.md  )
-* [GET products](get_product_vendor_products.md)
-* [POST product](post_product_product.md)
-* [POST product/{id}](post_product_product_id.md)
-* [DEL product/{id}](del_product_product_id.md  )
-* [POST product/{id}/image](post_product_product_image.md)
-* [DEL product/{id}/image?files={files}](del_product_product_image.md)
+* [GET product/vendor](get_product_vendor.md)
+* [GET product/vendor/{id}](get_product_vendor_id.md  )
+* [GET product/vendor/{id}/products](get_product_vendor_products.md)
+* [POST product/product](post_product_product.md)
+* [POST product/product/{id}](post_product_product_id.md)
+* [DEL product/product/{id}](del_product_product_id.md)
+* [POST product/product/{id}/image](post_product_product_image.md)
+* [DEL product/product/{id}/image?files={files}](del_product_product_image.md)
 
 ### vendor ####
 
-* [GET order](get_vendor_order.md)
-* [GET order/{id}](get_vendor_order_id.md)
-* [GET order_product/{id}](get_vendor_order_product_id.md)
-* [POST order_product/{id}](post_vendor_order_product_id.md)
-* [POST register](post_vendor_register.md)
+* [GET vendor/order](get_vendor_order.md)
+* [GET vendor/order/{id}](get_vendor_order_id.md)
+* [GET vendor/order_product/{id}](get_vendor_order_product_id.md)
+* [POST vendor/order_product/{id}](post_vendor_order_product_id.md)
+* [POST vendor/register](post_vendor_register.md)
 * [GET vendor/profile](get_vendor_profile.md)
 * [POST vendor/profile](post_vendor_profile.md)
 * [POST vendor/profile_image](post_vendor_profile_image.md)
 * [DEL vendor/profile_image](del_vendor_profile_image.md)
+* [GET vendor/products](get_vendor_products.md)
