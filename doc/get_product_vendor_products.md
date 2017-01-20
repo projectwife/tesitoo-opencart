@@ -6,4 +6,4 @@ Request products for a vendor, identified by vendor id.
 
 **Request parameters**
 
-*none*
+* `include_expired` (optional) - if set to non-0, products with an expiration date in the past will also be included
