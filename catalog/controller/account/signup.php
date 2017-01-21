@@ -9,15 +9,15 @@ class ControllerAccountSignUp extends Controller {
 		$this->document->setTitle($this->language->get('heading_title'));
 		$this->load->model('account/signup');
     	if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate() && ($this->config->get('mvd_sign_up'))) {
-			if ($this->request->post['singup_plan']) {
-				$singup_plan = explode(':',$this->request->post['singup_plan']);
-				if (($singup_plan[1] == '4' || $singup_plan[1] == '5') && ($this->request->post['payment_method'])) { 
+			if ($this->request->post['signup_plan']) {
+				$signup_plan = explode(':',$this->request->post['signup_plan']);
+				if (($signup_plan[1] == '4' || $signup_plan[1] == '5') && ($this->request->post['payment_method'])) {
 					$this->model_account_signup->addVendorSignUp($this->request->post);
 					if (!file_exists(rtrim(DIR_IMAGE . 'catalog/', '/') . '/' . str_replace('../', '', $this->request->post['username']))) {
 						mkdir(rtrim(DIR_IMAGE . 'catalog/', '/') . '/' . str_replace('../', '', $this->request->post['username']), 0777);
 					}
 					$this->send();
-				} elseif (($singup_plan[1] == '4' || $singup_plan[1] == '5') && (!$this->request->post['payment_method'])) {
+				} elseif (($signup_plan[1] == '4' || $signup_plan[1] == '5') && (!$this->request->post['payment_method'])) {
 					$this->model_account_signup->addVendorSignUp($this->request->post);
 					if (!file_exists(rtrim(DIR_IMAGE . 'catalog/', '/') . '/' . str_replace('../', '', $this->request->post['username']))) {
 						mkdir(rtrim(DIR_IMAGE . 'catalog/', '/') . '/' . str_replace('../', '', $this->request->post['username']), 0777);
@@ -352,7 +352,7 @@ class ControllerAccountSignUp extends Controller {
 			$data['store_description'] = '';
 		}
 		
-		$data['singup_plans'] = $this->model_account_signup->getCommissionLimits();
+		$data['signup_plans'] = $this->model_account_signup->getCommissionLimits();
 		$data['config_currency'] = $this->config->get('config_currency');
 			
 		$this->load->model('localisation/country');
@@ -442,7 +442,7 @@ class ControllerAccountSignUp extends Controller {
 		
 		$custom_id = $this->model_account_signup->getUserID($this->request->post['username']);
 		
-		$splan = explode(':',$this->request->post['singup_plan']);
+		$splan = explode(':',$this->request->post['signup_plan']);
 		$signup_amount = $this->model_account_signup->getSignUpRate($splan[0],$splan[1]);				
 		
 		$request = 'cmd=_xclick';		

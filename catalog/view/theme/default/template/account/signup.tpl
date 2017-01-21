@@ -193,17 +193,17 @@
           </div>
 		  <?php if ($mvd_signup_show_plan) { ?>
 		  <div class="form-group required">
-            <label class="col-sm-2 control-label" for="input-singup-plan"><?php echo $entry_plan; ?></label>
+            <label class="col-sm-2 control-label" for="input-signup-plan"><?php echo $entry_plan; ?></label>
             <div class="col-sm-10">
-              <select name="singup_plan" id="singup_plan" class="form-control">
-                <?php foreach ($singup_plans as $singup_plan) { ?>
-				<?php if ($singup_plan['commission_id'] != '1') { ?>
-				<option value="<?php echo $singup_plan['commission_id']; ?>:<?php echo $singup_plan['commission_type']; ?>:<?php echo $singup_plan['product_limit_id']; ?>:<?php echo $singup_plan['duration']; ?>:<?php echo $singup_plan['commission']; ?>"><?php if ($singup_plan['commission_type'] == '0') { ?><?php echo $singup_plan['commission_text']; ?></option>				
-				<?php } elseif ($singup_plan['commission_type'] == '1') { ?><?php echo $singup_plan['commission_text']; ?></option>
-				<?php } elseif ($singup_plan['commission_type'] == '2') { ?><?php echo $singup_plan['commission_text']; ?></option>
-				<?php } elseif ($singup_plan['commission_type'] == '3') { ?><?php echo $singup_plan['commission_text']; ?></option>
-				<?php } elseif ($singup_plan['commission_type'] == '4') { ?><?php echo $singup_plan['commission_text']; ?></option>
-				<?php } elseif ($singup_plan['commission_type'] == '5') { ?><?php echo $singup_plan['commission_text']; ?></option>
+              <select name="signup_plan" id="signup_plan" class="form-control">
+                <?php foreach ($signup_plans as $signup_plan) { ?>
+				<?php if ($signup_plan['commission_id'] != '1') { ?>
+				<option value="<?php echo $signup_plan['commission_id']; ?>:<?php echo $signup_plan['commission_type']; ?>:<?php echo $signup_plan['product_limit_id']; ?>:<?php echo $signup_plan['duration']; ?>:<?php echo $signup_plan['commission']; ?>"><?php if ($signup_plan['commission_type'] == '0') { ?><?php echo $signup_plan['commission_text']; ?></option>
+				<?php } elseif ($signup_plan['commission_type'] == '1') { ?><?php echo $signup_plan['commission_text']; ?></option>
+				<?php } elseif ($signup_plan['commission_type'] == '2') { ?><?php echo $signup_plan['commission_text']; ?></option>
+				<?php } elseif ($signup_plan['commission_type'] == '3') { ?><?php echo $signup_plan['commission_text']; ?></option>
+				<?php } elseif ($signup_plan['commission_type'] == '4') { ?><?php echo $signup_plan['commission_text']; ?></option>
+				<?php } elseif ($signup_plan['commission_type'] == '5') { ?><?php echo $signup_plan['commission_text']; ?></option>
 				<?php } ?>			
 				<?php } ?>
 			  <?php } ?><input type="hidden" name="hsignup_plan" id="hsignup_plan" value="" />
@@ -228,7 +228,7 @@
 				  <input type="hidden" name="payment_method" value="<?php echo $mvd_signup_default_payment_method; ?>" />
 		  <?php } ?>
 		  <?php } else { ?>
-			<input type="hidden" name="singup_plan" value="<?php echo $default_commission; ?>" />
+			<input type="hidden" name="signup_plan" value="<?php echo $default_commission; ?>" />
 		    <input type="hidden" name="hsignup_plan" id="hsignup_plan" value="<?php echo $hsignup_plan; ?>" />
 		    <input type="hidden" name="payment_method" value="<?php echo $mvd_signup_default_payment_method; ?>" />
 		  <?php } ?>
@@ -292,9 +292,9 @@
 
 <?php if ($mvd_signup_show_plan) { ?>
 <script type="text/javascript"><!--
-$("#hsignup_plan").val($("#singup_plan option:selected").text());
-$('select[name=\'singup_plan\']').change(function () { 
-$("#hsignup_plan").val($("#singup_plan option:selected").text());
+$("#hsignup_plan").val($("#signup_plan option:selected").text());
+$('select[name=\'signup_plan\']').change(function () {
+$("#hsignup_plan").val($("#signup_plan option:selected").text());
 });
 //--></script>
 <?php } ?>
