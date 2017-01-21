@@ -26,8 +26,8 @@ class ControllerVendorRegisterAPI extends ApiController {
 			//we expect to handle password confirmation check on the client side
 			$this->request->post['confirm'] = $this->request->post['password'];
 		}
-		if (!isset($this->request->post['singup_plan'])) {
-			$this->request->post['singup_plan'] /*sic*/ = '1::1:';
+		if (!isset($this->request->post['signup_plan'])) {
+			$this->request->post['signup_plan'] = '1::1:';
 		}
 		if (!isset($this->request->post['iban'])) {
 			$this->request->post['iban'] = '';
