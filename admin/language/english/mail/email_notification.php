@@ -44,5 +44,6 @@ $_['text_message_other_status'] = "The status of your order has been updated. Pr
 $_['text_message_admin_shipped'] = "Shipping notice for order <b>%s</b><br/>\nProduct <b>%s</b> has been shipped at: <b>%s</b> by vendor <b>%s</b>, and shall be arriving within 5 working days.";
 $_['text_message_admin_complete'] = "Order <b>%d</b> - product: <b>%s</b> has been marked as complete by vendor <b>%s</b>.";
 $_['text_message_admin_cancelled'] = "The vendor <b>%s</b> has cancelled the following product at: <b>%s</b><br/>\nProduct: <b>%s</b><br/>\nQuantity: <b>%s</b><br/>\nTotal: <b>%s</b><br/>\n";
+$_['text_message_admin_other_status'] = "The vendor <b>%s</b> has updated the status of product: <b>%s</b> in order: <b>%d</b>. The status is now: <b>%s</b>.\n";
 
 ?>
