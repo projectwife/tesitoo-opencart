@@ -152,6 +152,9 @@ class ControllerVendorOrderProductAPI extends ApiController {
             case 7:
                 $text .= sprintf($this->language->get('text_message_admin_cancelled'), $vendorName, $date, $productName, $quantity, $productTotal). "<br><br>";
                 break;
+            default:
+                $text .= sprintf($this->language->get('text_message_admin_other_status'), $vendorName, $productName, $order_id, $orderProduct['status']);
+                break;
         }
 
 		$mail = new Mail();
