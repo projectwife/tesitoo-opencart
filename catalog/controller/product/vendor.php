@@ -69,6 +69,9 @@ class ControllerProductVendor extends Controller
 
 	public function info()
 	{
+		$this->document->addScript('catalog/view/javascript/jquery/magnific/jquery.magnific-popup.min.js');
+		$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific-popup.css');
+
 		$this->load->language('product/vendor');
 
 		$this->load->model('catalog/vendor');
@@ -167,8 +170,9 @@ class ControllerProductVendor extends Controller
 //				'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'])
 //			);
 
-			if ($vendor_info['image']) {
-				$data['thumb'] = $this->model_tool_image->resize($vendor_info['image'], $this->config->get('config_image_category_width'), $this->config->get('config_image_category_height'));
+			if ($vendor_info['vendor_image']) {
+				$data['thumb'] = $this->model_tool_image->resize($vendor_info['vendor_image'], $this->config->get('config_image_category_width'), $this->config->get('config_image_category_height'));
+				$data['vendor_image_fullsize'] = $this->model_tool_image->fullsize($vendor_info['vendor_image']);
 			} else {
 				$data['thumb'] = '';
 			}

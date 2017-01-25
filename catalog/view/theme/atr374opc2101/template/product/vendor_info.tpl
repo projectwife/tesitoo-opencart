@@ -19,7 +19,7 @@
         <?php if ($thumb || $description) { ?>
         <div class="row">
             <?php if ($thumb) { ?>
-            <div class="col-sm-2"><img src="<?php echo $thumb; ?>" alt="<?php echo $heading_title; ?>" title="<?php echo $heading_title; ?>" class="img-thumbnail" /></div>
+            <div class="col-sm-2 vendor_thumbnail"><a href="<?php echo $vendor_image_fullsize; ?>"><img src="<?php echo $thumb; ?>" alt="<?php echo $heading_title; ?>" title="<?php echo $heading_title; ?>" class="img-thumbnail" /></a></div>
             <?php } ?>
             <?php if ($description) { ?>
             <div class="col-sm-10"><?php echo $description; ?></div>
@@ -124,4 +124,15 @@
         <?php echo $column_right; ?></div>
   </div>
 </div>
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('.vendor_thumbnail').magnificPopup({
+		type:'image',
+		delegate: 'a',
+		gallery: {
+			enabled:true
+		}
+	});
+});
+//--></script>
 <?php echo $footer; ?>
