@@ -18,6 +18,23 @@
         <h2><?php echo $heading_title; ?></h2>
         <?php if ($thumb || $description) { ?>
         <div class="row">
+            <div class="col-md-10">
+            <?php
+                $location = "";
+                if ($city) {
+                    $location .= $city;
+                }
+                if ($zone_name) {
+                    $location .= ((strlen($location) > 0) ? ", " : "") . $zone_name;
+                }
+                if ($country_name) {
+                    $location .= ((strlen($location) > 0) ? ", " : "") . $country_name;
+                }
+                echo "<p>" . $location . "</p>";
+            ?>
+            </div>
+        </div>
+        <div class="row">
             <?php if ($thumb) { ?>
             <div class="col-sm-2 vendor_thumbnail"><a href="<?php echo $vendor_image_fullsize; ?>"><img src="<?php echo $thumb; ?>" alt="<?php echo $heading_title; ?>" title="<?php echo $heading_title; ?>" class="img-thumbnail" /></a></div>
             <?php } ?>
