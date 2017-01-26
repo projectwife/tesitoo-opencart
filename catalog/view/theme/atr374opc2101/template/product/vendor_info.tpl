@@ -30,10 +30,12 @@
                 if ($country_name) {
                     $location .= ((strlen($location) > 0) ? ", " : "") . $country_name;
                 }
-                echo "<p>" . $location . "</p>";
+                echo "<span>" . $location . "</span>";
             ?>
             </div>
         </div>
+        <hr>
+        <?php } ?>
         <div class="row">
             <?php if ($thumb) { ?>
             <div class="col-sm-2 vendor_thumbnail"><a href="<?php echo $vendor_image_fullsize; ?>"><img src="<?php echo $thumb; ?>" alt="<?php echo $heading_title; ?>" title="<?php echo $heading_title; ?>" class="img-thumbnail" /></a></div>
@@ -43,7 +45,6 @@
             <?php } ?>
         </div>
         <hr>
-        <?php } ?>
         <?php if ($products) { ?>
         <p><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></p>
         <div class="row">
