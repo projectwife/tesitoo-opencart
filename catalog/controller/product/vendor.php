@@ -177,6 +177,10 @@ class ControllerProductVendor extends Controller
 				$data['thumb'] = '';
 			}
 
+			$data['country_name'] = $vendor_info['country_name'];
+			$data['zone_name'] = $vendor_info['zone_name'];
+			$data['city'] = $vendor_info['city'];
+
 			$data['description'] = html_entity_decode($vendor_info['vendor_description'], ENT_QUOTES, 'UTF-8');
 			$data['compare'] = $this->url->link('product/compare');
 
