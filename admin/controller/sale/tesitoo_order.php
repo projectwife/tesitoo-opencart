@@ -2101,7 +2101,8 @@ class ControllerSaleTesitooOrder extends Controller {
 
             $this->model_sale_tesitoo_order->editOrderProduct($this->request->get['order_product_id'], $this->request->post);
 
-            $this->response->redirect($this->url->link('sale/tesitoo_order/info', 'token=' . $this->session->data['token'] . $url . '&order_id=' . $order_product['order_id'], 'SSL'));
+
+            $this->response->redirect($this->url->link('sale/tesitoo_order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $order_product['order_id'], 'SSL'));
 
         }
 	}
