@@ -446,4 +446,10 @@ class ModelSaleTesitooOrder extends Model {
     public function editOrderProduct($order_product_id, $data) {
 		$this->db->query("UPDATE `" . DB_PREFIX . "order_product` SET order_status_id = '" . (int)$data['order_status_id'] . "' WHERE order_product_id = '" . (int)$order_product_id . "'");
 	}
+
+    public function getOrderStatusDescriptionById($order_status_id) {
+        $query = $this->db->query("SELECT name FROM " . DB_PREFIX . "order_status WHERE order_status_id = '" . (int)$order_status_id . "' AND language_id = '" . (int)$this->config->get('config_language_id') . "'");
+
+        return $query->rows[0]['name'];
+    }
 }
