@@ -2091,7 +2091,8 @@ class ControllerSaleTesitooOrder extends Controller {
 
 	public function edit_order_product() {
 		$this->load->model('sale/tesitoo_order');
-		$this->load->language('sale/order_product');
+		$this->load->language('mail/email_notification');
+		$this->load->model('sale/vdi_order');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') /*&& $this->validateForm() && $this->validateUpdate()*/) {
 
@@ -2101,9 +2102,38 @@ class ControllerSaleTesitooOrder extends Controller {
 
             $this->model_sale_tesitoo_order->editOrderProduct($this->request->get['order_product_id'], $this->request->post);
 
+            $order = $this->model_sale_vdi_order->getOrder($order_product['order_id']);
+
+            $newOrderStatus =  $this->model_sale_tesitoo_order->getOrderStatusDescriptionById($this->request->post['order_status_id']);
+
+            $customer_name = $order['firstname'] . ' ' . $order['lastname'];
+            $text = sprintf($this->language->get('text_to'), $customer_name) . "<br><br>";
+
+            $subject = sprintf($this->language->get('text_subject_order_product_status_update'), $order_product['order_id']);
+
+            $text .= sprintf($this->language->get('text_message_order_product_status_update'), $order_product['name'], $order_product['order_id'], $newOrderStatus);
+
+            $text .= $this->language->get('text_thanks') . "<br>";
+            $text .= $this->config->get('config_name') . "<br><br>";
+            $text .= $this->language->get('text_system');
+
+            $mail = new Mail();
+            $mail->protocol = $this->config->get('config_mail_protocol');
+            $mail->parameter = $this->config->get('config_mail_parameter');
+            $mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+            $mail->smtp_username = $this->config->get('config_mail_smtp_username');
+            $mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+            $mail->smtp_port = $this->config->get('config_mail_smtp_port');
+            $mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+
+            $mail->setTo($order['email']);
+            $mail->setFrom($this->config->get('config_email'));
+            $mail->setSender($this->config->get('config_name'));
+            $mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
+            $mail->setHtml(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
+            $mail->send();
 
             $this->response->redirect($this->url->link('sale/tesitoo_order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $order_product['order_id'], 'SSL'));
-
         }
 	}
 }
