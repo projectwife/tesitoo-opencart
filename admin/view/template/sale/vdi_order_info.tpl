@@ -157,10 +157,11 @@
           <thead>
             <tr>
               <td class="text-left"><?php echo $column_product; ?></td>
-              <td class="text-left"><?php echo $column_model; ?></td>
               <td class="text-right"><?php echo $column_quantity; ?></td>
+              <td class="text-right"><?php echo $column_status; ?></td>
               <td class="text-right"><?php echo $column_price; ?></td>
               <td class="text-right"><?php echo $column_total; ?></td>
+              <td style="width: 1px;"></td>
             </tr>
           </thead>
           <tbody>
@@ -175,10 +176,11 @@
                 &nbsp;<small> - <?php echo $option['name']; ?>: <a href="<?php echo $option['href']; ?>"><?php echo $option['value']; ?></a></small>
                 <?php } ?>
                 <?php } ?></td>
-              <td class="text-left"><?php echo $product['model']; ?></td>
               <td class="text-right"><?php echo $product['quantity']; ?></td>
+              <td class="text-right"><?php echo $product['status']; ?></td>
               <td class="text-right"><?php echo $product['price']; ?></td>
               <td class="text-right"><?php echo $product['total']; ?></td>
+              <td class="text-center"><a href="<?php echo $product['edit_href']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
             </tr>
             <?php } ?>
             <?php foreach ($vouchers as $voucher) { ?>
