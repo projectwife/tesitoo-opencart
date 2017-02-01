@@ -391,8 +391,8 @@ class ControllerSaleVDIOrder extends Controller {
 			$data['text_ship_to'] = $this->language->get('text_ship_to');
 
 			$data['column_product'] = $this->language->get('column_product');
-			$data['column_model'] = $this->language->get('column_model');
 			$data['column_quantity'] = $this->language->get('column_quantity');
+			$data['column_status'] = $this->language->get('column_status');
 			$data['column_price'] = $this->language->get('column_price');
 			$data['column_total'] = $this->language->get('column_total');
 
@@ -632,8 +632,9 @@ class ControllerSaleVDIOrder extends Controller {
 					'quantity'		   => $product['quantity'],
 					'price'    		   => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
 					'total'    		   => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
+					'status'           => $product['status'],
 					'href'     		   => $this->url->link('catalog/vdi_product/edit', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], 'SSL'),
-					'edit_href'        => $this->url->link('sale/vdi_product/order_product', 'token=' . $this->session->data['token'] . '&order_product_id=' . $product['order_product_id'], 'SSL')
+					'edit_href'        => $this->url->link('sale/vdi_order/order_product', 'token=' . $this->session->data['token'] . '&order_product_id=' . $product['order_product_id'], 'SSL')
 				);
 			}
 
@@ -1745,5 +1746,149 @@ class ControllerSaleVDIOrder extends Controller {
 		}
 
 		$this->response->setOutput($this->load->view('sale/vdi_order_shipping.tpl', $data));
+	}
+
+	public function order_product() {
+		$this->load->model('sale/vdi_order');
+
+		if (isset($this->request->get['order_product_id'])) {
+			$order_product_id = $this->request->get['order_product_id'];
+		} else {
+			$order_product_id = 0;
+		}
+
+        $order_product = $this->model_sale_vdi_order->getOrderProduct($order_product_id);
+
+		if ($order_product) {
+			$this->load->language('sale/order_product');
+
+			$this->document->setTitle($this->language->get('heading_title'));
+
+			$data['heading_title'] = $this->language->get('heading_title');
+			$data['text_order_product'] = $this->language->get('text_order_product');
+
+			$data['breadcrumbs'] = array();
+
+			$data['breadcrumbs'][] = array(
+				'text' => $this->language->get('text_home'),
+				'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+			);
+
+            $data['token'] = $this->session->data['token'];
+
+            $url = '';
+
+			$data['text_order_product_id'] = $this->language->get('text_order_product_id');
+			$data['text_product_name'] = $this->language->get('text_product_name');
+			$data['text_quantity'] = $this->language->get('text_quantity');
+			$data['text_status'] = $this->language->get('text_status');
+			$data['text_price'] = $this->language->get('text_price');
+			$data['text_vendor_total'] = $this->language->get('text_vendor_total');
+			$data['text_for_order'] = $this->language->get('text_for_order');
+
+            $data['order_product_id'] = $order_product['order_product_id'];
+            $data['order_id'] = $order_product['order_id'];
+            $data['product_name'] = $order_product['name'];
+            $data['quantity'] = $order_product['quantity'];
+            $data['order_status_id'] = $order_product['order_status_id'];
+            $data['status'] = $order_product['status'];
+            $data['price'] = $order_product['price'];
+            $data['vendor_total'] = $order_product['vendor_total'];
+
+
+			$this->load->model('localisation/order_status');
+			$data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
+
+            $data['action'] = $this->url->link('sale/vdi_order/edit_order_product', 'token=' . $this->session->data['token'] . '&order_product_id=' . $this->request->get['order_product_id'] . $url, 'SSL');
+
+            $data['button_save'] = $this->language->get('button_save');
+            $data['button_cancel'] = $this->language->get('button_cancel');
+
+            $data['cancel'] = $this->url->link('sale/vdi_order/info', 'token=' . $this->session->data['token'] . $url . '&order_id=' . $order_product['order_id'], 'SSL');
+
+            $data['header'] = $this->load->controller('common/header');
+			$data['column_left'] = $this->load->controller('common/column_left');
+			$data['footer'] = $this->load->controller('common/footer');
+
+			$this->response->setOutput($this->load->view('sale/order_product_info.tpl', $data));
+
+		}
+		else {
+			$this->load->language('error/not_found');
+
+			$this->document->setTitle($this->language->get('heading_title'));
+
+			$data['heading_title'] = $this->language->get('heading_title');
+
+			$data['text_not_found'] = $this->language->get('text_not_found');
+
+			$data['breadcrumbs'] = array();
+
+			$data['breadcrumbs'][] = array(
+				'text' => $this->language->get('text_home'),
+				'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+			);
+
+			$data['breadcrumbs'][] = array(
+				'text' => $this->language->get('heading_title'),
+				'href' => $this->url->link('error/not_found', 'token=' . $this->session->data['token'], 'SSL')
+			);
+
+			$data['header'] = $this->load->controller('common/header');
+			$data['column_left'] = $this->load->controller('common/column_left');
+			$data['footer'] = $this->load->controller('common/footer');
+
+			$this->response->setOutput($this->load->view('error/not_found.tpl', $data));
+		}
+	}
+
+
+	public function edit_order_product() {
+		//$this->load->model('sale/tesitoo_order');
+		$this->load->language('mail/email_notification');
+		$this->load->model('sale/vdi_order');
+
+		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
+		//&& $this->validateForm() && $this->validateUpdate()
+
+            $this->session->data['success'] = $this->language->get('text_success');
+
+            $order_product = $this->model_sale_vdi_order->getOrderProduct($this->request->get['order_product_id']);
+
+            $this->model_sale_vdi_order->editOrderProduct($this->request->get['order_product_id'], $this->request->post);
+/*
+            $order = $this->model_sale_vdi_order->getOrder($order_product['order_id']);
+
+            $newOrderStatus =  $this->model_sale_tesitoo_order->getOrderStatusDescriptionById($this->request->post['order_status_id']);
+
+            $customer_name = $order['firstname'] . ' ' . $order['lastname'];
+            $text = sprintf($this->language->get('text_to'), $customer_name) . "<br><br>";
+
+            $subject = sprintf($this->language->get('text_subject_order_product_status_update'), $order_product['order_id']);
+
+            $text .= sprintf($this->language->get('text_message_order_product_status_update'), $order_product['name'], $order_product['order_id'], $newOrderStatus);
+
+            $text .= $this->language->get('text_thanks') . "<br>";
+            $text .= $this->config->get('config_name') . "<br><br>";
+            $text .= $this->language->get('text_system');
+
+            $mail = new Mail();
+            $mail->protocol = $this->config->get('config_mail_protocol');
+            $mail->parameter = $this->config->get('config_mail_parameter');
+            $mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+            $mail->smtp_username = $this->config->get('config_mail_smtp_username');
+            $mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+            $mail->smtp_port = $this->config->get('config_mail_smtp_port');
+            $mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+
+            $mail->setTo($order['email']);
+            $mail->setFrom($this->config->get('config_email'));
+            $mail->setSender($this->config->get('config_name'));
+            $mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
+            $mail->setHtml(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
+            $mail->send();
+*/
+            $this->response->redirect($this->url->link('sale/vdi_order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $order_product['order_id'], 'SSL'));
+        }
 	}
 }

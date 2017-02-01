@@ -496,7 +496,7 @@ class ModelSaleVDIOrder extends Model {
 	}
 
 	public function getOrderProducts($order_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "' AND vendor_id = '" . (int)$this->user->getVP() . "'");
+		$query = $this->db->query("SELECT *, (SELECT os.name FROM " . DB_PREFIX . "order_status os WHERE os.order_status_id = op.order_status_id AND os.language_id = '" . (int)$this->config->get('config_language_id') . "') AS status FROM " . DB_PREFIX . "order_product op WHERE order_id = '" . (int)$order_id . "' AND vendor_id = '" . (int)$this->user->getVP() . "'");
 		
 		return $query->rows;
 	}
