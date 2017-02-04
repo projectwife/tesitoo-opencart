@@ -1021,4 +1021,10 @@ class ModelSaleVDIOrder extends Model {
 
 		return $query->row;
 	}
+
+    public function getOrderStatusDescriptionById($order_status_id) {
+        $query = $this->db->query("SELECT name FROM " . DB_PREFIX . "order_status WHERE order_status_id = '" . (int)$order_status_id . "' AND language_id = '" . (int)$this->config->get('config_language_id') . "'");
+
+        return $query->rows[0]['name'];
+    }
 }

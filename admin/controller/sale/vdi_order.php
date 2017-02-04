@@ -1856,10 +1856,10 @@ class ControllerSaleVDIOrder extends Controller {
             $order_product = $this->model_sale_vdi_order->getOrderProduct($this->request->get['order_product_id']);
 
             $this->model_sale_vdi_order->editOrderProduct($this->request->get['order_product_id'], $this->request->post);
-/*
+
             $order = $this->model_sale_vdi_order->getOrder($order_product['order_id']);
 
-            $newOrderStatus =  $this->model_sale_tesitoo_order->getOrderStatusDescriptionById($this->request->post['order_status_id']);
+            $newOrderStatus =  $this->model_sale_vdi_order->getOrderStatusDescriptionById($this->request->post['order_status_id']);
 
             $customer_name = $order['firstname'] . ' ' . $order['lastname'];
             $text = sprintf($this->language->get('text_to'), $customer_name) . "<br><br>";
@@ -1887,7 +1887,7 @@ class ControllerSaleVDIOrder extends Controller {
             $mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
             $mail->setHtml(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
             $mail->send();
-*/
+
             $this->response->redirect($this->url->link('sale/vdi_order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $order_product['order_id'], 'SSL'));
         }
 	}
