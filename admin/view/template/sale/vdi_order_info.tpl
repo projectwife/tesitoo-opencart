@@ -560,7 +560,7 @@ var autoAddIP = function() {
 
 // Login to the API
 $.ajax({
-	url: /*'<?php echo $store_url; ?>*/'index.php?route=api/login',
+	url: '<?php echo $store_url; ?>index.php?route=api/login',
 	type: 'post',
 	dataType: 'json',
 	data: 'key=<?php echo $api_key; ?>',
@@ -583,8 +583,7 @@ $.ajax({
 		}
 	},
 	error: function(xhr, ajaxOptions, thrownError) {
-        //FIXME commented since this was reporting an error which appeared to have no effect
-		//alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 	}
 });
 
