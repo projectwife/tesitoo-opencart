@@ -271,6 +271,18 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 			$this->request->post['vendor'] = $this->user->getVP();
 		}
 
+		$this->load->model('catalog/vdi_product');
+		$product = $this->model_catalog_vdi_product->getProduct((int)$id);
+		if ((!array_key_exists('vendor_id', $product)) ||
+			($this->user->getVP() != (int)($product['vendor_id']))) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED, ErrorCodes::ERRORCODE_VENDOR_NOT_ALLOWED, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_VENDOR_NOT_ALLOWED));
+		}
+
+		if (!array_key_exists('product_id', $product)) {
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND,
+			ErrorCodes::ERRORCODE_PRODUCT_NOT_FOUND, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_PRODUCT_NOT_FOUND));
+		}
+
 		$productIds = explode(',', $id);
 
 		foreach($productIds as $productId) {
