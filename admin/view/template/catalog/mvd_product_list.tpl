@@ -117,17 +117,17 @@
 					<?php } else { ?>
 					<a href="<?php echo $sort_vendor_name; ?>"><?php echo $column_vendor; ?></a>
 				  <?php } ?></td>
-				  <td class="text-left"><?php if ($sort == 'p.sku') { ?>
+				  <!--<td class="text-left"><?php if ($sort == 'p.sku') { ?>
 				    <a href="<?php echo $sort_sku; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_sku; ?></a>
 				    <?php } else { ?>
 				    <a href="<?php echo $sort_sku; ?>"><?php echo $column_sku; ?></a>
-				  <?php } ?></td>
+				  <?php } ?></td>-->
 				  <!--mvde-->
-                  <td class="text-left"><?php if ($sort == 'p.model') { ?>
+                  <!--<td class="text-left"><?php if ($sort == 'p.model') { ?>
                     <a href="<?php echo $sort_model; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_model; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_model; ?>"><?php echo $column_model; ?></a>
-                    <?php } ?></td>
+                    <?php } ?></td>-->
                   <td class="text-left"><?php if ($sort == 'p.price') { ?>
                     <a href="<?php echo $sort_price; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_price; ?></a>
                     <?php } else { ?>
@@ -163,9 +163,9 @@
                   <td class="text-left"><?php echo $product['name']; ?></td>
 				  <!--mvds-->
 				  <td class="text-left"><?php echo $product['vendor_name']; ?></td>
-				  <td class="text-left"><?php echo $product['sku']; ?></td>
+				  <!--<td class="text-left"><?php echo $product['sku']; ?></td>-->
 				  <!--mvde-->
-                  <td class="text-left"><?php echo $product['model']; ?></td>
+                  <!--<td class="text-left"><?php echo $product['model']; ?></td>-->
                   <td class="text-left"><?php if ($product['special']) { ?>
                     <span style="text-decoration: line-through;"><?php echo $product['price']; ?></span><br/>
                     <div class="text-danger"><?php echo $product['special']; ?></div>
