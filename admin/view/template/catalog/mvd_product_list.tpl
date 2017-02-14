@@ -51,17 +51,9 @@
                   <?php } ?>
                 </select>
               </div>
-              <div class="form-group">
-                <label class="control-label" for="input-sku"><?php echo $entry_sku; ?></label>
-                <input type="text" name="filter_sku" value="<?php echo $filter_sku; ?>" placeholder="<?php echo $entry_sku; ?>" id="input-sku" class="form-control" />
-              </div>
 			  <!--mvde-->
             </div>
             <div class="col-sm-4">
-			  <div class="form-group">
-                <label class="control-label" for="input-model"><?php echo $entry_model; ?></label>
-                <input type="text" name="filter_model" value="<?php echo $filter_model; ?>" placeholder="<?php echo $entry_model; ?>" id="input-model" class="form-control" />
-              </div>
               <div class="form-group">
                 <label class="control-label" for="input-price"><?php echo $entry_price; ?></label>
                 <input type="text" name="filter_price" value="<?php echo $filter_price; ?>" placeholder="<?php echo $entry_price; ?>" id="input-price" class="form-control" />
