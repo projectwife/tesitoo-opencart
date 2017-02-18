@@ -13,6 +13,7 @@ Most of them require authentication first. See [the Tesitoo OpenCart API instruc
 * [POST admin/login](post_admin_login.md)
 * [POST admin/logout](post_admin_logout.md)
 * [POST admin/password](post_admin_password.md)
+* [POST admin/forgot_password](post_admin_forgot_password.md)
 
 #### common ####
 
