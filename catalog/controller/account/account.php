@@ -65,6 +65,10 @@ class ControllerAccountAccount extends Controller {
 			$data['reward'] = '';
 		}
 
+		if ($this->customer->isLogged()) {
+			$data['customer_name'] = $this->customer->getFirstName() . " " . $this->customer->getLastName();
+		}
+
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
 		$data['content_top'] = $this->load->controller('common/content_top');
