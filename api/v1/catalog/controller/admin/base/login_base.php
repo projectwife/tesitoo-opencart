@@ -22,18 +22,16 @@ class ControllerAdminLoginBaseAPI extends ApiController {
 
         $data = array();
 
-        if(isset($this->request->post['username']) && isset($this->request->post['username']) && $user->login($this->request->post['username'], $this->request->post['password'])) {
+        if(isset($this->request->post['username']) && isset($this->request->post['password']) && $user->login($this->request->post['username'], $this->request->post['password'])) {
             $data['user'] = array('username' => $user->getUserName(), 'user_id' => $user->getId(), 'user_group_id' => $user->getGroupId(), 'vendor_id' => $user->getVP());
         } else {
-            // Need to keep the static messages in a separate file (Keep it in API end ?) 
-            $data['errors'] = array('code' => "error_warning", 'message' => "Warning: No match for Username and/or Password.");    
+			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_NO_MATCH_USERAME_PASSWORD, ErrorCodes::getMessage(ErrorCodes::ERRORCODE_NO_MATCH_USERAME_PASSWORD));
         }
        
         $this->response->setOutput($data);
 
 		ApiException::evaluateErrors($data);
 	}
- 
 }
 
 ?>

@@ -40,6 +40,8 @@ class ErrorCodes {
 
 	const ERRORCODE_BAD_PARAMETER					= 'parameter_error';
 
+	const ERRORCODE_NO_MATCH_USERAME_PASSWORD		= 'no_match_for_username_password';
+
 	private static $errorMessages = array(
 		self::ERRORCODE_INVALID_CLIENT 									=> 'Client authentication failed (e.g., unknown client, no client authentication included, or unsupported authentication method).',
 		self::ERRORCODE_INVALID_ACCESS_TOKEN 							=> 'Invalid or expired access token',
@@ -65,6 +67,7 @@ class ErrorCodes {
 		self::ERRORCODE_FILE_ERROR										=> 'Uploaded file is incorrect.',
 		self::ERRORCODE_VENDOR_NOT_ALLOWED								=> 'Vendor permission error.',
 		self::ERRORCODE_BAD_PARAMETER									=> 'Incorrect parameter.',
+		self::ERRORCODE_NO_MATCH_USERAME_PASSWORD						=> 'No match for username and/or password.'
 	);
 
 	public static function getMessage($errorCode) {

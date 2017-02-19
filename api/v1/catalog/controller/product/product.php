@@ -524,8 +524,6 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
 		$mail->setHtml(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
 		$mail->send();
-
-        $this->log->write('message sent to admin: ' . $subject . ' ::: ' . $text);
     }
 
     public function add_edit_vendor_notification($pmode = true,$pname) {

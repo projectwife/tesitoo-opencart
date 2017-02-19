@@ -47,6 +47,11 @@ $_['text_message_admin_complete'] = "Order <b>%d</b> - product: <b>%s</b> has be
 $_['text_message_admin_cancelled'] = "The vendor <b>%s</b> has cancelled the following product at: <b>%s</b><br/>\nProduct: <b>%s</b><br/>\nQuantity: <b>%s</b><br/>\nTotal: <b>%s</b><br/>\n";
 $_['text_message_admin_other_status'] = "The vendor <b>%s</b> has updated the status of product: <b>%s</b> in order: <b>%d</b>. The status is now: <b>%s</b>.\n";
 
-$_['text_message_order_product_status_update']       = "The status of the product: <b>%s</b> in your order %d has been changed to: %s.<br><br>";
+$_['text_message_order_product_status_update'] = "The status of the product: <b>%s</b> in your order %d has been changed to: %s.<br><br>";
+
+
+$_['text_subject_password_reset_requested'] = "Password reset request";
+
+$_['text_message_password_reset_requested'] = "A request has been received to reset the password of this account. Your new password is:<br>\n%s<br>\n"
 
 ?>
