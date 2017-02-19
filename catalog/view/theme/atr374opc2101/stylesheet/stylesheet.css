@@ -1896,3 +1896,11 @@ h2.price {
 .checkout-success a {
     text-decoration: underline;
 }
+
+.account-header {
+    font-size: 16px;
+    color: #666;
+    text-align: right;
+    padding-right: 1%;
+    border-bottom: 1px solid #bbb;
+}
