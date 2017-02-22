@@ -53,6 +53,8 @@ class ControllerAdminForgotPasswordAPI extends ApiController {
 
             $html .= sprintf($this->language->get('text_message_password_reset_requested'), $link) . "<br>";
 
+            $html .= "<p>DEVELOPMENT: Your password is now: " . $token . "</p>\n<br>";
+
             $html .= $this->language->get('text_thanks') . "<br>";
             $html .= $this->config->get('config_name') . "<br><br>";
             $html .= $this->language->get('text_system');
