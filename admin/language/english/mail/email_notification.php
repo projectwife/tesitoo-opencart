@@ -52,6 +52,6 @@ $_['text_message_order_product_status_update'] = "The status of the product: <b>
 
 $_['text_subject_password_reset_requested'] = "Password reset request";
 
-$_['text_message_password_reset_requested'] = "A request has been received to reset the password of this account. Your new password is:<br>\n%s<br>\n"
+$_['text_message_password_reset_requested'] = "A request has been received to reset the password of this account. Follow this link to complete the reset and enter a new password: <strong><a href=\"%s\">Complete Password Reset<a></strong>.<br>\n";
 
 ?>
