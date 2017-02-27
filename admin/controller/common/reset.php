@@ -88,13 +88,14 @@ class ControllerCommonReset extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 
 			$this->response->setOutput($this->load->view('common/reset.tpl', $data));
-		} else {
+		}/* else {
 			$this->load->model('setting/setting');
 
 			$this->model_setting_setting->editSettingValue('config', 'config_password', '0');
 
 			return new Action('common/login');
-		}
+		}*/
+		//FIXME implement better hack-prevention system
 	}
 
 	protected function validate() {
