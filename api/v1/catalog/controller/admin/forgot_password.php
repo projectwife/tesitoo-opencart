@@ -1,7 +1,5 @@
 <?php
 
-require_once(DIR_API_APPLICATION . 'controller/admin/base/login_base.php');
-
 class ControllerAdminForgotPasswordAPI extends ApiController {
 
     public function index($args = array()) {
@@ -34,20 +32,12 @@ class ControllerAdminForgotPasswordAPI extends ApiController {
             }
 
             $code = sha1(uniqid(mt_rand(), true));
-
             $this->model_user_user->editCode($user['email'], $code);
-
-            /*
-            //generate token
-            $bytes = openssl_random_pseudo_bytes(16, $cstrong);
-            $token = bin2hex($bytes);
-            */
 
             //send email containing token
             $subject = $this->language->get('text_subject_password_reset_requested');
 
-            $link = "https://tesitoo.com/admin/index.php?route=common/reset?"
-                . "code=" . $code;
+            $link = "https://tesitoo.com/admin/index.php?route=common/reset&code=" . $code;
 
             $html = sprintf($this->language->get('text_to'), $user['firstname'] . ' ' . $user['lastname']) . "<br><br>";
 
@@ -57,6 +47,7 @@ class ControllerAdminForgotPasswordAPI extends ApiController {
             $html .= html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8') . "<br><br>";
             $html .= $this->language->get('text_system');
 
+            //FIXME delete me once tested
             $this->log->write($html);
 
             $mail = new Mail();
