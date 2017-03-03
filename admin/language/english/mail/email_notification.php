@@ -50,8 +50,8 @@ $_['text_message_admin_other_status'] = "The vendor <b>%s</b> has updated the st
 $_['text_message_order_product_status_update'] = "The status of the product: <b>%s</b> in your order %d has been changed to: %s.<br><br>";
 
 
-$_['text_subject_password_reset_requested'] = "Password reset request";
+$_['text_subject_password_reset_requested'] = "password reset request";
 
-$_['text_message_password_reset_requested'] = "A request has been received to reset the password of this account. Follow this link to complete the reset and choose a new password: <strong><a href=\"%s\">%s</a></strong>.<br>\n";
+$_['text_message_password_reset_requested'] = "A request has been received to reset the password of this account. Follow this link to complete the reset and choose a new password:\n<strong><a href=\"%s\">%s</a></strong><br>\n";
 
 ?>

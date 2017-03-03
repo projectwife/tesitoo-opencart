@@ -31,16 +31,23 @@ class ControllerAdminPasswordAPI extends ApiController {
             }
 
             $this->load->model('user/vdi_user_password');
-            $user = $this->model_user_vdi_user_password->getUser($this->user->getId());
-            //either a password reset must have been recently requested,
+            $vdiUser = $this->model_user_vdi_user_password->getUser($this->user->getId());
+
+            //either a password reset must have been recently requested
+            if (isset($vdiUser['reset_pw_expiration'])) {
+                if ((NULL == $vdiUser['reset_pw_expiration'] ||
+                    strtotime($vdiUser['reset_pw_expiration']) < time()))
+                {
+                    throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED,
+                        ErrorCodes::ERRORCODE_USER_NOT_LOGGED_IN, "unauthorised to reset password");
+                }
+            }
             //or we must login correctly with the old password
-            if ((NULL == $user['reset_pw_expiration'] ||
-                strtotime($user['reset_pw_expiration']) < time())
-                &&
-                (!$user->login($this->user->getUserName(), $this->request->post['old_password'])))
-            {
-                throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED,
-                    ErrorCodes::ERRORCODE_USER_NOT_LOGGED_IN, "error authenticating with old password or password reset expiration time");
+            else {
+                if (!$user->login($this->user->getUserName(), $this->request->post['old_password'])) {
+                    throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_UNAUTHORIZED,
+                    ErrorCodes::ERRORCODE_USER_NOT_LOGGED_IN, "error confirming old password");
+                }
             }
 
             //now set new password
