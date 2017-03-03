@@ -37,11 +37,12 @@ class ControllerAdminForgotPasswordAPI extends ApiController {
             //send email containing token
             $subject = $this->language->get('text_subject_password_reset_requested');
 
-            $link = "https://tesitoo.com/admin/index.php?route=common/reset&code=" . $code;
+            $url = new Url(HTTP_SERVER, HTTPS_SERVER);
+            $link = $url->link('common/reset', 'code=' . $code, 'SSL');
 
             $html = sprintf($this->language->get('text_to'), $user['firstname'] . ' ' . $user['lastname']) . "<br><br>";
 
-            $html .= sprintf($this->language->get('text_message_password_reset_requested'), $link) . "<br>";
+            $html .= sprintf($this->language->get('text_message_password_reset_requested'), $link, $link) . "<br>";
 
             $html .= $this->language->get('text_thanks') . "<br>";
             $html .= html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8') . "<br><br>";
