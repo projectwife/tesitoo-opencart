@@ -31,6 +31,8 @@ class ControllerCommonForgotten extends Controller {
 			$message .= $this->url->link('common/reset', 'code=' . $code, 'SSL') . "\n\n";
 			$message .= sprintf($this->language->get('text_ip'), $this->request->server['REMOTE_ADDR']) . "\n\n";
 
+			$this->log->write($message);
+
 			$mail = new Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');
 			$mail->parameter = $this->config->get('config_mail_parameter');

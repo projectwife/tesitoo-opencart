@@ -60,6 +60,35 @@ class User {
 		}
 	}
 
+	public function loginByCode($code) {
+        $user_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "user WHERE code = '" .
+        $code . "' AND reset_pw_expiration >= NOW() AND status = '1'");
+
+        if ($user_query->num_rows) {
+			$this->session->data['user_id'] = $user_query->row['user_id'];
+
+			$this->user_id = $user_query->row['user_id'];
+			$this->username = $user_query->row['username'];
+			$this->user_group_id = $user_query->row['user_group_id'];
+
+			$user_group_query = $this->db->query("SELECT permission FROM " . DB_PREFIX . "user_group WHERE user_group_id = '" . (int)$user_query->row['user_group_id'] . "'");
+
+			$permissions = json_decode($user_group_query->row['permission'], true);
+
+			if (is_array($permissions)) {
+				foreach ($permissions as $key => $value) {
+					$this->permission[$key] = $value;
+				}
+			}
+
+			$this->db->query("UPDATE " . DB_PREFIX . "user SET code = '' WHERE user_id = " . $this->user_id);
+
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public function logout() {
 		unset($this->session->data['user_id']);
 

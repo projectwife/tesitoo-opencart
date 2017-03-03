@@ -89,9 +89,10 @@ class ControllerCommonReset extends Controller {
 
 			$this->response->setOutput($this->load->view('common/reset.tpl', $data));
 		} else {
-			$this->load->model('setting/setting');
+			//$this->load->model('setting/setting');
 
-			$this->model_setting_setting->editSettingValue('config', 'config_password', '0');
+            //FIXME implement better hack-prevention system
+			//$this->model_setting_setting->editSettingValue('config', 'config_password', '0');
 
 			return new Action('common/login');
 		}
