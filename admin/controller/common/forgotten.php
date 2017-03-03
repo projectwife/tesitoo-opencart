@@ -28,7 +28,8 @@ class ControllerCommonForgotten extends Controller {
 
 			$message  = sprintf($this->language->get('text_greeting'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8')) . "\n\n";
 			$message .= $this->language->get('text_change') . "\n\n";
-			$message .= $this->url->link('common/reset', 'code=' . $code, 'SSL') . "\n\n";
+			//sent as text, so it should be regular ampersand, not encoded
+			$message .= str_replace('&amp;', '&', $this->url->link('common/reset', 'code=' . $code, 'SSL')) . "\n\n";
 			$message .= sprintf($this->language->get('text_ip'), $this->request->server['REMOTE_ADDR']) . "\n\n";
 
 			$this->log->write($message);
