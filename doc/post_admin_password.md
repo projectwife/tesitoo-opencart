@@ -8,6 +8,8 @@ The client should handle confirmation of the new password (i.e. asking the user 
 
 Passwords should be sent as plain text (oauth & ssl should be sufficient to ensure security).
 
+If the user has just logged in using [`POST admin/login_by_code`](post_admin_login_by_code.md) in order to reset the password, the old_password need not be specified. But this must be performed within a short time after logging in using this method.
+
 **Request parameters**
 
 * `old_password` - current password
