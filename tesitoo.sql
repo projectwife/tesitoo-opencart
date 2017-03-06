@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 30, 2016 at 04:28 PM
--- Server version: 5.7.13-0ubuntu0.16.04.2
--- PHP Version: 7.0.8-0ubuntu0.16.04.2
+-- Generation Time: Mar 06, 2017 at 05:51 PM
+-- Server version: 5.7.17-0ubuntu0.16.04.1
+-- PHP Version: 7.0.15-0ubuntu0.16.04.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tesitoo2`
+-- Database: `tesitoo3`
 --
 
 -- --------------------------------------------------------
@@ -1017,8 +1017,8 @@ CREATE TABLE IF NOT EXISTS `oc_currency` (
 --
 
 INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
-(3, 'Euro', 'EUR', '', '€', '2', 0.02120000, 1, '2016-09-30 14:58:51'),
-(4, 'Gambian dalasi', 'GMD', 'D', '', '', 1.00000000, 1, '2016-09-30 14:58:51');
+(3, 'Euro', 'EUR', '', '€', '2', 0.02160000, 1, '2017-03-06 17:08:00'),
+(4, 'Gambian dalasi', 'GMD', 'D', '', '', 1.00000000, 1, '2017-03-06 17:08:49');
 
 -- --------------------------------------------------------
 
@@ -3086,6 +3086,7 @@ CREATE TABLE IF NOT EXISTS `oc_user` (
   `email` varchar(96) NOT NULL,
   `image` varchar(255) NOT NULL,
   `code` varchar(40) NOT NULL,
+  `reset_pw_expiration` datetime DEFAULT NULL,
   `ip` varchar(40) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
@@ -3101,8 +3102,8 @@ CREATE TABLE IF NOT EXISTS `oc_user` (
 -- Dumping data for table `oc_user`
 --
 
-INSERT INTO `oc_user` (`user_id`, `user_group_id`, `username`, `password`, `salt`, `firstname`, `lastname`, `email`, `image`, `code`, `ip`, `status`, `date_added`, `cat_permission`, `store_permission`, `vendor_permission`, `folder`, `user_date_start`, `user_date_end`) VALUES
-(1, 1, 'admin', '6f22c1a69660c86a2dcd08aeb601b6d4fa8e083a', 'TkdGMPsh3', 'John', 'Doe', 'admin@example.com', '', '', '::1', 1, '2016-02-21 20:14:12', '', '', 0, '', '0000-00-00', '0000-00-00');
+INSERT INTO `oc_user` (`user_id`, `user_group_id`, `username`, `password`, `salt`, `firstname`, `lastname`, `email`, `image`, `code`, `reset_pw_expiration`, `ip`, `status`, `date_added`, `cat_permission`, `store_permission`, `vendor_permission`, `folder`, `user_date_start`, `user_date_end`) VALUES
+(1, 1, 'admin', '6f22c1a69660c86a2dcd08aeb601b6d4fa8e083a', 'TkdGMPsh3', 'John', 'Doe', 'admin@example.com', '', '', NULL, '::1', 1, '2016-02-21 20:14:12', '', '', 0, '', '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
