@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 30, 2016 at 04:28 PM
--- Server version: 5.7.13-0ubuntu0.16.04.2
--- PHP Version: 7.0.8-0ubuntu0.16.04.2
+-- Generation Time: Mar 06, 2017 at 05:55 PM
+-- Server version: 5.7.17-0ubuntu0.16.04.1
+-- PHP Version: 7.0.15-0ubuntu0.16.04.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tesitoo2`
+-- Database: `tesitoo3`
 --
 
 -- --------------------------------------------------------
@@ -1017,8 +1017,8 @@ CREATE TABLE IF NOT EXISTS `oc_currency` (
 --
 
 INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
-(3, 'Euro', 'EUR', '', '€', '2', 0.02120000, 1, '2016-09-30 14:58:51'),
-(4, 'Gambian dalasi', 'GMD', 'D', '', '', 1.00000000, 1, '2016-09-30 14:58:51');
+(3, 'Euro', 'EUR', '', '€', '2', 0.02160000, 1, '2017-03-06 17:08:00'),
+(4, 'Gambian dalasi', 'GMD', 'D', '', '', 1.00000000, 1, '2017-03-06 17:55:06');
 
 -- --------------------------------------------------------
 
@@ -2681,7 +2681,7 @@ CREATE TABLE IF NOT EXISTS `oc_setting` (
   `key` varchar(64) NOT NULL,
   `value` text NOT NULL,
   `serialized` tinyint(1) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=1068 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1182 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `oc_setting`
@@ -2717,115 +2717,98 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (146, 0, 'category', 'category_status', '1', 0),
 (158, 0, 'account', 'account_status', '1', 0),
 (159, 0, 'affiliate', 'affiliate_status', '1', 0),
-(1015, 0, 'config', 'config_encryption', 'yKr0KauIMucRllYfivnt3OmSrT3eRAPI6QpTpTAtq43mzyrjjsNf6O6M7yWIbEUzuW5R4FfzbVsVsFPP5bby58GNORIBvO0Ed8BWM3mA6Tn6zXFjWn3WkLZEsheAonHIPCwy4sGBAxid2DiS8YfnnKE7iCdnwtSXbXquwh8FRGxiBzqMdjwX6QEQc0uue5Ahki2rn0OQgtVq4ktu65qxXykIOKxOK4jy2g4XQqYdpdbT9mucS1wgJAQRx3ANW1YWO9I1KrNEEcN0Xu9dTwZHkGga0Rm2DSow1lIbIpG2I4wfmcb6bM28ntN9OilBZPe5qWMN3ysWjogUE1Nvwr2FOksD5i4gmoVA5PARfiW0lOfbtzdnenDt2XT0lCN7CKQF4Q7jDHbmB1RcajeHMyTQFb2FrWl0cTigwgV4sZlpxMgDVHp7eb3EL4MA3TXvImg6f69wGCuWF0SwMfMcOhhNb6dbWubJnLos3yEbS5ZwtWextOYfjD0FbNuMIeXUaJh3U9NyttjPUvwYFuJSAxZbNnwUJmGP2sP5ADm7qmu5Z0eMdU27Sr9TwWl9wwX6EIYNzW97jmcd6BW6XyB7jRlVrYleWNVqYXUTTpXQGXMVZT9HkLrya7u44gbVDlPna6Lg4fGABUrCiEUuiaoPxdj4QFyq2CE6hefuICmleYUFKhNg9vNU6ipeY9tfoxYISwGZ4w4SFQIGjlWhKk399XMlJgUhmo7qDmczZfokQouxW5vct4rE5uCV9bVleA3iCBb11JBKHr7b6rbwfNRvZI7VHe4ZkYCxaPIk8RxHoe7hGiMEV9PqJIrJSP8zH4ZgyVzq0DlmnkaQfAK3k392X7Gtoxhl5FK5QGzmHnLI5atYBGaR9HFc7ZVgpCFGJDTdQyYKT4EFzJCV2pVhQLMoGVsLog5Y0MRe8mC4RzuagRkt7FhahQx3yWzCstKf3dab7PFzgxGJPS6ry2GZzgOde2piGOQpAY0AygYU9NGCe3kMDHUuTatYAo3P0lKWevDvCxxC', 0),
-(1011, 0, 'config', 'config_compression', '0', 0),
-(1012, 0, 'config', 'config_secure', '0', 0),
-(1013, 0, 'config', 'config_password', '0', 0),
-(1014, 0, 'config', 'config_shared', '0', 0),
-(1004, 0, 'config', 'config_mail_smtp_password', 'circu39mvent*Mechan41ics', 0),
-(1005, 0, 'config', 'config_mail_smtp_port', '2525', 0),
-(1006, 0, 'config', 'config_mail_smtp_timeout', '5', 0),
-(1007, 0, 'config', 'config_mail_alert', '', 0),
-(1008, 0, 'config', 'config_maintenance', '0', 0),
-(1009, 0, 'config', 'config_seo_url', '0', 0),
-(1010, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai''hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
-(1001, 0, 'config', 'config_mail_parameter', '', 0),
-(1002, 0, 'config', 'config_mail_smtp_hostname', 'smtp.sendgrid.net', 0),
-(1003, 0, 'config', 'config_mail_smtp_username', 'tesitoodev', 0),
-(1000, 0, 'config', 'config_mail_protocol', 'smtp', 0),
+(1171, 0, 'config', 'config_compression', '0', 0),
+(1172, 0, 'config', 'config_secure', '0', 0),
+(1173, 0, 'config', 'config_password', '1', 0),
+(1174, 0, 'config', 'config_shared', '0', 0),
+(1175, 0, 'config', 'config_encryption', 'yKr0KauIMucRllYfivnt3OmSrT3eRAPI6QpTpTAtq43mzyrjjsNf6O6M7yWIbEUzuW5R4FfzbVsVsFPP5bby58GNORIBvO0Ed8BWM3mA6Tn6zXFjWn3WkLZEsheAonHIPCwy4sGBAxid2DiS8YfnnKE7iCdnwtSXbXquwh8FRGxiBzqMdjwX6QEQc0uue5Ahki2rn0OQgtVq4ktu65qxXykIOKxOK4jy2g4XQqYdpdbT9mucS1wgJAQRx3ANW1YWO9I1KrNEEcN0Xu9dTwZHkGga0Rm2DSow1lIbIpG2I4wfmcb6bM28ntN9OilBZPe5qWMN3ysWjogUE1Nvwr2FOksD5i4gmoVA5PARfiW0lOfbtzdnenDt2XT0lCN7CKQF4Q7jDHbmB1RcajeHMyTQFb2FrWl0cTigwgV4sZlpxMgDVHp7eb3EL4MA3TXvImg6f69wGCuWF0SwMfMcOhhNb6dbWubJnLos3yEbS5ZwtWextOYfjD0FbNuMIeXUaJh3U9NyttjPUvwYFuJSAxZbNnwUJmGP2sP5ADm7qmu5Z0eMdU27Sr9TwWl9wwX6EIYNzW97jmcd6BW6XyB7jRlVrYleWNVqYXUTTpXQGXMVZT9HkLrya7u44gbVDlPna6Lg4fGABUrCiEUuiaoPxdj4QFyq2CE6hefuICmleYUFKhNg9vNU6ipeY9tfoxYISwGZ4w4SFQIGjlWhKk399XMlJgUhmo7qDmczZfokQouxW5vct4rE5uCV9bVleA3iCBb11JBKHr7b6rbwfNRvZI7VHe4ZkYCxaPIk8RxHoe7hGiMEV9PqJIrJSP8zH4ZgyVzq0DlmnkaQfAK3k392X7Gtoxhl5FK5QGzmHnLI5atYBGaR9HFc7ZVgpCFGJDTdQyYKT4EFzJCV2pVhQLMoGVsLog5Y0MRe8mC4RzuagRkt7FhahQx3yWzCstKf3dab7PFzgxGJPS6ry2GZzgOde2piGOQpAY0AygYU9NGCe3kMDHUuTatYAo3P0lKWevDvCxxC', 0),
+(1159, 0, 'config', 'config_ftp_status', '0', 0),
+(1160, 0, 'config', 'config_mail_protocol', 'smtp', 0),
+(1161, 0, 'config', 'config_mail_parameter', '', 0),
+(1162, 0, 'config', 'config_mail_smtp_hostname', 'smtp.sendgrid.net', 0),
+(1163, 0, 'config', 'config_mail_smtp_username', 'tesitoodev', 0),
+(1164, 0, 'config', 'config_mail_smtp_password', 'circu39mvent*Mechan41ics', 0),
+(1165, 0, 'config', 'config_mail_smtp_port', '2525', 0),
+(1166, 0, 'config', 'config_mail_smtp_timeout', '5', 0),
+(1167, 0, 'config', 'config_mail_alert', '', 0),
+(1168, 0, 'config', 'config_maintenance', '0', 0),
+(1169, 0, 'config', 'config_seo_url', '0', 0),
+(1170, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai''hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
+(1158, 0, 'config', 'config_ftp_root', '', 0),
+(1157, 0, 'config', 'config_ftp_password', '', 0),
+(1156, 0, 'config', 'config_ftp_username', '', 0),
+(1155, 0, 'config', 'config_ftp_port', '21', 0),
 (94, 0, 'voucher', 'voucher_sort_order', '8', 0),
 (95, 0, 'voucher', 'voucher_status', '1', 0),
 (103, 0, 'free_checkout', 'free_checkout_status', '1', 0),
 (104, 0, 'free_checkout', 'free_checkout_order_status_id', '1', 0),
-(999, 0, 'config', 'config_ftp_status', '0', 0),
-(998, 0, 'config', 'config_ftp_root', '', 0),
-(981, 0, 'config', 'config_image_product_height', '228', 0),
-(982, 0, 'config', 'config_image_additional_width', '74', 0),
-(983, 0, 'config', 'config_image_additional_height', '74', 0),
-(984, 0, 'config', 'config_image_related_width', '80', 0),
-(985, 0, 'config', 'config_image_related_height', '80', 0),
-(986, 0, 'config', 'config_image_compare_width', '90', 0),
-(987, 0, 'config', 'config_image_compare_height', '90', 0),
-(988, 0, 'config', 'config_image_wishlist_width', '47', 0),
-(989, 0, 'config', 'config_image_wishlist_height', '47', 0),
-(990, 0, 'config', 'config_image_cart_width', '47', 0),
-(991, 0, 'config', 'config_image_cart_height', '47', 0),
-(992, 0, 'config', 'config_image_location_width', '268', 0),
-(993, 0, 'config', 'config_image_location_height', '50', 0),
-(994, 0, 'config', 'config_ftp_hostname', '104.155.84.193', 0),
-(995, 0, 'config', 'config_ftp_port', '21', 0),
-(996, 0, 'config', 'config_ftp_username', '', 0),
-(997, 0, 'config', 'config_ftp_password', '', 0),
-(980, 0, 'config', 'config_image_product_width', '228', 0),
-(979, 0, 'config', 'config_image_popup_height', '500', 0),
-(978, 0, 'config', 'config_image_popup_width', '500', 0),
-(977, 0, 'config', 'config_image_thumb_height', '400', 0),
-(976, 0, 'config', 'config_image_thumb_width', '400', 0),
-(975, 0, 'config', 'config_image_category_height', '80', 0),
-(974, 0, 'config', 'config_image_category_width', '80', 0),
-(973, 0, 'config', 'config_icon', 'catalog/tesitooFaviconTransparent.png', 0),
-(972, 0, 'config', 'config_logo', 'catalog/tesitooLogo320.png', 0),
-(971, 0, 'config', 'config_captcha_page', '["review","return","contact"]', 1),
-(970, 0, 'config', 'config_captcha', '', 0),
-(969, 0, 'config', 'config_return_status_id', '2', 0),
-(968, 0, 'config', 'config_return_id', '0', 0),
-(967, 0, 'config', 'config_affiliate_mail', '0', 0),
-(966, 0, 'config', 'config_affiliate_id', '4', 0),
-(965, 0, 'config', 'config_affiliate_commission', '5', 0),
-(964, 0, 'config', 'config_affiliate_auto', '0', 0),
-(963, 0, 'config', 'config_affiliate_approval', '0', 0),
-(962, 0, 'config', 'config_stock_checkout', '0', 0),
-(961, 0, 'config', 'config_stock_warning', '0', 0),
-(960, 0, 'config', 'config_stock_display', '0', 0),
-(959, 0, 'config', 'config_api_id', '1', 0),
-(958, 0, 'config', 'config_order_mail', '0', 0),
-(957, 0, 'config', 'config_fraud_status_id', '7', 0),
-(956, 0, 'config', 'config_complete_status', '["7","5","3"]', 1),
-(955, 0, 'config', 'config_processing_status', '["7","5","1","2","3"]', 1),
-(954, 0, 'config', 'config_order_status_id', '1', 0),
-(953, 0, 'config', 'config_checkout_id', '5', 0),
-(952, 0, 'config', 'config_checkout_guest', '1', 0),
-(951, 0, 'config', 'config_cart_weight', '1', 0),
-(950, 0, 'config', 'config_invoice_prefix', 'INV-2013-00', 0),
-(949, 0, 'config', 'config_account_mail', '0', 0),
-(948, 0, 'config', 'config_account_id', '3', 0),
-(947, 0, 'config', 'config_login_attempts', '5', 0),
-(946, 0, 'config', 'config_customer_price', '0', 0),
-(945, 0, 'config', 'config_customer_group_display', '["1"]', 1),
-(944, 0, 'config', 'config_customer_group_id', '1', 0),
-(943, 0, 'config', 'config_customer_online', '0', 0),
-(942, 0, 'config', 'config_tax_customer', 'shipping', 0),
-(941, 0, 'config', 'config_tax_default', 'shipping', 0),
-(940, 0, 'config', 'config_tax', '1', 0),
-(939, 0, 'config', 'config_voucher_max', '1000', 0),
-(938, 0, 'config', 'config_voucher_min', '1', 0),
-(937, 0, 'config', 'config_review_mail', '0', 0),
-(936, 0, 'config', 'config_review_guest', '1', 0),
-(935, 0, 'config', 'config_review_status', '1', 0),
-(934, 0, 'config', 'config_limit_admin', '20', 0),
-(933, 0, 'config', 'config_product_description_length', '100', 0),
-(932, 0, 'config', 'config_product_limit', '15', 0),
-(931, 0, 'config', 'config_product_count', '1', 0),
-(930, 0, 'config', 'config_weight_class_id', '1', 0),
-(929, 0, 'config', 'config_length_class_id', '1', 0),
-(928, 0, 'config', 'config_currency_auto', '1', 0),
-(927, 0, 'config', 'config_currency', 'GMD', 0),
-(926, 0, 'config', 'config_admin_language', 'en', 0),
-(925, 0, 'config', 'config_language', 'en', 0),
-(924, 0, 'config', 'config_zone_id', '', 0),
-(923, 0, 'config', 'config_country_id', '79', 0),
-(922, 0, 'config', 'config_comment', '', 0),
-(921, 0, 'config', 'config_open', '', 0),
-(920, 0, 'config', 'config_image', '', 0),
-(919, 0, 'config', 'config_fax', '', 0),
-(918, 0, 'config', 'config_telephone', '123456789', 0),
-(917, 0, 'config', 'config_email', 'admin@example.com', 0),
-(916, 0, 'config', 'config_geocode', '', 0),
-(915, 0, 'config', 'config_address', 'TesitooOwnerAddress', 0),
-(914, 0, 'config', 'config_owner', 'TesitooOwnerName', 0),
-(913, 0, 'config', 'config_name', 'Tesitoo', 0),
-(912, 0, 'config', 'config_layout_id', '4', 0),
-(911, 0, 'config', 'config_template', 'atr374opc2101', 0),
+(1154, 0, 'config', 'config_ftp_hostname', '104.155.84.193', 0),
+(1153, 0, 'config', 'config_image_location_height', '50', 0),
+(1152, 0, 'config', 'config_image_location_width', '268', 0),
+(1151, 0, 'config', 'config_image_cart_height', '47', 0),
+(1150, 0, 'config', 'config_image_cart_width', '47', 0),
+(1149, 0, 'config', 'config_image_wishlist_height', '47', 0),
+(1148, 0, 'config', 'config_image_wishlist_width', '47', 0),
+(1147, 0, 'config', 'config_image_compare_height', '90', 0),
+(1146, 0, 'config', 'config_image_compare_width', '90', 0),
+(1145, 0, 'config', 'config_image_related_height', '80', 0),
+(1144, 0, 'config', 'config_image_related_width', '80', 0),
+(1143, 0, 'config', 'config_image_additional_height', '74', 0),
+(1142, 0, 'config', 'config_image_additional_width', '74', 0),
+(1141, 0, 'config', 'config_image_product_height', '228', 0),
+(1140, 0, 'config', 'config_image_product_width', '228', 0),
+(1139, 0, 'config', 'config_image_popup_height', '500', 0),
+(1138, 0, 'config', 'config_image_popup_width', '500', 0),
+(1137, 0, 'config', 'config_image_thumb_height', '400', 0),
+(1136, 0, 'config', 'config_image_thumb_width', '400', 0),
+(1135, 0, 'config', 'config_image_category_height', '80', 0),
+(1134, 0, 'config', 'config_image_category_width', '80', 0),
+(1133, 0, 'config', 'config_icon', 'catalog/tesitooFaviconTransparent.png', 0),
+(1132, 0, 'config', 'config_logo', 'catalog/tesitooLogo320.png', 0),
+(1131, 0, 'config', 'config_captcha_page', '["review","return","contact"]', 1),
+(1130, 0, 'config', 'config_captcha', '', 0),
+(1129, 0, 'config', 'config_return_status_id', '2', 0),
+(1128, 0, 'config', 'config_return_id', '0', 0),
+(1127, 0, 'config', 'config_affiliate_mail', '0', 0),
+(1126, 0, 'config', 'config_affiliate_id', '4', 0),
+(1125, 0, 'config', 'config_affiliate_commission', '5', 0),
+(1124, 0, 'config', 'config_affiliate_auto', '0', 0),
+(1123, 0, 'config', 'config_affiliate_approval', '0', 0),
+(1122, 0, 'config', 'config_stock_checkout', '0', 0),
+(1121, 0, 'config', 'config_stock_warning', '0', 0),
+(1120, 0, 'config', 'config_stock_display', '0', 0),
+(1119, 0, 'config', 'config_api_id', '1', 0),
+(1118, 0, 'config', 'config_order_mail', '0', 0),
+(1117, 0, 'config', 'config_fraud_status_id', '7', 0),
+(1116, 0, 'config', 'config_complete_status', '["7","5","3"]', 1),
+(1115, 0, 'config', 'config_processing_status', '["7","5","1","2","3"]', 1),
+(1114, 0, 'config', 'config_order_status_id', '1', 0),
+(1113, 0, 'config', 'config_checkout_id', '5', 0),
+(1112, 0, 'config', 'config_checkout_guest', '1', 0),
+(1111, 0, 'config', 'config_cart_weight', '1', 0),
+(1110, 0, 'config', 'config_invoice_prefix', 'INV-2013-00', 0),
+(1109, 0, 'config', 'config_account_mail', '0', 0),
+(1108, 0, 'config', 'config_account_id', '5', 0),
+(1107, 0, 'config', 'config_login_attempts', '5', 0),
+(1106, 0, 'config', 'config_customer_price', '0', 0),
+(1105, 0, 'config', 'config_customer_group_display', '["1"]', 1),
+(1104, 0, 'config', 'config_customer_group_id', '1', 0),
+(1103, 0, 'config', 'config_customer_online', '0', 0),
+(1102, 0, 'config', 'config_tax_customer', 'shipping', 0),
+(1101, 0, 'config', 'config_tax_default', 'shipping', 0),
+(1100, 0, 'config', 'config_tax', '1', 0),
+(1099, 0, 'config', 'config_voucher_max', '1000', 0),
+(1098, 0, 'config', 'config_voucher_min', '1', 0),
+(1097, 0, 'config', 'config_review_mail', '0', 0),
+(1096, 0, 'config', 'config_review_guest', '1', 0),
+(1095, 0, 'config', 'config_review_status', '1', 0),
+(1094, 0, 'config', 'config_limit_admin', '20', 0),
+(1093, 0, 'config', 'config_product_description_length', '100', 0),
+(1092, 0, 'config', 'config_product_limit', '15', 0),
+(1091, 0, 'config', 'config_product_count', '1', 0),
+(1090, 0, 'config', 'config_weight_class_id', '1', 0),
+(1089, 0, 'config', 'config_length_class_id', '1', 0),
+(1088, 0, 'config', 'config_currency_auto', '1', 0),
 (1050, 0, 'mvd', 'mvd_payment_gateway_status', '0', 0),
 (1051, 0, 'mvd', 'mvd_product_notification', '1', 0),
 (1048, 0, 'mvd', 'mvd_sales_order_allow_notification', '1', 0),
@@ -2856,15 +2839,26 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (1024, 0, 'mvd', 'mvd_history_order_message1', 'history order message (change me in global vendor setting)', 0),
 (1023, 0, 'mvd', 'mvd_new_order_message1', 'new order message (change me in global vendor setting)', 0),
 (1022, 0, 'mvd', 'mvd_email_status', '1', 0),
-(910, 0, 'config', 'config_meta_keyword', '', 0),
-(909, 0, 'config', 'config_meta_description', 'Tesitoo', 0),
-(908, 0, 'config', 'config_meta_title', 'Tesitoo', 0),
-(1016, 0, 'config', 'config_file_max_size', '300000', 0),
-(1017, 0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
-(1018, 0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf', 0),
-(1019, 0, 'config', 'config_error_display', '1', 0),
-(1020, 0, 'config', 'config_error_log', '1', 0),
-(1021, 0, 'config', 'config_error_filename', 'error.log', 0),
+(1087, 0, 'config', 'config_currency', 'GMD', 0),
+(1086, 0, 'config', 'config_admin_language', 'en', 0),
+(1085, 0, 'config', 'config_language', 'en', 0),
+(1084, 0, 'config', 'config_zone_id', '', 0),
+(1080, 0, 'config', 'config_image', '', 0),
+(1081, 0, 'config', 'config_open', '', 0),
+(1082, 0, 'config', 'config_comment', '', 0),
+(1083, 0, 'config', 'config_country_id', '79', 0),
+(1070, 0, 'config', 'config_meta_keyword', '', 0),
+(1071, 0, 'config', 'config_template', 'atr374opc2101', 0),
+(1072, 0, 'config', 'config_layout_id', '4', 0),
+(1073, 0, 'config', 'config_name', 'Tesitoo', 0),
+(1074, 0, 'config', 'config_owner', 'TesitooOwnerName', 0),
+(1075, 0, 'config', 'config_address', 'TesitooOwnerAddress', 0),
+(1076, 0, 'config', 'config_geocode', '', 0),
+(1077, 0, 'config', 'config_email', 'admin@example.com', 0),
+(1078, 0, 'config', 'config_telephone', '123456789', 0),
+(1079, 0, 'config', 'config_fax', '', 0),
+(1069, 0, 'config', 'config_meta_description', 'Tesitoo', 0),
+(1068, 0, 'config', 'config_meta_title', 'Tesitoo', 0),
 (1052, 0, 'mvd', 'mvd_stock_threshold', '5', 0),
 (1053, 0, 'mvd', 'mvd_order_status', '1', 0),
 (1054, 0, 'mvd', 'mvd_checkout_order_status', '["7","5","1","15","2","3"]', 1),
@@ -2880,7 +2874,13 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (1064, 0, 'mvd', 'mvd_signup_show_plan', '0', 0),
 (1065, 0, 'mvd', 'mvd_signup_default_payment_method', '0', 0),
 (1066, 0, 'mvd', 'mvd_signup_policy', '5', 0),
-(1067, 0, 'mvd', 'mvd_signup_commission', '0', 0);
+(1067, 0, 'mvd', 'mvd_signup_commission', '0', 0),
+(1176, 0, 'config', 'config_file_max_size', '300000', 0),
+(1177, 0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
+(1178, 0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf', 0),
+(1179, 0, 'config', 'config_error_display', '1', 0),
+(1180, 0, 'config', 'config_error_log', '1', 0),
+(1181, 0, 'config', 'config_error_filename', 'error.log', 0);
 
 -- --------------------------------------------------------
 
@@ -3086,6 +3086,7 @@ CREATE TABLE IF NOT EXISTS `oc_user` (
   `email` varchar(96) NOT NULL,
   `image` varchar(255) NOT NULL,
   `code` varchar(40) NOT NULL,
+  `reset_pw_expiration` datetime DEFAULT NULL,
   `ip` varchar(40) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
@@ -3101,8 +3102,8 @@ CREATE TABLE IF NOT EXISTS `oc_user` (
 -- Dumping data for table `oc_user`
 --
 
-INSERT INTO `oc_user` (`user_id`, `user_group_id`, `username`, `password`, `salt`, `firstname`, `lastname`, `email`, `image`, `code`, `ip`, `status`, `date_added`, `cat_permission`, `store_permission`, `vendor_permission`, `folder`, `user_date_start`, `user_date_end`) VALUES
-(1, 1, 'admin', '6f22c1a69660c86a2dcd08aeb601b6d4fa8e083a', 'TkdGMPsh3', 'John', 'Doe', 'admin@example.com', '', '', '::1', 1, '2016-02-21 20:14:12', '', '', 0, '', '0000-00-00', '0000-00-00');
+INSERT INTO `oc_user` (`user_id`, `user_group_id`, `username`, `password`, `salt`, `firstname`, `lastname`, `email`, `image`, `code`, `reset_pw_expiration`, `ip`, `status`, `date_added`, `cat_permission`, `store_permission`, `vendor_permission`, `folder`, `user_date_start`, `user_date_end`) VALUES
+(1, 1, 'admin', '6f22c1a69660c86a2dcd08aeb601b6d4fa8e083a', 'TkdGMPsh3', 'John', 'Doe', 'admin@example.com', '', '', NULL, '::1', 1, '2016-02-21 20:14:12', '', '', 0, '', '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -8869,7 +8870,7 @@ ALTER TABLE `oc_review`
 -- AUTO_INCREMENT for table `oc_setting`
 --
 ALTER TABLE `oc_setting`
-  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1068;
+  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1182;
 --
 -- AUTO_INCREMENT for table `oc_signup_fee_history`
 --
