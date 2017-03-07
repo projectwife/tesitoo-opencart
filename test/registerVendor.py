@@ -56,9 +56,9 @@ class RegisterVendor(unittest.TestCase):
         driver.find_element_by_id("input-confirm").send_keys("password")
         driver.find_element_by_xpath("//input[@name='agree']").click()
         driver.find_element_by_css_selector("input.btn.btn-primary").click()
-        driver.save_screenshot('test/circleci_artifacts/beforeFinalContinue.png')
-        with open('test/circleci_artifacts/beforeFinalContinue.html', 'wb') as file_:
-            file_.write(driver.page_source.encode('utf-8'))
+        #driver.save_screenshot('test/circleci_artifacts/beforeFinalContinue.png')
+        #with open('test/circleci_artifacts/beforeFinalContinue.html', 'wb') as file_:
+        #    file_.write(driver.page_source.encode('utf-8'))
         assert "alert-danger" not in driver.page_source
         driver.find_element_by_css_selector("a.btn.btn-primary").click()
     
