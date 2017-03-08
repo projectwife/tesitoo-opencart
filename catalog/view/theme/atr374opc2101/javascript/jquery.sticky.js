@@ -68,7 +68,10 @@
             s.currentTop = null;
           }
         }
-        else {
+        //tesitoo (david): avoid fixing if the document height isn't long enough
+        //compared with the window height - otherwise it starts alternating between
+        //fixed and not fixed, and causing a flickering effect
+        else if (dwh > s.stickyElement.outerHeight() + etse) {
           var newTop = documentHeight - s.stickyElement.outerHeight()
             - s.topSpacing - s.bottomSpacing - scrollTop - extra;
           if (newTop < 0) {
