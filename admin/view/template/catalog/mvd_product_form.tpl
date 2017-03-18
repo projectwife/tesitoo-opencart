@@ -44,6 +44,29 @@
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab-general">
+              <input type="hidden" name="pending_status" size="100" value="<?php echo $status; ?>" />
+              <div class="form-group product-form-status-group">
+                <label class="col-sm-1 control-label" for="input-status"><?php echo $entry_status; ?></label>
+                <div class="col-sm-4">
+                  <select name="status" id="input-status" class="form-control">
+                  <?php if ($status != 5) { ?>
+                    <?php if ($status) { ?>
+                      <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                      <option value="0"><?php echo $text_disabled; ?></option>
+                      <option value="5"><?php echo $txt_pending_approval; ?></option>
+                    <?php } else { ?>
+                      <option value="1"><?php echo $text_enabled; ?></option>
+                      <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                      <option value="5"><?php echo $txt_pending_approval; ?></option>
+                    <?php } ?>
+                  <?php } else { ?>
+                    <option value="1"><?php echo $text_enabled; ?></option>
+                    <option value="0"><?php echo $text_disabled; ?></option>
+                    <option value="5" selected="selected"><?php echo $txt_pending_approval; ?></option>
+                  <?php } ?>
+                  </select>
+                </div>
+              </div>
               <ul class="nav nav-tabs" id="language">
                 <?php foreach ($languages as $language) { ?>
                 <li><a href="#language<?php echo $language['language_id']; ?>" data-toggle="tab"><img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a></li>
@@ -117,29 +140,6 @@
               </div>
 			  <!--mvds-->
 			  <input type="hidden" name="product_name" size="100" value="<?php echo $product_name; ?>" />
-			  <input type="hidden" name="pending_status" size="100" value="<?php echo $status; ?>" />
-			  <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-status"><?php echo $entry_status; ?></label>
-                <div class="col-sm-10">
-                  <select name="status" id="input-status" class="form-control">
-                    <?php if ($status != 5) { ?>
-					  <?php if ($status) { ?>
-					  <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-					  <option value="0"><?php echo $text_disabled; ?></option>
-					  <option value="5"><?php echo $txt_pending_approval; ?></option>
-					  <?php } else { ?>
-					  <option value="1"><?php echo $text_enabled; ?></option>
-					  <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
-					  <option value="5"><?php echo $txt_pending_approval; ?></option>
-					  <?php } ?>
-					<?php } else { ?>
-					  <option value="1"><?php echo $text_enabled; ?></option>
-					  <option value="0"><?php echo $text_disabled; ?></option>	
-					  <option value="5" selected="selected"><?php echo $txt_pending_approval; ?></option>
-					<?php } ?>
-                  </select>
-                </div>
-               </div>
 			  <!--mvde-->
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-sku"><span data-toggle="tooltip" title="<?php echo $help_sku; ?>"><?php echo $entry_sku; ?></span></label>
@@ -1705,6 +1705,20 @@ function addShipping() {
 			}
 		}
 	}
+
+$(document).ready(function() {
+    $("#input-status").change(function() {
+        if ($("#input-status").val() == 1) {
+            $("#input-status").removeClass("product-not-approved");
+        } else {
+            $("#input-status").addClass("product-not-approved");
+        }
+    });
+
+    if ($("#input-status").val() != 1) {
+        $("#input-status").addClass("product-not-approved");
+    }
+});
 //--></script>
 <!--mvde-->
 <?php echo $footer; ?> 

@@ -894,3 +894,11 @@ a:hover, a:focus {
 .user-not-enabled {
     color: red;
 }
+
+.product-form-status-group {
+    margin-bottom: 2em;
+}
+
+.product-not-approved {
+    color: red;
+}
