@@ -890,3 +890,7 @@ a:hover, a:focus {
     text-align: center;
     font-size: 13px;
 }
+
+.user-not-enabled {
+    color: red;
+}

@@ -35,6 +35,29 @@
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="tab-general">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-status"><?php echo $entry_status; ?></label>
+            <div class="col-sm-10">
+			  <input type="hidden" name="pending_status" value="<?php echo $status; ?>" />
+              <select name="status" id="input-status" class="form-control">
+				<?php if ($status != 5) { ?>
+					<?php if ($status) { ?>
+						<option value="0"><?php echo $text_disabled; ?></option>
+						<option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+						<option value="5"><?php echo $txt_pending_approval; ?></option>
+					<?php } else { ?>
+						<option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+						<option value="1"><?php echo $text_enabled; ?></option>
+						<option value="5"><?php echo $txt_pending_approval; ?></option>
+					<?php } ?>
+				<?php } else { ?>
+					<option value="0"><?php echo $text_disabled; ?></option>
+					<option value="1"><?php echo $text_enabled; ?></option>
+					<option value="5" selected="selected""><?php echo $txt_pending_approval; ?></option>
+				<?php } ?>
+              </select>
+            </div>
+          </div>
 		  <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-user_id"><span data-toggle="tooltip" title="<?php echo $help_user_account; ?>"><?php echo $entry_user_account; ?></span></label>
             <div class="col-sm-10">
@@ -369,29 +392,6 @@
 		  <?php } else { ?>
 			  <input type="hidden" name="username1" value="" id="input-username1" />
 		  <?php } ?>
-          <div class="form-group">
-            <label class="col-sm-2 control-label" for="input-status"><?php echo $entry_status; ?></label>
-            <div class="col-sm-10">
-			  <input type="hidden" name="pending_status" value="<?php echo $status; ?>" />
-              <select name="status" id="input-status" class="form-control">
-				<?php if ($status != 5) { ?>
-					<?php if ($status) { ?>
-						<option value="0"><?php echo $text_disabled; ?></option>
-						<option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-						<option value="5"><?php echo $txt_pending_approval; ?></option>
-					<?php } else { ?>
-						<option value="0" selected="selected"><?php echo $text_disabled; ?></option>
-						<option value="1"><?php echo $text_enabled; ?></option>
-						<option value="5"><?php echo $txt_pending_approval; ?></option>
-					<?php } ?>
-				<?php } else { ?>
-					<option value="0"><?php echo $text_disabled; ?></option>
-					<option value="1"><?php echo $text_enabled; ?></option>
-					<option value="5" selected="selected"><?php echo $txt_pending_approval; ?></option>
-				<?php } ?>
-              </select>
-            </div>
-          </div>
 		  <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-password"><?php echo $entry_password; ?></label>
             <div class="col-sm-10">
@@ -576,6 +576,20 @@ $("#input-username").val($("#input-user_id option:selected").text());
 } else {
 $("#input-username").val('');
 }
+});
+
+$(document).ready(function() {
+    $("#input-status").change(function() {
+        if ($("#input-status").val() == 1) {
+            $("#input-status").removeClass("user-not-enabled");
+        } else {
+            $("#input-status").addClass("user-not-enabled");
+        }
+    });
+
+    if ($("#input-status").val() != 1) {
+        $("#input-status").addClass("user-not-enabled");
+    }
 });
 //--></script>
 <?php echo $footer; ?>
