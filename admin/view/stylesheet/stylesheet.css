@@ -890,3 +890,15 @@ a:hover, a:focus {
     text-align: center;
     font-size: 13px;
 }
+
+.user-not-enabled {
+    color: red;
+}
+
+.product-form-status-group {
+    margin-bottom: 2em;
+}
+
+.product-not-approved {
+    color: red;
+}
