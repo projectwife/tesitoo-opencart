@@ -63,7 +63,8 @@ class ControllerCatalogVDIProduct extends Controller {
 				}
 
 				if ($this->config->get('mvd_product_notification')) {
-					$this->add_edit_notification(true,$this->request->post['product_name']);
+					$this->add_edit_notification(true,
+                        $this->request->post['product_description'][1]['name']);
 				}
 
 				$this->response->redirect($this->url->link('catalog/vdi_product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
@@ -125,7 +126,8 @@ class ControllerCatalogVDIProduct extends Controller {
 			}
 			
 			if ($this->config->get('mvd_product_notification')) {
-				$this->add_edit_notification(false,$this->request->post['product_name']);
+                $this->add_edit_notification(false,
+                    $this->request->post['product_description'][1]['name']);
 			}
 			
 			$this->response->redirect($this->url->link('catalog/vdi_product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
@@ -1997,7 +1999,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		$text .= $this->language->get('text_thanks') . "<br>";
 		$text .= $this->config->get('config_name') . "<br><br>";
 		$text .= $this->language->get('text_system');
-		
+
 		$mail = new Mail();
 		$mail->protocol = $this->config->get('config_mail_protocol');
 		$mail->parameter = $this->config->get('config_mail_parameter');
