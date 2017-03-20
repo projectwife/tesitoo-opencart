@@ -143,8 +143,8 @@ class ModelCatalogVendor extends Model {
 			$mail->send();
 		}
 		
-		if ($data['password']) {
-			$this->db->query("UPDATE `" . DB_PREFIX . "user` SET salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "' WHERE user_id = '" . (int)$this->db->escape($data['user_id']) . "'");
+		if ($data['vendorpassword']) {
+			$this->db->query("UPDATE `" . DB_PREFIX . "user` SET salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['vendorpassword'])))) . "' WHERE user_id = '" . (int)$this->db->escape($data['user_id']) . "'");
 		}
 		//user account end
 

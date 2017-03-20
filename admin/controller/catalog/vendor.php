@@ -553,8 +553,8 @@ class ControllerCatalogVendor extends Controller {
 			$data['error_vendor_zone'] = '';
 		}
 		
-		if (isset($this->error['password'])) {
-			$data['error_password'] = $this->error['password'];
+		if (isset($this->error['vendorpassword'])) {
+			$data['error_password'] = $this->error['vendorpassword'];
 		} else {
 			$data['error_password'] = '';
 		}
@@ -632,8 +632,8 @@ class ControllerCatalogVendor extends Controller {
 		
 		$data['user_accounts'] = $this->model_user_user->getUsers();
 		
-		if (isset($this->request->post['password'])) {
-			$data['password'] = $this->request->post['password'];
+		if (isset($this->request->post['vendorpassword'])) {
+			$data['password'] = $this->request->post['vendorpassword'];
 		} else {
 			$data['password'] = '';
 		}
@@ -1052,13 +1052,13 @@ class ControllerCatalogVendor extends Controller {
 				$this->error['link_account'] = $this->language->get('error_link_account');
 			}
 		}
-		
-		if ($this->request->post['password']) {
-			if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
-				$this->error['password'] = $this->language->get('error_password');
+
+		if ($this->request->post['vendorpassword']) {
+			if ((utf8_strlen($this->request->post['vendorpassword']) < 4) || (utf8_strlen($this->request->post['vendorpassword']) > 20)) {
+				$this->error['vendorpassword'] = $this->language->get('error_password');
 			}
 
-			if ($this->request->post['password'] != $this->request->post['confirm']) {
+			if ($this->request->post['vendorpassword'] != $this->request->post['confirm']) {
 				$this->error['confirm'] = $this->language->get('error_confirm');
 			}
 		}
@@ -1077,15 +1077,15 @@ class ControllerCatalogVendor extends Controller {
 			}
 			
 				
-			if ((utf8_strlen($this->request->post['password']) < 1) || (utf8_strlen($this->request->post['confirm']) < 1)) {
-				$this->error['password'] = $this->language->get('error_password');
+			if ((utf8_strlen($this->request->post['vendorpassword']) < 1) || (utf8_strlen($this->request->post['confirm']) < 1)) {
+				$this->error['vendorpassword'] = $this->language->get('error_password');
 			} else {
-				if ($this->request->post['password']) {
-					if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
-						$this->error['password'] = $this->language->get('error_password');
+				if ($this->request->post['vendorpassword']) {
+					if ((utf8_strlen($this->request->post['vendorpassword']) < 4) || (utf8_strlen($this->request->post['vendorpassword']) > 20)) {
+						$this->error['vendorpassword'] = $this->language->get('error_password');
 					}
 
-					if ($this->request->post['password'] != $this->request->post['confirm']) {
+					if ($this->request->post['vendorpassword'] != $this->request->post['confirm']) {
 						$this->error['confirm'] = $this->language->get('error_confirm');
 					}
 				}
