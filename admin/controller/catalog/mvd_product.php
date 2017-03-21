@@ -1098,15 +1098,18 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['product_url'] = '';
 		}
-			
+
 		$data['vendors'] = $this->model_catalog_mvd_product->getVendors();
-		
+
 		if (isset($this->request->post['vendor'])) {
 			$data['vendor'] = $this->request->post['vendor'];
+			$data['vendor_link'] = $this->url->link('catalog/vendor/update', 'token=' . $this->session->data['token'] . '&vendor_id=' . $this->request->post['vendor'] . $url, 'SSL');
 		} elseif (isset($product_info)) {
 			$data['vendor'] = $product_info['vendor'];
+			$data['vendor_link'] = $this->url->link('catalog/vendor/update', 'token=' . $this->session->data['token'] . '&vendor_id=' . $product_info['vendor'] . $url, 'SSL');
 		} else {
 			$data['vendor'] = 0;
+			$data['vendor_link'] = "";
 		}
 					
 		if (isset($this->request->post['wholesale'])) {

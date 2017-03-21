@@ -66,6 +66,20 @@
                   <?php } ?>
                   </select>
                 </div>
+                <div class="col-sm-5 col-sm-offset-1">
+                    <div class="row">
+                        <div class="col-sm-4">Vendor</div>
+                        <div class="col-sm-8"><a href="<?php echo $vendor_link; ?>" target="_blank"><?php echo $company; ?></a></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">Telephone</div>
+                        <div class="col-sm-8"><?php echo $telephone; ?></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">Email</div>
+                        <div class="col-sm-8"><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></div>
+                    </div>
+                </div>
               </div>
               <ul class="nav nav-tabs" id="language">
                 <?php foreach ($languages as $language) { ?>
