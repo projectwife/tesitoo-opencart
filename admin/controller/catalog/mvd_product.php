@@ -83,9 +83,9 @@ class ControllerCatalogMVDProduct extends Controller {
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_catalog_mvd_product->editProduct($this->request->get['product_id'], $this->request->post);
-			
+
 			//mvds
-			if ($this->config->get('mvd_product_edit_approval')) {
+			if ($this->config->get('mvd_product_approval')) {
 				if ($this->config->get('mvd_product_notification')) {
 					if (!empty($this->request->post['product_name']) && ($this->request->post['status'] == '1') && ($this->request->post['pending_status'] == '5')) {
 						$this->approve_notification($this->request->post['product_name'],$this->request->post['vendor'], $this->request->get['product_id']);
