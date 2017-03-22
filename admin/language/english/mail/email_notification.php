@@ -13,7 +13,7 @@ $_['text_message_add']  = 'The following product has been submitted for your app
 Product: <b>%s</b><br/>
 Vendor: <b>%s</b><br/>';
 $_['text_message_edit'] = 'This is to inform you that product <b>%s</b> has been edited. Please review again!';
-$_['text_message_approve'] = 'This is to inform you that product <b>%s</b> has been approved. It is now listed publicly at <a href="%s" target="_blank">%s<a/>.';
+$_['text_message_approve'] = 'This is to inform you that product <b>%s</b> has been approved. It is now listed publicly at <a href="%s" target="_blank">%s</a>.';
 $_['text_message_expire'] = 'This is to inform you that your account will expire in <b>%s</b>.<br/> Please renew the contract as soon as possible to avoid account closed.<br/><br/>Kindly login to your account, go to Personal Detail -> Contract History -> Renew Contract to renew the contract.';
 
 $_['text_thanks']    	= 'Thank You,';
