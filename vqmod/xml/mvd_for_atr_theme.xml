@@ -9,7 +9,7 @@
 	<file path="catalog/view/theme/atr374opc2101/template/common/" name="header.tpl,header_tesitoo.tpl">
 		<operation error="skip">
 			<search position="after"><![CDATA[
-            <li><a href="<?php echo $login; ?>"><?php echo $text_login; ?></a></li>
+            g<li><a href="<?php echo $login; ?>"><?php echo $text_login; ?></a></li>
 			]]></search>
 			<add><![CDATA[
 			<?php if ($mvd_signup) { ?>

@@ -2573,7 +2573,11 @@
 			<add><![CDATA[			
 			$data['signup'] = $this->url->link('account/signup', '', 'SSL');
 			$data['mvd_login'] = HTTP_SERVER . 'admin';
-			$data['txt_signup'] = $this->language->get('txt_signup');
+			$data['text_signup'] = $this->language->get('text_signup');
+			$data['text_signup_vendor'] = $this->language->get('text_signup_vendor');
+			$data['text_login_vendor'] = $this->language->get('text_login_vendor');
+			$data['text_register_buyer'] = $this->language->get('text_register_buyer');
+			$data['text_login_buyer'] = $this->language->get('text_login_buyer');
 			$data['text_seller'] = $this->language->get('text_seller');
 			$data['text_login_vendor'] = $this->language->get('text_login_vendor');
 			$data['mvd_signup'] = $this->config->get('mvd_sign_up');
@@ -2588,17 +2592,17 @@
 			$_['text_all']           = 'Show All';
 			]]></search>
 			<add><![CDATA[			
-			$_['txt_signup']         = 'Sign Up as a Farmer';
-			$_['text_login_vendor']  = 'Login as a Farmer';
+			$_['text_signup_vendor']         = 'Register as a Farmer';
+			$_['text_login_vendor']  = 'Log in as a Farmer';
 			$_['text_seller']        = 'Seller Account';
 			]]></add>
 		</operation>
         <operation error="skip">
-			<search position="replace"><![CDATA[
+			<search position="add"><![CDATA[
 			$_['text_register']      = 'Register';
 			]]></search>
 			<add><![CDATA[
-			$_['text_register']      = 'Register as a Buyer';
+			$_['text_register_buyer']      = 'Register as a Buyer';
 			]]></add>
 		</operation>
         <operation error="skip">
@@ -2606,7 +2610,8 @@
 			$_['text_login']         = 'Login';
 			]]></search>
 			<add><![CDATA[
-			$_['text_login']         = 'Login as a Buyer';
+			$_['text_login']         = 'Log in';
+			$_['text_login_buyer']         = 'Log in as a Buyer';
 			]]></add>
 		</operation>
 	</file>
