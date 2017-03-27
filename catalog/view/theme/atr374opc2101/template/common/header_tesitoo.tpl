@@ -69,14 +69,14 @@
                 <span><?php echo $customer_name; ?></span>
             </li>
         <?php } else { ?>
-            <li class="dropdown dropdown-account"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm"><?php echo $text_register; ?></span> <span class="caret"></span></a>
+            <li class="dropdown dropdown-account"><a href="<?php echo $account; ?>" title="<?php echo $text_register; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm"><?php echo $text_register; ?></span> <span class="caret"></span></a>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li class=""><a href="<?php echo $register; ?>"><i class="fa fa-user"></i> <span class=""><?php echo $text_register_buyer; ?></class></a></li>
                     <li class=""><a href="<?php echo $signup; ?>"><i class="fa fa-user"></i> <span class=""><?php echo $text_signup_vendor; ?></span></a></li>
                 </ul>
             </li>
 
-            <li class="dropdown dropdown-account"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-sign-in"></i> <span class="hidden-xs hidden-sm"><?php echo $text_login; ?></span> <span class="caret"></span></a>
+            <li class="dropdown dropdown-account"><a href="<?php echo $account; ?>" title="<?php echo $text_login; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-sign-in"></i> <span class="hidden-xs hidden-sm"><?php echo $text_login; ?></span> <span class="caret"></span></a>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li><a href="<?php echo $login; ?>"><i class="fa fa-sign-in"></i> <span class=""><?php echo $text_login_buyer; ?></class></a></li>
                     <li><a href="<?php echo $mvd_login; ?>"><i class="fa fa-sign-in"></i> <span class=""><?php echo $text_login_vendor; ?></class></a></li>
