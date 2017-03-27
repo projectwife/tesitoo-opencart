@@ -2598,7 +2598,7 @@
 			]]></add>
 		</operation>
         <operation error="skip">
-			<search position="add"><![CDATA[
+			<search position="after"><![CDATA[
 			$_['text_register']      = 'Register';
 			]]></search>
 			<add><![CDATA[

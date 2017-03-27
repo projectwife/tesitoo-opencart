@@ -25,8 +25,8 @@ class RegisterVendor(unittest.TestCase):
     def test_register_vendor(self):
         driver = self.driver
         driver.get(self.base_url + "index.php?route=common/home")
-        driver.find_element_by_xpath("//a[@title='My Account']").click()
-        driver.find_element_by_link_text("Sign Up as a Farmer").click()
+        driver.find_element_by_xpath("//a[@title='Register']").click()
+        driver.find_element_by_link_text("Register as a Farmer").click()
         driver.find_element_by_id("input-username").clear()
         driver.find_element_by_id("input-username").send_keys("selenium1")
         driver.find_element_by_id("input-firstname").clear()
