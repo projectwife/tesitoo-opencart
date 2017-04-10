@@ -12,7 +12,7 @@ class ControllerCommonVendorTermsAPI extends ApiController {
 		$action = new Action('common/vendor_terms');
 		$data = $action->execute($this->registry);
 
-		$response['vendor_terms'] = $data['order_status'];
+		$response['vendor_terms'] = $data['vendor_terms'];
 
 		$this->response->setOutput($response);
 	}
