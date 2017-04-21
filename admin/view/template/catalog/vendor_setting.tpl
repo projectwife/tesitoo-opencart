@@ -977,6 +977,21 @@
                 </div>
 			</div>
 			<div class="form-group">
+              <label class="col-sm-2 control-label" for="input-sign-up-policy-app"><span data-toggle="tooltip" title="<?php echo $help_policy_app; ?>"><?php echo $entry_policy_app; ?></span></label>
+              <div class="col-sm-10">
+                <select name="mvd_signup_policy_app" class="form-control">
+				  <option value="0"><?php echo $text_none; ?></option>
+                  <?php foreach ($informations as $information) { ?>
+                  <?php if ($information['information_id'] == $mvd_signup_policy_app) { ?>
+                  <option value="<?php echo $information['information_id']; ?>" selected="selected"><?php echo $information['title']; ?></option>
+                  <?php } else { ?>
+                  <option value="<?php echo $information['information_id']; ?>"><?php echo $information['title']; ?></option>
+                  <?php } ?>
+                  <?php } ?>
+                </select>
+                </div>
+			</div>
+			<div class="form-group">
               <label class="col-sm-2 control-label" for="input-sign-up-commission"><span data-toggle="tooltip" title="<?php echo $help_commission; ?>"><?php echo $entry_commission; ?></span></label>
               <div class="col-sm-10">
                 <select name="mvd_signup_commission" class="form-control">
