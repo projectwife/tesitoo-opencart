@@ -42,6 +42,7 @@ $_['entry_multi_store_activated']   = 'Activated Multi-Store Features';
 $_['entry_multi_payment_gateway']   = 'Payment Gateway';
 $_['entry_sign_up'] 				= 'Sign Up';
 $_['entry_policy']					= 'Sign Up Policy';
+$_['entry_policy_app']				= 'App Sign Up Policy';
 $_['entry_vendor_approval']			= 'Auto Approval';
 $_['entry_commission']				= 'Commission';
 $_['entry_product_limit']			= 'Product Limit';
@@ -95,6 +96,7 @@ $_['help_multi_payment_gateway']   	= 'Disabled default payment gateway other th
 
 $_['help_sign_up'] 					= 'Enabled vendor to sign up at store front';
 $_['help_policy']					= 'Default sign up policy';
+$_['help_policy_app']					= 'Vendor App-specific sign up policy';
 $_['help_vendor_approval']			= 'Allow auto approval for each sign up vendor';
 $_['help_commission']				= 'Default commission rate when turn off sign up plan at store front';
 $_['help_product_limit']			= 'Default maximum products allow to add to sign up vendor';

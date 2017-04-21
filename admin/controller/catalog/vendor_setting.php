@@ -112,6 +112,7 @@ class ControllerCatalogVendorSetting extends Controller {
 		$data['help_multi_payment_gateway'] = $this->language->get('help_multi_payment_gateway');
 		$data['help_sign_up'] = $this->language->get('help_sign_up');
 		$data['help_policy'] = $this->language->get('help_policy');
+		$data['help_policy_app'] = $this->language->get('help_policy_app');
 		$data['help_vendor_approval'] = $this->language->get('help_vendor_approval');
 		$data['help_commission'] = $this->language->get('help_commission');
 		$data['help_product_limit'] = $this->language->get('help_product_limit');		
@@ -144,6 +145,7 @@ class ControllerCatalogVendorSetting extends Controller {
 		$data['entry_signup_paypal_email'] = $this->language->get('entry_signup_paypal_email');
 		$data['entry_commission'] = $this->language->get('entry_commission');
 		$data['entry_policy'] = $this->language->get('entry_policy');
+		$data['entry_policy_app'] = $this->language->get('entry_policy_app');
 		$data['entry_vendor_approval'] = $this->language->get('entry_vendor_approval');
 		$data['entry_category'] = $this->language->get('entry_category');
 		$data['entry_store'] = $this->language->get('entry_store');
@@ -479,7 +481,13 @@ class ControllerCatalogVendorSetting extends Controller {
 		} else {
 			$data['mvd_signup_policy'] = $this->config->get('mvd_signup_policy');
 		}
-		
+
+		if (isset($this->request->post['mvd_signup_policy_app'])) {
+			$data['mvd_signup_policy_app'] = $this->request->post['mvd_signup_policy_app'];
+		} else {
+			$data['mvd_signup_policy_app'] = $this->config->get('mvd_signup_policy_app');
+		}
+
 		$this->load->model('catalog/vendor');
 		$data['signup_commissions'] = $this->model_catalog_vendor->getCommissionLimits();
 		
