@@ -25,6 +25,10 @@ Most of them require authentication first. See [the Tesitoo OpenCart API instruc
 * [GET common/country/{id}](get_common_country_id.md)
 * [GET common/vendor_terms](get_common_vendor_terms.md)
 
+#### notification ####
+
+* [POST notification/device](post_notification_device.md)
+
 #### product ####
 
 * [GET product/vendor](get_product_vendor.md)
