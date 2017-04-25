@@ -2794,7 +2794,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (1041, 0, 'mvd', 'mvd_menu_bar', '0', 0),
 (1040, 0, 'mvd', 'mvd_category_menu', '1', 0),
 (1039, 0, 'mvd', 'mvd_reward_points', '0', 0),
-(1038, 0, 'mvd', 'mvd_desgin_tab', '0', 0),
+(1038, 0, 'mvd', 'mvd_design_tab', '0', 0),
 (1037, 0, 'mvd', 'mvd_vendor_tab', '0', 0),
 (1036, 0, 'mvd', 'mvd_bulk_products_activation', '0', 0),
 (1035, 0, 'mvd', 'mvd_product_edit_approval', '0', 0),

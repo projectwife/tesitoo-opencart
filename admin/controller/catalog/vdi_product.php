@@ -874,10 +874,10 @@ class ControllerCatalogVDIProduct extends Controller {
 			$data['mvd_reward_points'] = false;
 		}
 		
-		if ($this->config->get('mvd_desgin_tab')) {
-			$data['mvd_desgin_tab'] = true;
+		if ($this->config->get('mvd_design_tab')) {
+			$data['mvd_design_tab'] = true;
 		} else {
-			$data['mvd_desgin_tab'] = false;
+			$data['mvd_design_tab'] = false;
 		}
 		
 		if ($this->config->get('mvd_product_approval')) {

@@ -383,23 +383,23 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="input-design-tab"><span data-toggle="tooltip" title="<?php echo $help_desgin_tab; ?>"><?php echo $entry_desgin_tab; ?></span></label>
+            <label class="col-sm-2 control-label" for="input-design-tab"><span data-toggle="tooltip" title="<?php echo $help_design_tab; ?>"><?php echo $entry_design_tab; ?></span></label>
             <div class="col-sm-10">
               <label class="radio-inline">
-                <?php if ($mvd_desgin_tab) { ?>
-                <input type="radio" name="mvd_desgin_tab" value="1" checked="checked" />
+                <?php if ($mvd_design_tab) { ?>
+                <input type="radio" name="mvd_design_tab" value="1" checked="checked" />
                 <?php echo $text_yes; ?>
                 <?php } else { ?>
-                <input type="radio" name="mvd_desgin_tab" value="1" />
+                <input type="radio" name="mvd_design_tab" value="1" />
                 <?php echo $text_yes; ?>
                 <?php } ?>
               </label>
               <label class="radio-inline">
-                <?php if (!$mvd_desgin_tab) { ?>
-                <input type="radio" name="mvd_desgin_tab" value="0" checked="checked" />
+                <?php if (!$mvd_design_tab) { ?>
+                <input type="radio" name="mvd_design_tab" value="0" checked="checked" />
                 <?php echo $text_no; ?>
                 <?php } else { ?>
-                <input type="radio" name="mvd_desgin_tab" value="0" />
+                <input type="radio" name="mvd_design_tab" value="0" />
                 <?php echo $text_no; ?>
                 <?php } ?>
               </label>
