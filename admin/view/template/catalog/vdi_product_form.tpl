@@ -44,7 +44,7 @@
 			<?php if ($mvd_reward_points) { ?>
             <li><a href="#tab-reward" data-toggle="tab"><?php echo $tab_reward; ?></a></li>
 			<?php } ?>
-			<?php if ($mvd_desgin_tab) { ?>
+			<?php if ($mvd_design_tab) { ?>
             <li><a href="#tab-design" data-toggle="tab"><?php echo $tab_design; ?></a></li>
 			<?php } ?>
           </ul>

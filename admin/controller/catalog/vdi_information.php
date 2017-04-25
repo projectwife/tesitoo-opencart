@@ -363,10 +363,10 @@ class ControllerCatalogVDIInformation extends Controller {
 			$data['store_permission'] = '0';
 		}
 		
-		if ($this->config->get('mvd_desgin_tab')) {
-			$data['mvd_desgin_tab'] = true;
+		if ($this->config->get('mvd_design_tab')) {
+			$data['mvd_design_tab'] = true;
 		} else {
-			$data['mvd_desgin_tab'] = false;
+			$data['mvd_design_tab'] = false;
 		}
 
 		$data['token'] = $this->session->data['token'];

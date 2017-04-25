@@ -28,7 +28,7 @@
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-general" data-toggle="tab"><?php echo $tab_general; ?></a></li>
             <li><a href="#tab-data" data-toggle="tab"><?php echo $tab_data; ?></a></li>
-			<?php if ($mvd_desgin_tab) { ?>
+			<?php if ($mvd_design_tab) { ?>
             <li><a href="#tab-design" data-toggle="tab"><?php echo $tab_design; ?></a></li>
 			<?php } ?>
           </ul>
@@ -185,7 +185,7 @@
                 </div>
               </div>
             </div>
-			<?php if ($mvd_desgin_tab) { ?>
+			<?php if ($mvd_design_tab) { ?>
             <div class="tab-pane" id="tab-design">
               <div class="table-responsive">
                 <table class="table table-bordered table-hover">

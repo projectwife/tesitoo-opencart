@@ -23,7 +23,7 @@ $_['entry_vendor_address']    		= 'Show Vendor Address';
 $_['entry_vendor_email']    		= 'Show Vendor Email';
 $_['entry_vendor_telephone']    	= 'Show Vendor Telephone';
 $_['entry_status']    				= 'Status';
-$_['entry_desgin_tab']    			= 'Show Design Tab';
+$_['entry_design_tab']    			= 'Show Design Tab';
 $_['entry_reward_points']			= 'Show Reward Points';
 $_['entry_vendor_tab']				= 'Show Vendor Tab';
 $_['entry_menu_bar']    			= 'Allow Category Menu Bar Option';
@@ -75,7 +75,7 @@ $_['help_vendor_email']    			= 'Enabled vendor email to show at email';
 $_['help_vendor_telephone']    		= 'Enabled vendor telephone to show at email';
 $_['help_stock_threshold'] 			= 'Show notification at vendor dashboard when product quantity reach the threshold';
 
-$_['help_desgin_tab']    			= 'Enable design tab at product, category and information page';
+$_['help_design_tab']    			= 'Enable design tab at product, category and information page';
 $_['help_reward_points']			= 'Enable reward points tab at product page';
 $_['help_vendor_tab']				= 'Enable vendor tab at vendor account product page';
 $_['help_menu_bar']    				= 'Enable this option will allow vendor to set category at store front top menu bar';

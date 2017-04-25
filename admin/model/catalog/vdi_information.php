@@ -16,8 +16,8 @@ class ModelCatalogVDIInformation extends Model {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "information_to_store SET information_id = '" . (int)$information_id . "', store_id = '" . (int)$store_id . "'");
 			}
 		}
-		
-		if ($this->config->get('mvd_desgin_tab')) {
+
+		if ($this->config->get('mvd_design_tab')) {
 			if (isset($data['information_layout'])) {
 				foreach ($data['information_layout'] as $store_id => $layout_id) {
 					$this->db->query("INSERT INTO " . DB_PREFIX . "information_to_layout SET information_id = '" . (int)$information_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
@@ -54,8 +54,8 @@ class ModelCatalogVDIInformation extends Model {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "information_to_store SET information_id = '" . (int)$information_id . "', store_id = '" . (int)$store_id . "'");
 			}
 		}
-		
-		if ($this->config->get('mvd_desgin_tab')) {
+
+		if ($this->config->get('mvd_design_tab')) {
 			$this->db->query("DELETE FROM " . DB_PREFIX . "information_to_layout WHERE information_id = '" . (int)$information_id . "'");
 
 			if (isset($data['information_layout'])) {
@@ -191,7 +191,7 @@ class ModelCatalogVDIInformation extends Model {
 
 	public function getTotalInformations() {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "information WHERE vendor_id = '" . (int)$this->user->getVP() . "'");
-		
+
 		return $query->row['total'];
 	}
 
@@ -200,7 +200,7 @@ class ModelCatalogVDIInformation extends Model {
 
 		return $query->row['total'];
 	}
-	
+
 	public function ValidateInfoUpdate($information_id) {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "information i WHERE i.information_id = '" . (int)$information_id . "' AND i.vendor_id = '" . (int)$this->user->getVP() . "'");
 		return $query->row['total'];
