@@ -20,6 +20,9 @@ checkout:
     - chmod -R 1777 system/storage/* image/ vqmod/
     - mkdir test/circleci_artifacts
 
+docker:
+  image: circleci/mysql:5.7.18
+
 general:
   artifacts:
     - "test/circleci_artifacts/"
