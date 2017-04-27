@@ -3210,6 +3210,21 @@ CREATE TABLE IF NOT EXISTS `oc_vendor_discount` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_vendor_firebase_device`
+--
+
+CREATE TABLE IF NOT EXISTS `oc_vendor_firebase_device` (
+  `vendor_firebase_device_id` int(11) NOT NULL,
+  `vendor_id` int(11) NOT NULL,
+  `registration_token` text NOT NULL,
+  `last_registered` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_vendor_payment`
 --
 
@@ -8409,6 +8424,12 @@ ALTER TABLE `oc_vendor_discount`
   ADD PRIMARY KEY (`vendor_discount_id`);
 
 --
+-- Indexes for table `oc_vendor_firebase_device`
+--
+ALTER TABLE `oc_vendor_firebase_device`
+  ADD PRIMARY KEY (`vendor_firebase_device_id`);
+
+--
 -- Indexes for table `oc_vendor_payment`
 --
 ALTER TABLE `oc_vendor_payment`
@@ -8936,6 +8957,11 @@ ALTER TABLE `oc_vendors`
 --
 ALTER TABLE `oc_vendor_discount`
   MODIFY `vendor_discount_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `oc_vendor_firebase_device`
+--
+ALTER TABLE `oc_vendor_firebase_device`
+  MODIFY `vendor_firebase_device_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `oc_vendor_payment`
 --
