@@ -3217,9 +3217,9 @@ CREATE TABLE IF NOT EXISTS `oc_vendor_firebase_device` (
   `vendor_firebase_device_id` int(11) NOT NULL,
   `vendor_id` int(11) NOT NULL,
   `registration_token` text NOT NULL,
-  `last_registered` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `last_registered` datetime NOT NULL,
+  `date_added` datetime NOT NULL,
+  `date_modified` datetime NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
