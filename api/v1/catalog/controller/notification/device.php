@@ -21,7 +21,14 @@ class ControllerNotificationDeviceAPI extends ApiController {
 
 	protected function registerDevice() {
         if (isset($this->request->post['firebase_device_registration_token'])) {
-            //echo ($this->request->post['firebase_device_registration_token']);
+
+            $this->load->model('notification/device');
+
+            $vendorId = $this->user->getVP();
+
+            //FIXME is there any validation of the device registration token that we can do?
+            $this->model_notification_device->registerDevice($vendorId,
+                $this->request->post['firebase_device_registration_token']);
         }
     }
 }
