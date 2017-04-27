@@ -26,7 +26,11 @@ class ControllerNotificationDeviceAPI extends ApiController {
 
             $vendorId = $this->user->getVP();
 
-            //FIXME is there any validation of the device registration token that we can do?
+            if (!preg_match("/^[0-9a-zA-Z\-\_:]*$/",
+                $this->request->post['firebase_device_registration_token'])) {
+                throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_BAD_REQUEST, ErrorCodes::ERRORCODE_BAD_PARAMETER, "registration token in unexpected format");
+            }
+
             $this->model_notification_device->registerDevice($vendorId,
                 $this->request->post['firebase_device_registration_token']);
         }
