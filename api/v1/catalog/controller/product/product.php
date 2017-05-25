@@ -128,7 +128,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$this->request->post['product_description'][1]['name'] = $this->request->post['name'];
 		$this->request->post['product_description'][1]['description'] = $this->request->post['description'];
 		$this->request->post['product_description'][1]['meta_title'] = $this->request->post['meta_title'];
-		$this->request->post['price'] = (float)$this->request->post['price'];
+		$this->request->post['price'] = (string)$this->request->post['price'];
 		$this->request->post['quantity'] = (int)$this->request->post['quantity'];
 
 		$category_ids = explode(",",$this->request->post['category_ids']);
@@ -181,7 +181,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		//deal with fields from specified parameters (check validity)
 
 		if (isset($this->request->post['price'])) {
-			$product['price'] = (float)$this->request->post['price'];
+			$product['price'] = (string)$this->request->post['price'];
 		}
 		if (isset($this->request->post['quantity'])) {
 			$product['quantity'] = (int)$this->request->post['quantity'];
