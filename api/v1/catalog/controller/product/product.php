@@ -405,7 +405,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 	public function deleteSingleImage($id, $imageFile, $userName) {
 
 		//to make it easier for caller, we accept NNNxNNN (eg. 500x500) cached filenames too
-		$imageFile = preg_replace('/-[0-9]{3}x[0-9]{3}.jpg$/', '.jpg', $imageFile);
+		$imageFile = preg_replace('/-[0-9]{2,3}x[0-9]{2,3}.jpg$/', '.jpg', $imageFile);
 
 		//check this vendor owns specified product
 		$this->load->model('catalog/vdi_product');
