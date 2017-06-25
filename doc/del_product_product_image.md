@@ -10,4 +10,4 @@ Vendor must be logged in and own the product.
 
 **Request parameters**
 
-* `files` - comma separated list of filenames of the images to be deleted. The filenames may be the -500x500.jpg version returned in product requests.
+* `files` - comma separated list of filenames of the images to be deleted. The filenames may be the cached resized versions (eg. -500x500.jpg, -228x228.jpg) returned in product requests.
