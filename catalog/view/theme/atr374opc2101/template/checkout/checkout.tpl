@@ -769,7 +769,13 @@ $(document).delegate('#button-payment-method', 'click', function() {
                 location = json['redirect'];
             } else if (json['error']) {
                 if (json['error']['warning']) {
-                    $('#collapse-payment-method .panel-body').prepend('<div class="alert alert-warning">' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                    $('#collapse-payment-method .panel-body').prepend('<div class="alert alert-warning">' + json['error']['warning'] + '<button type="button" id="dismiss-terms-warning" class="close" data-dismiss="alert">&times;</button></div>');
+                    $('#dismiss-terms-warning').on('click', function(){
+                        $('#button-payment-method').button('reset');
+                    });
+                    $("#collapse-payment-method input[name='agree']").on('click', function() {
+                        $('#button-payment-method').button('reset');
+                    });
                 }
             } else {
                 $.ajax({
@@ -796,5 +802,6 @@ $(document).delegate('#button-payment-method', 'click', function() {
         }
     });
 });
+
 //--></script>
 <?php echo $footer; ?>
