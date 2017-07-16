@@ -319,7 +319,7 @@ class ControllerProductProduct extends Controller {
 			}
 
 			//if this is a vendor request, and the vendor is logged in, return the raw price
-			if ($this->user->isLogged()) {
+			if ($this->user && $this->user->isLogged()) {
                 $data['price'] = $product_info['price'];
             //otherwise handle price for customer requests
 			} else if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
