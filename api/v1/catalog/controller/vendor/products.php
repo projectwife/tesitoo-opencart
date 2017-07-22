@@ -36,7 +36,8 @@ class ControllerVendorProductsAPI extends ApiController {
                 "quantity" => (int)$product['quantity'],
                 "status" => (int)$product['status'],
                 "thumb_image" => $thumb,
-                "location" => $product['location']);
+                "location" => $product['location'],
+                "expiration_date" => $product['expiration_date']);
 
             $resultProduct['categories'] = array();
             $categoriesToProducts = $this->model_catalog_product->getCategories($product['product_id']);
