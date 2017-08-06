@@ -36,15 +36,12 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 			'name' => '',
 			'description' => '',
 			'tag' => '',
-			'meta_title' => '',
+			'meta_title' => '', //meta_title is page title
 			'meta_description' => '',
 			'meta_keyword' => ''
 			]
 		],
-		'model' => ''
-
-		//what are reqs for 'model'
-		//meta_title is page title
+		'model' => '' //FIXME what are reqs for 'model'
 	);
 
 	public function index($args = array())
