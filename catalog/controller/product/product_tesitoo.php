@@ -1,5 +1,5 @@
 <?php
-class ControllerProductProduct extends Controller {
+class ControllerProductProductTesitoo extends Controller {
 	private $error = array();
 
 	public function index() {
@@ -318,11 +318,14 @@ class ControllerProductProduct extends Controller {
 				);
 			}
 
+            $data['price'] = (string)round($product_info['price'], (int)$this->currency->getDecimalPlace());
+            $data['currency_code'] = $this->currency->getCode();
+
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
-				$data['price'] = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')));
-			} else {
-				$data['price'] = false;
-			}
+                $data['display_price'] = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+            } else {
+                $data['display_price'] = false;
+            }
 
 			if ((float)$product_info['special']) {
 				$data['special'] = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')));

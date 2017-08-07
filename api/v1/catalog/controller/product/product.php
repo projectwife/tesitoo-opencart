@@ -72,7 +72,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$this->request->get['product_id'] = (int)$id;
 		$this->request->get['include_pending'] = 1;
 
-		$data = parent::getInternalRouteData('product/product');
+		$data = parent::getInternalRouteData('product/product_tesitoo');
 
 		if(isset($data['text_error'])) {
 			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_PRODUCT_NOT_FOUND, $data['text_error']);
@@ -450,6 +450,8 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$product['image'] = $data['popup'];
 		$product['images'] = $data['images'];
 		$product['price'] = $data['price'];
+		$product['currency_code'] = $data['currency_code'];
+		$product['display_price'] = $data['display_price'];
 		$product['tax'] = $data['tax'];
 		$product['special'] = $data['special'];
 		$product['discounts'] = $data['discounts'];
