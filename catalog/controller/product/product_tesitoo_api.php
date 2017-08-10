@@ -1,5 +1,5 @@
 <?php
-class ControllerProductProductTesitoo extends Controller {
+class ControllerProductProductTesitooApi extends Controller {
 	private $error = array();
 
 	public function index() {
