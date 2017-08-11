@@ -36,12 +36,15 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 			'name' => '',
 			'description' => '',
 			'tag' => '',
-			'meta_title' => '', //meta_title is page title
+			'meta_title' => '',
 			'meta_description' => '',
 			'meta_keyword' => ''
 			]
 		],
-		'model' => '' //FIXME what are reqs for 'model'
+		'model' => ''
+
+		//what are reqs for 'model'
+		//meta_title is page title
 	);
 
 	public function index($args = array())
@@ -72,7 +75,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$this->request->get['product_id'] = (int)$id;
 		$this->request->get['include_pending'] = 1;
 
-		$data = parent::getInternalRouteData('product/product_tesitoo_api');
+		$data = parent::getInternalRouteData('product/product');
 
 		if(isset($data['text_error'])) {
 			throw new ApiException(ApiResponse::HTTP_RESPONSE_CODE_NOT_FOUND, ErrorCodes::ERRORCODE_PRODUCT_NOT_FOUND, $data['text_error']);
@@ -125,7 +128,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$this->request->post['product_description'][1]['name'] = $this->request->post['name'];
 		$this->request->post['product_description'][1]['description'] = $this->request->post['description'];
 		$this->request->post['product_description'][1]['meta_title'] = $this->request->post['meta_title'];
-		$this->request->post['price'] = (string)$this->request->post['price'];
+		$this->request->post['price'] = (float)$this->request->post['price'];
 		$this->request->post['quantity'] = (int)$this->request->post['quantity'];
 
 		$category_ids = explode(",",$this->request->post['category_ids']);
@@ -178,7 +181,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		//deal with fields from specified parameters (check validity)
 
 		if (isset($this->request->post['price'])) {
-			$product['price'] = (string)$this->request->post['price'];
+			$product['price'] = (float)$this->request->post['price'];
 		}
 		if (isset($this->request->post['quantity'])) {
 			$product['quantity'] = (int)$this->request->post['quantity'];
@@ -450,8 +453,6 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$product['image'] = $data['popup'];
 		$product['images'] = $data['images'];
 		$product['price'] = $data['price'];
-		$product['currency_code'] = $data['currency_code'];
-		$product['display_price'] = $data['display_price'];
 		$product['tax'] = $data['tax'];
 		$product['special'] = $data['special'];
 		$product['discounts'] = $data['discounts'];
