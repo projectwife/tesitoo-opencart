@@ -318,7 +318,7 @@ class ControllerProductProductTesitooApi extends Controller {
 				);
 			}
 
-            $data['price'] = (string)round($product_info['price'], (int)$this->currency->getDecimalPlace());
+            $data['price'] = (string)number_format($product_info['price'], (int)$this->currency->getDecimalPlace());
             $data['currency_code'] = $this->currency->getCode();
 
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {

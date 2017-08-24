@@ -31,7 +31,7 @@ class ControllerVendorProductsAPI extends ApiController {
                 "product_id" => $product['product_id'],
                 "name" => $product['name'],
                 "description" => $product['description'],
-                "price" => (float)$product['price'],
+                "price" => (string)number_format($product['price'], 2),
                 "minimum" => (int)$product['minimum'],
                 "quantity" => (int)$product['quantity'],
                 "status" => (int)$product['status'],
