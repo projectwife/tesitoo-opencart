@@ -3,7 +3,7 @@
 	<version><![CDATA[0.1]]></version>
 	<vqmver><![CDATA[2.5.1]]></vqmver>
 	<author><![CDATA[]]></author>
-	<file path="catalog/controller/product/" name="product.php">
+	<file path="catalog/controller/product/" name="product.php,product_tesitoo_api.php">
 		<operation>
 			<search position="before"><![CDATA[		if (isset($this->request->get['search']) || isset($this->request->get['tag'])) {]]></search>
 			<add><![CDATA[
@@ -45,7 +45,7 @@
 ]]></add>
 		</operation>
 	</file>
-	<file path="catalog/controller/product/" name="product.php">
+	<file path="catalog/controller/product/" name="product.php,product_tesitoo_api.php">
 		<operation>
 			<search position="after"><![CDATA[			$data['points'] = $product_info['points'];]]></search>
 			<add><![CDATA[

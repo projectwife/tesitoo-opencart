@@ -26,7 +26,7 @@ $_['error_not_logged_in']      = 'Warning: User not logged in!';
 ]]></add>
 		</operation>
 	</file>
-	<file path="catalog/controller/product/" name="product.php">
+	<file path="catalog/controller/product/" name="product.php,product_tesitoo_api.php">
 		<operation>
 			<search position="bottom" offset="2"></search>
 			<add><![CDATA[
