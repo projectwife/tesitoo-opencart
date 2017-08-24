@@ -6,7 +6,7 @@
 
 <!-- Display product location on catalog product page -->
 
-	<file path="catalog/controller/product" name="product.php,product_tesitoo_api.php">
+	<file path="catalog/controller/product/" name="product.php,product_tesitoo_api.php">
         <operation>
             <search position="after"><![CDATA[$data['text_model'] = $this->language->get('text_model');]]></search>
             <add><![CDATA[$data['text_location'] = $this->language->get('text_location');]]></add>
