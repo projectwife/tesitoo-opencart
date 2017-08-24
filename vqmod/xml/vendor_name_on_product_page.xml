@@ -15,7 +15,7 @@
 			<add><![CDATA[            <li><?php echo $text_vendor_name; ?> <a href="index.php?route=product/vendor/info&vendor_id=<?php echo $vendor_id; ?>"><?php echo $vendor_name; ?></a></li>]]></add>
 		</operation>
 	</file>
-	<file path="catalog/controller/product/" name="product.php">
+	<file path="catalog/controller/product/" name="product.php,product_tesitoo_api.php">
 		<operation>
 			<search position="after"><![CDATA[$data['text_loading'] = $this->language->get('text_loading');]]></search>
 			<add><![CDATA[

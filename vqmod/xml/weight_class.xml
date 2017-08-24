@@ -19,7 +19,7 @@
 		</operation>
 	</file>
     -->
-	<file path="catalog/controller/product/" name="product.php">
+	<file path="catalog/controller/product/" name="product.php,product_tesitoo_api.php">
 		<operation>
 			<search position="before"><![CDATA[if ($product_info['quantity'] <= 0) {]]></search>
 			<add><![CDATA[
