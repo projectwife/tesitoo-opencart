@@ -956,7 +956,7 @@ var token = '';
 
 // Login to the API
 $.ajax({
-	url: $('select[name=\'store\'] option:selected').val() + 'index.php?route=api/login',
+	url: '<?php echo $store_url; ?>index.php?route=api/login',
 	type: 'post',
 	data: 'key=<?php echo $api_key; ?>',
 	dataType: 'json',
@@ -1048,7 +1048,7 @@ $('select[name=\'currency\']').on('change', function() {
 // Add all products to the cart using the api
 $('#button-refresh').on('click', function() {
 	$.ajax({
-		url: $('select[name=\'store\'] option:selected').val() + 'index.php?route=api/cart/products&token=' + token,
+		url: '<?php echo $store_url; ?>index.php?route=api/cart/products&token=' + token,
 		dataType: 'json',
 		crossDomain: true,
 		success: function(json) {

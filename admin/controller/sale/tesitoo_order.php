@@ -482,6 +482,8 @@ class ControllerSaleTesitooOrder extends Controller {
 			$data['order_id'] = $this->request->get['order_id'];
 			$data['store_id'] = $order_info['store_id'];
 
+			$data['store_url'] = $order_info['store_url'];
+
 			$data['customer'] = $order_info['customer'];
 			$data['customer_id'] = $order_info['customer_id'];
 			$data['customer_group_id'] = $order_info['customer_group_id'];
