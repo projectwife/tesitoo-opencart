@@ -20,6 +20,7 @@ class ControllerVendorProductsAPI extends ApiController {
 		$this->load->model('catalog/vdi_product');
 		$this->load->model('catalog/product');
 		$this->load->model('tool/image');
+		$this->load->model('sale/tesitoo_order');
 
 		$data = array();
 		$products = $this->model_catalog_vdi_product->getProducts($data);
@@ -43,6 +44,16 @@ class ControllerVendorProductsAPI extends ApiController {
             $categoriesToProducts = $this->model_catalog_product->getCategories($product['product_id']);
             foreach ($categoriesToProducts as $categoryToProduct) {
                 $resultProduct['categories'][] = $categoryToProduct['category_id'];
+            }
+
+            $resultProduct['order_counts'] = array();
+
+            $orderStatusCounts = $this->model_sale_tesitoo_order->getOrderProductStatusCountsByProduct($product['product_id']);
+            foreach($orderStatusCounts as $orderStatusCount) {
+                if ($orderStatusCount['order_status_name']) {
+                    $resultProduct['order_counts'][$orderStatusCount['order_status_name']] =
+                        $orderStatusCount['count'];
+                }
             }
 
             $result[] = $resultProduct;

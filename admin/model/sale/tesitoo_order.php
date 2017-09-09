@@ -452,4 +452,11 @@ class ModelSaleTesitooOrder extends Model {
 
         return $query->rows[0]['name'];
     }
+
+    public function getOrderProductStatusCountsByProduct($product_id) {
+        $query = $this->db->query("SELECT op.order_status_id, os.name as order_status_name, COUNT(os.name) as count FROM " . DB_PREFIX . "order_product op LEFT JOIN " . DB_PREFIX . "order_status os ON (op.order_status_id = os.order_status_id) WHERE product_id = " . (int)$product_id . " GROUP BY os.name");
+
+        return $query->rows;
+    }
+
 }
