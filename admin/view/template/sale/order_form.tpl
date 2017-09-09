@@ -1017,7 +1017,7 @@ $(document).delegate('#button-ip-add', 'click', function() {
 // Currency
 $('select[name=\'currency\']').on('change', function() {
 	$.ajax({
-		url: $('select[name=\'store\'] option:selected').val() + 'index.php?route=api/currency&token=' + token,
+		url: '<?php echo $store_url; ?>index.php?route=api/currency&token=' + token,
 		type: 'post',
 		data: 'currency=' + $('select[name=\'currency\'] option:selected').val(),
 		dataType: 'json',
