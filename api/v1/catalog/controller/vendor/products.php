@@ -52,7 +52,7 @@ class ControllerVendorProductsAPI extends ApiController {
             foreach($orderStatusCounts as $orderStatusCount) {
                 if ($orderStatusCount['order_status_name']) {
                     $resultProduct['order_counts'][$orderStatusCount['order_status_name']] =
-                        $orderStatusCount['count'];
+                        (int)$orderStatusCount['count'];
                 }
             }
 
