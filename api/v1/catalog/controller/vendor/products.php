@@ -32,11 +32,7 @@ class ControllerVendorProductsAPI extends ApiController {
 
             $price = (string)number_format($product['price'],
                                 (int)$this->currency->getDecimalPlace());
-            $display_price = $this->currency->format(
-                $this->tax->calculate(
-                    $price,
-                    $product_info['tax_class_id'],
-                    $this->config->get('config_tax')));
+            $display_price = $this->currency->format($price);
 
             $thumb = $this->model_tool_image->resize($product['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
 
