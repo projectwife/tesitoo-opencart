@@ -25,14 +25,28 @@ class ControllerVendorProductsAPI extends ApiController {
 		$data = array();
 		$products = $this->model_catalog_vdi_product->getProducts($data);
 
+		$currency_code = $this->currency->getCode();
+
         $result = array();
         foreach($products as $product) {
+
+            $price = (string)number_format($product['price'],
+                                (int)$this->currency->getDecimalPlace());
+            $display_price = $this->currency->format(
+                $this->tax->calculate(
+                    $price,
+                    $product_info['tax_class_id'],
+                    $this->config->get('config_tax')));
+
             $thumb = $this->model_tool_image->resize($product['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+
             $resultProduct = array(
                 "product_id" => $product['product_id'],
                 "name" => $product['name'],
                 "description" => $product['description'],
-                "price" => (string)number_format($product['price'], 2),
+                "price" => $price,
+                "currency_code" => $currency_code,
+                "display_price" => $display_price,
                 "minimum" => (int)$product['minimum'],
                 "quantity" => (int)$product['quantity'],
                 "status" => (int)$product['status'],
