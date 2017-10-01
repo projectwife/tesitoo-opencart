@@ -54,11 +54,14 @@ class ControllerVendorProfileImageAPI extends ApiController {
         }
 
         $this->load->model('catalog/vdi_vendor_profile');
+		$this->load->model('tool/image');
 
         //ask model to associate image in db, providing vendor id and destination filename
         $this->model_catalog_vdi_vendor_profile->setVendorProfileImage($vendorId, $destination);
 
         $json['filename'] = $fileNameTimestamped;
+
+        $json['thumbnailPath'] = $this->model_tool_image->resize($destination, $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
 
         $this->response->setOutput($json);
     }
