@@ -522,6 +522,8 @@ class ControllerSaleOrder extends Controller {
 			$data['shipping_method'] = $order_info['shipping_method'];
 			$data['shipping_code'] = $order_info['shipping_code'];
 
+			$data['store_url'] = $order_info['store_url'];
+
 			// Products
 			$data['order_products'] = array();
 
