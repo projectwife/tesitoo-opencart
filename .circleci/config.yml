@@ -4,7 +4,7 @@ jobs:
     working_directory: ~/tesitoo-opencart
     docker:
       - image: circleci/php:5.6-apache-node
-      - image: selenium/standalone-firefox:2.53.0
+      - image: selenium/standalone-firefox:3.6.0
       - image: circleci/mysql:5.7
         environment:
           MYSQL_ROOT_HOST: "%"
