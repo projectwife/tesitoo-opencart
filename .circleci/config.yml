@@ -5,19 +5,23 @@ jobs:
     docker:
       - image: circleci/php:7.0.18-apache
       - image: selenium/standalone-chrome:2.53.0
+      - image: circleci/mysql:5.5.56
     steps:
       - checkout
       - run:
           name: install python
-          command: sudo apt-get install python3.6
+          command: sudo apt-get install python3
       - run:
           name: install selenium for python
-          command: sudo pip install selenium
+          command: |
+            curl -O https://bootstrap.pypa.io/get-pip.py
+            python3 get-pip.py
+            sudo pip install selenium
       - run:
           name: configure apache
           command: |
-            cp ~/tesitoo-opencart/test/circleci-tesitoo-apache-conf /etc/apache2/sites-available
-            a2ensite circleci-tesitoo-apache-conf
+            sudo cp ~/tesitoo-opencart/test/circleci-tesitoo-apache-conf /etc/apache2/sites-available/circleci-tesitoo-apache.conf
+            sudo a2ensite circleci-tesitoo-apache-conf
             sudo service apache2 restart
       - run:
           name: configure opencart
