@@ -1,0 +1,37 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/tesitoo-opencart
+    docker:
+      - image: circleci/python:3.5.4
+      - image: selenium/standalone-chrome:2.53.0
+    steps:
+      - run:
+          name: install selenium for python
+          command: pip install selenium
+      - run:
+          name: configure apache
+          command: |
+            cp ~/tesitoo-opencart/test/circleci-tesitoo-apache-conf /etc/apache2/sites-available
+            a2ensite circleci-tesitoo-apache-conf
+            sudo service apache2 restart
+      - checkout
+      - run:
+          name: configure opencart
+          command: |
+            cp ./config-circleci.php ./config.php
+            cp ./admin/config-circleci.php ./admin/config.php
+            cp ./api/v1/config-dist.php ./api/v1/config.php
+            chmod -R 1777 system/storage/* image/ vqmod/
+      - run:
+          name: artifacts
+          command: mkdir test/circleci_artifacts
+      - run:
+          name: configure db
+          command: mysql -u ubuntu circle_test < tesitoo.sql
+      - run:
+          name: run tests
+          command: python test/registerVendor.py --url http://localhost:8080/
+      - store_artifacts:
+          path: test/circleci_artifacts
+
