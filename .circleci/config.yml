@@ -15,7 +15,7 @@ jobs:
           name: install selenium for python
           command: |
             curl -O https://bootstrap.pypa.io/get-pip.py
-            python3 get-pip.py
+            sudo python3 get-pip.py
             sudo pip install selenium
       - run:
           name: configure apache
