@@ -5,7 +5,10 @@ jobs:
     docker:
       - image: circleci/php:7.0.18-apache
       - image: selenium/standalone-chrome:2.53.0
-      - image: circleci/mysql:5.5.56
+      - image: circleci/mysql:5.7
+        environment:
+          MYSQL_ROOT_HOST: "%"
+          MYSQL_ROOT_PASSWORD: password
     steps:
       - checkout
       - run:
@@ -23,6 +26,9 @@ jobs:
             sudo cp ~/tesitoo-opencart/test/circleci-tesitoo-apache-conf /etc/apache2/sites-available/circleci-tesitoo-apache.conf
             sudo a2ensite circleci-tesitoo-apache-conf
             sudo service apache2 restart
+      - run:
+          name: install mysql (just for the client)
+          command: sudo apt-get install mysql-server
       - run:
           name: configure opencart
           command: |
