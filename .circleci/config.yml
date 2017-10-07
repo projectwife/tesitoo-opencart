@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/php:5.6-apache-node
       - image: selenium/standalone-chrome:3.6.0
-      - image: circleci/mysql:5.7
+      - image: circleci/mysql:5.5
         environment:
           MYSQL_ROOT_HOST: "%"
           MYSQL_ROOT_PASSWORD: password
