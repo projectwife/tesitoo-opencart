@@ -3,10 +3,13 @@ jobs:
   build:
     working_directory: ~/tesitoo-opencart
     docker:
-      - image: circleci/python:3.5.4-jessie-browsers
+      - image: circleci/php:7.0.18-apache
       - image: selenium/standalone-chrome:2.53.0
     steps:
       - checkout
+      - run:
+          name: install python
+          command: sudo apt-get install python3.6
       - run:
           name: install selenium for python
           command: sudo pip install selenium
