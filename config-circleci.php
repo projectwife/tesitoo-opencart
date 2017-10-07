@@ -20,7 +20,7 @@ define('DIR_UPLOAD', '/home/circleci/tesitoo-opencart/system/storage/upload/');
 
 // DB
 define('DB_DRIVER', 'mysqli');
-define('DB_HOSTNAME', 'localhost');
+define('DB_HOSTNAME', '127.0.0.1');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', 'password');
 define('DB_DATABASE', 'circle_test');

@@ -24,7 +24,10 @@ jobs:
           name: configure apache
           command: |
             sudo cp ~/tesitoo-opencart/test/circleci-tesitoo-apache-conf /etc/apache2/sites-available/circleci-tesitoo-apache.conf
-            sudo docker-php-ext-install mysqli
+            sudo apt-get install libpng-dev
+            sudo apt-get install libjpeg-dev
+            sudo docker-php-ext-configure gd --with-jpeg-dir=/usr/include/
+            sudo docker-php-ext-install mysqli gd
             sudo a2ensite circleci-tesitoo-apache-conf
             sudo service apache2 restart
       - run:
