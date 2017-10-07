@@ -3,19 +3,19 @@ jobs:
   build:
     working_directory: ~/tesitoo-opencart
     docker:
-      - image: circleci/python:3.5.4
+      - image: circleci/python:3.5.4-jessie-browsers
       - image: selenium/standalone-chrome:2.53.0
     steps:
+      - checkout
       - run:
           name: install selenium for python
-          command: pip install selenium
+          command: sudo pip install selenium
       - run:
           name: configure apache
           command: |
             cp ~/tesitoo-opencart/test/circleci-tesitoo-apache-conf /etc/apache2/sites-available
             a2ensite circleci-tesitoo-apache-conf
             sudo service apache2 restart
-      - checkout
       - run:
           name: configure opencart
           command: |
