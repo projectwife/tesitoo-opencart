@@ -4,7 +4,7 @@ jobs:
     working_directory: ~/tesitoo-opencart
     docker:
       - image: circleci/php:7.0.18-apache
-      - image: selenium/standalone-chrome:2.53.0
+      - image: selenium/standalone-firefox:2.53.0
       - image: circleci/mysql:5.7
         environment:
           MYSQL_ROOT_HOST: "%"
@@ -41,10 +41,10 @@ jobs:
           command: mkdir test/circleci_artifacts
       - run:
           name: configure db
-          command: mysql -u ubuntu circle_test < tesitoo.sql
+          command: mysql -h 127.0.0.1 -u root -ppassword circle_test < tesitoo.sql
       - run:
           name: run tests
-          command: python test/registerVendor.py --url http://localhost:8080/
+          command: python3 test/registerVendor.py --url http://localhost:8080/
       - store_artifacts:
           path: test/circleci_artifacts
 
