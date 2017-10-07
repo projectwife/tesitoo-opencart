@@ -24,7 +24,7 @@ jobs:
           name: configure apache
           command: |
             sudo cp ~/tesitoo-opencart/test/circleci-tesitoo-apache-conf /etc/apache2/sites-available/circleci-tesitoo-apache.conf
-            sudo apt-get install php5-mysql
+            sudo docker-php-ext-install mysqli
             sudo a2ensite circleci-tesitoo-apache-conf
             sudo service apache2 restart
       - run:
@@ -45,8 +45,9 @@ jobs:
           command: mysql -h 127.0.0.1 -u root -ppassword circle_test < tesitoo.sql
       - run:
           name: curl mainpage
-          command: curl http://localhost:8080 > test/circleci_artifacts/mainpage.html
-          command: curl http://localhost:8080/phpinfo.php > test/circleci_artifacts/phpinfo.html
+          command: |
+            curl http://localhost:8080 > test/circleci_artifacts/mainpage.html
+            curl http://localhost:8080/phpinfo.php > test/circleci_artifacts/phpinfo.html
       - run:
           name: run tests
           command: python3 test/registerVendor.py --url http://localhost:8080/
