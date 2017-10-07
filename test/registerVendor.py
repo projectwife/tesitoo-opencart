@@ -17,7 +17,7 @@ class RegisterVendor(unittest.TestCase):
         #firefox_capabilities['marionette'] = False
         self.driver = webdriver.Remote(
             command_executor='http://127.0.0.1:4444/wd/hub',
-            desired_capabilities=webdriver.DesiredCapabilities.FIREFOX)
+            desired_capabilities=webdriver.DesiredCapabilities.CHROME)
         self.driver.implicitly_wait(30)
         self.verificationErrors = []
         self.accept_next_alert = True
