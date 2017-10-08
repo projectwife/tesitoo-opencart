@@ -8,7 +8,6 @@ jobs:
       - image: circleci/mysql:5.7
         environment:
           MYSQL_ROOT_HOST: "%"
-          MYSQL_ROOT_PASSWORD: password
     steps:
       - checkout
       - run:
