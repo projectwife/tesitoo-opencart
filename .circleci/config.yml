@@ -46,11 +46,11 @@ jobs:
       - run:
           name: configure db
           command: mysql -h 127.0.0.1 -u root -ppassword circle_test < tesitoo.sql
-      - run:
-          name: curl mainpage
-          command: |
-            curl http://localhost:8080 > test/circleci_artifacts/mainpage.html
-            curl http://localhost:8080/phpinfo.php > test/circleci_artifacts/phpinfo.html
+      #- run:
+      #    name: curl mainpage
+      #    command: |
+      #      curl http://localhost:8080 > test/circleci_artifacts/mainpage.html
+      #      curl http://localhost:8080/phpinfo.php > test/circleci_artifacts/phpinfo.html
       - run:
           name: run tests
           command: python3 test/registerVendor.py --url http://localhost:8080/
