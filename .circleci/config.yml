@@ -8,6 +8,7 @@ jobs:
       - image: circleci/mysql:5.7
         environment:
           MYSQL_ROOT_HOST: "%"
+          MYSQL_ROOT_PASSWORD: password
     steps:
       - checkout
       - run:
@@ -30,8 +31,8 @@ jobs:
             sudo a2ensite circleci-tesitoo-apache-conf
             sudo service apache2 restart
       - run:
-          name: install mysql (just for the client)
-          command: sudo apt-get install mysql-server
+          name: install mysql client
+          command: sudo apt-get install mysql-client-5.7
       - run:
           name: configure opencart
           command: |
@@ -45,11 +46,6 @@ jobs:
       - run:
           name: configure db
           command: mysql -h 127.0.0.1 -u root -ppassword circle_test < tesitoo.sql
-      #- run:
-      #    name: curl mainpage
-      #    command: |
-      #      curl http://localhost:8080 > test/circleci_artifacts/mainpage.html
-      #      curl http://localhost:8080/phpinfo.php > test/circleci_artifacts/phpinfo.html
       - run:
           name: run tests
           command: python3 test/registerVendor.py --url http://localhost:8080/
