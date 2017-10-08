@@ -72,7 +72,6 @@ class ModelAccountSignUp extends Model {
 			} elseif($signup_plan[1] == '5') {
 				$message .= $this->language->get('text_signup_expire_date') . date('Y-m-d', strtotime("+" . $signup_plan[3] . "year")) . "<br>";
 			}
-			
 			if (($signup_plan[1] == '4' || $signup_plan[1] == '5') && ($data['payment_method'] == '0')) {
 			$message .= "<br><b><u>" . $this->language->get('text_bank_info') . "</u></b>";
 			$message .= "<br>" . nl2br($this->config->get('mvd_bank_transfer_bank' . $this->config->get('config_language_id')));
