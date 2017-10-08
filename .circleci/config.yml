@@ -1,0 +1,54 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/tesitoo-opencart
+    docker:
+      - image: circleci/php:5.6-apache-node
+      - image: selenium/standalone-chrome:3.6.0
+      - image: circleci/mysql:5.7
+        environment:
+          MYSQL_ROOT_HOST: "%"
+          MYSQL_ROOT_PASSWORD: password
+    steps:
+      - checkout
+      - run:
+          name: install python
+          command: sudo apt-get install python3
+      - run:
+          name: install selenium for python
+          command: |
+            curl -O https://bootstrap.pypa.io/get-pip.py
+            sudo python3 get-pip.py
+            sudo pip install selenium
+      - run:
+          name: configure apache
+          command: |
+            sudo cp ~/tesitoo-opencart/test/circleci-tesitoo-apache-conf /etc/apache2/sites-available/circleci-tesitoo-apache.conf
+            sudo apt-get install libpng-dev
+            sudo apt-get install libjpeg-dev
+            sudo docker-php-ext-configure gd --with-jpeg-dir=/usr/include/
+            sudo docker-php-ext-install mysqli gd
+            sudo a2ensite circleci-tesitoo-apache-conf
+            sudo service apache2 restart
+      - run:
+          name: install mysql client
+          command: sudo apt-get install mysql-client-5.5
+      - run:
+          name: configure opencart
+          command: |
+            cp ./config-circleci.php ./config.php
+            cp ./admin/config-circleci.php ./admin/config.php
+            cp ./api/v1/config-dist.php ./api/v1/config.php
+            chmod -R 1777 system/storage/* image/ vqmod/
+      - run:
+          name: artifacts
+          command: mkdir test/circleci_artifacts
+      - run:
+          name: configure db
+          command: mysql -h 127.0.0.1 -u root -ppassword circle_test < tesitoo.sql
+      - run:
+          name: run tests
+          command: python3 test/registerVendor.py --url http://localhost:8080/
+      - store_artifacts:
+          path: test/circleci_artifacts
+

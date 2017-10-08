@@ -3,6 +3,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+#from selenium.webdriver.support.ui import WebDriverWait
+#from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -13,11 +15,11 @@ class RegisterVendor(unittest.TestCase):
 
     def setUp(self):
         #self.driver = webdriver.Firefox()
-        firefox_capabilities = DesiredCapabilities.FIREFOX
-        firefox_capabilities['marionette'] = False
+        #firefox_capabilities = DesiredCapabilities.CHROME
+        #firefox_capabilities['marionette'] = False
         self.driver = webdriver.Remote(
             command_executor='http://127.0.0.1:4444/wd/hub',
-            desired_capabilities=firefox_capabilities)
+            desired_capabilities=webdriver.DesiredCapabilities.CHROME)
         self.driver.implicitly_wait(30)
         self.verificationErrors = []
         self.accept_next_alert = True
@@ -56,10 +58,13 @@ class RegisterVendor(unittest.TestCase):
         driver.find_element_by_id("input-confirm").send_keys("password")
         driver.find_element_by_xpath("//input[@name='agree']").click()
         driver.find_element_by_css_selector("input.btn.btn-primary").click()
+        assert "alert-danger" not in driver.page_source
         #driver.save_screenshot('test/circleci_artifacts/beforeFinalContinue.png')
         #with open('test/circleci_artifacts/beforeFinalContinue.html', 'wb') as file_:
         #    file_.write(driver.page_source.encode('utf-8'))
-        assert "alert-danger" not in driver.page_source
+        #wait = WebDriverWait(driver, 30)
+        #element = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'a.btn.btn-primary')))
+        #element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'a.btn.btn-primary')))
         driver.find_element_by_css_selector("a.btn.btn-primary").click()
     
     def is_element_present(self, how, what):

@@ -1,9 +1,15 @@
 Listen 8080
 
 <VirtualHost *:8080>
-  DocumentRoot /home/ubuntu/tesitoo-opencart
+  DocumentRoot /home/circleci/tesitoo-opencart
   ServerName localhost
   <FilesMatch \.php$>
     SetHandler application/x-httpd-php
   </FilesMatch>
+
+  # Set access permission
+  <Directory "/">
+    Require all granted
+  </Directory>
+
 </VirtualHost>
