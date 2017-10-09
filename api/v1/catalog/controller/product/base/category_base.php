@@ -115,7 +115,7 @@ class ControllerProductCategoryBaseAPI extends ApiController {
 			$filteredCategory['name'] = $category['name'];
 			$filteredCategory['description'] = $category['description'];
 			$filteredCategory['thumb_image'] = $this->model_tool_image->resize($category['image'], $this->config->get('config_image_category_width'), $this->config->get('config_image_category_height'));
-			$filteredCategory['sort_order'] = $category['sort_order'];
+			$filteredCategory['sort_order'] = (int)$category['sort_order'];
 
 			$data = array(
 				'filter_category_id'  => $category['category_id'],
