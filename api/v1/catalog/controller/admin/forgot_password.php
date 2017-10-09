@@ -37,7 +37,7 @@ class ControllerAdminForgotPasswordAPI extends ApiController {
             //send email containing token
             $subject = $this->config->get('config_name') . " - " . $this->language->get('text_subject_password_reset_requested');
 
-            $url = new Url(HTTP_SERVER, HTTPS_SERVER);
+            $url = new Url(HTTP_SERVER . 'admin/', HTTPS_SERVER . 'admin/');
             $link = $url->link('common/reset', 'code=' . $code, 'SSL');
 
             $html = sprintf($this->language->get('text_to'), $user['firstname'] . ' ' . $user['lastname']) . "<br><br>";
