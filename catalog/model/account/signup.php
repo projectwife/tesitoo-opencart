@@ -127,8 +127,9 @@ class ModelAccountSignUp extends Model {
 			$message .= $this->language->get('text_signup_username') . $this->request->post['username'] . "<br>";
 			$message .= '<font >' . $this->language->get('text_signup_plan') . $this->request->post['hsignup_plan'] . "<br>";
 			$message .= $this->language->get('text_signup_date') . date('Y-m-d') . "<br>";
-			
-			if (($signup_plan[1] == '4' || $signup_plan[1] == '5') && ($data['payment_method'] == '0')) {
+
+			if (($signup_plan != 0) &&
+                ($signup_plan[1] == '4' || $signup_plan[1] == '5') && ($data['payment_method'] == '0')) {
 			$message .= "<br><b><u>" . $this->language->get('text_bank_info') . "</u></b>";
 			$message .= "<br>" . nl2br($this->config->get('mvd_bank_transfer_bank' . $this->config->get('config_language_id')));
 			$message .= "<br><br>" . $this->language->get('text_complete_payment') . "<br>";

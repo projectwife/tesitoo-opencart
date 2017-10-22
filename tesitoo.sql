@@ -2878,7 +2878,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (1305, 0, 'config', 'config_email', 'admin@example.com', 0),
 (1297, 0, 'config', 'config_meta_description', 'Tesitoo', 0),
 (1296, 0, 'config', 'config_meta_title', 'Tesitoo', 0),
-(1407, 0, 'config', 'config_error_display', '0', 0),
+(1407, 0, 'config', 'config_error_display', '1', 0),
 (1408, 0, 'config', 'config_error_log', '1', 0),
 (1409, 0, 'config', 'config_error_filename', 'error.log', 0);
 

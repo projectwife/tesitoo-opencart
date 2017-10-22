@@ -244,6 +244,20 @@
 			  <textarea name="store_description" rows="5" placeholder="<?php echo $entry_store_description; ?>" class="form-control"><?php echo $store_description; ?></textarea>
             </div>
           </div>
+
+          <input type="hidden" name="fax" value="">
+          <input type="hidden" name="bank_name" value="">
+          <input type="hidden" name="iban" value="">
+          <input type="hidden" name="swift_bic" value="">
+          <input type="hidden" name="tax_id" value="">
+          <input type="hidden" name="bank_address" value="">
+          <input type="hidden" name="company_id" value="">
+          <input type="hidden" name="paypal" value="">
+          <input type="hidden" name="store_description" value="">
+          <input type="hidden" name="address_2" value="">
+          <input type="hidden" name="postcode" value="">
+          <input type="hidden" name="store_url" value="">
+
         </fieldset>
         <fieldset>
           <legend><?php echo $text_your_password; ?></legend>
