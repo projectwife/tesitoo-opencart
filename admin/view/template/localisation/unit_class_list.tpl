@@ -40,15 +40,15 @@
                     <?php } else { ?>
                     <a href="<?php echo $sort_title; ?>"><?php echo $column_title; ?></a>
                     <?php } ?></td>
-                  <td class="text-left"><?php if ($sort == 'unit') { ?>
-                    <a href="<?php echo $sort_unit; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_unit; ?></a>
+                  <td class="text-left"><?php if ($sort == 'abbreviation') { ?>
+                    <a href="<?php echo $sort_abbreviation; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_abbreviation; ?></a>
                     <?php } else { ?>
-                    <a href="<?php echo $sort_unit; ?>"><?php echo $column_unit; ?></a>
+                    <a href="<?php echo $sort_abbreviation; ?>"><?php echo $column_abbreviation; ?></a>
                     <?php } ?></td>
                   <td class="text-right"><?php if ($sort == 'value') { ?>
-                    <a href="<?php echo $sort_value; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_value; ?></a>
+                    <a href="<?php echo $sort_note; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_note; ?></a>
                     <?php } else { ?>
-                    <a href="<?php echo $sort_value; ?>"><?php echo $column_value; ?></a>
+                    <a href="<?php echo $sort_note; ?>"><?php echo $column_note; ?></a>
                     <?php } ?></td>
                   <td class="text-right"><?php echo $column_action; ?></td>
                 </tr>
@@ -63,8 +63,8 @@
                     <input type="checkbox" name="selected[]" value="<?php echo $unit_class['unit_class_id']; ?>" />
                     <?php } ?></td>
                   <td class="text-left"><?php echo $unit_class['title']; ?></td>
-                  <td class="text-left"><?php echo $unit_class['unit']; ?></td>
-                  <td class="text-right"><?php echo $unit_class['value']; ?></td>
+                  <td class="text-left"><?php echo $unit_class['abbreviation']; ?></td>
+                  <td class="text-right"><?php echo $unit_class['note']; ?></td>
                   <td class="text-right"><a href="<?php echo $unit_class['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
                 </tr>
                 <?php } ?>

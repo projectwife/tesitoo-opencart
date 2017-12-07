@@ -39,22 +39,26 @@
             </div>
           </div>
           <div class="form-group required">
-            <label class="col-sm-2 control-label"><?php echo $entry_unit; ?></label>
+            <label class="col-sm-2 control-label"><?php echo $entry_abbreviation; ?></label>
             <div class="col-sm-10">
               <?php foreach ($languages as $language) { ?>
               <div class="input-group"><span class="input-group-addon"><img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" /></span>
-                <input type="text" name="unit_class_description[<?php echo $language['language_id']; ?>][unit]" value="<?php echo isset($unit_class_description[$language['language_id']]) ? $unit_class_description[$language['language_id']]['unit'] : ''; ?>" placeholder="<?php echo $entry_unit; ?>" class="form-control" />
+                <input type="text" name="unit_class_description[<?php echo $language['language_id']; ?>][abbreviation]" value="<?php echo isset($unit_class_description[$language['language_id']]) ? $unit_class_description[$language['language_id']]['abbreviation'] : ''; ?>" placeholder="<?php echo $entry_abbreviation; ?>" class="form-control" />
               </div>
-              <?php if (isset($error_unit[$language['language_id']])) { ?>
-              <div class="text-danger"><?php echo $error_unit[$language['language_id']]; ?></div>
+              <?php if (isset($error_abbreviation[$language['language_id']])) { ?>
+              <div class="text-danger"><?php echo $error_abbreviation[$language['language_id']]; ?></div>
               <?php } ?>
               <?php } ?>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="input-value"><span data-toggle="tooltip" title="<?php echo $help_value; ?>"><?php echo $entry_value; ?></span></label>
+            <label class="col-sm-2 control-label" for="input-note"><?php echo $entry_note; ?></label>
             <div class="col-sm-10">
-              <input type="text" name="value" value="<?php echo $value; ?>" placeholder="<?php echo $entry_value; ?>" id="input-value" class="form-control" />
+              <?php foreach ($languages as $language) { ?>
+              <div class="input-group"><span class="input-group-addon"><img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" /></span>
+                <input type="text" name="unit_class_description[<?php echo $language['language_id']; ?>][note]" value="<?php echo isset($unit_class_description[$language['language_id']]) ? $unit_class_description[$language['language_id']]['note'] : ''; ?>" placeholder="<?php echo $entry_note; ?>" class="form-control" />
+              </div>
+              <?php } ?>
             </div>
           </div>
         </form>

@@ -175,8 +175,8 @@ class ControllerLocalisationUnitClass extends Controller {
 			$data['unit_classes'][] = array(
 				'unit_class_id' => $result['unit_class_id'],
 				'title'           => $result['title'] . (($result['unit_class_id'] == $this->config->get('config_unit_class_id')) ? $this->language->get('text_default') : null),
-				'unit'            => $result['unit'],
-				'value'           => $result['value'],
+				'abbreviation'     => $result['abbreviation'],
+				'note'             => $result['note'],
 				'edit'            => $this->url->link('localisation/unit_class/edit', 'token=' . $this->session->data['token'] . '&unit_class_id=' . $result['unit_class_id'] . $url, 'SSL')
 			);
 		}
@@ -188,8 +188,8 @@ class ControllerLocalisationUnitClass extends Controller {
 		$data['text_confirm'] = $this->language->get('text_confirm');
 
 		$data['column_title'] = $this->language->get('column_title');
-		$data['column_unit'] = $this->language->get('column_unit');
-		$data['column_value'] = $this->language->get('column_value');
+		$data['column_abbreviation'] = $this->language->get('column_abbreviation');
+		$data['column_note'] = $this->language->get('column_note');
 		$data['column_action'] = $this->language->get('column_action');
 
 		$data['button_add'] = $this->language->get('button_add');
@@ -229,8 +229,8 @@ class ControllerLocalisationUnitClass extends Controller {
 		}
 
 		$data['sort_title'] = $this->url->link('localisation/unit_class', 'token=' . $this->session->data['token'] . '&sort=title' . $url, 'SSL');
-		$data['sort_unit'] = $this->url->link('localisation/unit_class', 'token=' . $this->session->data['token'] . '&sort=unit' . $url, 'SSL');
-		$data['sort_value'] = $this->url->link('localisation/unit_class', 'token=' . $this->session->data['token'] . '&sort=value' . $url, 'SSL');
+		$data['sort_abbreviation'] = $this->url->link('localisation/unit_class', 'token=' . $this->session->data['token'] . '&sort=abbreviation' . $url, 'SSL');
+		$data['sort_note'] = $this->url->link('localisation/unit_class', 'token=' . $this->session->data['token'] . '&sort=note' . $url, 'SSL');
 
 		$url = '';
 
@@ -266,10 +266,8 @@ class ControllerLocalisationUnitClass extends Controller {
 		$data['text_form'] = !isset($this->request->get['unit_class_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 
 		$data['entry_title'] = $this->language->get('entry_title');
-		$data['entry_unit'] = $this->language->get('entry_unit');
-		$data['entry_value'] = $this->language->get('entry_value');
-
-		$data['help_value'] = $this->language->get('help_value');
+		$data['entry_abbreviation'] = $this->language->get('entry_abbreviation');
+		$data['entry_note'] = $this->language->get('entry_note');
 
 		$data['button_save'] = $this->language->get('button_save');
 		$data['button_cancel'] = $this->language->get('button_cancel');
@@ -286,10 +284,10 @@ class ControllerLocalisationUnitClass extends Controller {
 			$data['error_title'] = array();
 		}
 
-		if (isset($this->error['unit'])) {
-			$data['error_unit'] = $this->error['unit'];
+		if (isset($this->error['abbreviation'])) {
+			$data['error_abbreviation'] = $this->error['abbreviation'];
 		} else {
-			$data['error_unit'] = array();
+			$data['error_abbreviation'] = array();
 		}
 
 		$url = '';
@@ -342,14 +340,6 @@ class ControllerLocalisationUnitClass extends Controller {
 			$data['unit_class_description'] = array();
 		}
 
-		if (isset($this->request->post['value'])) {
-			$data['value'] = $this->request->post['value'];
-		} elseif (!empty($unit_class_info)) {
-			$data['value'] = $unit_class_info['value'];
-		} else {
-			$data['value'] = '';
-		}
-
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
@@ -367,8 +357,8 @@ class ControllerLocalisationUnitClass extends Controller {
 				$this->error['title'][$language_id] = $this->language->get('error_title');
 			}
 
-			if (!$value['unit'] || (utf8_strlen($value['unit']) > 4)) {
-				$this->error['unit'][$language_id] = $this->language->get('error_unit');
+			if (!$value['abbreviation'] || (utf8_strlen($value['abbreviation']) > 8)) {
+				$this->error['abbreviation'][$language_id] = $this->language->get('error_abbreviation');
 			}
 		}
 
