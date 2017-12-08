@@ -2223,6 +2223,7 @@ CREATE TABLE IF NOT EXISTS `oc_product` (
   `tax_class_id` int(11) NOT NULL,
   `date_available` date NOT NULL DEFAULT '0000-00-00',
   `expiration_date` datetime DEFAULT NULL,
+  `unit_class_id` int(11) DEFAULT NULL,
   `weight` decimal(15,8) NOT NULL DEFAULT '0.00000000',
   `weight_class_id` int(11) NOT NULL DEFAULT '0',
   `length` decimal(15,8) NOT NULL DEFAULT '0.00000000',
@@ -2263,6 +2264,7 @@ CREATE TABLE IF NOT EXISTS `oc_product_description` (
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `tag` text NOT NULL,
+  `custom_unit` text NOT NULL,
   `meta_title` varchar(255) NOT NULL,
   `meta_description` varchar(255) NOT NULL,
   `meta_keyword` varchar(255) NOT NULL
@@ -3026,6 +3028,62 @@ INSERT INTO `oc_tax_rule` (`tax_rule_id`, `tax_class_id`, `tax_rate_id`, `based`
 (120, 10, 87, 'store', 0),
 (128, 9, 86, 'shipping', 1),
 (127, 9, 87, 'shipping', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_unit_class`
+--
+
+CREATE TABLE IF NOT EXISTS `oc_unit_class` (
+  `unit_class_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `oc_unit_class`
+--
+
+INSERT INTO `oc_unit_class` (`unit_class_id`) VALUES
+(1),
+(2),
+(3),
+(4),
+(5),
+(6),
+(7),
+(8),
+(9),
+(10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_unit_class_description`
+--
+
+CREATE TABLE IF NOT EXISTS `oc_unit_class_description` (
+  `unit_class_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `title` varchar(32) NOT NULL,
+  `abbreviation` varchar(8) NOT NULL,
+  `note` text NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `oc_unit_class_description`
+--
+
+INSERT INTO `oc_unit_class_description` (`unit_class_id`, `language_id`, `title`, `abbreviation`, `note`) VALUES
+(1, 1, 'Kilogram', 'Kg', ''),
+(2, 1, 'Liter', 'L', ''),
+(3, 1, 'Crate', 'Cr', ''),
+(4, 1, 'Sack', 'Sc', ''),
+(5, 1, 'Bag', 'Bg', ''),
+(6, 1, 'Piece', 'Pc', ''),
+(7, 1, 'Pack', 'Pck', ''),
+(8, 1, 'Pallet', 'Plt', ''),
+(9, 1, 'Gallon', 'Gl', ''),
+(10, 1, 'Basket', 'Bk', '');
 
 -- --------------------------------------------------------
 
@@ -8379,6 +8437,18 @@ ALTER TABLE `oc_tax_rate_to_customer_group`
 ALTER TABLE `oc_tax_rule`
   ADD PRIMARY KEY (`tax_rule_id`);
 
+  --
+  -- Indexes for table `oc_unit_class`
+  --
+  ALTER TABLE `oc_unit_class`
+    ADD PRIMARY KEY (`unit_class_id`);
+
+  --
+  -- Indexes for table `oc_unit_class_description`
+  --
+  ALTER TABLE `oc_unit_class_description`
+    ADD PRIMARY KEY (`unit_class_id`,`language_id`);
+
 --
 -- Indexes for table `oc_upload`
 --
@@ -8922,6 +8992,16 @@ ALTER TABLE `oc_tax_rate`
 --
 ALTER TABLE `oc_tax_rule`
   MODIFY `tax_rule_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=129;
+--
+-- AUTO_INCREMENT for table `oc_unit_class`
+--
+ALTER TABLE `oc_unit_class`
+  MODIFY `unit_class_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `oc_unit_class_description`
+--
+ALTER TABLE `oc_unit_class_description`
+  MODIFY `unit_class_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `oc_upload`
 --

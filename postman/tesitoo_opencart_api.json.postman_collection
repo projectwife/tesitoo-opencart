@@ -1,31 +1,26 @@
 {
-	"variables": [],
 	"info": {
 		"name": "Tesitoo-Opencart-API",
-		"_postman_id": "1b5e7b5d-f4a5-1dbd-1aa9-504c34b75748",
+		"_postman_id": "338bc970-fb37-f3db-dc7d-9cc585bba4f2",
 		"description": "",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "/account",
-			"description": "",
 			"item": [
 				{
 					"name": "/register",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/register",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -34,132 +29,122 @@
 								{
 									"key": "firstname",
 									"value": "John",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "lastname",
 									"value": "Doe",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "email",
 									"value": "john.doe@example.com",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "telephone",
 									"value": "0123456789",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "fax",
 									"value": "0123456790",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "password",
 									"value": "examplepassword",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "confirm",
 									"value": "examplepassword",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "newsletter",
 									"value": "true",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "company",
 									"value": "Company Inc.",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "address_1",
 									"value": "Street 1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "address_2",
 									"value": "",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "city",
 									"value": "Berlin",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "postcode",
 									"value": "14101",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "country_id",
 									"value": "81",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "zone_id",
 									"value": "1257",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "agree",
 									"value": "true",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "custom_field[account][1]",
 									"value": "10",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "custom_field[address][2]",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/register",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"register"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/login",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/login",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -177,25 +162,33 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/login",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"login"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/logout",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/logout",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -213,25 +206,33 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/logout",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"logout"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/account",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/account",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -329,25 +330,33 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/account",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"account"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/account",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/account",
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -356,60 +365,62 @@
 								{
 									"key": "firstname",
 									"value": "John",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "lastname",
 									"value": "Doe",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "email",
 									"value": "john.doe@example.com",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "telephone",
 									"value": "123456789",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "fax",
 									"value": "123456790",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "custom_field[1]",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/account",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"account"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/password",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/password",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -427,25 +438,33 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/password",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"password"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/address",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/address",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -463,25 +482,33 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/address",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"address"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/address/{id}",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/address/1",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -494,50 +521,68 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/address/1",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"address",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/address/{id}",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/address/1",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/address/1",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"address",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/address",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/address",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -546,90 +591,87 @@
 								{
 									"key": "firstname",
 									"value": "John",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "lastname",
 									"value": "Doe",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "company",
 									"value": "Company Inc.",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "address_1",
 									"value": "Street 1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "address_2",
 									"value": "",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "city",
 									"value": "Berlin",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "postcode",
 									"value": "14101",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "country_id",
 									"value": "81",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "zone_id",
 									"value": "1257",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "default",
 									"value": "true",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "custom_field[1]",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/address",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"address"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/address/{id}",
 					"request": {
-						"url": "{{url_base}}//api/v1/account/address/1",
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -638,90 +680,89 @@
 								{
 									"key": "firstname",
 									"value": "John",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "lastname",
 									"value": "Doe",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "company",
 									"value": "Company Inc.",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "address_1",
 									"value": "Street 1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "address_2",
 									"value": "",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "city",
 									"value": "Berlin",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "postcode",
 									"value": "14101",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "country_id",
 									"value": "81",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "zone_id",
 									"value": "1257",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "default",
 									"value": "true",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "custom_field[1]",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}//api/v1/account/address/1",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"",
+								"api",
+								"v1",
+								"account",
+								"address",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/order",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/order",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -739,25 +780,33 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/order",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"order"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/order/{id}",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/order/1",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -775,50 +824,75 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/order/1",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"order",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/order/{id}/reorder",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/order/1/reorder?order_product_id=1",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/order/1/reorder?order_product_id=1",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"order",
+								"1",
+								"reorder"
+							],
+							"query": [
+								{
+									"key": "order_product_id",
+									"value": "1"
+								}
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/newsletter",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/newsletter",
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -831,25 +905,33 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/newsletter",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"newsletter"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/forgotten",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/forgotten",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -862,25 +944,33 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/forgotten",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"forgotten"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/wishlist",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/wishlist",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -948,82 +1038,125 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/wishlist",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"wishlist"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/wishlist/{id}",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/wishlist/42",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/wishlist/42",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"wishlist",
+								"42"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/wishlist/{id}",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/wishlist/42",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/wishlist/42",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"wishlist",
+								"42"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/download",
 					"request": {
-						"url": "{{url_base}}/api/v1/account/download?page=1",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/account/download?page=1",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"download"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
 					},
 					"response": []
 				}
@@ -1036,18 +1169,15 @@
 				{
 					"name": "/login",
 					"request": {
-						"url": "{{url_base}}/api/v1/admin/login",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -1056,15 +1186,25 @@
 								{
 									"key": "username",
 									"value": "vendor1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "password",
 									"value": "password",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
+							]
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/admin/login",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"login"
 							]
 						},
 						"description": "Admin/vendor login"
@@ -1074,23 +1214,32 @@
 				{
 					"name": "/logout",
 					"request": {
-						"url": "{{url_base}}/api/v1/admin/logout",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/admin/logout",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"logout"
+							]
 						},
 						"description": "Admin/vendor logout\n"
 					},
@@ -1099,18 +1248,15 @@
 				{
 					"name": "/password",
 					"request": {
-						"url": "{{url_base}}/api/v1/admin/password",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -1120,16 +1266,26 @@
 									"key": "old_password",
 									"value": "password",
 									"type": "text",
-									"enabled": true,
 									"warning": ""
 								},
 								{
 									"key": "new_password",
 									"value": "password",
 									"type": "text",
-									"enabled": true,
 									"warning": ""
 								}
+							]
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/admin/password",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"password"
 							]
 						},
 						"description": "Changes the password of the current logged in user"
@@ -1139,18 +1295,15 @@
 				{
 					"name": "/forgot_password",
 					"request": {
-						"url": "{{url_base}}/api/v1/admin/forgot_password",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -1160,9 +1313,20 @@
 									"key": "username",
 									"value": "vendorD",
 									"type": "text",
-									"enabled": true,
 									"warning": ""
 								}
+							]
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/admin/forgot_password",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"forgot_password"
 							]
 						},
 						"description": "Tells the server to reset the user's password.\n\nThe server will notify the user by email."
@@ -1172,18 +1336,15 @@
 				{
 					"name": "/login_by_code",
 					"request": {
-						"url": "{{url_base}}/api/v1/admin/login_by_code",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -1192,9 +1353,20 @@
 								{
 									"key": "code",
 									"value": "c3103d0bf46b25092bf4aa443579674c40ea7a83",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
+							]
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/admin/login_by_code",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"login_by_code"
 							]
 						},
 						"description": "Admin/vendor login by code, for forgotten password situations."
@@ -1205,48 +1377,52 @@
 		},
 		{
 			"name": "/cart",
-			"description": "",
 			"item": [
 				{
 					"name": "/cart",
 					"request": {
-						"url": "{{url_base}}/api/v1/cart/cart",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/cart/cart",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"cart"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/product",
 					"request": {
-						"url": "{{url_base}}/api/v1/cart/product",
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -1259,25 +1435,33 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/cart/product",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"product"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/product",
 					"request": {
-						"url": "{{url_base}}/api/v1/cart/product",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -1300,50 +1484,67 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/cart/product",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"product"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/product/{key}",
 					"request": {
-						"url": "{{url_base}}/api/v1/cart/product/30:YToxOntpOjIyNjtzOjI6IjE1Ijt9",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/cart/product/30:YToxOntpOjIyNjtzOjI6IjE1Ijt9",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"product",
+								"30:YToxOntpOjIyNjtzOjI6IjE1Ijt9"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/coupon",
 					"request": {
-						"url": "{{url_base}}/api/v1/cart/coupon",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -1356,25 +1557,33 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/cart/coupon",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"coupon"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/voucher",
 					"request": {
-						"url": "{{url_base}}/api/v1/cart/voucher",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -1387,25 +1596,33 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/cart/voucher",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"voucher"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/reward_points",
 					"request": {
-						"url": "{{url_base}}/api/v1/cart/reward_points",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -1418,25 +1635,33 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/cart/reward_points",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"reward_points"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/upload",
 					"request": {
-						"url": "{{url_base}}/api/v1/cart/upload",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -1449,7 +1674,18 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/cart/upload",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"upload"
+							]
+						}
 					},
 					"response": []
 				}
@@ -1457,23 +1693,19 @@
 		},
 		{
 			"name": "/checkout",
-			"description": "",
 			"item": [
 				{
 					"name": "/payment_address (Step 1)",
 					"request": {
-						"url": "{{url_base}}/api/v1/checkout/payment_address",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -1482,90 +1714,87 @@
 								{
 									"key": "payment_address",
 									"value": "new",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "firstname",
 									"value": "John",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "lastname",
 									"value": "Doe",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "company",
 									"value": "Company Inc.",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "address_1",
 									"value": "Street 1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "address_2",
 									"value": "",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "city",
 									"value": "Berlin",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "postcode",
 									"value": "14101",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "country_id",
 									"value": "81",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "zone_id",
 									"value": "1257",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "custom_field[1]",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/checkout/payment_address",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"checkout",
+								"payment_address"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/guest (Step 1)",
 					"request": {
-						"url": "{{url_base}}/api/v1/checkout/guest",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -1574,114 +1803,107 @@
 								{
 									"key": "firstname",
 									"value": "John",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "lastname",
 									"value": "Doe",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "email",
 									"value": "john.doe@example.com",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "telephone",
 									"value": "123456789",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "fax",
 									"value": "123456790",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "company",
 									"value": "Company Inc.",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "address_1",
 									"value": "Street 1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "address_2",
 									"value": "",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "city",
 									"value": "Berlin",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "postcode",
 									"value": "14101",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "country_id",
 									"value": "81",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "zone_id",
 									"value": "1257",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "shipping_address",
 									"value": "true",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "custom_field[account][1]",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "custom_field[address][2]",
 									"value": "22",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/checkout/guest",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"checkout",
+								"guest"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/shipping_address (Step 2)",
 					"request": {
-						"url": "{{url_base}}/api/v1/checkout/shipping_address",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -1690,90 +1912,87 @@
 								{
 									"key": "shipping_address",
 									"value": "new",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "firstname",
 									"value": "John",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "lastname",
 									"value": "Doe",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "company",
 									"value": "Company Inc.",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "address_1",
 									"value": "Street 1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "address_2",
 									"value": "",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "city",
 									"value": "Berlin",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "postcode",
 									"value": "14101",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "country_id",
 									"value": "81",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "zone_id",
 									"value": "1257",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "custom_field[1]",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/checkout/shipping_address",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"checkout",
+								"shipping_address"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/guest_shipping (Step 2)",
 					"request": {
-						"url": "{{url_base}}/api/v1/checkout/guest_shipping",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -1782,109 +2001,115 @@
 								{
 									"key": "firstname",
 									"value": "John",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "lastname",
 									"value": "Doe",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "company",
 									"value": "Company Inc.",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "address_1",
 									"value": "Street 1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "address_2",
 									"value": "",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "city",
 									"value": "Berlin",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "postcode",
 									"value": "14101",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "country_id",
 									"value": "81",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "zone_id",
 									"value": "1257",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "custom_field[2]",
 									"value": "20",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/checkout/guest_shipping",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"checkout",
+								"guest_shipping"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/shipping_method (Step 3)",
 					"request": {
-						"url": "{{url_base}}/api/v1/checkout/shipping_method",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/checkout/shipping_method",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"checkout",
+								"shipping_method"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/shipping_method (Step 4)",
 					"request": {
-						"url": "{{url_base}}/api/v1/checkout/shipping_method",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -1902,50 +2127,66 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/checkout/shipping_method",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"checkout",
+								"shipping_method"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/payment_method (Step 5)",
 					"request": {
-						"url": "{{url_base}}/api/v1/checkout/payment_method",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/checkout/payment_method",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"checkout",
+								"payment_method"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/payment_method (Step 6)",
 					"request": {
-						"url": "{{url_base}}/api/v1/checkout/payment_method",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -1954,89 +2195,135 @@
 								{
 									"key": "payment_method",
 									"value": "cod",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "agree",
 									"value": "true",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "comment",
 									"value": "",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/checkout/payment_method",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"checkout",
+								"payment_method"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/confirm (Step 7)",
 					"request": {
-						"url": "{{url_base}}/api/v1/checkout/confirm?access_token=fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/checkout/confirm?access_token=fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"checkout",
+								"confirm"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
+								}
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/pay (Step 8)",
 					"request": {
-						"url": "{{url_base}}/api/v1/checkout/pay?access_token=fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/checkout/pay?access_token=fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"checkout",
+								"pay"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
+								}
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/success (Step 9)",
 					"request": {
-						"url": "{{url_base}}/api/v1/checkout/success",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/checkout/success",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"checkout",
+								"success"
+							]
+						}
 					},
 					"response": []
 				}
@@ -2044,198 +2331,267 @@
 		},
 		{
 			"name": "/common",
-			"description": "",
 			"item": [
 				{
 					"name": "/country",
 					"request": {
-						"url": "{{url_base}}/api/v1/common/country",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/common/country",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"common",
+								"country"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/country/{id}",
 					"request": {
-						"url": "{{url_base}}/api/v1/common/country/81",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/common/country/81",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"common",
+								"country",
+								"81"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/customer_group",
 					"request": {
-						"url": "{{url_base}}/api/v1/common/customer_group",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/common/customer_group",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"common",
+								"customer_group"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/settings",
 					"request": {
-						"url": "{{url_base}}/api/v1/common/settings",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/common/settings",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"common",
+								"settings"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/custom_field",
 					"request": {
-						"url": "{{url_base}}/api/v1/common/custom_field?location=address&customer_group_id=1",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/common/custom_field?location=address&customer_group_id=1",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"common",
+								"custom_field"
+							],
+							"query": [
+								{
+									"key": "location",
+									"value": "address"
+								},
+								{
+									"key": "customer_group_id",
+									"value": "1"
+								}
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/init",
 					"request": {
-						"url": "{{url_base}}/api/v1/common/init?include=languages,currencies,countries,settings,customer_groups,cart,wishlist",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/common/init?include=languages,currencies,countries,settings,customer_groups,cart,wishlist",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"common",
+								"init"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "languages,currencies,countries,settings,customer_groups,cart,wishlist"
+								}
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/currency",
 					"request": {
-						"url": "{{url_base}}/api/v1/common/currency",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/common/currency",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"common",
+								"currency"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/currency",
 					"request": {
-						"url": "{{url_base}}/api/v1/common/currency",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -2244,55 +2600,70 @@
 								{
 									"key": "code",
 									"value": "USD",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/common/currency",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"common",
+								"currency"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/language",
 					"request": {
-						"url": "{{url_base}}/api/v1/common/language",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/common/language",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"common",
+								"language"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/language",
 					"request": {
-						"url": "{{url_base}}/api/v1/common/language",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -2301,85 +2672,153 @@
 								{
 									"key": "code",
 									"value": "en",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/common/language",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"common",
+								"language"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/weight",
 					"request": {
-						"url": "{{url_base}}/api/v1/common/weight",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/common/weight",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"common",
+								"weight"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/length",
 					"request": {
-						"url": "{{url_base}}/api/v1/common/length",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/common/length",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"common",
+								"length"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/units",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/common/units",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"common",
+								"units"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/order_status",
 					"request": {
-						"url": "{{url_base}}/api/v1/common/order_status",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/common/order_status",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"common",
+								"order_status"
+							]
 						},
 						"description": "Retrieve the list of available order statuses."
 					},
@@ -2388,21 +2827,33 @@
 				{
 					"name": "/vendor_terms",
 					"request": {
-						"url": "{{url_base}}/api/v1/common/vendor_terms",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/common/vendor_terms",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"common",
+								"vendor_terms"
+							]
+						},
 						"description": "fetches the terms and conditions text for vendor sign-up"
 					},
 					"response": []
@@ -2411,30 +2862,51 @@
 		},
 		{
 			"name": "/module",
-			"description": "",
 			"item": [
 				{
 					"name": "/latest",
 					"request": {
-						"url": "{{url_base}}/api/v1/module/latest?limit=10&image_width=80&image_height=80",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/module/latest?limit=10&image_width=80&image_height=80",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"module",
+								"latest"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "image_width",
+									"value": "80"
+								},
+								{
+									"key": "image_height",
+									"value": "80"
+								}
+							]
+						}
 					},
 					"response": []
 				}
@@ -2442,23 +2914,19 @@
 		},
 		{
 			"name": "/notification",
-			"description": "",
 			"item": [
 				{
 					"name": "/device",
 					"request": {
-						"url": "{{url_base}}/api/v1/notification/device",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -2467,9 +2935,20 @@
 								{
 									"key": "firebase_device_registration_token",
 									"value": "",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
+							]
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/notification/device",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"device"
 							]
 						},
 						"description": "Associate a device with the current user for the purposes of Firebase Cloud Messaging."
@@ -2480,23 +2959,19 @@
 		},
 		{
 			"name": "/oauth2",
-			"description": "",
 			"item": [
 				{
 					"name": "/token",
 					"request": {
-						"url": "{{url_base}}/api/v1/oauth2/token",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Basic bXRlc2l0b29jbGllbnRpZDptdGVzaXRvb2NsaWVudHNlY3JldA==",
-								"description": ""
+								"value": "Basic bXRlc2l0b29jbGllbnRpZDptdGVzaXRvb2NsaWVudHNlY3JldA=="
 							}
 						],
 						"body": {
@@ -2505,12 +2980,22 @@
 								{
 									"key": "grant_type",
 									"value": "client_credentials",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/oauth2/token",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"oauth2",
+								"token"
+							]
+						}
 					},
 					"response": []
 				}
@@ -2518,248 +3003,377 @@
 		},
 		{
 			"name": "/product",
-			"description": "",
 			"item": [
 				{
 					"name": "/category",
 					"request": {
-						"url": "{{url_base}}/api/v1/product/category",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/product/category",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"category"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/category/{id}",
 					"request": {
-						"url": "{{url_base}}/api/v1/product/category/18?limit=3&page=1&order=ASC&sort=price",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/product/category/18?limit=3&page=1&order=ASC&sort=price",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"category",
+								"18"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "3"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "order",
+									"value": "ASC"
+								},
+								{
+									"key": "sort",
+									"value": "price"
+								}
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/category/{id}/subcategory",
 					"request": {
-						"url": "{{url_base}}/api/v1/product/category/18/subcategory",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/product/category/18/subcategory",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"category",
+								"18",
+								"subcategory"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/manufacturer",
 					"request": {
-						"url": "{{url_base}}/api/v1/product/manufacturer",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/product/manufacturer",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"manufacturer"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/manufacturer/{id}",
 					"request": {
-						"url": "{{url_base}}/api/v1/product/manufacturer/8",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/product/manufacturer/8",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"manufacturer",
+								"8"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/product/{id}",
 					"request": {
-						"url": "{{url_base}}/api/v1/product/product/42",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/product/product/42",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"product",
+								"42"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/product/{id}/recurring_description",
 					"request": {
-						"url": "{{url_base}}/api/v1/product/product/42/recurring_description?recurring_id=1&quantity=2",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/product/product/42/recurring_description?recurring_id=1&quantity=2",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"product",
+								"42",
+								"recurring_description"
+							],
+							"query": [
+								{
+									"key": "recurring_id",
+									"value": "1"
+								},
+								{
+									"key": "quantity",
+									"value": "2"
+								}
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/special",
 					"request": {
-						"url": "{{url_base}}/api/v1/product/special",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/product/special",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"special"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/search",
 					"request": {
-						"url": "{{url_base}}/api/v1/product/search?limit=3&page=1&order=ASC&sort=price&search=Apple&description=true",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/product/search?limit=3&page=1&order=ASC&sort=price&search=Apple&description=true",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"search"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "3"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "order",
+									"value": "ASC"
+								},
+								{
+									"key": "sort",
+									"value": "price"
+								},
+								{
+									"key": "search",
+									"value": "Apple"
+								},
+								{
+									"key": "description",
+									"value": "true"
+								}
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/product/{id}/review",
 					"request": {
-						"url": "{{url_base}}/api/v1/product/product/42/review",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -2782,30 +3396,52 @@
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url_base}}/api/v1/product/product/42/review",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"product",
+								"42",
+								"review"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "/vendor",
 					"request": {
-						"url": "{{url_base}}/api/v1/product/vendor",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/product/vendor",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"vendor"
+							]
 						},
 						"description": "Request a collection of all vendors"
 					},
@@ -2814,23 +3450,33 @@
 				{
 					"name": "/vendor/{id}",
 					"request": {
-						"url": "{{url_base}}/api/v1/product/vendor/1",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/product/vendor/1",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"vendor",
+								"1"
+							]
 						},
 						"description": "Request a specific vendor"
 					},
@@ -2839,23 +3485,34 @@
 				{
 					"name": "/vendor/{id}/products",
 					"request": {
-						"url": "{{url_base}}/api/v1/product/vendor/1/products",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/product/vendor/1/products",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"vendor",
+								"1",
+								"products"
+							]
 						},
 						"description": "Request products for a vendor"
 					},
@@ -2864,18 +3521,15 @@
 				{
 					"name": "/product",
 					"request": {
-						"url": "{{url_base}}/api/v1/product/product",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer afMDvtG5Iqc8tMmGB16RedulEfxOelQkO8wQBWH3",
-								"description": ""
+								"value": "Bearer afMDvtG5Iqc8tMmGB16RedulEfxOelQkO8wQBWH3"
 							}
 						],
 						"body": {
@@ -2884,45 +3538,50 @@
 								{
 									"key": "name",
 									"value": "product name",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "description",
 									"value": "description of the product",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "price",
 									"value": "10",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "quantity",
 									"value": "20",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "meta_title",
 									"value": "product page title",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "category_ids",
 									"value": "",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "expiration_date",
 									"value": "2017-06-25 12:15:00",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
+							]
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/product/product",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"product"
 							]
 						},
 						"description": "add a new product\n\nvendor must be logged in\n\nthe new product will be owned by the logged in vendor\n\nthe id of the added product will be returned\n\nremarks about specific fields:\n\n* `category_ids`: a comma-separated list of category ids\n* `length_class_id`: integer identifying length unit  \n   (see table `oc_length_class_description`)\n* `weight_class_id`: integer identifying weight unit  \n   (see table `oc_weight_class_description`)\n* `minimum`: minimum ordering quantity\n* `status` : eventually this should be disabled for vendors, but\n   during development, set it to 1 (enabled) to override\n   admin approval step before item is shown on site.\n   By default it's set to 5 (pending approval).\n* `expiration_date` should be given in the format \"yyyy-MM-dd\" or \"yyyy-MM-dd hh:mm:ss\""
@@ -2932,18 +3591,15 @@
 				{
 					"name": "/product/{id}",
 					"request": {
-						"url": "{{url_base}}/api/v1/product/product/123",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer afMDvtG5Iqc8tMmGB16RedulEfxOelQkO8wQBWH3",
-								"description": ""
+								"value": "Bearer afMDvtG5Iqc8tMmGB16RedulEfxOelQkO8wQBWH3"
 							}
 						],
 						"body": {
@@ -2952,21 +3608,32 @@
 								{
 									"key": "category_ids",
 									"value": "62,63",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "quantity",
 									"value": "45",
 									"type": "text",
-									"enabled": false
+									"disabled": true
 								},
 								{
 									"key": "expiration_date",
 									"value": "2015-02-07 07:07:07",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
+							]
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/product/product/123",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"product",
+								"123"
 							]
 						},
 						"description": "edit product details\n\nthe product must be owned by the current logged in vendor\n\nfields for which editing is implemented:\n\n* `name`\n* `description`\n* `tag`\n* `meta_title`\n* `meta_description`\n* `meta_keyword`\n* `category_ids`: a comma-separated list of category ids. This will replace the entire previous list of category ids.\n* `price`: float\n* `quantity`: int\n* `minimum`: int\n* `model`: text\n* `stock_status_id`: should be one of the values in `oc_stock_status` table\n* `weight_class_id`: should be one of the values in `oc_weight_class` table\n* `weight`: float\n* `length_class_id`: should be one of the values in `oc_length_class` table\n* `length`: float\n* `width`: float\n* `height`: float\n* `expiration_date`: datetime in format \"yyyy-MM-dd\" or \"yyyy-MM-dd hh:mm:ss\"\n"
@@ -2976,18 +3643,15 @@
 				{
 					"name": "/product/{id}",
 					"request": {
-						"url": "{{url_base}}/api/v1/product/product/136",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer AeoafXnnKEIzMtKVzkvmmKyKK2RDjr9dcWSazRQN",
-								"description": ""
+								"value": "Bearer AeoafXnnKEIzMtKVzkvmmKyKK2RDjr9dcWSazRQN"
 							}
 						],
 						"body": {
@@ -2996,9 +3660,21 @@
 								{
 									"key": "password",
 									"value": "password",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
+							]
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/product/product/136",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"product",
+								"136"
 							]
 						},
 						"description": "delete a product\n\nThe vendor must be logged in.\n\nCurrently no check is done on whether this vendor has permission to\ndelete the product.\n\nid may be a single product id or a comma-separated list of product ids\n\nCurrently no error is returned if the product id does not exist. Success is\nalwars returned, unless the vendor is not logged in."
@@ -3008,18 +3684,15 @@
 				{
 					"name": "/product/{id}/image",
 					"request": {
-						"url": "{{url_base}}/api/v1/product/product/145/image",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx",
-								"description": ""
+								"value": "Bearer fCyjxH6JsozxyrsRugFvF2kufgosE9NOuUjmahvx"
 							}
 						],
 						"body": {
@@ -3028,21 +3701,32 @@
 								{
 									"key": "main_product_image",
 									"value": "true",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "file",
 									"value": "",
-									"type": "file",
-									"enabled": true
+									"type": "file"
 								},
 								{
 									"key": "sort_order",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
+							]
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/product/product/145/image",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"product",
+								"145",
+								"image"
 							]
 						},
 						"description": "upload an image for the specified product\n\nvendor must be logged in and own the product\n\n* `main_product_image`: true for single main image, false for one of auxiliary images\n* `sort_order` is not used for the main product image\n"
@@ -3052,23 +3736,40 @@
 				{
 					"name": "/product/{id}/image",
 					"request": {
-						"url": "{{url_base}}/api/v1/product/product/184/image?files=file1.jpg,file2.jpg",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer 6t3seoZY6peR1LG4O0W6DFnp8DmZmAu4D6Aw4Xbm",
-								"description": ""
+								"value": "Bearer 6t3seoZY6peR1LG4O0W6DFnp8DmZmAu4D6Aw4Xbm"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/product/product/184/image?files=file1.jpg,file2.jpg",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"product",
+								"184",
+								"image"
+							],
+							"query": [
+								{
+									"key": "files",
+									"value": "file1.jpg,file2.jpg"
+								}
+							]
 						},
 						"description": "delete particular images from the specified product\n\nthe image can be a main image or one of the auxiliary images\n\nvendor must be logged in and own the product\n\n* `files` parameter is a comma separated list of filenames of the images\n  to be deleted.\n  The filenames may be the -500x500.jpg version returned in product requests."
 					},
@@ -3078,28 +3779,42 @@
 		},
 		{
 			"name": "/vendor",
-			"description": "",
 			"item": [
 				{
 					"name": "/order",
 					"request": {
-						"url": "{{url_base}}/api/v1/vendor/order?filter_order_status=1,3,5,7",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer CiFbTzHBwxQWkh0d0iGdJA0MkbqPisQvTLUpuL6P",
-								"description": ""
+								"value": "Bearer CiFbTzHBwxQWkh0d0iGdJA0MkbqPisQvTLUpuL6P"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/vendor/order?filter_order_status=1,3,5,7",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vendor",
+								"order"
+							],
+							"query": [
+								{
+									"key": "filter_order_status",
+									"value": "1,3,5,7"
+								}
+							]
 						},
 						"description": "Get a list of all the open orders belonging to the current logged in vendor.\n\nParameters:\n- `filter_order_status`: a comma separated list of integers matching one or more of the `order_status_id` values as returned by the `GET /common/order_status` request. If the parameter is omitted, orders of any status will be returned."
 					},
@@ -3108,23 +3823,33 @@
 				{
 					"name": "/order/{id}",
 					"request": {
-						"url": "{{url_base}}/api/v1/vendor/order/14",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer VOQsuhxEb1gcDqCgH1CvuW9bU2eDBtz6cg76ilHx",
-								"description": ""
+								"value": "Bearer VOQsuhxEb1gcDqCgH1CvuW9bU2eDBtz6cg76ilHx"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/vendor/order/14",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vendor",
+								"order",
+								"14"
+							]
 						},
 						"description": "Get details of a specific order.\n\n - all products will be listed\n\nOnly the ordered products in the catalog of the logged-in vendor will be returned."
 					},
@@ -3133,23 +3858,33 @@
 				{
 					"name": "/order_product/{id}",
 					"request": {
-						"url": "{{url_base}}/api/v1/vendor/order_product/4",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer PJabg6b07jkU5CJtFgYiDXnyQO2G0CVSNQXAoyde",
-								"description": ""
+								"value": "Bearer PJabg6b07jkU5CJtFgYiDXnyQO2G0CVSNQXAoyde"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/vendor/order_product/4",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vendor",
+								"order_product",
+								"4"
+							]
 						},
 						"description": "Get details of a specific product in an order.\n\nThe id in the URL is the `order_product_id`, not the `order_id`.\n\nThe product details will only be returned if the ordered product is\nin the catalog of the logged-in vendor."
 					},
@@ -3158,18 +3893,15 @@
 				{
 					"name": "/order_product/{id}",
 					"request": {
-						"url": "{{url_base}}/api/v1/vendor/order_product/4",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer Il8RORNwiVCPBK7NQUTyJ0YCbaQIccuLFLVsAu2R",
-								"description": ""
+								"value": "Bearer Il8RORNwiVCPBK7NQUTyJ0YCbaQIccuLFLVsAu2R"
 							}
 						],
 						"body": {
@@ -3178,9 +3910,21 @@
 								{
 									"key": "order_status_id",
 									"value": "5",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
+							]
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/vendor/order_product/4",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vendor",
+								"order_product",
+								"4"
 							]
 						},
 						"description": "Edit details of a specific product in an order\n\nThe id in the URL is the `order_product_id`, not the `order_id`.\n\nThis is most commonly used to change the state of an ordered product.\n\nCurrently the only supported fields are:\n\n* `order_status_id` (which should be one of the statuses listedin oc_order_status)\n\nThe order entity will also be updated if it contains no other products.\n"
@@ -3190,18 +3934,15 @@
 				{
 					"name": "/register",
 					"request": {
-						"url": "{{url_base}}/api/v1/vendor/register",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer Il8RORNwiVCPBK7NQUTyJ0YCbaQIccuLFLVsAu2R",
-								"description": ""
+								"value": "Bearer Il8RORNwiVCPBK7NQUTyJ0YCbaQIccuLFLVsAu2R"
 							}
 						],
 						"body": {
@@ -3211,100 +3952,105 @@
 									"key": "username",
 									"value": "joeTheVendor",
 									"type": "text",
-									"enabled": true,
 									"warning": ""
 								},
 								{
 									"key": "password",
 									"value": "password",
 									"type": "text",
-									"enabled": true,
 									"warning": ""
 								},
 								{
 									"key": "firstname",
 									"value": "Joe",
 									"type": "text",
-									"enabled": true,
 									"warning": ""
 								},
 								{
 									"key": "lastname",
 									"value": "Bloggs",
 									"type": "text",
-									"enabled": true,
 									"warning": ""
 								},
 								{
 									"key": "email",
 									"value": "joe.bloggs@example.com",
 									"type": "text",
-									"enabled": true,
 									"warning": ""
 								},
 								{
 									"key": "agree",
 									"value": "1",
 									"type": "text",
-									"enabled": true,
 									"warning": ""
 								},
 								{
 									"key": "telephone",
 									"value": "23506021",
 									"type": "text",
-									"enabled": true,
 									"warning": ""
 								},
 								{
 									"key": "address_1",
 									"value": "1 Street",
 									"type": "text",
-									"enabled": false,
-									"warning": ""
+									"warning": "",
+									"disabled": true
 								},
 								{
 									"key": "address_2",
 									"value": null,
 									"type": "text",
-									"enabled": false,
-									"warning": ""
+									"warning": "",
+									"disabled": true
 								},
 								{
 									"key": "city",
 									"value": "London",
 									"type": "text",
-									"enabled": false,
-									"warning": ""
+									"warning": "",
+									"disabled": true
 								},
 								{
 									"key": "postcode",
 									"value": "E1",
 									"type": "text",
-									"enabled": false,
-									"warning": ""
+									"warning": "",
+									"disabled": true
 								},
 								{
 									"key": "country_id",
 									"value": "222",
 									"type": "text",
-									"enabled": false,
-									"warning": ""
+									"warning": "",
+									"disabled": true
 								},
 								{
 									"key": "zone_id",
 									"value": "23",
 									"type": "text",
-									"enabled": false,
-									"warning": ""
+									"warning": "",
+									"disabled": true
 								},
 								{
 									"key": "company",
 									"value": "JoeThe VendorLtd",
 									"type": "text",
-									"enabled": false,
-									"warning": ""
+									"warning": "",
+									"disabled": true
 								}
+							]
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/vendor/register",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vendor",
+								"register"
 							]
 						},
 						"description": "Register as a new vendor\n\nRequired fields:\n\n* `username` is required.\n* `password` is required. Password confirmation check should be done on the client side. Only this field needs to be set to the value of the password.\n* `firstname` is required.\n* `lastname` is required.\n* `email` is required.\n* `agree` should be set to 1 if the user accepts the terms and conditions, otherwise registration will fail.\n\nOptional fields:\n\n* `telephone` is optional, but recommended.\n* `company` is optional. If it isn't specified, it will be set to `'<firstname> <lastname>'`. It's used as the vendor display name.\n* `address_1` is optional.\n* `address_2` is optional.\n* `city` is optional.\n* `postcode` is optional.\n* `country_id` is optional. If specified, it should be one of the ids returned by `GET /common/country`.\n* `zone_id` is optional. If specified, it should be one of the ids returned by `GET /common/country/{id}`.\n\n"
@@ -3314,23 +4060,32 @@
 				{
 					"name": "/profile",
 					"request": {
-						"url": "{{url_base}}/api/v1/vendor/profile",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer PJabg6b07jkU5CJtFgYiDXnyQO2G0CVSNQXAoyde",
-								"description": ""
+								"value": "Bearer PJabg6b07jkU5CJtFgYiDXnyQO2G0CVSNQXAoyde"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/vendor/profile",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vendor",
+								"profile"
+							]
 						},
 						"description": "Get profile details of the currently logged in vendor."
 					},
@@ -3339,23 +4094,32 @@
 				{
 					"name": "/profile",
 					"request": {
-						"url": "{{url_base}}/api/v1/vendor/profile",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer PJabg6b07jkU5CJtFgYiDXnyQO2G0CVSNQXAoyde",
-								"description": ""
+								"value": "Bearer PJabg6b07jkU5CJtFgYiDXnyQO2G0CVSNQXAoyde"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/vendor/profile",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vendor",
+								"profile"
+							]
 						},
 						"description": "Set profile details for the currently logged in vendor."
 					},
@@ -3364,18 +4128,15 @@
 				{
 					"name": "/profile_image",
 					"request": {
-						"url": "{{url_base}}/api/v1/vendor/profile_image",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer PJabg6b07jkU5CJtFgYiDXnyQO2G0CVSNQXAoyde",
-								"description": ""
+								"value": "Bearer PJabg6b07jkU5CJtFgYiDXnyQO2G0CVSNQXAoyde"
 							}
 						],
 						"body": {
@@ -3384,30 +4145,38 @@
 								{
 									"key": "file",
 									"value": "",
-									"type": "file",
-									"enabled": true
+									"type": "file"
 								}
+							]
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/vendor/profile_image",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vendor",
+								"profile_image"
 							]
 						},
 						"description": "Upload a profile image for the currently logged in vendor."
 					},
 					"response": [
 						{
-							"id": "32d56ec6-b07a-4fa7-82f9-37e11e9c2029",
+							"id": "967a3c19-e647-489b-bf77-95fd434f1069",
 							"name": "profileImageRequestVardump",
 							"originalRequest": {
-								"url": "{{url_base}}/api/v1/vendor/profile/image",
 								"method": "POST",
 								"header": [
 									{
 										"key": "Accept",
-										"value": "application/json",
-										"description": ""
+										"value": "application/json"
 									},
 									{
 										"key": "Authorization",
-										"value": "Bearer PJabg6b07jkU5CJtFgYiDXnyQO2G0CVSNQXAoyde",
-										"description": ""
+										"value": "Bearer PJabg6b07jkU5CJtFgYiDXnyQO2G0CVSNQXAoyde"
 									}
 								],
 								"body": {
@@ -3416,9 +4185,21 @@
 										{
 											"key": "file",
 											"value": "",
-											"type": "file",
-											"enabled": true
+											"type": "file"
 										}
+									]
+								},
+								"url": {
+									"raw": "{{url_base}}/api/v1/vendor/profile/image",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"vendor",
+										"profile",
+										"image"
 									]
 								}
 							},
@@ -3485,23 +4266,32 @@
 				{
 					"name": "/profile_image",
 					"request": {
-						"url": "{{url_base}}/api/v1/vendor/profile_image",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer PJabg6b07jkU5CJtFgYiDXnyQO2G0CVSNQXAoyde",
-								"description": ""
+								"value": "Bearer PJabg6b07jkU5CJtFgYiDXnyQO2G0CVSNQXAoyde"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/vendor/profile_image",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vendor",
+								"profile_image"
+							]
 						},
 						"description": "Delete the profile image for the currently logged in vendor."
 					},
@@ -3510,23 +4300,32 @@
 				{
 					"name": "/products",
 					"request": {
-						"url": "{{url_base}}/api/v1/vendor/products",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer CiFbTzHBwxQWkh0d0iGdJA0MkbqPisQvTLUpuL6P",
-								"description": ""
+								"value": "Bearer CiFbTzHBwxQWkh0d0iGdJA0MkbqPisQvTLUpuL6P"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_base}}/api/v1/vendor/products",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vendor",
+								"products"
+							]
 						},
 						"description": "Get a list of all the products belonging to the current logged in vendor."
 					},

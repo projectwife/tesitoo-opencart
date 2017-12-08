@@ -91,6 +91,7 @@ class ControllerCommonMenu extends Controller {
 		$data['text_voucher_theme'] = $this->language->get('text_voucher_theme');
 		$data['text_weight_class'] = $this->language->get('text_weight_class');
 		$data['text_length_class'] = $this->language->get('text_length_class');
+		$data['text_unit_class'] = $this->language->get('text_unit_class');
 		$data['text_zone'] = $this->language->get('text_zone');
 		$data['text_recurring'] = $this->language->get('text_recurring');
 		$data['text_order_recurring'] = $this->language->get('text_order_recurring');
@@ -179,6 +180,7 @@ class ControllerCommonMenu extends Controller {
 		$data['voucher_theme'] = $this->url->link('sale/voucher_theme', 'token=' . $this->session->data['token'], 'SSL');
 		$data['weight_class'] = $this->url->link('localisation/weight_class', 'token=' . $this->session->data['token'], 'SSL');
 		$data['length_class'] = $this->url->link('localisation/length_class', 'token=' . $this->session->data['token'], 'SSL');
+		$data['unit_class'] = $this->url->link('localisation/unit_class', 'token=' . $this->session->data['token'], 'SSL');
 		$data['zone'] = $this->url->link('localisation/zone', 'token=' . $this->session->data['token'], 'SSL');
 		$data['recurring'] = $this->url->link('catalog/recurring', 'token=' . $this->session->data['token'], 'SSL');
 		$data['order_recurring'] = $this->url->link('sale/recurring', 'token=' . $this->session->data['token'], 'SSL');
