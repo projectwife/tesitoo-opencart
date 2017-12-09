@@ -68,7 +68,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 	}
 
 	//override to allow retrieval of pending products
-    public function get($id = NULL) {
+  public function get($id = NULL) {
 		$this->request->get['product_id'] = (int)$id;
 		$this->request->get['include_pending'] = 1;
 
@@ -437,8 +437,6 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		}
 	}
 
-	//ADDED: tesitoo - david - 2015-08-25 - override to add vendor id & name
-	//ADDED: tesitoo - david - 2016-10-13 - add quantity and status
 	protected function getProduct($id, $data) {
 
 		$product = array();
@@ -477,6 +475,8 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$product['categories'] = $data['categories'];
 		$product['date_added'] = $data['date_added'];
 		$product['expiration_date'] = $data['expiration_date'];
+		$product['unit_class_id'] = $data['unit_class_id'];
+		$product['custom_unit'] = $data['custom_unit'];
 
 		return $this->processProduct($product);
 	}
@@ -570,6 +570,3 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 }
 
 ?>
-
-
-

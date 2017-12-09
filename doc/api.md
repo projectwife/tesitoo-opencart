@@ -10,45 +10,46 @@ Most of them require authentication first. See [the Tesitoo OpenCart API instruc
 
 #### admin ####
 
-* [POST admin/login](post_admin_login.md)
-* [POST admin/logout](post_admin_logout.md)
-* [POST admin/password](post_admin_password.md)
-* [POST admin/forgot_password](post_admin_forgot_password.md)
-* [POST admin/login_by_code](post_admin_login_by_code.md)
+* [POST /admin/login](post_admin_login.md)
+* [POST /admin/logout](post_admin_logout.md)
+* [POST /admin/password](post_admin_password.md)
+* [POST /admin/forgot_password](post_admin_forgot_password.md)
+* [POST /admin/login_by_code](post_admin_login_by_code.md)
 
 #### common ####
 
-* [GET common/weight](get_common_weight.md)
-* [GET common/length](get_common_length.md)
-* [GET common/order_status](get_order_status.md)
-* [GET common/country](get_common_country.md)
-* [GET common/country/{id}](get_common_country_id.md)
-* [GET common/vendor_terms](get_common_vendor_terms.md)
+* [GET /common/weight](get_common_weight.md)
+* [GET /common/length](get_common_length.md)
+* [GET /common/units](get_common_units.md)
+* [GET /common/order_status](get_order_status.md)
+* [GET /common/country](get_common_country.md)
+* [GET /common/country/{id}](get_common_country_id.md)
+* [GET /common/vendor_terms](get_common_vendor_terms.md)
 
 #### notification ####
 
-* [POST notification/device](post_notification_device.md)
+* [POST /notification/device](post_notification_device.md)
 
 #### product ####
 
-* [GET product/vendor](get_product_vendor.md)
-* [GET product/vendor/{id}](get_product_vendor_id.md  )
-* [GET product/vendor/{id}/products](get_product_vendor_products.md)
-* [POST product/product](post_product_product.md)
-* [POST product/product/{id}](post_product_product_id.md)
-* [DEL product/product/{id}](del_product_product_id.md)
-* [POST product/product/{id}/image](post_product_product_image.md)
-* [DEL product/product/{id}/image?files={files}](del_product_product_image.md)
+* [GET /product/vendor](get_product_vendor.md)
+* [GET /product/vendor/{id}](get_product_vendor_id.md  )
+* [GET /product/vendor/{id}/products](get_product_vendor_products.md)
+* [POST /product/product](post_product_product.md)
+* [POST /product/product/{id}](post_product_product_id.md)
+* [DEL /product/product/{id}](del_product_product_id.md)
+* [POST /product/product/{id}/image](post_product_product_image.md)
+* [DEL /product/product/{id}/image?files={files}](del_product_product_image.md)
 
 ### vendor ####
 
-* [GET vendor/order](get_vendor_order.md)
-* [GET vendor/order/{id}](get_vendor_order_id.md)
-* [GET vendor/order_product/{id}](get_vendor_order_product_id.md)
-* [POST vendor/order_product/{id}](post_vendor_order_product_id.md)
-* [POST vendor/register](post_vendor_register.md)
-* [GET vendor/profile](get_vendor_profile.md)
-* [POST vendor/profile](post_vendor_profile.md)
-* [POST vendor/profile_image](post_vendor_profile_image.md)
-* [DEL vendor/profile_image](del_vendor_profile_image.md)
-* [GET vendor/products](get_vendor_products.md)
+* [GET /vendor/order](get_vendor_order.md)
+* [GET /vendor/order/{id}](get_vendor_order_id.md)
+* [GET /vendor/order_product/{id}](get_vendor_order_product_id.md)
+* [POST /vendor/order_product/{id}](post_vendor_order_product_id.md)
+* [POST /vendor/register](post_vendor_register.md)
+* [GET /vendor/profile](get_vendor_profile.md)
+* [POST /vendor/profile](post_vendor_profile.md)
+* [POST /vendor/profile_image](post_vendor_profile_image.md)
+* [DEL /vendor/profile_image](del_vendor_profile_image.md)
+* [GET /vendor/products](get_vendor_products.md)
