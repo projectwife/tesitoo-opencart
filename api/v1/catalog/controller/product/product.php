@@ -125,6 +125,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		$this->request->post['product_description'][1]['name'] = $this->request->post['name'];
 		$this->request->post['product_description'][1]['description'] = $this->request->post['description'];
 		$this->request->post['product_description'][1]['meta_title'] = $this->request->post['meta_title'];
+		$this->request->post['product_description'][1]['custom_unit'] = $this->request->post['custom_unit'];
 		$this->request->post['price'] = (string)$this->request->post['price'];
 		$this->request->post['quantity'] = (int)$this->request->post['quantity'];
 
@@ -136,19 +137,19 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		}
 
 		if ('' === $this->request->post['shipping']) {
-            $this->request->post['shipping'] = '1';
-        }
+      $this->request->post['shipping'] = '1';
+    }
 
-        $this->request->post['expiration_date'] = $this->convertDateToMySQLDateTime($this->request->post['expiration_date']);
+    $this->request->post['expiration_date'] = $this->convertDateToMySQLDateTime($this->request->post['expiration_date']);
 
 		$data = parent::getInternalRouteData('product/product/addNew', true);
 
 		ApiException::evaluateErrors($data);
 
-        if ($this->config->get('mvd_product_notification')) {
-				$this->add_edit_notification(true, $this->request->post['name']);
-				$this->add_edit_vendor_notification(true, $this->request->post['name']);
-        }
+    if ($this->config->get('mvd_product_notification')) {
+			$this->add_edit_notification(true, $this->request->post['name']);
+			$this->add_edit_vendor_notification(true, $this->request->post['name']);
+    }
 
 		$json['product_id'] = $data['product_id'];
 
@@ -210,10 +211,12 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		if (isset($this->request->post['height'])) {
 			$product['height'] = (float)$this->request->post['height'];
 		}
-
-        if (isset($this->request->post['expiration_date'])) {
-            $product['expiration_date'] = $this->convertDateToMySQLDateTime($this->request->post['expiration_date']);
-        }
+    if (isset($this->request->post['expiration_date'])) {
+      $product['expiration_date'] = $this->convertDateToMySQLDateTime($this->request->post['expiration_date']);
+    }
+		if (isset($this->request->post['unit_class_id'])) {
+			$product['unit_class_id'] = (int)$this->request->post['unit_class_id'];
+		}
 
 		//save product
 		$this->model_catalog_vdi_product->editProductCoreDetails((int)$id, $product);
@@ -239,6 +242,9 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		}
 		if (isset($this->request->post['tag'])) {
 			$description['tag'] = $this->request->post['tag'];
+		}
+		if (isset($this->request->post['custom_unit'])) {
+			$description['custom_unit'] = (string)$this->request->post['custom_unit'];
 		}
 		if (isset($this->request->post['meta_description'])) {
 			$description['meta_description'] = $this->request->post['meta_description'];
