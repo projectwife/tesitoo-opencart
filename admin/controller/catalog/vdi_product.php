@@ -20,6 +20,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		$this->load->model('catalog/vdi_product');
 		if (!$this->OverMaxLimit()) {
 			if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+				$this->setRemovedFieldDefaults();
 				$this->model_catalog_vdi_product->addProduct($this->request->post);
 
 				$this->session->data['success'] = $this->language->get('text_success');
@@ -83,6 +84,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		$this->load->model('catalog/vdi_product');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm() && $this->validateUpdate()) {
+			$this->setRemovedFieldDefaults();
 			$this->model_catalog_vdi_product->editProduct($this->request->get['product_id'], $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -1763,6 +1765,63 @@ class ControllerCatalogVDIProduct extends Controller {
 		}
 
 		return !$this->error;
+	}
+
+	protected function setRemovedFieldDefaults() {
+		if (!isset($this->request->post['model'])) {
+			$this->request->post['model'] = "";
+		}
+		if (!isset($this->request->post['sku'])) {
+			$this->request->post['sku'] = "";
+		}
+		if (!isset($this->request->post['upc'])) {
+			$this->request->post['upc'] = "";
+		}
+		if (!isset($this->request->post['ean'])) {
+			$this->request->post['ean'] = "";
+		}
+		if (!isset($this->request->post['jan'])) {
+			$this->request->post['jan'] = "";
+		}
+		if (!isset($this->request->post['isbn'])) {
+			$this->request->post['isbn'] = "";
+		}
+		if (!isset($this->request->post['mpn'])) {
+			$this->request->post['mpn'] = "";
+		}
+		if (!isset($this->request->post['subtract'])) {
+			$this->request->post['subtract'] = "";
+		}
+		if (!isset($this->request->post['stock_status_id'])) {
+			$this->request->post['stock_status_id'] = "";
+		}
+		if (!isset($this->request->post['date_available'])) {
+			$this->request->post['date_available'] = "";
+		}
+		if (!isset($this->request->post['manufacturer_id'])) {
+			$this->request->post['manufacturer_id'] = "";
+		}
+		if (!isset($this->request->post['tax_class_id'])) {
+			$this->request->post['tax_class_id'] = "";
+		}
+		if (!isset($this->request->post['sort_order'])) {
+			$this->request->post['sort_order'] = "";
+		}
+		if (!isset($this->request->post['product_description'][1]['tag'])) {
+			$this->request->post['product_description'][1]['tag'] = "";
+		}
+		if (!isset($this->request->post['product_description'][1]['meta_title'])) {
+			$this->request->post['product_description'][1]['meta_title'] = "";
+		}
+		if (!isset($this->request->post['product_description'][1]['meta_description'])) {
+			$this->request->post['product_description'][1]['meta_description'] = "";
+		}
+		if (!isset($this->request->post['product_description'][1]['meta_keyword'])) {
+			$this->request->post['product_description'][1]['meta_keyword'] = "";
+		}
+		if (!isset($this->request->post['keyword'])) {
+			$this->request->post['keyword'] = "";
+		}
 	}
 
 	protected function validateDelete() {
