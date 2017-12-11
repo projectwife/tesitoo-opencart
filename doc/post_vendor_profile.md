@@ -1,4 +1,4 @@
-### POST profile ###
+### POST /vendor/profile ###
 
 **Method** `POST /api/v1/vendor/profile`
 

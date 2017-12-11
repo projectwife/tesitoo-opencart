@@ -1,4 +1,4 @@
-### POST login_by_code ###
+### POST /admin/login_by_code ###
 
 **Method** `POST /api/v1/admin/login_by_code`
 

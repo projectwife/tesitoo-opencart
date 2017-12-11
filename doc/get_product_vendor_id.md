@@ -1,4 +1,4 @@
-### GET vendor/{id} ###
+### GET /product/vendor/{id} ###
 
 **Method** `GET /api/v1/product/vendor/{id}`
 

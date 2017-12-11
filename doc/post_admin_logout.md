@@ -1,4 +1,4 @@
-### POST logout ###
+### POST /admin/logout ###
 
 **Method** `POST /api/v1/admin/logout`
 

@@ -1,4 +1,4 @@
-### POST product ###
+### POST /product/product ###
 
 **Method** `POST /api/v1/product/product`
 

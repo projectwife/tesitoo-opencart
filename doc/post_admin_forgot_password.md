@@ -1,4 +1,4 @@
-### POST forgot_password ###
+### POST /admin/forgot_password ###
 
 **Method** `POST /api/v1/admin/forgot_password`
 

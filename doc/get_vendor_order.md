@@ -1,4 +1,4 @@
-### GET order ###
+### GET /vendor/order ###
 
 **Method** `GET /api/v1/vendor/order`
 

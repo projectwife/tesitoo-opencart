@@ -1,4 +1,4 @@
-### POST register ###
+### POST /vendor/register ###
 
 **Method** `POST /api/v1/vendor/register`
 

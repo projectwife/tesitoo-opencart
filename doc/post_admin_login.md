@@ -1,4 +1,4 @@
-### POST login ###
+### POST /admin/login ###
 
 **Method** `POST /api/v1/admin/login`
 

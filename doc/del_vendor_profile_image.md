@@ -1,4 +1,4 @@
-### DEL profile_image ###
+### DEL /vendor/profile_image ###
 
 **Method** `DEL /api/v1/vendor/profile_image`
 

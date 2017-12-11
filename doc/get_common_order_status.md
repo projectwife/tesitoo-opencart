@@ -1,4 +1,4 @@
-### GET order_status ###
+### GET /common/order_status ###
 
 **Method** `GET /api/v1/common/order_status`
 
