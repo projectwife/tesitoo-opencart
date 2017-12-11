@@ -158,10 +158,10 @@ class ControllerProductProductTesitooApi extends Controller {
 
 		$include_pending = false;
 		if (isset($this->request->get['include_pending']) && $this->request->get['include_pending'] != 0) {
-            $include_pending = true;
-        }
+      $include_pending = true;
+    }
 
-        $product_info = $this->model_catalog_product->getProduct($product_id, $include_pending);
+    $product_info = $this->model_catalog_product->getProduct($product_id, $include_pending);
 
 		if ($product_info) {
 			$url = '';
@@ -284,6 +284,9 @@ class ControllerProductProductTesitooApi extends Controller {
 			$data['date_added'] = $product_info['date_added'];
 
 			$data['expiration_date'] = $product_info['expiration_date'];
+
+			$data['unit_class_id'] = $product_info['unit_class_id'];
+			$data['custom_unit'] = $product_info['custom_unit'];
 
 			if ($product_info['quantity'] <= 0) {
 				$data['stock'] = $product_info['stock_status'];

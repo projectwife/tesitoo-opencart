@@ -44,8 +44,8 @@ $_['entry_shipping_rate']     				= 'Shipping Rate';
 $_['tab_vendor']           	 	 			= 'Vendor';
 $_['tab_shipping']           	 	 		= 'Shipping';
 $_['button_add_shipping']           	 	= 'Add Shipping';
-$_['heading_pro2ven_title']  	 			= 'Products By Vendor'; 
-$_['txt_pending_approval']  	 			= 'Pending Approval'; 
+$_['heading_pro2ven_title']  	 			= 'Products By Vendor';
+$_['txt_pending_approval']  	 			= 'Pending Approval';
 $_['error_max_warning']          			= 'Warning: You have reach the maximum products!';
 $_['help_vendor_country_origin']			= 'Item shipped from origin country';
 $_['help_vendor_shipping_method']      		= 'Shipping method included by drop shipper';
@@ -113,11 +113,13 @@ $_['entry_category']         = 'Categories';
 $_['entry_filter']           = 'Filters';
 $_['entry_download']         = 'Downloads';
 $_['entry_related']          = 'Related Products';
-$_['entry_tag']          	 = 'Product Tags';
+$_['entry_tag']          	   = 'Product Tags';
 $_['entry_reward']           = 'Reward Points';
 $_['entry_layout']           = 'Layout Override';
 $_['entry_recurring']        = 'Recurring Profile';
 $_['entry_expiration_date']  = 'Expiration Date';
+$_['entry_unit_class']       = 'Unit';
+$_['entry_custom_unit']      = 'Custom Unit';
 
 // Help
 $_['help_keyword']           = 'Do not use spaces, instead replace spaces with - and make sure the keyword is globally unique.';

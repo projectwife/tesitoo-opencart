@@ -20,6 +20,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		$this->load->model('catalog/vdi_product');
 		if (!$this->OverMaxLimit()) {
 			if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+				$this->setRemovedFieldDefaults();
 				$this->model_catalog_vdi_product->addProduct($this->request->post);
 
 				$this->session->data['success'] = $this->language->get('text_success');
@@ -33,7 +34,7 @@ class ControllerCatalogVDIProduct extends Controller {
 				if (isset($this->request->get['filter_model'])) {
 					$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
 				}
-				
+
 				if (isset($this->request->get['filter_sku'])) {
 					$url .= '&filter_sku=' . urlencode(html_entity_decode($this->request->get['filter_sku'], ENT_QUOTES, 'UTF-8'));
 				}
@@ -81,8 +82,9 @@ class ControllerCatalogVDIProduct extends Controller {
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('catalog/vdi_product');
-		
+
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm() && $this->validateUpdate()) {
+			$this->setRemovedFieldDefaults();
 			$this->model_catalog_vdi_product->editProduct($this->request->get['product_id'], $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -96,7 +98,7 @@ class ControllerCatalogVDIProduct extends Controller {
 			if (isset($this->request->get['filter_model'])) {
 				$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
 			}
-			
+
 			if (isset($this->request->get['filter_sku'])) {
 				$url .= '&filter_sku=' . urlencode(html_entity_decode($this->request->get['filter_sku'], ENT_QUOTES, 'UTF-8'));
 			}
@@ -124,12 +126,12 @@ class ControllerCatalogVDIProduct extends Controller {
 			if (isset($this->request->get['page'])) {
 				$url .= '&page=' . $this->request->get['page'];
 			}
-			
+
 			if ($this->config->get('mvd_product_notification')) {
                 $this->add_edit_notification(false,
                     $this->request->post['product_description'][1]['name']);
 			}
-			
+
 			$this->response->redirect($this->url->link('catalog/vdi_product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
 		}
 
@@ -159,7 +161,7 @@ class ControllerCatalogVDIProduct extends Controller {
 			if (isset($this->request->get['filter_model'])) {
 				$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
 			}
-			
+
 			if (isset($this->request->get['filter_sku'])) {
 				$url .= '&filter_sku=' . urlencode(html_entity_decode($this->request->get['filter_sku'], ENT_QUOTES, 'UTF-8'));
 			}
@@ -217,7 +219,7 @@ class ControllerCatalogVDIProduct extends Controller {
 			if (isset($this->request->get['filter_model'])) {
 				$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
 			}
-			
+
 			if (isset($this->request->get['filter_sku'])) {
 				$url .= '&filter_sku=' . urlencode(html_entity_decode($this->request->get['filter_sku'], ENT_QUOTES, 'UTF-8'));
 			}
@@ -264,13 +266,13 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
 			$filter_model = null;
 		}
-		
+
 		if (isset($this->request->get['filter_sku'])) {
 			$filter_sku = $this->request->get['filter_sku'];
 		} else {
 			$filter_sku = null;
 		}
-		
+
 		if (isset($this->request->get['filter_vendor'])) {
 			$filter_vendor = $this->request->get['filter_vendor'];
 		} else {
@@ -294,13 +296,13 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
 			$filter_status = null;
 		}
-		
+
 		if (isset($this->request->get['filter_vendor'])) {
 			$filter_vendor = $this->request->get['filter_vendor'];
 		} else {
 			$filter_vendor = NULL;
 		}
-		
+
 		if (isset($this->request->get['filter_sku'])) {
 			$filter_sku = $this->request->get['filter_sku'];
 		} else {
@@ -334,11 +336,11 @@ class ControllerCatalogVDIProduct extends Controller {
 		if (isset($this->request->get['filter_model'])) {
 			$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
 		}
-		
+
 		if (isset($this->request->get['filter_sku'])) {
 			$url .= '&filter_sku=' . urlencode(html_entity_decode($this->request->get['filter_sku'], ENT_QUOTES, 'UTF-8'));
 		}
-		
+
 		if (isset($this->request->get['filter_vendor'])) {
 			$url .= '&filter_vendor=' . urlencode(html_entity_decode($this->request->get['filter_vendor'], ENT_QUOTES, 'UTF-8'));
 		}
@@ -424,7 +426,7 @@ class ControllerCatalogVDIProduct extends Controller {
 					break;
 				}
 			}
-			
+
 			if ($result['status'] == 5) {
 				$status = $this->language->get('txt_pending_approval');
 			} elseif ($result['status']) {
@@ -448,7 +450,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		}
 
 		$data['heading_title'] = $this->language->get('heading_title');
-		
+
 		$data['text_list'] = $this->language->get('text_list');
 		$data['text_enabled'] = $this->language->get('text_enabled');
 		$data['text_disabled'] = $this->language->get('text_disabled');
@@ -504,7 +506,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		if (isset($this->request->get['filter_name'])) {
 			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 		}
-		
+
 		if (isset($this->request->get['filter_sku'])) {
 			$url .= '&filter_sku=' . urlencode(html_entity_decode($this->request->get['filter_sku'], ENT_QUOTES, 'UTF-8'));
 		}
@@ -552,7 +554,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		if (isset($this->request->get['filter_model'])) {
 			$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
 		}
-		
+
 		if (isset($this->request->get['filter_sku'])) {
 			$url .= '&filter_sku=' . urlencode(html_entity_decode($this->request->get['filter_sku'], ENT_QUOTES, 'UTF-8'));
 		}
@@ -606,7 +608,7 @@ class ControllerCatalogVDIProduct extends Controller {
 
 	protected function getForm() {
 		$data['heading_title'] = $this->language->get('heading_title');
-		
+
 		$data['text_form'] = !isset($this->request->get['product_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 		$data['text_enabled'] = $this->language->get('text_enabled');
 		$data['text_disabled'] = $this->language->get('text_disabled');
@@ -642,6 +644,8 @@ class ControllerCatalogVDIProduct extends Controller {
 		$data['entry_shipping'] = $this->language->get('entry_shipping');
 		$data['entry_date_available'] = $this->language->get('entry_date_available');
 		$data['entry_expiration_date'] = $this->language->get('entry_expiration_date');
+		$data['entry_unit_class'] = $this->language->get('entry_unit_class');
+		$data['entry_custom_unit'] = $this->language->get('entry_custom_unit');
 		$data['entry_quantity'] = $this->language->get('entry_quantity');
 		$data['entry_stock_status'] = $this->language->get('entry_stock_status');
 		$data['entry_price'] = $this->language->get('entry_price');
@@ -695,7 +699,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		$data['help_download'] = $this->language->get('help_download');
 		$data['help_related'] = $this->language->get('help_related');
 		$data['help_tag'] = $this->language->get('help_tag');
-		
+
 		//mvds
 		$data['entry_vendor_country_origin'] = $this->language->get('entry_vendor_country_origin');
 		$data['entry_vendor_product_cost'] = $this->language->get('entry_vendor_product_cost');
@@ -720,12 +724,12 @@ class ControllerCatalogVDIProduct extends Controller {
 		$data['tab_vendor'] = $this->language->get('tab_vendor');
 		$data['tab_shipping'] = $this->language->get('tab_shipping');
 		$data['txt_pending_approval'] = $this->language->get('txt_pending_approval');
-			
+
 		$data['entry_shipping_courier'] = $this->language->get('entry_shipping_courier');
 		$data['entry_shipping_cost'] = $this->language->get('entry_shipping_cost');
 		$data['entry_shipping_geozone'] = $this->language->get('entry_shipping_geozone');
 		$data['button_add_shipping'] = $this->language->get('button_add_shipping');
-		
+
 		$data['help_vendor_country_origin'] = $this->language->get('help_vendor_country_origin');
 		$data['help_vendor_shipping_method'] = $this->language->get('help_vendor_shipping_method');
 		$data['help_vendor_preferred_shipping_method'] = $this->language->get('help_vendor_preferred_shipping_method');
@@ -785,7 +789,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
 			$data['error_date_available'] = '';
 		}
-		
+
 		if (isset($this->error['keyword'])) {
 			$data['error_keyword'] = $this->error['keyword'];
 		} else {
@@ -837,13 +841,13 @@ class ControllerCatalogVDIProduct extends Controller {
 			'text' => $this->language->get('heading_title'),
 			'href' => $this->url->link('catalog/vdi_product', 'token=' . $this->session->data['token'] . $url, 'SSL')
 		);
-		
+
 		if ($this->user->getCP()) {
 			$data['category_access'] = unserialize($this->user->getCP());
 		} else {
 			$data['category_access'] = '0';
 		}
-			
+
 		if ($this->user->getSP()) {
 			$data['store_permission'] = unserialize($this->user->getSP());
 		} else {
@@ -861,25 +865,25 @@ class ControllerCatalogVDIProduct extends Controller {
 		if (isset($this->request->get['product_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$product_info = $this->model_catalog_vdi_product->getProduct($this->request->get['product_id']);
 		}
-		
+
 		if ($this->config->get('mvd_vendor_tab')) {
 			$data['mvd_vendor_tab'] = true;
 		} else {
 			$data['mvd_vendor_tab'] = false;
 		}
-		
+
 		if ($this->config->get('mvd_reward_points')) {
 			$data['mvd_reward_points'] = true;
 		} else {
 			$data['mvd_reward_points'] = false;
 		}
-		
+
 		if ($this->config->get('mvd_design_tab')) {
 			$data['mvd_design_tab'] = true;
 		} else {
 			$data['mvd_design_tab'] = false;
 		}
-		
+
 		if ($this->config->get('mvd_product_approval')) {
 			$data['mvd_product_approval'] = true;
 		} else {
@@ -899,13 +903,13 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
 			$data['product_description'] = array();
 		}
-		
+
 		if (isset($this->request->get['product_id'])) {
 			foreach ($this->model_catalog_vdi_product->getProductDescriptions($this->request->get['product_id']) as $pdname) {
 				$product_name = $pdname['name'];
 			}
 		}
-		
+
 		if (isset($this->request->post['product_name'])) {
       		$data['product_name'] = $this->request->post['product_name'];
     	} elseif (!empty($product_name)) {
@@ -933,7 +937,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		}
 
 		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
-		
+
 		if (isset($this->request->post['model'])) {
 			$data['model'] = $this->request->post['model'];
 		} elseif (!empty($product_info)) {
@@ -997,13 +1001,13 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
 			$data['location'] = '';
 		}
-		
+
 		if (isset($this->request->get['product_id'])) {
 			foreach ($this->model_catalog_vdi_product->getProductDescriptions($this->request->get['product_id']) as $pdname) {
 				$product_name = $pdname['name'];
 			}
 		}
-			
+
 		if (isset($this->request->post['product_name'])) {
 			$data['product_name'] = $this->request->post['product_name'];
 		} elseif (!empty($product_name)) {
@@ -1011,9 +1015,9 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
 			$data['product_name'] = '';
 		}
-		
-		$data['countries'] = $this->model_catalog_vdi_product->getCountry();	
-		
+
+		$data['countries'] = $this->model_catalog_vdi_product->getCountry();
+
 		if (isset($this->request->post['ori_country'])) {
       		$data['ori_country'] = $this->request->post['ori_country'];
     	} else if (isset($product_info)) {
@@ -1021,7 +1025,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['ori_country'] = '';
     	}
-		
+
 		if (isset($this->request->post['product_cost'])) {
       		$data['product_cost'] = $this->request->post['product_cost'];
     	} else if (isset($product_info)) {
@@ -1029,8 +1033,8 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['product_cost'] = '';
     	}
-		
-		$data['couriers'] = $this->model_catalog_vdi_product->getCourier();	
+
+		$data['couriers'] = $this->model_catalog_vdi_product->getCourier();
 		if (isset($this->request->post['shipping_method'])) {
       		$data['shipping_method'] = $this->request->post['shipping_method'];
     	} else if (isset($product_info)) {
@@ -1038,7 +1042,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['shipping_method'] = '0';
     	}
-		
+
 		if (isset($this->request->post['preferred_shipping'])) {
       		$data['preferred_shipping'] = $this->request->post['preferred_shipping'];
     	} else if (isset($product_info)) {
@@ -1046,7 +1050,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['preferred_shipping'] = '0';
     	}
-		
+
 		if (isset($this->request->post['shipping_cost'])) {
       		$data['shipping_cost'] = $this->request->post['shipping_cost'];
     	} else if (isset($product_info)) {
@@ -1054,7 +1058,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['shipping_cost'] = '';
     	}
-		
+
 		if (isset($this->request->post['vtotal'])) {
       		$data['vtotal'] = $this->request->post['vtotal'];
     	} else if (isset($product_info)) {
@@ -1062,7 +1066,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['vtotal'] = '';
     	}
-		
+
 		if (isset($this->request->post['product_url'])) {
       		$data['product_url'] = $this->request->post['product_url'];
     	} else if (isset($product_info)) {
@@ -1070,9 +1074,9 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['product_url'] = '';
     	}
-		
+
 		$data['vendors'] = $this->model_catalog_vdi_product->getVendors();
-		
+
     	if (isset($this->request->post['vendor'])) {
       		$data['vendor'] = $this->request->post['vendor'];
 		} elseif (isset($product_info)) {
@@ -1080,7 +1084,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['vendor'] = 0;
     	}
-				
+
 		if (isset($this->request->post['wholesale'])) {
       		$data['wholesale'] = $this->request->post['wholesale'];
     	} else if (isset($product_info)) {
@@ -1088,7 +1092,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['wholesale'] = '';
     	}
-		
+
 		if (isset($this->request->post['company'])) {
       		$data['company'] = $this->request->post['company'];
     	} else if (isset($product_info)) {
@@ -1096,7 +1100,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['company'] = '';
     	}
-		
+
 		if (isset($this->request->post['vname'])) {
       		$data['vname'] = $this->request->post['vname'];
     	} else if (isset($product_info)) {
@@ -1104,7 +1108,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['vname'] = '';
     	}
-		
+
 		if (isset($this->request->post['telephone'])) {
       		$data['telephone'] = $this->request->post['telephone'];
     	} else if (isset($product_info)) {
@@ -1112,7 +1116,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['telephone'] = '';
     	}
-		
+
 		if (isset($this->request->post['fax'])) {
       		$data['fax'] = $this->request->post['fax'];
     	} else if (isset($product_info)) {
@@ -1120,7 +1124,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['fax'] = '';
     	}
-		
+
 		if (isset($this->request->post['email'])) {
       		$data['email'] = $this->request->post['email'];
     	} else if (isset($product_info)) {
@@ -1128,7 +1132,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['email'] = '';
     	}
-		
+
 		if (isset($this->request->post['paypal_email'])) {
       		$data['paypal_email'] = $this->request->post['paypal_email'];
     	} else if (isset($product_info)) {
@@ -1136,7 +1140,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['paypal_email'] = '';
     	}
-		
+
 		if (isset($this->request->post['vendor_description'])) {
       		$data['vendor_description'] = $this->request->post['vendor_description'];
     	} else if (isset($product_info)) {
@@ -1144,7 +1148,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['vendor_description'] = '';
     	}
-		
+
 		if (isset($this->request->post['vendor_address'])) {
       		$data['vendor_address'] = $this->request->post['vendor_address'];
     	} else if (isset($product_info)) {
@@ -1152,7 +1156,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['vendor_address'] = '';
     	}
-		
+
 		if (isset($this->request->post['vendor_country_zone'])) {
       		$data['vendor_country_zone'] = $this->request->post['vendor_country_zone'];
     	} else if (isset($product_info)) {
@@ -1164,7 +1168,7 @@ class ControllerCatalogVDIProduct extends Controller {
 				} else {
 					$vendor_zone =  $this->language->get('text_none');
 				}
-				
+
 				$this->load->model('localisation/country');
 				$country = $this->model_localisation_country->getCountry((int)$product_info['country_id']);
 				$vendor_country = ', ' . $country['name'];
@@ -1176,7 +1180,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['vendor_country_zone'] = '';
     	}
-		
+
 		if (isset($this->request->post['store_url'])) {
       		$data['store_url'] = $this->request->post['store_url'];
     	} else if (isset($product_info)) {
@@ -1184,10 +1188,10 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
       		$data['store_url'] = '';
     	}
-		
+
 		$this->load->model('localisation/geo_zone');
 		$data['geo_zones'] = $this->model_localisation_geo_zone->getGeoZones();
-			
+
 		if (isset($this->request->post['product_shipping'])) {
 			$data['product_shippings'] = $this->request->post['product_shipping'];
 		} elseif (isset($this->request->get['product_id'])) {
@@ -1195,16 +1199,16 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
 			$data['product_shippings'] = array();
 		}
-						
+
 		$this->load->model('catalog/vendor');
 		$vendor_info = $this->model_catalog_vendor->getVendorProfile($this->user->getId());
-	
+
 		if (isset($vendor_info['vendor_id'])) {
 			$data['default_vendor'] = $vendor_info['vendor_id'];
 		} else {
 			$data['default_vendor'] = '';
 		}
-		
+
 		if (isset($vendor_info['country_id'])) {
 			$data['default_country'] = $vendor_info['country_id'];
 		} else {
@@ -1291,6 +1295,26 @@ class ControllerCatalogVDIProduct extends Controller {
 			}
 		} else {
 			$data['expiration_date'] = date('Y-m-d');
+		}
+
+		$this->load->model('localisation/unit_class');
+
+		$data['unit_classes'] = $this->model_localisation_unit_class->getUnitClasses();
+
+		if (isset($this->request->post['unit_class_id'])) {
+			$data['unit_class_id'] = $this->request->post['unit_class_id'];
+		} elseif (!empty($product_info)) {
+			$data['unit_class_id'] = $product_info['unit_class_id'];
+		} else {
+			$data['unit_class_id'] = 0;
+		}
+
+		if (isset($this->request->post['custom_unit'])) {
+			$data['custom_unit'] = $this->request->post['custom_unit'];
+		} elseif (!empty($product_info)) {
+			$data['custom_unit'] = $this->model_catalog_vdi_product->getProductDescriptions($this->request->get['product_id']);
+		} else {
+			$data['custom_unit'] = '';
 		}
 
 		if (isset($this->request->post['quantity'])) {
@@ -1433,10 +1457,10 @@ class ControllerCatalogVDIProduct extends Controller {
 		} else {
 			$data['product_category'] = array();
 		}
-		
+
 		$this->load->model('catalog/vdi_category');
 		$data['categories'] = $this->model_catalog_vdi_category->getCategories(0);
-	
+
 		/*$data['product_categories'] = array();
 
 		foreach ($categories as $category_id) {
@@ -1552,7 +1576,7 @@ class ControllerCatalogVDIProduct extends Controller {
 				}
 			}
 		}
-		
+
 		$data['customer_groups'] = $this->model_catalog_vdi_product->getCustomerGroups();
 
 		if (isset($this->request->post['product_discount'])) {
@@ -1721,7 +1745,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
 			$this->error['model'] = $this->language->get('error_model');
 		}
-		
+
 		if (utf8_strlen($this->request->post['keyword']) > 0) {
 			$this->load->model('catalog/url_alias');
 
@@ -1741,6 +1765,63 @@ class ControllerCatalogVDIProduct extends Controller {
 		}
 
 		return !$this->error;
+	}
+
+	protected function setRemovedFieldDefaults() {
+		if (!isset($this->request->post['model'])) {
+			$this->request->post['model'] = "";
+		}
+		if (!isset($this->request->post['sku'])) {
+			$this->request->post['sku'] = "";
+		}
+		if (!isset($this->request->post['upc'])) {
+			$this->request->post['upc'] = "";
+		}
+		if (!isset($this->request->post['ean'])) {
+			$this->request->post['ean'] = "";
+		}
+		if (!isset($this->request->post['jan'])) {
+			$this->request->post['jan'] = "";
+		}
+		if (!isset($this->request->post['isbn'])) {
+			$this->request->post['isbn'] = "";
+		}
+		if (!isset($this->request->post['mpn'])) {
+			$this->request->post['mpn'] = "";
+		}
+		if (!isset($this->request->post['subtract'])) {
+			$this->request->post['subtract'] = "";
+		}
+		if (!isset($this->request->post['stock_status_id'])) {
+			$this->request->post['stock_status_id'] = "";
+		}
+		if (!isset($this->request->post['date_available'])) {
+			$this->request->post['date_available'] = "";
+		}
+		if (!isset($this->request->post['manufacturer_id'])) {
+			$this->request->post['manufacturer_id'] = "";
+		}
+		if (!isset($this->request->post['tax_class_id'])) {
+			$this->request->post['tax_class_id'] = "";
+		}
+		if (!isset($this->request->post['sort_order'])) {
+			$this->request->post['sort_order'] = "";
+		}
+		if (!isset($this->request->post['product_description'][1]['tag'])) {
+			$this->request->post['product_description'][1]['tag'] = "";
+		}
+		if (!isset($this->request->post['product_description'][1]['meta_title'])) {
+			$this->request->post['product_description'][1]['meta_title'] = "";
+		}
+		if (!isset($this->request->post['product_description'][1]['meta_description'])) {
+			$this->request->post['product_description'][1]['meta_description'] = "";
+		}
+		if (!isset($this->request->post['product_description'][1]['meta_keyword'])) {
+			$this->request->post['product_description'][1]['meta_keyword'] = "";
+		}
+		if (!isset($this->request->post['keyword'])) {
+			$this->request->post['keyword'] = "";
+		}
 	}
 
 	protected function validateDelete() {
@@ -1771,7 +1852,7 @@ class ControllerCatalogVDIProduct extends Controller {
 			} else {
 				$filter_name = '';
 			}
-			
+
 			if (isset($this->request->get['filter_sku'])) {
 				$filter_sku = $this->request->get['filter_sku'];
 			} else {
@@ -1850,11 +1931,11 @@ class ControllerCatalogVDIProduct extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
-	
+
 	/*mvds*/
 	public function vendor() {
 		$this->load->model('catalog/vdi_product');
-		
+
 		if (isset($this->request->get['vendor_id'])) {
 			$vendor_id = $this->request->get['vendor_id'];
 		} else {
@@ -1862,74 +1943,74 @@ class ControllerCatalogVDIProduct extends Controller {
 		}
 
 		$results = $this->model_catalog_vdi_product->getVendorsByVendorId($vendor_id);
-		
+
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($results));
 	}
-	
-	private function validateUpdate() { 
-	
+
+	private function validateUpdate() {
+
 		$this->load->model('catalog/vdi_product');
     	$isproductexist = $this->model_catalog_vdi_product->ValidateVendorUpdate($this->request->get['product_id']);
-		
+
 		if ($isproductexist < 1 && !isset($this->error['warning'])) {
 			$this->error['warning'] = $this->language->get('error_warning');
 		}
-		
+
      	if ($isproductexist > 0) {
 			return true;
     	} else {
       		return false;
     	}
   	}
-	
-	private function OverMaxLimit() { 
-		
+
+	private function OverMaxLimit() {
+
 		$this->load->model('catalog/prolimit');
     	$maxproducts = $this->model_catalog_prolimit->getTotalProducts();
 		$assignLimit = $this->model_catalog_prolimit->getAssignLimit();
-		
+
 		if ($maxproducts > $assignLimit - 1) {
 			$this->error['warning'] = $this->language->get('error_max_warning');
 		}
-			
+
 		if (isset($this->request->post['selected'])) {
 			if (($maxproducts + (isset($this->request->post['selected']) ? count($this->request->post['selected']) : 0)) > $assignLimit) {
 				$this->error['warning'] = $this->language->get('error_max_warning');
 			}
 		}
-		
+
      	if ($this->error) {
 			return true;
     	} else {
       		return false;
     	}
   	}
-	
+
 	public function manufacturerAutocomplete() {
 		$json = array();
-		
+
 		if (isset($this->request->get['filter_name'])) {
 			$this->load->model('catalog/vdi_product');
-			
+
 			$data = array(
 				'filter_name' => $this->request->get['filter_name'],
 				'start'       => 0,
 				'limit'       => 20
 			);
-			
+
 			$results = $this->model_catalog_vdi_product->getManufacturers($data);
-				
+
 			foreach ($results as $result) {
 				$json[] = array(
-					'manufacturer_id' => $result['manufacturer_id'], 
+					'manufacturer_id' => $result['manufacturer_id'],
 					'name'            => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
 				);
-			}		
+			}
 		}
 
 		$sort_order = array();
-	  
+
 		foreach ($json as $key => $value) {
 			$sort_order[$key] = $value['name'];
 		}
@@ -1939,22 +2020,22 @@ class ControllerCatalogVDIProduct extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
-	
+
 	public function filterAutocomplete() {
 		$json = array();
-		
+
 		if (isset($this->request->get['filter_name'])) {
 			$this->load->model('catalog/vdi_product');
-			
+
 			$data = array(
 				'filter_name' => $this->request->get['filter_name'],
 				'start'       => 0,
 				'limit'       => 20
 			);
-			
+
 			$filters = $this->model_catalog_vdi_product->getFilters($data);
-			
-			foreach ($filters as $filter) {				
+
+			foreach ($filters as $filter) {
 				$json[] = array(
 					'filter_id' => $filter['filter_id'],
 					'name'      => strip_tags(html_entity_decode($filter['group'] . ' &gt; ' . $filter['name'], ENT_QUOTES, 'UTF-8'))
@@ -1963,39 +2044,39 @@ class ControllerCatalogVDIProduct extends Controller {
 		}
 
 		$sort_order = array();
-	  
+
 		foreach ($json as $key => $value) {
 			$sort_order[$key] = $value['name'];
 		}
 
 		array_multisort($sort_order, SORT_ASC, $json);
-		
+
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
-	
+
 	public function add_edit_notification($pmode = true,$pname) {
 
 		$this->language->load('mail/email_notification');
-		
+
 		$this->load->model('catalog/vdi_product');
-		
+
 		$vendor_data = $this->model_catalog_vdi_product->getVendorName($this->user->getId());
-		
+
 		if ($pmode) {
 			$subject = sprintf($this->language->get('text_subject_add'), $pname, $vendor_data['vendor_name']);
 		} else {
 			$subject = sprintf($this->language->get('text_subject_edit'), $vendor_data['vendor_name'], $pname);
 		}
-		
+
 		$text = sprintf($this->language->get('text_to'), $this->config->get('config_owner')) . "<br><br>";
-		
+
 		if ($pmode) {
 			$text .= sprintf($this->language->get('text_message_add'), $pname, $vendor_data['vendor_name']) . "<br><br>";
 		} else {
 			$text .= sprintf($this->language->get('text_message_edit'), $pname, $vendor_data['vendor_name']) . "<br><br>";
 		}
-		
+
 		$text .= $this->language->get('text_thanks') . "<br>";
 		$text .= $this->config->get('config_name') . "<br><br>";
 		$text .= $this->language->get('text_system');
@@ -2008,7 +2089,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
 		$mail->smtp_port = $this->config->get('config_mail_smtp_port');
 		$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
-							
+
 		$mail->setTo($this->config->get('config_email'));
 		$mail->setFrom($this->config->get('config_email'));
 		$mail->setSender($this->config->get('config_name'));
