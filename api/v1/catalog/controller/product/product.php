@@ -18,6 +18,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		'stock_status_id' => 6,
 		'date_available' => '',
 		'expiration_date' => '',
+		'unit_class_id' => 0,
 		'manufacturer_id' => '',
 		'shipping' => '',
 		'weight' => 0.0,
@@ -36,6 +37,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 			'name' => '',
 			'description' => '',
 			'tag' => '',
+			'custom_unit' => '',
 			'meta_title' => '', //meta_title is page title
 			'meta_description' => '',
 			'meta_keyword' => ''
@@ -123,9 +125,21 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 
 		//array index 1 means English
 		$this->request->post['product_description'][1]['name'] = $this->request->post['name'];
-		$this->request->post['product_description'][1]['description'] = $this->request->post['description'];
-		$this->request->post['product_description'][1]['meta_title'] = $this->request->post['meta_title'];
-		$this->request->post['product_description'][1]['custom_unit'] = $this->request->post['custom_unit'];
+		if (isset($this->request->post['description'])) {
+			$this->request->post['product_description'][1]['description'] = $this->request->post['description'];
+		} else {
+			$this->request->post['product_description'][1]['description'] = '';
+		}
+		if (isset($this->request->post['meta_title'])) {
+			$this->request->post['product_description'][1]['meta_title'] = $this->request->post['meta_title'];
+		} else {
+			$this->request->post['product_description'][1]['meta_title'] = '';
+		}
+		if (isset($this->request->post['custom_unit'])) {
+			$this->request->post['product_description'][1]['custom_unit'] = $this->request->post['custom_unit'];
+		} else {
+			$this->request->post['product_description'][1]['custom_unit'] = '';
+		}
 		$this->request->post['price'] = (string)$this->request->post['price'];
 		$this->request->post['quantity'] = (int)$this->request->post['quantity'];
 

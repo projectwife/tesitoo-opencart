@@ -30,5 +30,5 @@ Fields for which editing is implemented:
 * `width`: float
 * `height`: float
 * `expiration_date`: date-time giving expiry date. In `yyyy-MM-dd hh:mm:ss` format
-* `unit_class_id`: integer identifying unit class. Should match a unit_class_id returned by [GET units](get_common_units.md). May be null.
+* `unit_class_id`: integer identifying unit class. Should match a unit_class_id returned by [GET units](get_common_units.md).
 * `custom_unit`: free text for a custom unit name for this product. If set, this will override `unit_class_id`.
