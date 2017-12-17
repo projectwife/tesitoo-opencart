@@ -1,8 +1,7 @@
 <?php
 class ModelLocalisationUnitClass extends Model {
 	public function addUnitClass($data) {
-		//$this->db->query("INSERT INTO " . DB_PREFIX . "unit_class SET value = '" . (float)$data['value'] . "'");
-		$this->db->query("INSERT INTO " . DB_PREFIX . "unit_class VALUES ()");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "unit_class SET sort_order = '" . (int)$data['sort_order'] . "'");
 
 		$unit_class_id = $this->db->getLastId();
 
@@ -14,7 +13,7 @@ class ModelLocalisationUnitClass extends Model {
 	}
 
 	public function editUnitClass($unit_class_id, $data) {
-		//$this->db->query("UPDATE " . DB_PREFIX . "unit_class SET value = '" . (float)$data['value'] . "' WHERE unit_class_id = '" . (int)$unit_class_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "unit_class SET sort_order = '" . (int)$data['sort_order'] . "' WHERE unit_class_id = '" . (int)$unit_class_id . "'");
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "unit_class_description WHERE unit_class_id = '" . (int)$unit_class_id . "'");
 
@@ -34,18 +33,19 @@ class ModelLocalisationUnitClass extends Model {
 
 	public function getUnitClasses($data = array()) {
 		if ($data) {
-			$sql = "SELECT * FROM " . DB_PREFIX . "unit_class lc LEFT JOIN " . DB_PREFIX . "unit_class_description lcd ON (lc.unit_class_id = lcd.unit_class_id) WHERE lcd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+			$sql = "SELECT * FROM " . DB_PREFIX . "unit_class uc LEFT JOIN " . DB_PREFIX . "unit_class_description ucd ON (uc.unit_class_id = ucd.unit_class_id) WHERE ucd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 			$sort_data = array(
 				'title',
 				'abbreviation',
-				'note'
+				'note',
+				'sort_order'
 			);
 
 			if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 				$sql .= " ORDER BY " . $data['sort'];
 			} else {
-				$sql .= " ORDER BY title";
+				$sql .= " ORDER BY uc.sort_order";
 			}
 
 			if (isset($data['order']) && ($data['order'] == 'DESC')) {
@@ -73,7 +73,7 @@ class ModelLocalisationUnitClass extends Model {
 			$unit_class_data = $this->cache->get('unit_class.' . (int)$this->config->get('config_language_id'));
 
 			if (!$unit_class_data) {
-				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "unit_class lc LEFT JOIN " . DB_PREFIX . "unit_class_description lcd ON (lc.unit_class_id = lcd.unit_class_id) WHERE lcd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "unit_class uc LEFT JOIN " . DB_PREFIX . "unit_class_description ucd ON (uc.unit_class_id = ucd.unit_class_id) WHERE ucd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY uc.sort_order, ucd.unit_class_id");
 
 				$unit_class_data = $query->rows;
 
@@ -85,7 +85,7 @@ class ModelLocalisationUnitClass extends Model {
 	}
 
 	public function getUnitClass($unit_class_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "unit_class lc LEFT JOIN " . DB_PREFIX . "unit_class_description lcd ON (lc.unit_class_id = lcd.unit_class_id) WHERE lc.unit_class_id = '" . (int)$unit_class_id . "' AND lcd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "unit_class uc LEFT JOIN " . DB_PREFIX . "unit_class_description ucd ON (uc.unit_class_id = ucd.unit_class_id) WHERE uc.unit_class_id = '" . (int)$unit_class_id . "' AND ucd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
 	}

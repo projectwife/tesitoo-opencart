@@ -3036,24 +3036,26 @@ INSERT INTO `oc_tax_rule` (`tax_rule_id`, `tax_class_id`, `tax_rate_id`, `based`
 --
 
 CREATE TABLE IF NOT EXISTS `oc_unit_class` (
-  `unit_class_id` int(11) NOT NULL
+  `unit_class_id` int(11) NOT NULL,
+  `sort_order` int(3) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `oc_unit_class`
 --
 
-INSERT INTO `oc_unit_class` (`unit_class_id`) VALUES
-(1),
-(2),
-(3),
-(4),
-(5),
-(6),
-(7),
-(8),
-(9),
-(10);
+INSERT INTO `oc_unit_class` (`unit_class_id`, `sort_order`) VALUES
+(1, 0),
+(2, 0),
+(3, 0),
+(4, 0),
+(5, 0),
+(6, 0),
+(7, 0),
+(8, 0),
+(9, 0),
+(10, 0),
+(11, 999);
 
 -- --------------------------------------------------------
 
@@ -3083,7 +3085,8 @@ INSERT INTO `oc_unit_class_description` (`unit_class_id`, `language_id`, `title`
 (7, 1, 'Pack', 'Pck', ''),
 (8, 1, 'Pallet', 'Plt', ''),
 (9, 1, 'Gallon', 'Gl', ''),
-(10, 1, 'Basket', 'Bk', '');
+(10, 1, 'Basket', 'Bk', ''),
+(11, 1, 'Custom', '', '');
 
 -- --------------------------------------------------------
 

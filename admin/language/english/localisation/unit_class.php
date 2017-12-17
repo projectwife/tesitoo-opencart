@@ -10,14 +10,16 @@ $_['text_edit']        = 'Edit Unit Class';
 
 // Column
 $_['column_title']        = 'Unit Title';
-$_['column_abbreviation'] = 'Unit Abbreviation';
+$_['column_abbreviation'] = 'Abbreviation';
 $_['column_note']         = 'Note';
+$_['column_sort_order']   = 'Sort Order';
 $_['column_action']       = 'Action';
 
 // Entry
 $_['entry_title']         = 'Unit Title';
-$_['entry_abbreviation']  = 'Unit Abbreviation';
+$_['entry_abbreviation']  = 'Abbreviation';
 $_['entry_note']          = 'Note';
+$_['entry_sort_order']    = 'Sort Order';
 
 // Error
 $_['error_permission']    = 'Warning: You do not have permission to modify unit classes!';

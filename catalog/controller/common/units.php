@@ -15,7 +15,8 @@ class ControllerCommonUnits extends Controller {
 				'language_id'     => $result['language_id'],
 				'title'           => $result['title'],
 				'abbreviation'    => $result['abbreviation'],
-				'note'            => $result['note']
+				'note'            => $result['note'],
+				'sort_order'      => $result['sort_order']
 				);
 		}
 
