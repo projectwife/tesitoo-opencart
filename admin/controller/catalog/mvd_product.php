@@ -33,12 +33,12 @@ class ControllerCatalogMVDProduct extends Controller {
 			if (isset($this->request->get['filter_model'])) {
 				$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
 			}
-			
+
 			//mvds
 			if (isset($this->request->get['filter_vendor_name'])) {
 				$url .= '&filter_vendor_name=' . urlencode(html_entity_decode($this->request->get['filter_vendor_name'], ENT_QUOTES, 'UTF-8'));
 			}
-			
+
 			if (isset($this->request->get['filter_sku'])) {
 				$url .= '&filter_sku=' . urlencode(html_entity_decode($this->request->get['filter_sku'], ENT_QUOTES, 'UTF-8'));
 			}
@@ -93,7 +93,7 @@ class ControllerCatalogMVDProduct extends Controller {
 				}
 			}
 			//mvde
-			
+
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			$url = '';
@@ -105,12 +105,12 @@ class ControllerCatalogMVDProduct extends Controller {
 			if (isset($this->request->get['filter_model'])) {
 				$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
 			}
-			
+
 			//mvds
 			if (isset($this->request->get['filter_vendor_name'])) {
 				$url .= '&filter_vendor_name=' . urlencode(html_entity_decode($this->request->get['filter_vendor_name'], ENT_QUOTES, 'UTF-8'));
 			}
-			
+
 			if (isset($this->request->get['filter_sku'])) {
 				$url .= '&filter_sku=' . urlencode(html_entity_decode($this->request->get['filter_sku'], ENT_QUOTES, 'UTF-8'));
 			}
@@ -169,12 +169,12 @@ class ControllerCatalogMVDProduct extends Controller {
 			if (isset($this->request->get['filter_model'])) {
 				$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
 			}
-			
+
 			//mvds
 			if (isset($this->request->get['filter_vendor_name'])) {
 				$url .= '&filter_vendor_name=' . urlencode(html_entity_decode($this->request->get['filter_vendor_name'], ENT_QUOTES, 'UTF-8'));
 			}
-			
+
 			if (isset($this->request->get['filter_sku'])) {
 				$url .= '&filter_sku=' . urlencode(html_entity_decode($this->request->get['filter_sku'], ENT_QUOTES, 'UTF-8'));
 			}
@@ -233,12 +233,12 @@ class ControllerCatalogMVDProduct extends Controller {
 			if (isset($this->request->get['filter_model'])) {
 				$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
 			}
-			
+
 			//mvds
 			if (isset($this->request->get['filter_vendor_name'])) {
 				$url .= '&filter_vendor_name=' . urlencode(html_entity_decode($this->request->get['filter_vendor_name'], ENT_QUOTES, 'UTF-8'));
 			}
-			
+
 			if (isset($this->request->get['filter_sku'])) {
 				$url .= '&filter_sku=' . urlencode(html_entity_decode($this->request->get['filter_sku'], ENT_QUOTES, 'UTF-8'));
 			}
@@ -304,20 +304,20 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$filter_status = null;
 		}
-		
+
 		//mvds
 		if (isset($this->request->get['filter_sku'])) {
 			$filter_sku = $this->request->get['filter_sku'];
 		} else {
 			$filter_sku = null;
 		}
-			
+
 		if (isset($this->request->get['filter_vendor'])) {
 			$filter_vendor = $this->request->get['filter_vendor'];
 		} else {
 			$filter_vendor = NULL;
 		}
-			
+
 		if (isset($this->request->get['filter_vendor_name'])) {
 			$filter_vendor_name = $this->request->get['filter_vendor_name'];
 		} else {
@@ -352,16 +352,16 @@ class ControllerCatalogMVDProduct extends Controller {
 		if (isset($this->request->get['filter_model'])) {
 			$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
 		}
-		
+
 		//mvds
 		if (isset($this->request->get['filter_sku'])) {
 			$url .= '&filter_sku=' . urlencode(html_entity_decode($this->request->get['filter_sku'], ENT_QUOTES, 'UTF-8'));
 		}
-			
+
 		if (isset($this->request->get['filter_vendor_name'])) {
 			$url .= '&filter_vendor_name=' . urlencode(html_entity_decode($this->request->get['filter_vendor_name'], ENT_QUOTES, 'UTF-8'));
 		}
-			
+
 		if (isset($this->request->get['filter_vendor'])) {
 			$url .= '&filter_vendor=' . urlencode(html_entity_decode($this->request->get['filter_vendor'], ENT_QUOTES, 'UTF-8'));
 		}
@@ -415,7 +415,7 @@ class ControllerCatalogMVDProduct extends Controller {
 			'filter_price'	  => $filter_price,
 			//mvds
 			'filter_sku'	 	   => $filter_sku,
-			'filter_vendor'   	   => $filter_vendor, 
+			'filter_vendor'   	   => $filter_vendor,
 			'filter_vendor_name'   => $filter_vendor_name,
 			//mvde
 			'filter_quantity' => $filter_quantity,
@@ -434,7 +434,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		//mvds
 		$data['vendors'] = $this->model_catalog_mvd_product->getVendors();
 		//mvde
-		
+
 		foreach ($results as $result) {
 			if (is_file(DIR_IMAGE . $result['image'])) {
 				$image = $this->model_tool_image->resize($result['image'], 40, 40);
@@ -448,13 +448,13 @@ class ControllerCatalogMVDProduct extends Controller {
 
 			foreach ($product_specials  as $product_special) {
 				if (($product_special['date_start'] == '0000-00-00' || strtotime($product_special['date_start']) < time()) && ($product_special['date_end'] == '0000-00-00' || strtotime($product_special['date_end']) > time())) {
-				
+
 					$special = $product_special['price'];
 
 					break;
 				}
 			}
-			
+
 			//mvds
 			if ($result['status'] == 5) {
 				$status = $this->language->get('txt_pending_approval');
@@ -464,7 +464,7 @@ class ControllerCatalogMVDProduct extends Controller {
 				$status = $this->language->get('text_disabled');
 			}
 			//mvde
-			
+
 			$data['products'][] = array(
 				'product_id' => $result['product_id'],
 				'image'      => $image,
@@ -484,7 +484,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		}
 
 		$data['heading_title'] = $this->language->get('heading_title');
-		
+
 		$data['text_list'] = $this->language->get('text_list');
 		$data['text_enabled'] = $this->language->get('text_enabled');
 		$data['text_disabled'] = $this->language->get('text_disabled');
@@ -544,16 +544,16 @@ class ControllerCatalogMVDProduct extends Controller {
 		if (isset($this->request->get['filter_name'])) {
 			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 		}
-		
+
 		//mvds
 		if (isset($this->request->get['filter_sku'])) {
 			$url .= '&filter_sku=' . urlencode(html_entity_decode($this->request->get['filter_sku'], ENT_QUOTES, 'UTF-8'));
 		}
-			
+
 		if (isset($this->request->get['filter_vendor_name'])) {
 			$url .= '&filter_vendor_name=' . urlencode(html_entity_decode($this->request->get['filter_vendor_name'], ENT_QUOTES, 'UTF-8'));
 		}
-			
+
 		if (isset($this->request->get['filter_vendor'])) {
 			$url .= '&filter_vendor=' . urlencode(html_entity_decode($this->request->get['filter_vendor'], ENT_QUOTES, 'UTF-8'));
 		}
@@ -595,7 +595,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		$data['sort_sku'] = $this->url->link('catalog/mvd_product', 'token=' . $this->session->data['token'] . '&sort=p.sku' . $url, 'SSL');
 		$data['sort_vendor_name'] = $this->url->link('catalog/mvd_product', 'token=' . $this->session->data['token'] . '&sort=vds.vendor_id' . $url, 'SSL');
 		//mvde
-		
+
 		$url = '';
 
 		if (isset($this->request->get['filter_name'])) {
@@ -605,12 +605,12 @@ class ControllerCatalogMVDProduct extends Controller {
 		if (isset($this->request->get['filter_model'])) {
 			$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
 		}
-		
+
 		//mvds
 		if (isset($this->request->get['filter_sku'])) {
 			$url .= '&filter_sku=' . urlencode(html_entity_decode($this->request->get['filter_sku'], ENT_QUOTES, 'UTF-8'));
 		}
-			
+
 		if (isset($this->request->get['filter_vendor_name'])) {
 			$url .= '&filter_vendor_name=' . urlencode(html_entity_decode($this->request->get['filter_vendor_name'], ENT_QUOTES, 'UTF-8'));
 		}
@@ -668,7 +668,7 @@ class ControllerCatalogMVDProduct extends Controller {
 
 	protected function getForm() {
 		$data['heading_title'] = $this->language->get('heading_title');
-		
+
 		$data['text_form'] = !isset($this->request->get['product_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 		$data['text_enabled'] = $this->language->get('text_enabled');
 		$data['text_disabled'] = $this->language->get('text_disabled');
@@ -702,6 +702,8 @@ class ControllerCatalogMVDProduct extends Controller {
 		$data['entry_shipping'] = $this->language->get('entry_shipping');
 		$data['entry_date_available'] = $this->language->get('entry_date_available');
 		$data['entry_expiration_date'] = $this->language->get('entry_expiration_date');
+		$data['entry_unit_class'] = $this->language->get('entry_unit_class');
+		$data['entry_custom_unit'] = $this->language->get('entry_custom_unit');
 		$data['entry_quantity'] = $this->language->get('entry_quantity');
 		$data['entry_stock_status'] = $this->language->get('entry_stock_status');
 		$data['entry_price'] = $this->language->get('entry_price');
@@ -779,7 +781,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		$data['tab_reward'] = $this->language->get('tab_reward');
 		$data['tab_design'] = $this->language->get('tab_design');
 		$data['tab_openbay'] = $this->language->get('tab_openbay');
-		
+
 		//mvds
 		$data['entry_vendor_country_origin'] = $this->language->get('entry_vendor_country_origin');
 		$data['entry_vendor_product_cost'] = $this->language->get('entry_vendor_product_cost');
@@ -804,12 +806,12 @@ class ControllerCatalogMVDProduct extends Controller {
 		$data['tab_vendor'] = $this->language->get('tab_vendor');
 		$data['tab_shipping'] = $this->language->get('tab_shipping');
 		$data['txt_pending_approval'] = $this->language->get('txt_pending_approval');
-			
+
 		$data['entry_shipping_courier'] = $this->language->get('entry_shipping_courier');
 		$data['entry_shipping_cost'] = $this->language->get('entry_shipping_cost');
 		$data['entry_shipping_geozone'] = $this->language->get('entry_shipping_geozone');
 		$data['button_add_shipping'] = $this->language->get('button_add_shipping');
-		
+
 		$data['help_vendor_country_origin'] = $this->language->get('help_vendor_country_origin');
 		$data['help_vendor_shipping_method'] = $this->language->get('help_vendor_shipping_method');
 		$data['help_vendor_preferred_shipping_method'] = $this->language->get('help_vendor_preferred_shipping_method');
@@ -845,7 +847,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['error_date_available'] = '';
 		}
-		
+
 		if (isset($this->error['keyword'])) {
 			$data['error_keyword'] = $this->error['keyword'];
 		} else {
@@ -857,16 +859,16 @@ class ControllerCatalogMVDProduct extends Controller {
 		if (isset($this->request->get['filter_name'])) {
 			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 		}
-		
+
 		//mvds
 		if (isset($this->request->get['filter_sku'])) {
 			$url .= '&filter_sku=' . urlencode(html_entity_decode($this->request->get['filter_sku'], ENT_QUOTES, 'UTF-8'));
 		}
-			
+
 		if (isset($this->request->get['filter_vendor_name'])) {
 			$url .= '&filter_vendor_name=' . urlencode(html_entity_decode($this->request->get['filter_vendor_name'], ENT_QUOTES, 'UTF-8'));
 		}
-			
+
 		if (isset($this->request->get['filter_vendor'])) {
 			$url .= '&filter_vendor=' . urlencode(html_entity_decode($this->request->get['filter_vendor'], ENT_QUOTES, 'UTF-8'));
 		}
@@ -957,7 +959,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		}
 
 		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
-		
+
 		if (isset($this->request->post['model'])) {
 			$data['model'] = $this->request->post['model'];
 		} elseif (!empty($product_info)) {
@@ -1021,14 +1023,14 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['location'] = '';
 		}
-		
+
 		//mvds
 		if (isset($this->request->get['product_id'])) {
 			foreach ($this->model_catalog_mvd_product->getProductDescriptions($this->request->get['product_id']) as $pdname) {
 				$product_name = $pdname['name'];
 			}
 		}
-			
+
 		if (isset($this->request->post['product_name'])) {
 			$data['product_name'] = $this->request->post['product_name'];
 		} elseif (!empty($product_name)) {
@@ -1036,11 +1038,11 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['product_name'] = '';
 		}
-		
+
 		$this->load->model('setting/setting');
 		$data['config'] = $this->model_setting_setting->getSetting('config');
-		$data['countries'] = $this->model_catalog_mvd_product->getCountry();	
-			
+		$data['countries'] = $this->model_catalog_mvd_product->getCountry();
+
 		if (isset($this->request->post['ori_country'])) {
 			$data['ori_country'] = $this->request->post['ori_country'];
 		} else if (isset($product_info)) {
@@ -1048,7 +1050,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['ori_country'] = '';
 		}
-			
+
 		if (isset($this->request->post['product_cost'])) {
 			$data['product_cost'] = $this->request->post['product_cost'];
 		} else if (isset($product_info)) {
@@ -1056,9 +1058,9 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['product_cost'] = '';
 		}
-			
+
 		$data['couriers'] = $this->model_catalog_mvd_product->getCourier();
-		
+
 		if (isset($this->request->post['shipping_method'])) {
 			$data['shipping_method'] = $this->request->post['shipping_method'];
 		} else if (isset($product_info)) {
@@ -1066,7 +1068,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['shipping_method'] = '0';
 		}
-			
+
 		if (isset($this->request->post['prefered_shipping'])) {
 			$data['prefered_shipping'] = $this->request->post['prefered_shipping'];
 		} else if (isset($product_info)) {
@@ -1074,7 +1076,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['prefered_shipping'] = '0';
 		}
-			
+
 		if (isset($this->request->post['shipping_cost'])) {
 			$data['shipping_cost'] = $this->request->post['shipping_cost'];
 		} else if (isset($product_info)) {
@@ -1082,7 +1084,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['shipping_cost'] = '';
 		}
-			
+
 		if (isset($this->request->post['vtotal'])) {
 			$data['vtotal'] = $this->request->post['vtotal'];
 		} else if (isset($product_info)) {
@@ -1090,7 +1092,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['vtotal'] = '';
 		}
-			
+
 		if (isset($this->request->post['product_url'])) {
 			$data['product_url'] = $this->request->post['product_url'];
 		} else if (isset($product_info)) {
@@ -1111,7 +1113,7 @@ class ControllerCatalogMVDProduct extends Controller {
 			$data['vendor'] = 0;
 			$data['vendor_link'] = "";
 		}
-					
+
 		if (isset($this->request->post['wholesale'])) {
 			$data['wholesale'] = $this->request->post['wholesale'];
 		} else if (isset($product_info)) {
@@ -1119,7 +1121,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['wholesale'] = '';
 		}
-			
+
 		if (isset($this->request->post['company'])) {
 			$data['company'] = $this->request->post['company'];
 		} else if (isset($product_info)) {
@@ -1127,7 +1129,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['company'] = '';
 		}
-			
+
 		if (isset($this->request->post['vname'])) {
 			$data['vname'] = $this->request->post['vname'];
 		} else if (isset($product_info)) {
@@ -1135,7 +1137,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['vname'] = '';
 		}
-			
+
 		if (isset($this->request->post['telephone'])) {
 			$data['telephone'] = $this->request->post['telephone'];
 		} else if (isset($product_info)) {
@@ -1143,7 +1145,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['telephone'] = '';
 		}
-			
+
 		if (isset($this->request->post['fax'])) {
 			$data['fax'] = $this->request->post['fax'];
 		} else if (isset($product_info)) {
@@ -1151,7 +1153,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['fax'] = '';
 		}
-			
+
 		if (isset($this->request->post['email'])) {
 			$data['email'] = $this->request->post['email'];
 		} else if (isset($product_info)) {
@@ -1159,7 +1161,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['email'] = '';
 		}
-			
+
 		if (isset($this->request->post['paypal_email'])) {
 			$data['paypal_email'] = $this->request->post['paypal_email'];
 		} else if (isset($product_info)) {
@@ -1167,7 +1169,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['paypal_email'] = '';
 		}
-			
+
 		if (isset($this->request->post['vendor_description'])) {
 			$data['vendor_description'] = $this->request->post['vendor_description'];
 		} else if (isset($product_info)) {
@@ -1175,7 +1177,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['vendor_description'] = '';
 		}
-					
+
 		if (isset($this->request->post['vendor_address'])) {
 			$data['vendor_address'] = $this->request->post['vendor_address'];
 		} else if (isset($product_info)) {
@@ -1183,8 +1185,8 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['vendor_address'] = '';
 		}
-			
-			
+
+
 		if (isset($this->request->post['vendor_country_zone'])) {
 			$data['vendor_country_zone'] = $this->request->post['vendor_country_zone'];
 		} else if (isset($product_info)) {
@@ -1196,7 +1198,7 @@ class ControllerCatalogMVDProduct extends Controller {
 				} else {
 					$vendor_zone =  $this->language->get('text_none');
 				}
-				
+
 				$this->load->model('localisation/country');
 				$country = $this->model_localisation_country->getCountry((int)$product_info['country_id']);
 				$vendor_country = ', ' . $country['name'];
@@ -1208,7 +1210,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['vendor_country_zone'] = '';
 		}
-			
+
 		if (isset($this->request->post['store_url'])) {
 			$data['store_url'] = $this->request->post['store_url'];
 		} else if (isset($product_info)) {
@@ -1216,10 +1218,10 @@ class ControllerCatalogMVDProduct extends Controller {
 		} else {
 			$data['store_url'] = '';
 		}
-			
+
 		$this->load->model('localisation/geo_zone');
 		$data['geo_zones'] = $this->model_localisation_geo_zone->getGeoZones();
-			
+
 		if (isset($this->request->post['product_shipping'])) {
 			$data['product_shippings'] = $this->request->post['product_shipping'];
 		} elseif (isset($this->request->get['product_id'])) {
@@ -1309,6 +1311,26 @@ class ControllerCatalogMVDProduct extends Controller {
 			}
 		} else {
 			$data['expiration_date'] = date('Y-m-d');
+		}
+
+		$this->load->model('localisation/unit_class');
+
+		$data['unit_classes'] = $this->model_localisation_unit_class->getUnitClasses();
+
+		if (isset($this->request->post['unit_class_id'])) {
+			$data['unit_class_id'] = $this->request->post['unit_class_id'];
+		} elseif (!empty($product_info)) {
+			$data['unit_class_id'] = $product_info['unit_class_id'];
+		} else {
+			$data['unit_class_id'] = 0;
+		}
+
+		if (isset($this->request->post['custom_unit'])) {
+			$data['custom_unit'] = $this->request->post['custom_unit'];
+		} elseif (!empty($product_info)) {
+			$data['custom_unit'] = $this->model_catalog_mvd_product->getProductDescriptions($this->request->get['product_id']);
+		} else {
+			$data['custom_unit'] = '';
 		}
 
 		if (isset($this->request->post['quantity'])) {
@@ -1742,7 +1764,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
 			$this->error['model'] = $this->language->get('error_model');
 		}
-		
+
 		if (utf8_strlen($this->request->post['keyword']) > 0) {
 			$this->load->model('catalog/url_alias');
 
@@ -1779,30 +1801,30 @@ class ControllerCatalogMVDProduct extends Controller {
 
 		return !$this->error;
 	}
-	
+
 	//mvds
 	public function vendor() {
 		$this->load->model('catalog/mvd_product');
-				
+
 		if (isset($this->request->get['vendor_id'])) {
 			$vendor_id = $this->request->get['vendor_id'];
 		} else {
 			$vendor_id = 0;
 		}
-		
+
 		$results = $this->model_catalog_mvd_product->getVendorsByVendorId($vendor_id);
-		
+
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($results));
 	}
-			
+
 	public function approve_notification($pname, $vendor_id, $product_id) {
 		$this->language->load('mail/email_notification');
 		$this->load->model('catalog/mvd_product');
-				
+
 		$vendor_data = $this->model_catalog_mvd_product->getVendorData($vendor_id);
 		$subject = sprintf($this->language->get('text_subject_approve'),$pname);
-				
+
 		$text = sprintf($this->language->get('text_to'), $vendor_data['firstname'] . ' ' . $vendor_data['lastname']) . "<br/><br/>";
 
 		$productURL = HTTPS_CATALOG . "index.php?route=product/product&product_id=" . $product_id;
@@ -1811,7 +1833,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		$text .= $this->language->get('text_thanks') . "<br/>";
 		$text .= $this->config->get('config_name') . "<br/><br/>";
 		$text .= $this->language->get('text_system');
-		
+
 		$mail = new Mail();
 		$mail->protocol = $this->config->get('config_mail_protocol');
 		$mail->parameter = $this->config->get('config_mail_parameter');
@@ -1820,7 +1842,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
 		$mail->smtp_port = $this->config->get('config_mail_smtp_port');
 		$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
-									
+
 		$mail->setTo($vendor_data['email']);
 		$mail->setFrom($this->config->get('config_email'));
 		$mail->setSender($this->config->get('config_name'));
@@ -1852,7 +1874,7 @@ class ControllerCatalogMVDProduct extends Controller {
 			} else {
 				$filter_model = '';
 			}
-			
+
 			//mvds
 			if (isset($this->request->get['filter_sku'])) {
 				$filter_sku = $this->request->get['filter_sku'];
@@ -1860,7 +1882,7 @@ class ControllerCatalogMVDProduct extends Controller {
 				$filter_sku = '';
 			}
 			//mvde
-			
+
 			if (isset($this->request->get['limit'])) {
 				$limit = $this->request->get['limit'];
 			} else {

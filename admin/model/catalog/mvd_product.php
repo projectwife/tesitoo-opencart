@@ -3,20 +3,20 @@ class ModelCatalogMVDProduct extends Model {
 	public function addProduct($data) {
 		$this->event->trigger('pre.admin.add.product', $data);
 
-		$this->db->query("INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', sku = '" . $this->db->escape($data['sku']) . "', upc = '" . $this->db->escape($data['upc']) . "', ean = '" . $this->db->escape($data['ean']) . "', jan = '" . $this->db->escape($data['jan']) . "', isbn = '" . $this->db->escape($data['isbn']) . "', mpn = '" . $this->db->escape($data['mpn']) . "', location = '" . $this->db->escape($data['location']) . "', quantity = '" . (int)$data['quantity'] . "', minimum = '" . (int)$data['minimum'] . "', subtract = '" . (int)$data['subtract'] . "', stock_status_id = '" . (int)$data['stock_status_id'] . "', date_available = '" . $this->db->escape($data['date_available']) . "', expiration_date = '" . $this->db->escape($data['expiration_date']) . "', manufacturer_id = '" . (int)$data['manufacturer_id'] . "', shipping = '" . (int)$data['shipping'] . "', price = '" . (float)$data['price'] . "', points = '" . (int)$data['points'] . "', weight = '" . (float)$data['weight'] . "', weight_class_id = '" . (int)$data['weight_class_id'] . "', length = '" . (float)$data['length'] . "', width = '" . (float)$data['width'] . "', height = '" . (float)$data['height'] . "', length_class_id = '" . (int)$data['length_class_id'] . "', status = '" . (int)$data['status'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW()");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', sku = '" . $this->db->escape($data['sku']) . "', upc = '" . $this->db->escape($data['upc']) . "', ean = '" . $this->db->escape($data['ean']) . "', jan = '" . $this->db->escape($data['jan']) . "', isbn = '" . $this->db->escape($data['isbn']) . "', mpn = '" . $this->db->escape($data['mpn']) . "', location = '" . $this->db->escape($data['location']) . "', quantity = '" . (int)$data['quantity'] . "', minimum = '" . (int)$data['minimum'] . "', subtract = '" . (int)$data['subtract'] . "', stock_status_id = '" . (int)$data['stock_status_id'] . "', date_available = '" . $this->db->escape($data['date_available']) . "', expiration_date = '" . $this->db->escape($data['expiration_date']) . "', unit_class_id = '" . $this->db->escape($data['unit_class_id']) . "', manufacturer_id = '" . (int)$data['manufacturer_id'] . "', shipping = '" . (int)$data['shipping'] . "', price = '" . (float)$data['price'] . "', points = '" . (int)$data['points'] . "', weight = '" . (float)$data['weight'] . "', weight_class_id = '" . (int)$data['weight_class_id'] . "', length = '" . (float)$data['length'] . "', width = '" . (float)$data['width'] . "', height = '" . (float)$data['height'] . "', length_class_id = '" . (int)$data['length_class_id'] . "', status = '" . (int)$data['status'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW()");
 
 		$product_id = $this->db->getLastId();
-		
+
 		//mvds
 		$this->db->query("INSERT INTO " . DB_PREFIX . "vendor SET  vproduct_id = '" . (int)$product_id . "', ori_country = '" . (int)$data['ori_country'] . "', product_cost = '" . (float)$data['product_cost'] . "', shipping_method = '" . (int)$data['shipping_method'] . "', prefered_shipping = '" . (int)$data['prefered_shipping'] . "', shipping_cost = '" . (float)$data['shipping_cost'] . "', vtotal = '" . (float)$data['vtotal'] . "', product_url = '" . $this->db->escape($data['product_url']) . "', vendor = '" . (int)$data['vendor'] . "', wholesale = '" . $this->db->escape($data['wholesale']) . "', date_add = NOW()");
 		//mvde
-		
+
 		if (isset($data['image'])) {
 			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape($data['image']) . "' WHERE product_id = '" . (int)$product_id . "'");
 		}
 
 		foreach ($data['product_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', custom_unit = '" . $this->db->escape($value['custom_unit']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
 		}
 
 		if (isset($data['product_store'])) {
@@ -66,7 +66,7 @@ class ModelCatalogMVDProduct extends Model {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "product_special SET product_id = '" . (int)$product_id . "', customer_group_id = '" . (int)$product_special['customer_group_id'] . "', priority = '" . (int)$product_special['priority'] . "', price = '" . (float)$product_special['price'] . "', date_start = '" . $this->db->escape($product_special['date_start']) . "', date_end = '" . $this->db->escape($product_special['date_end']) . "'");
 			}
 		}
-		
+
 		//mvds
 		if (isset($data['product_shipping'])) {
 			foreach ($data['product_shipping'] as $product_shipping) {
@@ -140,13 +140,13 @@ class ModelCatalogMVDProduct extends Model {
 	public function editProduct($product_id, $data) {
 		$this->event->trigger('pre.admin.edit.product', $data);
 
-		$this->db->query("UPDATE " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', sku = '" . $this->db->escape($data['sku']) . "', upc = '" . $this->db->escape($data['upc']) . "', ean = '" . $this->db->escape($data['ean']) . "', jan = '" . $this->db->escape($data['jan']) . "', isbn = '" . $this->db->escape($data['isbn']) . "', mpn = '" . $this->db->escape($data['mpn']) . "', location = '" . $this->db->escape($data['location']) . "', quantity = '" . (int)$data['quantity'] . "', minimum = '" . (int)$data['minimum'] . "', subtract = '" . (int)$data['subtract'] . "', stock_status_id = '" . (int)$data['stock_status_id'] . "', date_available = '" . $this->db->escape($data['date_available']) . "', expiration_date = '" . $this->db->escape($data['expiration_date']) . "', manufacturer_id = '" . (int)$data['manufacturer_id'] . "', shipping = '" . (int)$data['shipping'] . "', price = '" . (float)$data['price'] . "', points = '" . (int)$data['points'] . "', weight = '" . (float)$data['weight'] . "', weight_class_id = '" . (int)$data['weight_class_id'] . "', length = '" . (float)$data['length'] . "', width = '" . (float)$data['width'] . "', height = '" . (float)$data['height'] . "', length_class_id = '" . (int)$data['length_class_id'] . "', status = '" . (int)$data['status'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
-		
+		$this->db->query("UPDATE " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', sku = '" . $this->db->escape($data['sku']) . "', upc = '" . $this->db->escape($data['upc']) . "', ean = '" . $this->db->escape($data['ean']) . "', jan = '" . $this->db->escape($data['jan']) . "', isbn = '" . $this->db->escape($data['isbn']) . "', mpn = '" . $this->db->escape($data['mpn']) . "', location = '" . $this->db->escape($data['location']) . "', quantity = '" . (int)$data['quantity'] . "', minimum = '" . (int)$data['minimum'] . "', subtract = '" . (int)$data['subtract'] . "', stock_status_id = '" . (int)$data['stock_status_id'] . "', date_available = '" . $this->db->escape($data['date_available']) . "', expiration_date = '" . $this->db->escape($data['expiration_date']) . "', unit_class_id = '" . $this->db->escape($data['unit_class_id']) . "', manufacturer_id = '" . (int)$data['manufacturer_id'] . "', shipping = '" . (int)$data['shipping'] . "', price = '" . (float)$data['price'] . "', points = '" . (int)$data['points'] . "', weight = '" . (float)$data['weight'] . "', weight_class_id = '" . (int)$data['weight_class_id'] . "', length = '" . (float)$data['length'] . "', width = '" . (float)$data['width'] . "', height = '" . (float)$data['height'] . "', length_class_id = '" . (int)$data['length_class_id'] . "', status = '" . (int)$data['status'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
+
 		//mvds
 		$this->db->query("DELETE FROM " . DB_PREFIX . "vendor WHERE vproduct_id = '" . (int)$product_id . "'");
 		$this->db->query("INSERT INTO " . DB_PREFIX . "vendor SET  vproduct_id = '" . (int)$product_id . "', ori_country = '" . (int)$data['ori_country'] . "', product_cost = '" . (float)$data['product_cost'] . "', shipping_method = '" . (int)$data['shipping_method'] . "', prefered_shipping = '" . (int)$data['prefered_shipping'] . "', shipping_cost = '" . (float)$data['shipping_cost'] . "', vtotal = '" . (float)$data['vtotal'] . "', product_url = '" . $this->db->escape($data['product_url']) . "', vendor = '" . (int)$data['vendor'] . "', wholesale = '" . $this->db->escape($data['wholesale']) . "', date_add = NOW()");
 		//mvde
-		
+
 		if (isset($data['image'])) {
 			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape($data['image']) . "' WHERE product_id = '" . (int)$product_id . "'");
 		}
@@ -154,7 +154,7 @@ class ModelCatalogMVDProduct extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_description WHERE product_id = '" . (int)$product_id . "'");
 
 		foreach ($data['product_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', custom_unit = '" . $this->db->escape($value['custom_unit']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
 		}
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_store WHERE product_id = '" . (int)$product_id . "'");
@@ -215,9 +215,9 @@ class ModelCatalogMVDProduct extends Model {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "product_special SET product_id = '" . (int)$product_id . "', customer_group_id = '" . (int)$product_special['customer_group_id'] . "', priority = '" . (int)$product_special['priority'] . "', price = '" . (float)$product_special['price'] . "', date_start = '" . $this->db->escape($product_special['date_start']) . "', date_end = '" . $this->db->escape($product_special['date_end']) . "'");
 			}
 		}
-		
+
 		//mvds
-		$this->db->query("DELETE FROM " . DB_PREFIX . "product_shipping WHERE product_id = '" . (int)$product_id . "'");		
+		$this->db->query("DELETE FROM " . DB_PREFIX . "product_shipping WHERE product_id = '" . (int)$product_id . "'");
 		if (isset($data['product_shipping'])) {
 			foreach ($data['product_shipping'] as $product_shipping) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "product_shipping SET product_id = '" . (int)$product_id . "', courier_id = '" . (int)$product_shipping['courier_id'] . "', shipping_rate = '" . (float)$product_shipping['shipping_rate'] . "', geo_zone_id = '" . (int)$product_shipping['geo_zone_id'] . "'");
@@ -308,7 +308,7 @@ class ModelCatalogMVDProduct extends Model {
 		//mvds
 		$query = $this->db->query("SELECT DISTINCT *, p.sort_order as psort_order FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "vendor vd ON (pd.product_id = vd.vproduct_id) LEFT JOIN " . DB_PREFIX . "vendors vds ON (vd.vendor = vds.vendor_id) WHERE p.product_id = '" . (int)$product_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 		//mvde
-		
+
 		if ($query->num_rows) {
 			$data = array();
 
@@ -384,24 +384,24 @@ class ModelCatalogMVDProduct extends Model {
 	public function getProducts($data = array()) {
 		//$sql = "SELECT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 		//mvds
-		$sql = "SELECT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "vendor vd ON (pd.product_id = vd.vproduct_id) LEFT JOIN " . DB_PREFIX . "vendors vds ON (vd.vendor = vds.vendor_id)"; 
+		$sql = "SELECT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "vendor vd ON (pd.product_id = vd.vproduct_id) LEFT JOIN " . DB_PREFIX . "vendors vds ON (vd.vendor = vds.vendor_id)";
 		//mvde
-		
-		$sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'"; 
-		
+
+		$sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
 		if (!empty($data['filter_name'])) {
 			$sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
 		}
-		
+
 		//mvds
 		if (!empty($data['filter_sku'])) {
 			$sql .= " AND LCASE(p.sku) LIKE '" . $this->db->escape(mb_strtolower($data['filter_sku'])) . "%'";
 		}
-			
+
 		if (isset($data['filter_vendor']) && !is_null($data['filter_vendor'])) {
 			$sql .= " AND vd.vendor = '" . (int)$data['filter_vendor'] . "'";
 		}
-			
+
 		if (isset($data['filter_vendor_name']) && !is_null($data['filter_vendor_name'])) {
 			$sql .= " AND vds.vendor_id = '" . (int)$data['filter_vendor_name'] . "'";
 		}
@@ -482,6 +482,7 @@ class ModelCatalogMVDProduct extends Model {
 			$product_description_data[$result['language_id']] = array(
 				'name'             => $result['name'],
 				'description'      => $result['description'],
+				'custom_unit'      => $result['custom_unit'],
 				'meta_title'       => $result['meta_title'],
 				'meta_description' => $result['meta_description'],
 				'meta_keyword'     => $result['meta_keyword'],
@@ -667,22 +668,22 @@ class ModelCatalogMVDProduct extends Model {
 		//mvds
 		$sql = "SELECT COUNT(DISTINCT p.product_id) AS total FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "vendor vd ON (pd.product_id = vd.vproduct_id) LEFT JOIN " . DB_PREFIX . "vendors vds ON (vd.vendor = vds.vendor_id)";
 		//mvde
-		
+
 		$sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 		if (!empty($data['filter_name'])) {
 			$sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
 		}
-		
+
 		//mvds
 		if (!empty($data['filter_sku'])) {
 			$sql .= " AND LCASE(p.sku) LIKE '" . $this->db->escape(mb_strtolower($data['filter_sku'])) . "%'";
 		}
-			
+
 		if (isset($data['filter_vendor']) && !is_null($data['filter_vendor'])) {
 			$sql .= " AND vd.vendor = '" . (int)$this->db->escape($data['filter_vendor']) . "'";
 		}
-			
+
 		if (isset($data['filter_vendor_name']) && !is_null($data['filter_vendor_name'])) {
 			$sql .= " AND vds.vendor_id = '" . (int)$this->db->escape($data['filter_vendor_name']) . "'";
 		}
@@ -768,19 +769,19 @@ class ModelCatalogMVDProduct extends Model {
 
 		return $query->row['total'];
 	}
-	
+
 	public function getProductOptionValue($product_id, $product_option_value_id) {
 		$query = $this->db->query("SELECT pov.option_value_id, ovd.name, pov.quantity, pov.subtract, pov.price, pov.price_prefix, pov.points, pov.points_prefix, pov.weight, pov.weight_prefix FROM " . DB_PREFIX . "product_option_value pov LEFT JOIN " . DB_PREFIX . "option_value ov ON (pov.option_value_id = ov.option_value_id) LEFT JOIN " . DB_PREFIX . "option_value_description ovd ON (ov.option_value_id = ovd.option_value_id) WHERE pov.product_id = '" . (int)$product_id . "' AND pov.product_option_value_id = '" . (int)$product_option_value_id . "' AND ovd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
 	}
-	
+
 	//mvds
 	public function getVendorsByVendorId($vendor_id) {
 		$data = array();
 		$query = $this->db->query("SELECT *, CONCAT(v.firstname, ' ',v.lastname) AS vname, CONCAT(v.address_1, ',', v.address_2, ',' , v.city, ',', v.postcode) AS address FROM " . DB_PREFIX . "vendors v WHERE v.vendor_id = '" . (int)$vendor_id . "'");
 		$data = $query->row;
-				
+
 		if ($query->num_rows) {
 			$data = array_merge($data,array('country_name' => $this->getCountryName($data['country_id'])));
 			if ($this->getZoneName($data['zone_id'])) {
@@ -791,14 +792,14 @@ class ModelCatalogMVDProduct extends Model {
 		}
 		return $data;
 	}
-	
+
 	public function getVendors($data = array()) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "vendors v ORDER BY v.vendor_name");
 		$vendors_data = $query->rows;
 		return $vendors_data;
 		$this->cache->set('vendors', $vendors_data);
 	}
-			
+
 	public function getCountryName($country_id) {
 		$country_name = array();
 		$query = $this->db->query("SELECT name AS CountryName FROM " . DB_PREFIX . "country c WHERE c.country_id = '" . (int)$country_id . "'");
@@ -807,47 +808,47 @@ class ModelCatalogMVDProduct extends Model {
 			}
 		return $country_name;
 	}
-			
+
 	public function getZoneName($zone_id) {
 		$zone_name = array();
 		$query = $this->db->query("SELECT name AS ZoneName FROM " . DB_PREFIX . "zone z WHERE z.zone_id = '" . (int)$zone_id . "'");
-				
+
 		foreach ($query->rows as $result) {
 			$zone_name[] = $result['ZoneName'];
 		}
 		return $zone_name;
 	}
-			
+
 	public function getCountry($data = array()) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "country c ORDER BY c.name");
 		$country_data = $query->rows;
 		return $country_data;
 		$this->cache->set('product', $country_data);
 	}
-			
+
 	public function getCourier($data = array()) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "courier cr ORDER BY cr.courier_name");
 		$couriers_data = $query->rows;
 		return $couriers_data;
 		$this->cache->set('product', $couriers_data);
 	}
-			
+
 	public function getTotalProductsByVendor($data = array(),$vendor_id) {
 		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "vendor vd ON (pd.product_id = vd.vproduct_id) LEFT JOIN " . DB_PREFIX . "vendors vds ON (vd.vendor = vds.vendor_id) WHERE vds.vendor_id = '" . (int)$vendor_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
-				
+
 		if (isset($data['filter_name']) && !is_null($data['filter_name'])) {
 			$sql .= " AND LCASE(pd.name) LIKE '%" . $this->db->escape(mb_strtolower($data['filter_name'], 'UTF-8')) . "%'";
 		}
-		
+
 		//mvds
 		if (isset($data['filter_sku']) && !is_null($data['filter_sku'])) {
 			$sql .= " AND LCASE(p.sku) LIKE '" . $this->db->escape(mb_strtolower($data['filter_sku'])) . "%'";
 		}
-			
+
 		if (isset($data['filter_vendor']) && !is_null($data['filter_vendor'])) {
 			$sql .= " AND vd.vendor = '" . (int)$this->db->escape($data['filter_vendor']) . "'";
 		}
-			
+
 		if (isset($data['filter_vendor_name']) && !is_null($data['filter_vendor_name'])) {
 			$sql .= " AND vds.vendor_id = '" . (int)$this->db->escape($data['filter_vendor_name']) . "'";
 		}
@@ -856,33 +857,33 @@ class ModelCatalogMVDProduct extends Model {
 		if (isset($data['filter_model']) && !is_null($data['filter_model'])) {
 			$sql .= " AND LCASE(p.model) LIKE '%" . $this->db->escape(mb_strtolower($data['filter_model'], 'UTF-8')) . "%'";
 		}
-				
+
 		if (isset($data['filter_price']) && !is_null($data['filter_price'])) {
 			$sql .= " AND p.price LIKE '" . $this->db->escape($data['filter_price']) . "%'";
 		}
-				
+
 		if (isset($data['filter_quantity']) && !is_null($data['filter_quantity'])) {
 			$sql .= " AND p.quantity = '" . $this->db->escape($data['filter_quantity']) . "'";
 		}
-				
+
 		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
 			$sql .= " AND p.status = '" . (int)$data['filter_status'] . "'";
 		}
 
 		$query = $this->db->query($sql);
 		return $query->row['total'];
-	}	
+	}
 
 	public function getTotalWaitingApprovalProduct($data = array()) {
 		$query = $this->db->query("SELECT count(*) AS total FROM " . DB_PREFIX . "product p WHERE p.status = '5'");
 		return $query->row['total'];
-	}			
-						
+	}
+
 	public function getProductShippings($product_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_shipping WHERE product_id = '" . (int)$product_id . "' ORDER BY product_shipping_id");
 		return $query->rows;
 	}
-			
+
 	public function getVendorData($vendor_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "vendors WHERE vendor_id = '" . (int)$this->db->escape($vendor_id) . "'");
 		return $query->row;
