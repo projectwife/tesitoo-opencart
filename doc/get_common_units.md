@@ -1,4 +1,4 @@
-### GET units ###
+### GET /common/units ###
 
 **Method** `GET /api/v1/common/units`
 

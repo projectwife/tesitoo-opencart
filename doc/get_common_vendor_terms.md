@@ -1,4 +1,4 @@
-### GET vendor_terms ###
+### GET /common/vendor_terms ###
 
 **Method** `GET /api/v1/common/vendor_terms`
 

@@ -114,7 +114,7 @@ class ControllerLocalisationUnitClass extends Controller {
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
-			$sort = 'title';
+			$sort = 'sort_order';
 		}
 
 		if (isset($this->request->get['order'])) {
@@ -177,6 +177,7 @@ class ControllerLocalisationUnitClass extends Controller {
 				'title'           => $result['title'] . (($result['unit_class_id'] == $this->config->get('config_unit_class_id')) ? $this->language->get('text_default') : null),
 				'abbreviation'     => $result['abbreviation'],
 				'note'             => $result['note'],
+				'sort_order'       => $result['sort_order'],
 				'edit'            => $this->url->link('localisation/unit_class/edit', 'token=' . $this->session->data['token'] . '&unit_class_id=' . $result['unit_class_id'] . $url, 'SSL')
 			);
 		}
@@ -190,6 +191,7 @@ class ControllerLocalisationUnitClass extends Controller {
 		$data['column_title'] = $this->language->get('column_title');
 		$data['column_abbreviation'] = $this->language->get('column_abbreviation');
 		$data['column_note'] = $this->language->get('column_note');
+		$data['column_sort_order'] = $this->language->get('column_sort_order');
 		$data['column_action'] = $this->language->get('column_action');
 
 		$data['button_add'] = $this->language->get('button_add');
@@ -231,6 +233,7 @@ class ControllerLocalisationUnitClass extends Controller {
 		$data['sort_title'] = $this->url->link('localisation/unit_class', 'token=' . $this->session->data['token'] . '&sort=title' . $url, 'SSL');
 		$data['sort_abbreviation'] = $this->url->link('localisation/unit_class', 'token=' . $this->session->data['token'] . '&sort=abbreviation' . $url, 'SSL');
 		$data['sort_note'] = $this->url->link('localisation/unit_class', 'token=' . $this->session->data['token'] . '&sort=note' . $url, 'SSL');
+		$data['sort_sort_order'] = $this->url->link('localisation/unit_class', 'token=' . $this->session->data['token'] . '&sort=sort_order' . $url, 'SSL');
 
 		$url = '';
 
@@ -268,6 +271,7 @@ class ControllerLocalisationUnitClass extends Controller {
 		$data['entry_title'] = $this->language->get('entry_title');
 		$data['entry_abbreviation'] = $this->language->get('entry_abbreviation');
 		$data['entry_note'] = $this->language->get('entry_note');
+		$data['entry_sort_order'] = $this->language->get('entry_sort_order');
 
 		$data['button_save'] = $this->language->get('button_save');
 		$data['button_cancel'] = $this->language->get('button_cancel');
@@ -291,6 +295,12 @@ class ControllerLocalisationUnitClass extends Controller {
 		}
 
 		$url = '';
+
+		if (isset($this->request->post['sort_order'])) {
+			$data['sort_order'] = $this->request->post['sort_order'];
+		} else {
+			$data['sort_order'] = '';
+		}
 
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
@@ -326,6 +336,7 @@ class ControllerLocalisationUnitClass extends Controller {
 
 		if (isset($this->request->get['unit_class_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$unit_class_info = $this->model_localisation_unit_class->getUnitClass($this->request->get['unit_class_id']);
+			$data['sort_order'] = $unit_class_info['sort_order'];
 		}
 
 		$this->load->model('localisation/language');
@@ -357,7 +368,7 @@ class ControllerLocalisationUnitClass extends Controller {
 				$this->error['title'][$language_id] = $this->language->get('error_title');
 			}
 
-			if (!$value['abbreviation'] || (utf8_strlen($value['abbreviation']) > 8)) {
+			if (($value['abbreviation']) && (utf8_strlen($value['abbreviation']) > 8)) {
 				$this->error['abbreviation'][$language_id] = $this->language->get('error_abbreviation');
 			}
 		}

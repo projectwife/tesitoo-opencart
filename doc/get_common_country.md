@@ -1,4 +1,4 @@
-### GET country ###
+### GET /common/country ###
 
 **Method** `GET /api/v1/common/country`
 

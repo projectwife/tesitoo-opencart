@@ -38,7 +38,7 @@
               <?php } ?>
             </div>
           </div>
-          <div class="form-group required">
+          <div class="form-group">
             <label class="col-sm-2 control-label"><?php echo $entry_abbreviation; ?></label>
             <div class="col-sm-10">
               <?php foreach ($languages as $language) { ?>
@@ -59,6 +59,12 @@
                 <input type="text" name="unit_class_description[<?php echo $language['language_id']; ?>][note]" value="<?php echo isset($unit_class_description[$language['language_id']]) ? $unit_class_description[$language['language_id']]['note'] : ''; ?>" placeholder="<?php echo $entry_note; ?>" class="form-control" />
               </div>
               <?php } ?>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-sort-order"><?php echo $entry_sort_order; ?></label>
+            <div class="col-sm-10">
+              <input type="text" name="sort_order" value="<?php echo $sort_order; ?>" placeholder="<?php echo $entry_sort_order; ?>" id="input-sort-order" class="form-control" />
             </div>
           </div>
         </form>

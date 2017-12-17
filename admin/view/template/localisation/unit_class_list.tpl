@@ -45,10 +45,15 @@
                     <?php } else { ?>
                     <a href="<?php echo $sort_abbreviation; ?>"><?php echo $column_abbreviation; ?></a>
                     <?php } ?></td>
-                  <td class="text-right"><?php if ($sort == 'value') { ?>
+                  <td class="text-right"><?php if ($sort == 'note') { ?>
                     <a href="<?php echo $sort_note; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_note; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_note; ?>"><?php echo $column_note; ?></a>
+                    <?php } ?></td>
+                  <td class="text-right"><?php if ($sort == 'sort_order') { ?>
+                    <a href="<?php echo $sort_sort_order; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_sort_order; ?></a>
+                    <?php } else { ?>
+                    <a href="<?php echo $sort_sort_order; ?>"><?php echo $column_sort_order; ?></a>
                     <?php } ?></td>
                   <td class="text-right"><?php echo $column_action; ?></td>
                 </tr>
@@ -65,6 +70,7 @@
                   <td class="text-left"><?php echo $unit_class['title']; ?></td>
                   <td class="text-left"><?php echo $unit_class['abbreviation']; ?></td>
                   <td class="text-right"><?php echo $unit_class['note']; ?></td>
+                  <td class="text-right"><?php echo $unit_class['sort_order']; ?></td>
                   <td class="text-right"><a href="<?php echo $unit_class['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
                 </tr>
                 <?php } ?>

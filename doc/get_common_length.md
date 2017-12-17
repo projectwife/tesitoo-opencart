@@ -1,4 +1,4 @@
-### GET length ###
+### GET /common/length ###
 
 **Method** `GET /api/v1/common/length`
 

@@ -1,4 +1,4 @@
-### DEL product/{id}/image?files={files} ###
+### DEL /product/product/{id}/image?files={files} ###
 
 **Method** `DEL /api/v1/product/product/{id}/image?files={files}`
 

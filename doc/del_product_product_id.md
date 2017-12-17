@@ -1,4 +1,4 @@
-### DEL product/{id} ###
+### DEL /product/product/{id} ###
 
 **Method** `DEL /api/v1/product/product/{id}`
 

@@ -1,4 +1,4 @@
-### POST device ###
+### POST /notification/device ###
 
 **Method** `POST /api/v1/notification/device`
 

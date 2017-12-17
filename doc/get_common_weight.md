@@ -1,4 +1,4 @@
-### GET weight ###
+### GET /common/weight ###
 
 **Method** `GET /api/v1/common/weight`
 
