@@ -249,6 +249,7 @@ class ControllerProductProduct extends Controller {
 			$data['text_related'] = $this->language->get('text_related');
 			$data['text_payment_recurring'] = $this->language->get('text_payment_recurring');
 			$data['text_loading'] = $this->language->get('text_loading');
+			$data['text_priced_per'] = $this->language->get('text_priced_per');
 
 			$data['entry_qty'] = $this->language->get('entry_qty');
 			$data['entry_name'] = $this->language->get('entry_name');
@@ -284,6 +285,24 @@ class ControllerProductProduct extends Controller {
 			$data['date_added'] = $product_info['date_added'];
 
 			$data['expiration_date'] = $product_info['expiration_date'];
+
+			$this->load->model('localisation/units');
+			$unitDescriptions = $this->model_localisation_units->getUnitDescriptions();
+
+			// custom unit has unit_class_id == 1
+			if ($product_info['custom_unit'] && ($product_info['unit_class_id'] == 1))
+			{
+				$data['unit'] = $product_info['custom_unit'];
+			}
+			else if (($product_info['unit_class_id'] > 1)
+					&& array_key_exists($product_info['unit_class_id'], $unitDescriptions))
+			{
+				$data['unit'] = $unitDescriptions[$product_info['unit_class_id']]['title'];
+			}
+			else
+			{
+				$data['unit'] = 'unit';
+			}
 
 			if ($product_info['quantity'] <= 0) {
 				$data['stock'] = $product_info['stock_status'];
