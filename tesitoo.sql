@@ -3045,7 +3045,7 @@ CREATE TABLE IF NOT EXISTS `oc_unit_class` (
 --
 
 INSERT INTO `oc_unit_class` (`unit_class_id`, `sort_order`) VALUES
-(1, 0),
+(1, 999),
 (2, 0),
 (3, 0),
 (4, 0),
@@ -3055,7 +3055,7 @@ INSERT INTO `oc_unit_class` (`unit_class_id`, `sort_order`) VALUES
 (8, 0),
 (9, 0),
 (10, 0),
-(11, 999);
+(11, 0);
 
 -- --------------------------------------------------------
 
@@ -3076,17 +3076,17 @@ CREATE TABLE IF NOT EXISTS `oc_unit_class_description` (
 --
 
 INSERT INTO `oc_unit_class_description` (`unit_class_id`, `language_id`, `title`, `abbreviation`, `note`) VALUES
-(1, 1, 'Kilogram', 'Kg', ''),
-(2, 1, 'Liter', 'L', ''),
-(3, 1, 'Crate', 'Cr', ''),
-(4, 1, 'Sack', 'Sc', ''),
-(5, 1, 'Bag', 'Bg', ''),
-(6, 1, 'Piece', 'Pc', ''),
-(7, 1, 'Pack', 'Pck', ''),
-(8, 1, 'Pallet', 'Plt', ''),
-(9, 1, 'Gallon', 'Gl', ''),
-(10, 1, 'Basket', 'Bk', ''),
-(11, 1, 'Custom', '', '');
+(1, 1, 'Custom', '', '')
+(2, 1, 'Kilogram', 'Kg', ''),
+(3, 1, 'Liter', 'L', ''),
+(4, 1, 'Crate', 'Cr', ''),
+(5, 1, 'Sack', 'Sc', ''),
+(6, 1, 'Bag', 'Bg', ''),
+(7, 1, 'Piece', 'Pc', ''),
+(8, 1, 'Pack', 'Pck', ''),
+(9, 1, 'Pallet', 'Plt', ''),
+(10, 1, 'Gallon', 'Gl', ''),
+(11, 1, 'Basket', 'Bk', '');
 
 -- --------------------------------------------------------
 
