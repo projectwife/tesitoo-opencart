@@ -3076,7 +3076,7 @@ CREATE TABLE IF NOT EXISTS `oc_unit_class_description` (
 --
 
 INSERT INTO `oc_unit_class_description` (`unit_class_id`, `language_id`, `title`, `abbreviation`, `note`) VALUES
-(1, 1, 'Custom', '', '')
+(1, 1, 'Custom', '', ''),
 (2, 1, 'Kilogram', 'Kg', ''),
 (3, 1, 'Liter', 'L', ''),
 (4, 1, 'Crate', 'Cr', ''),
