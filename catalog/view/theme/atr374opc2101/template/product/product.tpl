@@ -163,7 +163,14 @@
               <ul class="list-unstyled list-price">
                 <?php if (!$special) { ?>
                 <li>
-                  <h2><?php echo $price; ?></h2>
+                  <span class="price-unit-inline">
+                    <h2><?php echo $price; ?></h2>
+                  </span>
+                  <?php if ($unit) { ?>
+                  <span class="price-unit-inline">
+                    <?php echo $text_priced_per; ?> <span><?php echo $unit; ?></span></p>
+                  </span>
+                  <?php } ?>
                 </li>
                 <?php } else { ?>
                 <li class="price-old"><span><?php echo $price; ?></span></li>
@@ -367,7 +374,7 @@
                     </a>
                     <a class="addthis_button_facebook">
                       <img width="20" height="20" src="catalog/view/theme/atr374opc2101/image/socialproduct/icon_facebook.png" alt="facebook" />
-                    </a> 
+                    </a>
                     <a class="addthis_button_twitter">
                       <img width="20" height="20" src="catalog/view/theme/atr374opc2101/image/socialproduct/icon_twitter.png" alt="twitter" />
                     </a>
@@ -376,15 +383,15 @@
                     </a>
                     <a class="addthis_button_print">
                       <img width="20" height="20" src="catalog/view/theme/atr374opc2101/image/socialproduct/icon_print.png" alt="print" />
-                    </a> 
+                    </a>
                     <a class="addthis_button_compact">
                       <img width="20" height="20" src="catalog/view/theme/atr374opc2101/image/socialproduct/icon_plus.png" alt="plus" />
-                    </a> 
+                    </a>
                   </div>
-                  <script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js"></script> 
-                  <!-- AddThis Button END --> 
+                  <script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js"></script>
+                  <!-- AddThis Button END -->
                 </div>
-                <!-- AddThis Button END --> 
+                <!-- AddThis Button END -->
               </div>
               <?php } ?>
           </div>
@@ -403,14 +410,14 @@
         <?php $class = 'col-lg-3 col-md-3 col-sm-6 col-xs-12'; ?>
         <?php } ?>
         <div class="<?php echo $class; ?>">
-          <div class="product-thumb transition">			
+          <div class="product-thumb transition">
 		    <div class="image">
                 <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a>
-            </div>   
+            </div>
 			<div class="transition-right">
             <div class="caption">
               <h4><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
-            </div>			
+            </div>
             <div class="button-group">
                 <?php if ($product['price']) { ?>
                     <p class="price">
@@ -618,7 +625,7 @@ $('button[id^=\'button-upload\']').on('click', function() {
 			});
 		}
 	}, 500);
-  
+
 });
 //--></script>
 <script type="text/javascript"><!--
@@ -679,5 +686,5 @@ $(document).ready(function() {
 		}
 	});
 });
-//--></script> 
+//--></script>
 <?php echo $footer; ?>
