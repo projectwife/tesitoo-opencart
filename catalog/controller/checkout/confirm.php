@@ -53,6 +53,9 @@ class ControllerCheckoutConfirm extends Controller {
 			}
 		}
 
+		$this->load->model('localisation/units');
+		$unitDescriptions = $this->model_localisation_units->getUnitDescriptions();
+
 		if (!$redirect) {
 			$order_data = array();
 
@@ -319,6 +322,7 @@ class ControllerCheckoutConfirm extends Controller {
 			$data['column_name'] = $this->language->get('column_name');
 			$data['column_model'] = $this->language->get('column_model');
 			$data['column_quantity'] = $this->language->get('column_quantity');
+			$data['column_unit'] = $this->language->get('column_unit');
 			$data['column_price'] = $this->language->get('column_price');
 			$data['column_total'] = $this->language->get('column_total');
 
@@ -370,6 +374,22 @@ class ControllerCheckoutConfirm extends Controller {
 					}
 				}
 
+
+				// custom unit has unit_class_id == 1
+				if ($product['custom_unit'] && ($product['unit_class_id'] == 1))
+				{
+					$productUnit = $product['custom_unit'];
+				}
+				else if (($product['unit_class_id'] > 1)
+						&& array_key_exists($product['unit_class_id'], $unitDescriptions))
+				{
+					$productUnit = $unitDescriptions[$product['unit_class_id']]['title'];
+				}
+				else
+				{
+					$productUnit = 'unit';
+				}
+
 				$data['products'][] = array(
 					'cart_id'    => $product['cart_id'],
 					'product_id' => $product['product_id'],
@@ -378,6 +398,7 @@ class ControllerCheckoutConfirm extends Controller {
 					'option'     => $option_data,
 					'recurring'  => $recurring,
 					'quantity'   => $product['quantity'],
+					'unit'       => $productUnit,
 					'subtract'   => $product['subtract'],
 					'price'      => $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax'))),
 					'total'      => $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')) * $product['quantity']),
