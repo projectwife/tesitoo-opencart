@@ -5,6 +5,7 @@
       <tr>
         <td class="text-left"><?php echo $column_name; ?></td>
         <td class="text-right"><?php echo $column_quantity; ?></td>
+        <td class="text-left"><?php echo $column_unit; ?></td>
         <td class="text-right"><?php echo $column_price; ?></td>
         <td class="text-right"><?php echo $column_total; ?></td>
       </tr>
@@ -22,6 +23,7 @@
           <span class="label label-info"><?php echo $text_recurring_item; ?></span> <small><?php echo $product['recurring']; ?></small>
           <?php } ?></td>
         <td class="text-right"><?php echo $product['quantity']; ?></td>
+        <td class="text-left"><?php echo $product['unit']; ?></td>
         <td class="text-right"><?php echo $product['price']; ?></td>
         <td class="text-right"><?php echo $product['total']; ?></td>
       </tr>
@@ -39,7 +41,7 @@
     <tfoot>
       <?php foreach ($totals as $total) { ?>
       <tr>
-        <td colspan="3" class="text-right"><strong><?php echo $total['title']; ?>:</strong></td>
+        <td colspan="4" class="text-right"><strong><?php echo $total['title']; ?>:</strong></td>
         <td class="text-right"><?php echo $total['text']; ?></td>
       </tr>
       <?php } ?>

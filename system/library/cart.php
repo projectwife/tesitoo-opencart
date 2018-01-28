@@ -260,6 +260,8 @@ class Cart {
 					'width'           => $product_query->row['width'],
 					'height'          => $product_query->row['height'],
 					'length_class_id' => $product_query->row['length_class_id'],
+					'unit_class_id'   => $product_query->row['unit_class_id'],
+					'custom_unit'     => $product_query->row['custom_unit'],         
 					'recurring'       => $recurring
 				);
 			} else {

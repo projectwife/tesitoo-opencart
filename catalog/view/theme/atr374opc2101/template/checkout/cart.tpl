@@ -45,6 +45,7 @@
                   <td class="text-center checkout-cart-img"><?php echo $column_image; ?></td>
                   <td class="text-left checkout-cart-name"><?php echo $column_name; ?></td>
                   <td class="text-left checkout-cart-qty"><?php echo $column_quantity; ?></td>
+                  <td class="text-left checkout-cart-unit"><?php echo $column_unit; ?></td>
                   <td class="text-right checkout-cart-price"><?php echo $column_price; ?></td>
                   <td class="text-right checkout-cart-total"><?php echo $column_total; ?></td>
                 </tr>
@@ -78,6 +79,7 @@
                       <span class="input-group-btn">
                       <button type="submit" data-toggle="tooltip" title="<?php echo $button_update; ?>" class="btn btn-primary"><i class="fa fa-refresh"></i></button>
                       <button type="button" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger" onclick="cart.remove('<?php echo $product['cart_id']; ?>');"><i class="fa fa-times-circle"></i></button></span></div></td>
+                  <td class="text-left"><?php echo $product['unit']; ?></td>
                   <td class="text-right"><?php echo $product['price']; ?></td>
                   <td class="text-right"><?php echo $product['total']; ?></td>
                 </tr>
@@ -124,4 +126,4 @@
       <?php echo $column_right; ?></div>
   </div>
 </div>
-<?php echo $footer; ?> 
+<?php echo $footer; ?>
