@@ -434,6 +434,7 @@ class ModelCheckoutOrder extends Model {
 				$data['text_product'] = $language->get('text_new_product');
 				$data['text_model'] = $language->get('text_new_model');
 				$data['text_quantity'] = $language->get('text_new_quantity');
+				$data['text_unit'] = $language->get('text_new_unit');
 				$data['text_price'] = $language->get('text_new_price');
 				$data['text_total'] = $language->get('text_new_total');
 				$data['text_footer'] = $language->get('text_new_footer');
@@ -562,11 +563,29 @@ class ModelCheckoutOrder extends Model {
 						);
 					}
 
+					$unit_query = $this->db->query("SELECT ucd.unit_class_id, ucd.title, pd.custom_unit FROM " . DB_PREFIX . "product as p, " . DB_PREFIX . "unit_class_description as ucd, " . DB_PREFIX . "product_description as pd WHERE ucd.unit_class_id = p.unit_class_id AND pd.language_id = 1 AND pd.product_id = p.product_id AND p.product_id = '" . (int)$product['product_id'] . "'");
+					$product_info = $unit_query->rows[0];
+
+					// custom unit has unit_class_id == 1
+					if ($product_info['custom_unit'] && ($product_info['unit_class_id'] == 1))
+					{
+						$unit = $product_info['custom_unit'];
+					}
+					else if (($product_info['unit_class_id'] > 1) && strlen($product_info['title']) > 0)
+					{
+						$unit = $product_info['title'];
+					}
+					else
+					{
+						$unit = 'unit';
+					}
+
 					$data['products'][] = array(
 						'name'     => $product['name'],
 						'model'    => $product['model'],
 						'option'   => $option_data,
 						'quantity' => $product['quantity'],
+						'unit'     => $unit,
 						'price'    => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
 						'total'    => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value'])
 					);
@@ -615,7 +634,7 @@ class ModelCheckoutOrder extends Model {
 				$text .= $language->get('text_new_products') . "\n";
 
 				foreach ($order_product_query->rows as $product) {
-					$text .= $product['quantity'] . 'x ' . $product['name'] . ' (' . $product['model'] . ') ' . html_entity_decode($this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']), ENT_NOQUOTES, 'UTF-8') . "\n";
+					$text .= $product['quantity'] . 'x ' . $product['name'] . ' ' . html_entity_decode($this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']), ENT_NOQUOTES, 'UTF-8') . "\n";
 
 					$order_option_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_option WHERE order_id = '" . (int)$order_id . "' AND order_product_id = '" . $product['order_product_id'] . "'");
 

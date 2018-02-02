@@ -20,6 +20,7 @@ $_['text_new_products']         = 'Products';
 $_['text_new_product']          = 'Product';
 $_['text_new_model']            = 'Model';
 $_['text_new_quantity']         = 'Quantity';
+$_['text_new_unit']         = 'Unit';
 $_['text_new_price']            = 'Price';
 $_['text_new_order_total']      = 'Order Totals';
 $_['text_new_total']            = 'Total';
