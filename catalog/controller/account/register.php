@@ -18,6 +18,18 @@ class ControllerAccountRegister extends Controller {
 		$this->load->model('account/customer');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+			if (!isset($this->request->post['fax'])) {
+				$this->request->post['fax'] = '';
+			}
+			if (!isset($this->request->post['company'])) {
+				$this->request->post['company'] = '';
+			}
+			if (!isset($this->request->post['address_2'])) {
+				$this->request->post['address_2'] = '';
+			}
+			if (!isset($this->request->post['postcode'])) {
+				$this->request->post['postcode'] = '';
+			}
 			$customer_id = $this->model_account_customer->addCustomer($this->request->post);
 
 			// Clear any previous login attempts for unregistered accounts.
