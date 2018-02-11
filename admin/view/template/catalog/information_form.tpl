@@ -127,15 +127,21 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-bottom"><span data-toggle="tooltip" title="<?php echo $help_bottom; ?>"><?php echo $entry_bottom; ?></span></label>
                 <div class="col-sm-10">
-                  <div class="checkbox">
-                    <label>
-                      <?php if ($bottom) { ?>
-                      <input type="checkbox" name="bottom" value="1" checked="checked" id="input-bottom" />
-                      <?php } else { ?>
-                      <input type="checkbox" name="bottom" value="1" id="input-bottom" />
-                      <?php } ?>
-                      &nbsp; </label>
-                  </div>
+                  <select name="bottom" id="input-bottom" class="form-control">
+                    <?php
+                    foreach ($footerSectionsArray as $index => $footerSection) {
+                      if ($index == $bottom) {
+                        ?>
+                          <option value="<?php echo $index; ?>" selected="selected"><?php echo $footerSection; ?></option>
+                        <?php
+                      } else {
+                        ?>
+                          <option value="<?php echo $index; ?>"><?php echo $footerSection; ?></option>
+                        <?php
+                      }
+                    }
+                    ?>
+                  </select>
                 </div>
               </div>
               <div class="form-group">

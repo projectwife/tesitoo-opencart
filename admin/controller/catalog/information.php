@@ -391,6 +391,13 @@ class ControllerCatalogInformation extends Controller {
 			$data['keyword'] = '';
 		}
 
+		$data['footerSectionsArray'] = [
+			'',
+			$this->language->get('in_footer_information'),
+			$this->language->get('in_footer_buyers'),
+			$this->language->get('in_footer_useful')
+		];
+
 		if (isset($this->request->post['bottom'])) {
 			$data['bottom'] = $this->request->post['bottom'];
 		} elseif (!empty($information_info)) {

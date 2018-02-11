@@ -13,11 +13,18 @@
       <?php } ?>
       <div class="col-sm-3">
         <h5><?php echo $text_service; ?></h5>
-
+        <ul class="list-unstyled">
+          <?php foreach ($forBuyersInfo as $information) { ?>
+          <li><a href="<?php echo $information['href']; ?>"><?php echo $information['title']; ?></a></li>
+          <?php } ?>
+        </ul>
       </div>
       <div class="col-sm-3">
         <h5><?php echo $text_usefullinks; ?></h5>
         <ul class="list-unstyled">
+          <?php foreach ($usefulLinksInfo as $information) { ?>
+          <li><a href="<?php echo $information['href']; ?>"><?php echo $information['title']; ?></a></li>
+          <?php } ?>
           <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
         </ul>
 
@@ -35,7 +42,7 @@
   </div>
   <div id="wrap_powered_social" class="clearfix">
     <div class="container">
-      <div id="powered">Design : <a target="_blank" href="http://www.ecommercetoolsmarket.com/">Ecommercetoolsmarket</a> | <?php echo $powered; ?></div>
+      <div id="powered"><!--Design : <a target="_blank" href="http://www.ecommercetoolsmarket.com/">Ecommercetoolsmarket</a> | --><?php echo $powered; ?></div>
       <ul id="socialColumn"><!--
      --><li>
           <a href="#">
