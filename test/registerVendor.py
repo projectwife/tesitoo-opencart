@@ -23,12 +23,12 @@ class RegisterVendor(unittest.TestCase):
         self.driver.implicitly_wait(30)
         self.verificationErrors = []
         self.accept_next_alert = True
-    
+
     def test_register_vendor(self):
         driver = self.driver
         driver.get(self.base_url + "index.php?route=common/home")
         driver.find_element_by_xpath("//a[@title='Register']").click()
-        driver.find_element_by_link_text("Register as a Farmer").click()
+        driver.find_element_by_link_text("Farmer").click()
         driver.find_element_by_id("input-username").clear()
         driver.find_element_by_id("input-username").send_keys("selenium1")
         driver.find_element_by_id("input-firstname").clear()
@@ -66,17 +66,17 @@ class RegisterVendor(unittest.TestCase):
         #element = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'a.btn.btn-primary')))
         #element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'a.btn.btn-primary')))
         driver.find_element_by_css_selector("a.btn.btn-primary").click()
-    
+
     def is_element_present(self, how, what):
         try: self.driver.find_element(by=how, value=what)
         except NoSuchElementException as e: return False
         return True
-    
+
     def is_alert_present(self):
         try: self.driver.switch_to_alert()
         except NoAlertPresentException as e: return False
         return True
-    
+
     def close_alert_and_get_its_text(self):
         try:
             alert = self.driver.switch_to_alert()
@@ -87,7 +87,7 @@ class RegisterVendor(unittest.TestCase):
                 alert.dismiss()
             return alert_text
         finally: self.accept_next_alert = True
-    
+
     def tearDown(self):
         self.driver.quit()
         self.assertEqual([], self.verificationErrors)
@@ -102,4 +102,3 @@ if __name__ == "__main__":
 
     unit_argv = [sys.argv[0]] + args.unittest_args;
     unittest.main(argv=unit_argv)
-
