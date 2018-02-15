@@ -78,7 +78,7 @@
                 $_['heading_title']        = 'Sign UP';
             ]]></search>
             <add><![CDATA[
-                $_['heading_title']        = 'Sign Up as a Farmer';
+                $_['heading_title']        = 'Register as a Farmer';
             ]]></add>
 		</operation>
         <operation error="skip">
@@ -134,7 +134,7 @@
                 $_['heading_title']        = 'Register Account';
             ]]></search>
 			<add><![CDATA[
-                $_['heading_title']        = 'Register Buyer Account';
+                $_['heading_title']        = 'Register as a Buyer';
             ]]></add>
 		</operation>
     </file>
