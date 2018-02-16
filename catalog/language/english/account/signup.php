@@ -1,5 +1,5 @@
 <?php
-// Heading 
+// Heading
 $_['heading_title']        = 'Sign UP';
 $_['heading_title_signup'] = 'Your Account Has Been Created!';
 
@@ -43,12 +43,12 @@ $_['entry_payment_method'] = 'Payment Method';
 $_['entry_telephone']      = 'Telephone';
 $_['entry_fax']            = 'Fax';
 $_['entry_company']        = 'Company';
-$_['entry_address_1']      = 'Address 1';
+$_['entry_address_1']      = 'Address';
 $_['entry_address_2']      = 'Address 2';
 $_['entry_postcode']       = 'Post Code';
 $_['entry_city']           = 'City';
 $_['entry_country']        = 'Country';
-$_['entry_zone']           = 'Region / State';
+$_['entry_zone']           = 'Region';
 $_['entry_product_limit']  = 'Product Limit';
 $_['entry_store_url']      = 'Website URL';
 $_['entry_store_description']  	= 'Tell us more about you company';

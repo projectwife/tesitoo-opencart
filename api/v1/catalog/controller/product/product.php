@@ -43,7 +43,16 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 			'meta_keyword' => ''
 			]
 		],
-		'model' => '' //FIXME what are reqs for 'model'
+		'model' => '', //FIXME what are reqs for 'model'
+		'category_ids' => '',
+		'ori_country' => '',
+		'product_cost' => '',
+		'shipping_method' => '',
+		'preferred_shipping' => '',
+		'shipping_cost' => '',
+		'vtotal' => '',
+		'product_url' => '',
+		'wholesale' => ''
 	);
 
 	public function index($args = array())
