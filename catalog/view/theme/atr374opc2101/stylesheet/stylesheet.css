@@ -1912,3 +1912,9 @@ h2.price {
 .price-unit-inline h2 {
 		margin-top: 5px;
 }
+
+.thumbnail {
+		padding: 0px;
+		border: none;
+		background-color: transparent;
+}
