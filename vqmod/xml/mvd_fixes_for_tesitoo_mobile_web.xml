@@ -81,14 +81,6 @@
                 $_['heading_title']        = 'Register as a Farmer';
             ]]></add>
 		</operation>
-        <operation error="skip">
-            <search position="replace"><![CDATA[
-                $_['entry_company']        = 'Company';
-            ]]></search>
-            <add><![CDATA[
-                $_['entry_company']        = 'Display Name';
-            ]]></add>
-		</operation>
     </file>
     <file name="catalog/view/theme/atr374opc2101/template/account/register.tpl">
         <operation error="skip">
