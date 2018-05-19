@@ -110,14 +110,9 @@
         </div>
         <div class="col-sm-3"><?php echo $cart; ?></div>
       </div>
-      <div class="row">
-        <div class="slogan">
-          <?php echo $text_slogan; ?>
-        </div>
-      </div>
     </div>
   </header>
-  <?php if ($categories) { ?><!-- 
+  <?php if ($categories) { ?><!--
 --><div class="menu-container-wrapper">
     <div id="sticky_logo">
       <?php if ($logo) { ?>
