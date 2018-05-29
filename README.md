@@ -32,6 +32,10 @@ Environment
 - phpMyAdmin (recommended)
   - `sudo apt-get install phpmyadmin`
   - `sudo ln -s /usr/share/phpmyadmin/ /var/www/html/phpmyadmin`
+- php config
+  - `sudo nano /etc/php5/apache2/php.ini`
+  - set `upload_max_filesize` to `30M` (or whatever, default 2M is not enough)
+  - `sudo service apache2 restart`
 
 Procedure
 -----------------
