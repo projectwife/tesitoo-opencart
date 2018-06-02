@@ -856,6 +856,15 @@ footer #powered a:hover, footer #powered a:focus, footer #powered a:active {}
 	#socialColumn li { display: inline-block; margin: 4px; }
 }
 
+#socialColumn.socialColumnTesitoo a {
+	width: 200px;
+	height: 40px;
+	text-align: right;
+}
+.socialColumnTesitoo .socialLinkTesitoo {
+	height: 40px;
+}
+
 
 /* alert */
 .alert {

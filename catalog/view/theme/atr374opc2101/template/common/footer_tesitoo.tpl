@@ -43,37 +43,41 @@
   <div id="wrap_powered_social" class="clearfix">
     <div class="container">
       <div id="powered"><!--Design : <a target="_blank" href="http://www.ecommercetoolsmarket.com/">Ecommercetoolsmarket</a> | --><?php echo $powered; ?></div>
-      <ul id="socialColumn"><!--
+      <ul id="socialColumn" class= "socialColumnTesitoo"><!--
      --><li>
-          <a href="#">
-            <img class="social-hover" src="catalog/view/theme/atr374opc2101/image/social/facebook-hover.png" alt="facebook" />
-            <img class="social-link" src="catalog/view/theme/atr374opc2101/image/social/facebook.png" alt="facebook" />
+          <a href="https://www.facebook.com/Tesitooproject" target="_blank">
+            <img class="socialLinkTesitoo" alt="Find us on Facebook" src="catalog/view/theme/atr374opc2101/image/social/FindUs-FB-RGB-BRC-Site-500.png" alt="facebook" />
           </a>
-        </li><!--
-     --><li>
+        </li>
+        <li>
+          <a href='https://play.google.com/store/apps/details?id=com.tesitoo&hl=en&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1' target="_blank">
+            <img class="socialLinkTesitoo" alt='Get it on Google Play' src='catalog/view/theme/atr374opc2101/image/social/google-play-badge.png'/>
+          </a>
+        </li>
+     <!--<li>
           <a href="#">
             <img class="social-hover" src="catalog/view/theme/atr374opc2101/image/social/twitter-hover.png" alt="twitter" />
             <img class="social-link" src="catalog/view/theme/atr374opc2101/image/social/twitter.png" alt="twitter" />
           </a>
-        </li><!--
-     --><li>
+        </li>
+     <li>
           <a href="#">
             <img class="social-hover" src="catalog/view/theme/atr374opc2101/image/social/pinterest-hover.png" alt="pinterest" />
             <img class="social-link" src="catalog/view/theme/atr374opc2101/image/social/pinterest.png" alt="pinterest" />
           </a>
-        </li><!--
-     --><li>
+        </li>
+     <li>
           <a href="#">
             <img class="social-hover" src="catalog/view/theme/atr374opc2101/image/social/google-hover.png" alt="google+" />
             <img class="social-link" src="catalog/view/theme/atr374opc2101/image/social/google.png" alt="google+" />
           </a>
-        </li><!--
-     --><li>
+        </li>
+       <li>
           <a href="#">
             <img class="social-hover" src="catalog/view/theme/atr374opc2101/image/social/instagram-hover.png" alt="instagram" />
             <img class="social-link" src="catalog/view/theme/atr374opc2101/image/social/instagram.png" alt="instagram" />
           </a>
-        </li>
+        </li>-->
       </ul>
       <br class="clear" />
     </div>
