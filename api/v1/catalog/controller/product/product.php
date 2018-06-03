@@ -142,7 +142,7 @@ class ControllerProductProductAPI extends ControllerProductProductBaseAPI {
 		if (isset($this->request->post['meta_title'])) {
 			$this->request->post['product_description'][1]['meta_title'] = $this->request->post['meta_title'];
 		} else {
-			$this->request->post['product_description'][1]['meta_title'] = '';
+			$this->request->post['product_description'][1]['meta_title'] = $this->request->post['name'];
 		}
 		if (isset($this->request->post['custom_unit'])) {
 			$this->request->post['product_description'][1]['custom_unit'] = $this->request->post['custom_unit'];
