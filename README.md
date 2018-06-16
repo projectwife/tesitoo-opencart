@@ -12,7 +12,9 @@ Environment
   - `sudo apt-get install php5_mod_rewrite`
   - `sudo a2enmod rewrite`
   - `sudo a2enmod ssl`
+  - `sudo a2enmod expires`
   - `sudo a2enmod headers`
+  
   - `sudo service apache2 restart`
 - apache config:
   - for `/var/www` (or wherever content directory is), allow override
