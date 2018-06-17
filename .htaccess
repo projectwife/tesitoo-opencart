@@ -1,0 +1,51 @@
+<IfModule mod_headers.c>
+    SetEnvIf Origin ^(https?://(?:.+\.)?tesitoo\.com(?::\d{1,5})?)$   CORS_ALLOW_ORIGIN=$1
+    Header append Access-Control-Allow-Origin  %{CORS_ALLOW_ORIGIN}e   env=CORS_ALLOW_ORIGIN
+    Header merge  Vary "Origin"
+</IfModule>
+
+<FilesMatch "\.(jpg|jpeg|png|gif)$">
+    <IfModule mod_expires.c>
+        ExpiresActive on
+        ExpiresByType image/jpg "access plus 2 weeks"
+        ExpiresByType image/jpeg "access plus 2 weeks"
+        ExpiresByType image/png "access plus 2 weeks"
+        ExpiresByType image/gif "access plus 2 weeks"
+    </IfModule>
+</FilesMatch>
+
+
+<FilesMatch "\.(js|css|woff|woff2)$">
+    <IfModule mod_expires.c>
+        ExpiresActive on
+        ExpiresByType application/javascript "access plus 1 week"
+        ExpiresByType text/css "access plus 1 week"
+        ExpiresByType font/woff "access plus 1 year"
+        ExpiresByType font/woff2 "access plus 1 year"
+    </IfModule>
+</FilesMatch><IfModule mod_headers.c>
+    SetEnvIf Origin ^(https?://(?:.+\.)?tesitoo\.com(?::\d{1,5})?)$   CORS_ALLOW_ORIGIN=$1
+    Header append Access-Control-Allow-Origin  %{CORS_ALLOW_ORIGIN}e   env=CORS_ALLOW_ORIGIN
+    Header merge  Vary "Origin"
+</IfModule>
+
+<FilesMatch "\.(jpg|jpeg|png|gif)$">
+    <IfModule mod_expires.c>
+        ExpiresActive on
+        ExpiresByType image/jpg "access plus 2 weeks"
+        ExpiresByType image/jpeg "access plus 2 weeks"
+        ExpiresByType image/png "access plus 2 weeks"
+        ExpiresByType image/gif "access plus 2 weeks"
+    </IfModule>
+</FilesMatch>
+
+
+<FilesMatch "\.(js|css|woff|woff2)$">
+    <IfModule mod_expires.c>
+        ExpiresActive on
+        ExpiresByType application/javascript "access plus 1 week"
+        ExpiresByType text/css "access plus 1 week"
+        ExpiresByType font/woff "access plus 1 year"
+        ExpiresByType font/woff2 "access plus 1 year"
+    </IfModule>
+</FilesMatch>
