@@ -857,14 +857,13 @@ footer #powered a:hover, footer #powered a:focus, footer #powered a:active {}
 }
 
 #socialColumn.socialColumnTesitoo a {
-	width: 200px;
-	height: 40px;
-	text-align: right;
+	width: inherit;
 }
-.socialColumnTesitoo .socialLinkTesitoo {
-	height: 40px;
+#socialColumn.socialColumnTesitoo a:hover .social-link,
+#socialColumn.socialColumnTesitoo a:focus .social-link,
+#socialColumn.socialColumnTesitoo a:active .social-link {
+	opacity: 0.6;
 }
-
 
 /* alert */
 .alert {
