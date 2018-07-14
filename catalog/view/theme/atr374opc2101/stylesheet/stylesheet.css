@@ -1926,3 +1926,27 @@ h2.price {
 		border: none;
 		background-color: transparent;
 }
+
+#banner_overlay {
+	position: absolute;
+  top: 2vw;
+  left: 6vw;
+}
+
+#banner_overlay .overlay_bg {
+  position: absolute;
+	background-color: white;
+	opacity: 0.7;
+	width: 60vw;
+	height: 8vw;
+}
+
+#banner_overlay .overlay_text {
+	position: relative;
+	font-size: 3.6vw;
+  color: black;
+	font-family: sans-serif;
+	font-weight: 700;
+	margin: 0.8vw;
+	line-height: 2.4vw;
+}

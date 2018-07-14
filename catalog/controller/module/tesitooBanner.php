@@ -10,6 +10,8 @@ class ControllerModuleTesitooBanner extends Controller {
 
 		$results = $this->model_design_banner->getBanner($setting['banner_id']);
 
+		$this->log->write($results);
+
 		/*
 		foreach ($results as $result) {
 			if (is_file(DIR_IMAGE . $result['image'])) {
@@ -27,7 +29,9 @@ class ControllerModuleTesitooBanner extends Controller {
 				$data['banners'][] = array(
 					'title' => $result['title'],
 					'link'  => $result['link'],
-				'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+					'overlay_text_1' => $setting['overlay_text_1'],
+					'overlay_text_2' => $setting['overlay_text_2'],
+					'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
 				);
 			}
 		}

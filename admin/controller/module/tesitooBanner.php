@@ -32,6 +32,8 @@ class ControllerModuleTesitooBanner extends Controller {
 		$data['entry_width'] = $this->language->get('entry_width');
 		$data['entry_height'] = $this->language->get('entry_height');
 		$data['entry_status'] = $this->language->get('entry_status');
+		$data['entry_overlay_text_1'] = $this->language->get('entry_overlay_text_1');
+		$data['entry_overlay_text_2'] = $this->language->get('entry_overlay_text_2');
 
 		$data['button_save'] = $this->language->get('button_save');
 		$data['button_cancel'] = $this->language->get('button_cancel');
@@ -110,6 +112,22 @@ class ControllerModuleTesitooBanner extends Controller {
 			$data['banner_id'] = $module_info['banner_id'];
 		} else {
 			$data['banner_id'] = '';
+		}
+
+		if (isset($this->request->post['overlay_text_1'])) {
+			$data['overlay_text_1'] = $this->request->post['overlay_text_1'];
+		} elseif (!empty($module_info)) {
+			$data['overlay_text_1'] = $module_info['overlay_text_1'];
+		} else {
+			$data['overlay_text_1'] = '';
+		}
+
+		if (isset($this->request->post['overlay_text_2'])) {
+			$data['overlay_text_2'] = $this->request->post['overlay_text_2'];
+		} elseif (!empty($module_info)) {
+			$data['overlay_text_2'] = $module_info['overlay_text_2'];
+		} else {
+			$data['overlay_text_2'] = '';
 		}
 
 		$this->load->model('design/banner');
