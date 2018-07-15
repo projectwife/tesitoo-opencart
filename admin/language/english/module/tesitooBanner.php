@@ -14,6 +14,8 @@ $_['entry_dimension']  = 'Dimension (W x H) and Resize Type';
 $_['entry_width']      = 'Width';
 $_['entry_height']     = 'Height';
 $_['entry_status']     = 'Status';
+$_['entry_overlay_text_1'] = 'Overlay Heading';
+$_['entry_overlay_text_2'] = 'Overlay 2nd Line';
 
 // Error
 $_['error_permission'] = 'Warning: You do not have permission to modify Tesitoo Banner module!';

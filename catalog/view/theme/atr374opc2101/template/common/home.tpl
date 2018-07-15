@@ -1,4 +1,11 @@
 <?php echo $header; ?>
+<div class="fullwidth-container-wrapper">
+	<div class="fullwidth-container">
+		<div class="fullwidth-content">
+			<?php echo $content_top; ?>
+		</div>
+	</div>
+</div>
 <div class="container-wrapper">
 	<div class="container">
 	  <div class="row"><?php echo $column_left; ?>
@@ -9,7 +16,7 @@
 		<?php } else { ?>
 		<?php $class = 'col-sm-12'; ?>
 		<?php } ?>
-		<div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?><?php echo $content_bottom; ?></div>
+		<div id="content" class="<?php echo $class; ?>"><?php echo $content_bottom; ?></div>
 		<?php echo $column_right; ?></div>
 	</div>
 </div>

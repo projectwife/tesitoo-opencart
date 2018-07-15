@@ -49,6 +49,18 @@
             </div>
           </div>
           <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-width"><?php echo $entry_overlay_text_1; ?></label>
+            <div class="col-sm-10">
+              <input type="text" name="overlay_text_1" value="<?php echo $overlay_text_1; ?>" placeholder="<?php echo $entry_overlay_text_1; ?>" id="input-overlay-text-1" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-width"><?php echo $entry_overlay_text_2; ?></label>
+            <div class="col-sm-10">
+              <input type="text" name="overlay_text_2" value="<?php echo $overlay_text_2; ?>" placeholder="<?php echo $entry_overlay_text_2; ?>" id="input-overlay-text-2" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
             <label class="col-sm-2 control-label" for="input-width"><?php echo $entry_width; ?></label>
             <div class="col-sm-10">
               <input type="text" name="width" value="<?php echo $width; ?>" placeholder="<?php echo $entry_width; ?>" id="input-width" class="form-control" />
