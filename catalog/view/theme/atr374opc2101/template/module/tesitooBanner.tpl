@@ -1,6 +1,6 @@
 <div>
   <?php foreach ($banners as $banner) { ?>
-    <img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" class="img-responsive center-block" />
+    <img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" class="img-responsive center-block fullwidth" />
     <div id="banner_overlay">
       <div class="overlay_bg"></div>
       <div class="overlay_text">

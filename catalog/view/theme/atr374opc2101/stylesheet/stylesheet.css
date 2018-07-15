@@ -1928,6 +1928,7 @@ h2.price {
 }
 
 #banner_overlay {
+	display: none;
 	position: absolute;
   top: 2vw;
   left: 6vw;
@@ -1944,9 +1945,17 @@ h2.price {
 #banner_overlay .overlay_text {
 	position: relative;
 	font-size: 3.6vw;
-  color: black;
+  color: #4f7e04;
 	font-family: sans-serif;
 	font-weight: 700;
 	margin: 0.8vw;
 	line-height: 2.4vw;
+}
+
+.fullwidth-content {
+	position: relative;
+}
+
+img.fullwidth {
+	width: 100%;
 }
