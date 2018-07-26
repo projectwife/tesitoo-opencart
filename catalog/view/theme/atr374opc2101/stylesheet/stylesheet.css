@@ -1930,15 +1930,16 @@ h2.price {
 #banner_overlay {
 	position: absolute;
   top: 2vw;
-  left: 6vw;
+  left: 20vw;
 }
 
 #banner_overlay .overlay_bg {
   position: absolute;
 	background-color: #eee;
-	opacity: 0.85;
-	width: 44vw;
+	opacity: 0.88;
+	width: 42vw;
 	height: 11vw;
+	border-radius: 3px;
 }
 
 #banner_overlay .overlay_text {
@@ -1946,7 +1947,7 @@ h2.price {
 	font-family: sans-serif;
 	font-weight: 700;
 	margin: 0.8vw;
-	max-width: 42vw;
+	max-width: 40vw;
 }
 
 .overlay_text .overlay_text_1 {
