@@ -1929,16 +1929,16 @@ h2.price {
 
 #banner_overlay {
 	position: absolute;
-  top: 2vw;
-  left: 20vw;
+	top: 12vw;
+	left: 24vw;
 }
 
 #banner_overlay .overlay_bg {
-  position: absolute;
+	position: absolute;
 	background-color: #eee;
-	opacity: 0.88;
-	width: 42vw;
-	height: 11vw;
+	opacity: 0.86;
+	width: 35.5vw;
+	height: 7vw;
 	border-radius: 3px;
 }
 
@@ -1947,12 +1947,12 @@ h2.price {
 	font-family: sans-serif;
 	font-weight: 700;
 	margin: 0.8vw;
-	max-width: 40vw;
+	max-width: 34vw;
 }
 
 .overlay_text .overlay_text_1 {
-	font-size: 3.2vw;
-	line-height: 3.2vw;
+	font-size: 2.8vw;
+	line-height: 2.8vw;
 	color: #4f7e04;
 	text-transform: uppercase;
 }
@@ -1962,6 +1962,7 @@ h2.price {
 	line-height: 2.4vw;
 	color: #809005;
 	margin-top: 0.4vw;
+	display: none;
 }
 
 @media only screen and (max-width: 767px) {
