@@ -1929,8 +1929,8 @@ h2.price {
 
 #banner_overlay {
 	position: absolute;
-	top: 12vw;
-	left: 24vw;
+	bottom: 0vw;
+	right: 0vw;
 }
 
 #banner_overlay .overlay_bg {
@@ -1948,6 +1948,7 @@ h2.price {
 	font-weight: 700;
 	margin: 0.8vw;
 	max-width: 34vw;
+	text-align: right;
 }
 
 .overlay_text .overlay_text_1 {
