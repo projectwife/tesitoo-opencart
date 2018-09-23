@@ -73,8 +73,8 @@ h1 + p, .well > h2 { margin: 20px 0; padding: 16px 0; color: #313133; border-wid
 h4 { font-size: 15px; }
 h5 { font-size: 12px; }
 h6 { font-size: 10.2px; }
-a { color: #313133; }
-a:hover { text-decoration: underline; }
+a { /*color: #313133;*/ color: #7fae09; }
+a:hover { color: #7fae09; text-decoration: underline; }
 legend {
 	padding: 7px 0px
 }
@@ -1469,9 +1469,9 @@ h2.price {
 /* product info */
 .product-info .price-old { font-size: 18px; color: #969c89; text-decoration: line-through; }
 .product-info .price-new h2 { color: #de1b2e; }
-.product-info .list-manufacturer span, .product-info .list-manufacturer a { color: #000; }
+/*.product-info .list-manufacturer span, .product-info .list-manufacturer a { color: #000; }
 .product-info .list-manufacturer a { text-decoration: underline; }
-.product-info .list-manufacturer a:hover, .product-info .list-manufacturer a:focus, .product-info .list-manufacturer a:active { text-decoration: none; }
+.product-info .list-manufacturer a:hover, .product-info .list-manufacturer a:focus, .product-info .list-manufacturer a:active { text-decoration: none; }*/
 .product-info .buy-group { clear: both; overflow: hidden; }
 .product-info hr { border-top: 1px dotted #c5cacb; color: rgba(255,255,255,0); background-color: transparent; }
 .product-info .quantity-group { margin-right: 4px; }
@@ -1897,13 +1897,13 @@ h2.price {
 .is-sticky .slogan { display: none; }
 
 
-.checkout-success a:hover {
+/*.checkout-success a:hover {
     text-decoration: none;
 }
 
 .checkout-success a {
     text-decoration: underline;
-}
+}*/
 
 .account-header {
     font-size: 16px;
@@ -1936,7 +1936,7 @@ h2.price {
 #banner_overlay .overlay_bg {
 	position: absolute;
 	background-color: #eee;
-	opacity: 0.86;
+	opacity: 0.8;
 	width: 35.5vw;
 	height: 7vw;
 	border-radius: 3px;
