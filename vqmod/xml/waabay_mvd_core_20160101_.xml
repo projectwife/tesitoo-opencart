@@ -322,6 +322,14 @@
 			}
 			]]></add>
 		</operation>
+    <operation error="error">
+			<search position="replace"><![CDATA[
+			$data['product'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'], 'SSL');
+			]]></search>
+      <add><![CDATA[
+      $data['product'] = $this->url->link('catalog/mvd_product', 'token=' . $this->session->data['token'], 'SSL');
+      ]]></add>
+    </operation>
 	</file>
 
 	<file name="admin/controller/common/profile.php">
