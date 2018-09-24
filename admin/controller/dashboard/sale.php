@@ -37,7 +37,7 @@ class ControllerDashboardSale extends Controller {
 			$data['total'] = round($sale_total);
 		}
 
-		$data['sale'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'], 'SSL');
+		$data['sale'] = $this->url->link('sale/tesitoo_order', 'token=' . $this->session->data['token'], 'SSL');
 
 		return $this->load->view('dashboard/sale.tpl', $data);
 	}
