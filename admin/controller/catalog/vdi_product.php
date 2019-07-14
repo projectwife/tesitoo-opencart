@@ -1767,6 +1767,13 @@ class ControllerCatalogVDIProduct extends Controller {
 		return !$this->error;
 	}
 
+	private function replaceEncodedChars($text) {
+		$textMod = preg_replace("/&lt;\/?.+?&gt;/i", " ", $text);
+		$textMod = preg_replace("/&[a-z]+;/", " ", $textMod);
+		$textMod = str_replace("amp;", "&", $textMod);
+		return preg_replace("/ +/", " ", $textMod);
+	}
+
 	protected function setRemovedFieldDefaults() {
 		if (!isset($this->request->post['model'])) {
 			$this->request->post['model'] = "";
@@ -1811,10 +1818,10 @@ class ControllerCatalogVDIProduct extends Controller {
 			$this->request->post['product_description'][1]['tag'] = "";
 		}
 		if (!isset($this->request->post['product_description'][1]['meta_title'])) {
-			$this->request->post['product_description'][1]['meta_title'] = "";
+			$this->request->post['product_description'][1]['meta_title'] = $this->replaceEncodedChars($this->request->post['product_description'][1]['name']);
 		}
 		if (!isset($this->request->post['product_description'][1]['meta_description'])) {
-			$this->request->post['product_description'][1]['meta_description'] = "";
+			$this->request->post['product_description'][1]['meta_description'] = $this->replaceEncodedChars($this->request->post['product_description'][1]['description']);
 		}
 		if (!isset($this->request->post['product_description'][1]['meta_keyword'])) {
 			$this->request->post['product_description'][1]['meta_keyword'] = "";
