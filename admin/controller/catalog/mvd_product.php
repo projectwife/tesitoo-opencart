@@ -20,6 +20,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		$this->load->model('catalog/mvd_product');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+			$this->setFieldDefaults();
 			$this->model_catalog_mvd_product->addProduct($this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -82,6 +83,7 @@ class ControllerCatalogMVDProduct extends Controller {
 		$this->load->model('catalog/mvd_product');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+			$this->setFieldDefaults();
 			$this->model_catalog_mvd_product->editProduct($this->request->get['product_id'], $this->request->post);
 
 			//mvds
@@ -1953,5 +1955,25 @@ class ControllerCatalogMVDProduct extends Controller {
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
+	}
+
+	private function replaceEncodedChars($text) {
+		$textMod = preg_replace("/&lt;\/?.+?&gt;/i", " ", $text);
+		$textMod = preg_replace("/&[a-z]+;/", " ", $textMod);
+		$textMod = str_replace("amp;", "&", $textMod);
+		return trim(preg_replace("/ +/", " ", $textMod));
+	}
+
+	protected function setFieldDefaults() {
+		if (!isset($this->request->post['product_description'][1]['meta_title'])
+			||
+			strlen($this->request->post['product_description'][1]['meta_title']) === 0) {
+			$this->request->post['product_description'][1]['meta_title'] = $this->replaceEncodedChars($this->request->post['product_description'][1]['name']);
+		}
+		if (!isset($this->request->post['product_description'][1]['meta_description'])
+			||
+			strlen($this->request->post['product_description'][1]['meta_description']) === 0) {
+			$this->request->post['product_description'][1]['meta_description'] = $this->replaceEncodedChars($this->request->post['product_description'][1]['description']);
+		}
 	}
 }

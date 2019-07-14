@@ -1771,7 +1771,7 @@ class ControllerCatalogVDIProduct extends Controller {
 		$textMod = preg_replace("/&lt;\/?.+?&gt;/i", " ", $text);
 		$textMod = preg_replace("/&[a-z]+;/", " ", $textMod);
 		$textMod = str_replace("amp;", "&", $textMod);
-		return preg_replace("/ +/", " ", $textMod);
+		return trim(preg_replace("/ +/", " ", $textMod));
 	}
 
 	protected function setRemovedFieldDefaults() {
