@@ -204,7 +204,7 @@
 				<?php } elseif ($signup_plan['commission_type'] == '3') { ?><?php echo $signup_plan['commission_text']; ?></option>
 				<?php } elseif ($signup_plan['commission_type'] == '4') { ?><?php echo $signup_plan['commission_text']; ?></option>
 				<?php } elseif ($signup_plan['commission_type'] == '5') { ?><?php echo $signup_plan['commission_text']; ?></option>
-				<?php } ?>			
+				<?php } ?>
 				<?php } ?>
 			  <?php } ?><input type="hidden" name="hsignup_plan" id="hsignup_plan" value="" />
               </select>
@@ -216,7 +216,7 @@
               <div class="col-sm-10">
                 <label class="radio-inline">
                   <input type="radio" name="payment_method" value="1" checked="checked" /><?php echo $text_paypal; ?></label>
-                <label class="radio-inline">  
+                <label class="radio-inline">
                   <input type="radio" name="payment_method" value="0" /><?php echo $text_bank; ?></label>
               </div>
           </div>
@@ -280,6 +280,21 @@
             </div>
           </div>
         </fieldset>
+        <div class="form-group required">
+          <label class="col-sm-2 control-label" for="input-captcha"><?php echo $entry_captcha; ?></label>
+          <div class="col-sm-3">
+            <img src="<?php echo $_SESSION['captcha']['image_src']; ?>">
+          </div>
+          <div class="col-sm-7">
+            <input type="text" name="captcha" value="" placeholder="<?php echo $entry_captcha; ?>" id="input-captcha" class="form-control" />
+            <?php if ($error_captcha) { ?>
+            <div class="text-danger"><?php echo $error_captcha; ?></div>
+            <?php } ?>
+          </div>
+        </div>
+        <div>
+
+        </div>
         <?php if ($text_agree) { ?>
         <div class="buttons">
           <div class="pull-right"><?php echo $text_agree; ?>
