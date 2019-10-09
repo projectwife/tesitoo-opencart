@@ -55,6 +55,8 @@ $_['entry_store_description']  	= 'Tell us more about you company';
 $_['entry_password']       		= 'Password';
 $_['entry_confirm']        		= 'Password Confirm';
 
+$_['entry_captcha']        = 'Enter the characters in the image';
+
 $_['help_paypal']          = 'Make sure you use your PayPal email address otherwise you won\'t receive payments';
 $_['help_company']         = 'This is store front seller name';
 $_['help_product_limit']   = 'The number of products can add to account';
@@ -77,4 +79,5 @@ $_['error_postcode']       = 'Postcode must be between 2 and 10 characters!';
 $_['error_country']        = 'Please select a country!';
 $_['error_zone']           = 'Please select a region / state!';
 $_['error_agree']          = 'Warning: You must agree to the %s!';
+$_['error_captcha']        = 'Text in captcha image must be entered correctly';
 ?>
