@@ -17,6 +17,9 @@
 <?php if ($keywords) { ?>
 <meta name="keywords" content= "<?php echo $keywords; ?>" />
 <?php } ?>
+<?php if ($ogImage) { ?>
+<meta property="og:image" content="<?php echo $ogImage; ?>" />
+<?php } ?>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
 <link href="catalog/view/theme/atr374opc2101/stylesheet/bootstrap/atra.min.css" rel="stylesheet" media="screen" />
