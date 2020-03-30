@@ -229,8 +229,10 @@ class ControllerProductProduct extends Controller {
 			$this->document->addScript('catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js');
 			$this->document->addStyle('catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css');
 
-			$ogImage = HTTPS_SERVER . 'image/' . $product_info['image'];
-			$this->document->setOgImage($ogImage);
+			if ($product_info['image']) {
+				$ogImage = HTTPS_SERVER . 'image/' . $product_info['image'];
+				$this->document->setOgImage($ogImage);
+			}
 
 			$data['heading_title'] = $product_info['name'];
 
