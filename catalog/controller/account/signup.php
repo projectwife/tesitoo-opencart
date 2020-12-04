@@ -688,8 +688,10 @@ class ControllerAccountSignUp extends Controller {
       		$this->error['confirm'] = $this->language->get('error_confirm');
 		}
 
-		if (0 != strcmp(strtolower(trim($this->request->post['captcha'])), strtolower($_SESSION['captcha']['code']))) {
-			$this->error['captcha'] = $this->language->get('error_captcha');
+		if (isset($this->request->post['captcha'])) {
+			if (0 != strcmp(strtolower(trim($this->request->post['captcha'])), strtolower($_SESSION['captcha']['code']))) {
+				$this->error['captcha'] = $this->language->get('error_captcha');
+			}
 		}
 
 		if ($this->config->get('config_account_id')) {
