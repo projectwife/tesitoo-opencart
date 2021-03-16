@@ -15,12 +15,12 @@ jobs:
           name: install python
           command: |
             sudo apt-get update
-            sudo apt-get install python3
+            sudo apt-get install python3.6
       - run:
           name: install selenium for python
           command: |
             curl -O https://bootstrap.pypa.io/get-pip.py
-            sudo python3 get-pip.py
+            sudo python3.6 get-pip.py
             sudo pip install selenium
       - run:
           name: configure apache
@@ -50,7 +50,7 @@ jobs:
           command: mysql -h 127.0.0.1 -u root -ppassword circle_test < tesitoo.sql
       - run:
           name: run tests
-          command: python3 test/registerVendor.py --url http://localhost:8080/
+          command: python3.6 test/registerVendor.py --url http://localhost:8080/
       - store_artifacts:
           path: test/circleci_artifacts
 
