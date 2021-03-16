@@ -50,7 +50,7 @@ jobs:
           command: mysql -h 127.0.0.1 -u root -ppassword circle_test < tesitoo.sql
       - run:
           name: run tests
-          command: python3.6 test/registerVendor.py --url http://localhost:8080/
+          command: python3 test/registerVendor.py --url http://localhost:8080/
       - store_artifacts:
           path: test/circleci_artifacts
 
