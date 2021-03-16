@@ -15,12 +15,12 @@ jobs:
           name: install python
           command: |
             sudo apt-get update
-            sudo apt-get install python3.6
+            sudo apt-get install python3
       - run:
           name: install selenium for python
           command: |
-            curl -O https://bootstrap.pypa.io/get-pip.py
-            sudo python3.6 get-pip.py
+            curl -O https://bootstrap.pypa.io/pip/3.5/get-pip.py
+            sudo python3 get-pip.py
             sudo pip install selenium
       - run:
           name: configure apache
